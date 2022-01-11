@@ -9,7 +9,7 @@
     </style>
 </head>
 <body>
-	메인1
+	메인
 </body>
 <script>
 </script>

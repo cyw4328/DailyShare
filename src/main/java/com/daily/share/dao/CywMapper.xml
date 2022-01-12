@@ -5,8 +5,16 @@
 
 <mapper namespace="com.daily.share.dao.CywDAO">
 
-	<insert id="bigCategoty">
-		INSERT INTO mainCategory()
+	<insert id="bigCategory">
+		INSERT INTO mainCategory(main_name,main_admin)VALUES (#{param1},#{param2})
 	</insert>
+	
+	<insert id="middleCategory">
+		INSERT INTO middleCategory(mid_name,mid_admin)VALUES (#{param1},#{param2})
+	</insert>
+	
+	<select id="bigCategoryList" resultType="String">
+		SELECT main_name from mainCategory
+	</select>
 
 </mapper>

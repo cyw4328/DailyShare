@@ -8,15 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.daily.share.service.CsjService;
+import com.daily.share.service.CywService;
 import com.daily.share.service.ProjectService;
 
 @Controller
-public class HomeController {
+
+public class CsjContoller {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Autowired ProjectService service;
+	@Autowired CsjService service;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/csj", method = RequestMethod.GET)
 	public String home(Model model) {
 
 		return "HomePage";

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <html style="font-size: 16px;">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,38 +69,38 @@ borders: top right bottom left !important
             </h2><!--/blog_post_header--><!--blog_post_image-->
             <img alt="" class="u-blog-control u-image u-image-default u-image-1" src="resources/blogImages/1.jpeg"><!--/blog_post_image--><!--blog_post_content-->
             <div class="u-align-center u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content-->Sample small text. Lorem ipsum dolor sit amet.<!--/blog_post_content_content--></div><!--/blog_post_content-->
-            <div class="u-list u-list-1">
-              <div class="u-repeater u-repeater-1">
-                <div class="u-container-style u-list-item u-repeater-item">
-                  <div class="u-container-layout u-similar-container u-container-layout-2">
-                    <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-1">삭제</a>
-                  </div>
-                </div>
-                <div class="u-container-style u-list-item u-repeater-item">
-                  <div class="u-container-layout u-similar-container u-container-layout-3">
-                    <a href="#sec-6373" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-2">신고</a>
-                  </div>
-                </div>
-                <div class="u-container-style u-list-item u-repeater-item">
-                  <div class="u-container-layout u-similar-container u-container-layout-4">
-                    <a href="#sec-06c8" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-3">공유</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a href="https://nicepage.com/joomla-templates" class="u-border-2 u-border-active-black u-border-black u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-active-black u-text-black u-text-hover-black u-btn-4"><span class="u-file-icon u-icon u-icon-1"><img src="resources/blogImages/10770351.png" alt=""></span>&nbsp; 0
-            </a>
-            <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-5">수정</a><!--blog_post_metadata-->
-            <div class="u-blog-control u-metadata u-text-grey-30 u-metadata-3"><!--blog_post_metadata_comments-->
-              <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comments (0)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments-->
-            </div><!--/blog_post_metadata-->
-            <div class="u-border-2 u-border-grey-25 u-expanded-width u-line u-line-horizontal u-line-1"></div>
           </div>
         </div><!--/blog_post--><!--/post_details-->
       </div>
     </section>
     <section class="u-align-center u-clearfix u-white u-section-2" id="sec-68d7">
       <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-1">삭제</a>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-2">
+                <a href="#sec-6373" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-2">신고</a>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-3">
+                <a href="#sec-06c8" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-3">공유</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="https://nicepage.com/joomla-templates" class="u-border-2 u-border-active-black u-border-black u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-active-black u-text-black u-text-hover-black u-btn-4"><span class="u-file-icon u-icon u-icon-1"><img src="resources/blogImages/10770351.png" alt=""></span>&nbsp; 0
+        </a>
+        <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-5">수정</a>
+        <div class="u-blog-control u-metadata u-text-grey-30 u-metadata-1">
+          <span class="u-meta-comments u-meta-icon">Comments (0)</span>
+        </div>
+        <div class="u-border-2 u-border-grey-25 u-expanded-width u-line u-line-horizontal u-line-1"></div>
         <div class="u-border-1 u-border-black u-expanded-width u-form u-form-1">
           <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form" style="padding: 10px;">
             <div class="u-form-group u-form-partition-factor-2">

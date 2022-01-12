@@ -14,5 +14,11 @@ public class CywService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired CywDAO dao;
 	
+	public void bigCategoryAdd(String text) {
+		
+		dao.bigCategory(text);
+		
+	}
+	
 	
 }

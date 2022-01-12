@@ -197,8 +197,8 @@ borders: top right bottom left !important
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1480"><div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">DS</h2>
-        <p class="u-align-left u-text u-text-default u-text-2">Daily Share<br>오늘을 공유하다.<br>02-898-0000<br>서울특별시 금천구 가산동
+
+        <p class="u-align-left u-text u-text-default u-text-2"><b>DS</b><br/>Daily Share<br>오늘을 공유하다.<br>02-898-0000<br>서울특별시 금천구 가산동
         </p>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
@@ -210,7 +210,7 @@ borders: top right bottom left !important
       </p>
       <a class="u-link" href="" target="_blank">
         <span>Website Builder Software</span>
-      </a>. 
+      </a>.
     </section>
   </body>
 </html>

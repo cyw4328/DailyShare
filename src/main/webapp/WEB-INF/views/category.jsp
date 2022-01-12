@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <html style="font-size: 16px;">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +37,7 @@
         <div class="u-border-1 u-border-grey-15 u-line u-line-vertical u-line-2"></div>
         <div class="u-border-1 u-border-grey-15 u-line u-line-vertical u-line-3"></div>
         <a href="HomePage.html" data-page-id="342306138" class="u-image u-logo u-image-1" title="Home">
-          <img src="resources/images/DailyShareLogo.PNG" class="u-logo-image u-logo-image-1">
+          <img src="resources/images/default-logo.png" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
@@ -85,6 +86,58 @@ borders: top right bottom left !important
         <div class="u-border-3 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
         <h4 class="u-text u-text-default u-text-4">대분류</h4>
         <h4 class="u-text u-text-default u-text-5">중분류</h4>
+        <div class="u-form u-form-1">
+          <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px" source="custom">
+            <div class="u-form-group u-form-group-1">
+              <label for="text-0628" class="u-form-control-hidden u-label"></label>
+              <input type="text" placeholder="" id="text-0628" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
+            </div>
+            <div class="u-form-group u-form-radiobutton u-form-group-2">
+              <div class="u-form-radio-button-wrapper">
+                <input type="radio" name="radiobutton" value="일반용">
+                <label class="u-label" for="radiobutton">일반용</label>
+                <br>
+                <input type="radio" name="radiobutton" value="관리자용">
+                <label class="u-label" for="radiobutton">관리자용</label>
+                <br>
+              </div>
+            </div>
+            <div class="u-align-right u-form-group u-form-submit">
+              <a href="#" class="u-black u-btn u-btn-round u-btn-submit u-button-style u-radius-50 u-btn-2">등록<br>
+              </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
+            <input type="hidden" value="" name="recaptchaResponse">
+          </form>
+        </div>
+        <div class="u-form u-form-2">
+          <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px" source="custom">
+            <div class="u-form-group u-form-group-4">
+              <label for="text-0628" class="u-form-control-hidden u-label"></label>
+              <input type="text" placeholder="" id="text-0628" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
+            </div>
+            <div class="u-form-group u-form-radiobutton u-form-group-5">
+              <div class="u-form-radio-button-wrapper">
+                <input type="radio" name="radiobutton" value="일반용">
+                <label class="u-label" for="radiobutton">일반용</label>
+                <br>
+                <input type="radio" name="radiobutton" value="관리자용">
+                <label class="u-label" for="radiobutton">관리자용</label>
+                <br>
+              </div>
+            </div>
+            <div class="u-align-right u-form-group u-form-submit">
+              <a href="#" class="u-black u-btn u-btn-round u-btn-submit u-button-style u-radius-50 u-btn-3">등록<br>
+              </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
+            <input type="hidden" value="" name="recaptchaResponse">
+          </form>
+        </div>
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-container-style u-list-item u-repeater-item">
@@ -114,38 +167,6 @@ borders: top right bottom left !important
             </div>
           </div>
         </div>
-        <div class="u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px" source="custom">
-            <div class="u-form-group u-form-group-1">
-              <label for="text-0628" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="" id="text-0628" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
-            </div>
-            <div class="u-form-group u-form-submit">
-              <a href="#" class="u-black u-btn u-btn-round u-btn-submit u-button-style u-radius-50 u-btn-2">검색<br>
-              </a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
-            </div>
-            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-            <input type="hidden" value="" name="recaptchaResponse">
-          </form>
-        </div>
-        <div class="u-form u-form-2">
-          <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px" source="custom">
-            <div class="u-form-group u-form-group-3">
-              <label for="text-0628" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="" id="text-0628" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
-            </div>
-            <div class="u-form-group u-form-submit">
-              <a href="#" class="u-black u-btn u-btn-round u-btn-submit u-button-style u-radius-50 u-btn-3">검색<br>
-              </a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
-            </div>
-            <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-            <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-            <input type="hidden" value="" name="recaptchaResponse">
-          </form>
-        </div>
         <div class="u-palette-1-base u-shape u-shape-rectangle u-shape-1"></div>
         <div class="u-palette-1-base u-shape u-shape-rectangle u-shape-2"></div>
         <a href="https://nicepage.com/website-design" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-none u-text-black u-text-hover-white u-btn-4"> 수정</a>
@@ -161,7 +182,7 @@ borders: top right bottom left !important
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1480"><div class="u-clearfix u-sheet u-sheet-1">
-        <h4 class="u-text u-text-default u-text-1">DS</h4>
+        <p class="u-text u-text-default u-text-1">DS</p>
         <p class="u-align-left u-text u-text-default u-text-2">Daily Share<br>오늘을 공유하다.<br>02-898-0000<br>서울특별시 금천구 가산동
         </p>
       </div></footer>

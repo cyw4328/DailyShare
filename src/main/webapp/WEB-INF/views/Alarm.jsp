@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html style="font-size: 16px;">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,7 +131,9 @@ borders: top right bottom left !important
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1480"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+
+        <p class="u-align-left u-text u-text-default u-text-2"><b>DS</b><br/>Daily Share<br>오늘을 공유하다.<br>02-898-0000<br>서울특별시 금천구 가산동
+        </p>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
       <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
@@ -141,7 +144,7 @@ borders: top right bottom left !important
       </p>
       <a class="u-link" href="" target="_blank">
         <span>Website Builder Software</span>
-      </a>. 
+      </a>.
     </section>
   </body>
 </html>

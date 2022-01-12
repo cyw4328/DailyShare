@@ -5,5 +5,8 @@
 
 <mapper namespace="com.daily.share.dao.CywDAO">
 
+	<insert id="bigCategoty">
+		INSERT INTO mainCategory()
+	</insert>
 
 </mapper>

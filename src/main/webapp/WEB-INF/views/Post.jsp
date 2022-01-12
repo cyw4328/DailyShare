@@ -12,11 +12,10 @@
     <link rel="stylesheet" href="resources/blogCss/nicepage.css" media="screen">
 <link rel="stylesheet" href="resources/blogCss/Post.css" media="screen">
     <script class="u-script" type="text/javascript" src="resources/blogJs/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="resources/blogJS/nicepage.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="resources/blogJs/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.6, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    
     
     
     
@@ -62,48 +61,44 @@ borders: top right bottom left !important
               <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content-->Category<!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category-->
             </div><!--/blog_post_metadata--><!--blog_post_metadata-->
             <div class="u-blog-control u-metadata u-text-grey-30 u-metadata-2"><!--blog_post_metadata_date-->
-              <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->Tue Jan 11 2022<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
+              <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->Wed Jan 12 2022<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
             </div><!--/blog_post_metadata--><!--blog_post_header-->
             <h2 class="u-blog-control u-text u-text-1">
               <a class="u-post-header-link" href="blog/post-7.html"><!--blog_post_header_content-->Post 7<!--/blog_post_header_content--></a>
             </h2><!--/blog_post_header--><!--blog_post_image-->
             <img alt="" class="u-blog-control u-image u-image-default u-image-1" src="resources/blogImages/1.jpeg"><!--/blog_post_image--><!--blog_post_content-->
             <div class="u-align-center u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content-->Sample small text. Lorem ipsum dolor sit amet.<!--/blog_post_content_content--></div><!--/blog_post_content-->
+            <div class="u-list u-list-1">
+              <div class="u-repeater u-repeater-1">
+                <div class="u-container-style u-list-item u-repeater-item">
+                  <div class="u-container-layout u-similar-container u-container-layout-2">
+                    <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-1">삭제</a>
+                  </div>
+                </div>
+                <div class="u-container-style u-list-item u-repeater-item">
+                  <div class="u-container-layout u-similar-container u-container-layout-3">
+                    <a href="#sec-6373" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-2">신고</a>
+                  </div>
+                </div>
+                <div class="u-container-style u-list-item u-repeater-item">
+                  <div class="u-container-layout u-similar-container u-container-layout-4">
+                    <a href="#sec-06c8" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-3">공유</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="https://nicepage.com/joomla-templates" class="u-border-2 u-border-active-black u-border-black u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-active-black u-text-black u-text-hover-black u-btn-4"><span class="u-file-icon u-icon u-icon-1"><img src="resources/blogImages/10770351.png" alt=""></span>&nbsp; 0
+            </a>
+            <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-5">수정</a><!--blog_post_metadata-->
+            <div class="u-blog-control u-metadata u-text-grey-30 u-metadata-3"><!--blog_post_metadata_comments-->
+              <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comments (0)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments-->
+            </div><!--/blog_post_metadata-->
+            <div class="u-border-2 u-border-grey-25 u-expanded-width u-line u-line-horizontal u-line-1"></div>
           </div>
         </div><!--/blog_post--><!--/post_details-->
       </div>
     </section>
-    <section class="u-clearfix u-section-2" id="sec-b4a8">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-list u-list-1">
-          <div class="u-repeater u-repeater-1">
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-container-layout-1">
-                <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-1">삭제</a>
-              </div>
-            </div>
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-container-layout-2">
-                <a href="#sec-6373" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-2">신고</a>
-              </div>
-            </div>
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-container-layout-3">
-                <a href="#sec-06c8" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-dialog-link u-none u-text-active-black u-text-palette-1-base u-btn-3">공유</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="https://nicepage.com/joomla-templates" class="u-border-2 u-border-active-black u-border-black u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-active-black u-text-black u-text-hover-black u-btn-4"><span class="u-file-icon u-icon u-icon-1"><img src="resources/blogImages/10770351.png" alt=""></span>&nbsp; 0
-        </a>
-        <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-custom-item u-none u-text-active-black u-text-palette-1-base u-btn-5">수정</a>
-        <div class="u-blog-control u-metadata u-text-grey-30 u-metadata-1">
-          <span class="u-meta-comments u-meta-icon">Comments (0)</span>
-        </div>
-        <div class="u-border-2 u-border-grey-25 u-expanded-width u-line u-line-horizontal u-line-1"></div>
-      </div>
-    </section>
-    <section class="u-align-center u-clearfix u-white u-section-3" id="sec-68d7">
+    <section class="u-align-center u-clearfix u-white u-section-2" id="sec-68d7">
       <div class="u-align-left u-clearfix u-sheet u-sheet-1">
         <div class="u-border-1 u-border-black u-expanded-width u-form u-form-1">
           <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form" style="padding: 10px;">
@@ -122,12 +117,12 @@ borders: top right bottom left !important
         </div>
       </div>
     </section>
-    <section class="u-align-center u-clearfix u-white u-section-4" id="sec-bf65">
+    <section class="u-align-center u-clearfix u-white u-section-3" id="sec-bf65">
       <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1"><!--post_details--><!--post_details_options_json--><!--{"source":""}--><!--/post_details_options_json--><!--blog_post-->
         <div class="u-container-style u-dialog-link u-expanded-width u-post-details u-post-details-1" data-href="#sec-6373">
           <div class="u-container-layout u-container-layout-1"><!--blog_post_metadata-->
             <div class="u-blog-control u-metadata u-text-grey-90 u-metadata-1"><!--blog_post_metadata_date-->
-              <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->Tue Jan 11 2022<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
+              <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->Wed Jan 12 2022<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
             </div><!--/blog_post_metadata--><!--blog_post_readmore-->
             <a href="blog/post-7.html" class="u-blog-control u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-active-grey-30 u-text-grey-90 u-text-hover-palette-1-base u-btn-1"><!--blog_post_readmore_content--><!--options_json--><!--{"content":"수정<span class=\"u-text-grey-15\">​</span>","defaultValue":"Read More"}--><!--/options_json-->수정<span class="u-text-grey-15"></span><!--/blog_post_readmore_content-->
             </a><!--/blog_post_readmore--><!--blog_post_readmore-->
@@ -140,12 +135,12 @@ borders: top right bottom left !important
         </div><!--/blog_post--><!--/post_details-->
       </div>
     </section>
-    <section class="u-align-center u-clearfix u-grey-5 u-section-5" id="sec-9478">
+    <section class="u-align-center u-clearfix u-grey-5 u-section-4" id="sec-9478">
       <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1"><!--post_details--><!--post_details_options_json--><!--{"source":""}--><!--/post_details_options_json--><!--blog_post-->
         <div class="u-container-style u-dialog-link u-expanded-width u-post-details u-post-details-1" data-href="#sec-6373">
           <div class="u-container-layout u-container-layout-1"><!--blog_post_metadata-->
             <div class="u-blog-control u-metadata u-text-grey-90 u-metadata-1"><!--blog_post_metadata_date-->
-              <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->Tue Jan 11 2022<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
+              <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content-->Wed Jan 12 2022<!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date-->
             </div><!--/blog_post_metadata--><!--blog_post_readmore-->
             <a href="blog/post-7.html" class="u-blog-control u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-active-grey-30 u-text-grey-90 u-text-hover-palette-1-base u-btn-1"><!--blog_post_readmore_content--><!--options_json--><!--{"content":"수정<span class=\"u-text-grey-15\">​</span>","defaultValue":"Read More"}--><!--/options_json-->수정<span class="u-text-grey-15"></span><!--/blog_post_readmore_content-->
             </a><!--/blog_post_readmore--><!--blog_post_readmore-->
@@ -175,7 +170,7 @@ borders: top right bottom left !important
         <span>HTML Builder</span>
       </a>. 
     </section>
-  <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-8" id="sec-6373">
+  <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-7" id="sec-6373">
       <div class="u-container-style u-dialog u-white u-dialog-1">
         <div class="u-container-layout u-valign-top u-container-layout-1">
           <h3 class="u-text u-text-default u-text-1">신고하기</h3>
@@ -215,213 +210,211 @@ borders: top right bottom left !important
           </div>
         </div><button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
       </div>
-    </section><style> .u-section-8 {
+    </section><style> .u-section-7 {
   min-height: 866px;
 }
 
-.u-section-8 .u-dialog-1 {
+.u-section-7 .u-dialog-1 {
   width: 559px;
   min-height: 562px;
-  height: auto;
   margin: 51px calc(((100% - 1140px) / 2) + 239px) 60px auto;
 }
 
-.u-section-8 .u-container-layout-1 {
+.u-section-7 .u-container-layout-1 {
   padding: 24px 0 0;
 }
 
-.u-section-8 .u-text-1 {
+.u-section-7 .u-text-1 {
   font-weight: 700;
   margin: 0 auto;
 }
 
-.u-section-8 .u-line-1 {
+.u-section-7 .u-line-1 {
   transform-origin: right center 0px;
   margin-top: 21px;
   margin-bottom: 0;
 }
 
-.u-section-8 .u-text-2 {
+.u-section-7 .u-text-2 {
   margin: 34px auto 0 91px;
 }
 
-.u-section-8 .u-text-3 {
+.u-section-7 .u-text-3 {
   margin: -26px auto 0 169px;
 }
 
-.u-section-8 .u-text-4 {
+.u-section-7 .u-text-4 {
   text-align: left;
   margin: 12px auto 0 91px;
 }
 
-.u-section-8 .u-text-5 {
+.u-section-7 .u-text-5 {
   margin: -26px 91px 0 169px;
 }
 
-.u-section-8 .u-line-2 {
+.u-section-7 .u-line-2 {
   transform-origin: right center 0px;
   margin-top: 30px;
   margin-bottom: 0;
 }
 
-.u-section-8 .u-text-6 {
+.u-section-7 .u-text-6 {
   font-weight: 700;
   font-size: 1.25rem;
   margin: 14px 401px 0 55px;
 }
 
-.u-section-8 .u-form-1 {
+.u-section-7 .u-form-1 {
   height: 230px;
   margin: 9px 12px 0 55px;
 }
 
-.u-section-8 .u-form-group-1 {
+.u-section-7 .u-form-group-1 {
   margin-left: 0;
 }
 
-.u-section-8 .u-form-group-2 {
+.u-section-7 .u-form-group-2 {
   margin-left: 0;
 }
 
-.u-section-8 .u-form-group-3 {
+.u-section-7 .u-form-group-3 {
   margin-left: 0;
 }
 
-.u-section-8 .u-form-group-4 {
+.u-section-7 .u-form-group-4 {
   margin-left: 0;
 }
 
-.u-section-8 .u-btn-1 {
+.u-section-7 .u-btn-1 {
   background-image: none;
   border-style: none;
 }
 
-.u-section-8 .u-icon-1 {
+.u-section-7 .u-icon-1 {
   width: 20px;
   height: 20px;
 }
 
 @media (max-width: 1199px) {
-  .u-section-8 .u-dialog-1 {
+  .u-section-7 .u-dialog-1 {
     width: 559px;
     margin-right: calc(((100% - 940px) / 2) + 239px);
+    height: auto;
   }
 
-  .u-section-8 .u-line-1 {
+  .u-section-7 .u-line-1 {
     height: 3px;
   }
 
-  .u-section-8 .u-text-2 {
+  .u-section-7 .u-text-2 {
     margin-left: 91px;
   }
 
-  .u-section-8 .u-text-3 {
+  .u-section-7 .u-text-3 {
     margin-top: -26px;
     margin-left: 169px;
   }
 
-  .u-section-8 .u-text-4 {
+  .u-section-7 .u-text-4 {
     margin-left: 91px;
   }
 
-  .u-section-8 .u-text-5 {
+  .u-section-7 .u-text-5 {
     margin-top: -26px;
     margin-right: 91px;
     margin-left: 169px;
   }
 
-  .u-section-8 .u-line-2 {
+  .u-section-7 .u-line-2 {
     height: 3px;
     margin-top: 11px;
   }
 
-  .u-section-8 .u-text-6 {
+  .u-section-7 .u-text-6 {
     margin-top: 13px;
     margin-right: 401px;
   }
 }
 
 @media (max-width: 991px) {
-  .u-section-8 .u-dialog-1 {
+  .u-section-7 .u-dialog-1 {
     margin-right: calc(((100% - 720px) / 2) + 161px);
   }
 }
 
 @media (max-width: 767px) {
-  .u-section-8 .u-dialog-1 {
+  .u-section-7 .u-dialog-1 {
     width: 540px;
     margin-right: calc(((100% - 540px) / 2));
   }
 
-  .u-section-8 .u-text-2 {
+  .u-section-7 .u-text-2 {
     margin-left: 87px;
   }
 
-  .u-section-8 .u-text-3 {
+  .u-section-7 .u-text-3 {
     margin-left: 165px;
   }
 
-  .u-section-8 .u-text-4 {
+  .u-section-7 .u-text-4 {
     margin-left: 87px;
   }
 
-  .u-section-8 .u-text-5 {
+  .u-section-7 .u-text-5 {
     margin-right: 87px;
     margin-left: 156px;
   }
 
-  .u-section-8 .u-text-6 {
+  .u-section-7 .u-text-6 {
     margin-right: 392px;
     margin-left: 46px;
   }
 
-  .u-section-8 .u-form-1 {
+  .u-section-7 .u-form-1 {
     margin-right: 2px;
     margin-left: 46px;
   }
 }
 
 @media (max-width: 575px) {
-  .u-section-8 .u-dialog-1 {
+  .u-section-7 .u-dialog-1 {
     width: 340px;
     margin-right: calc(((100% - 340px) / 2));
   }
 
-  .u-section-8 .u-text-2 {
+  .u-section-7 .u-text-2 {
     margin-left: 70px;
   }
 
-  .u-section-8 .u-text-3 {
+  .u-section-7 .u-text-3 {
     margin-left: 85px;
   }
 
-  .u-section-8 .u-text-4 {
+  .u-section-7 .u-text-4 {
     margin-left: 70px;
   }
 
-  .u-section-8 .u-text-5 {
+  .u-section-7 .u-text-5 {
     margin-left: 21px;
     margin-right: 21px;
   }
 
-  .u-section-8 .u-text-6 {
+  .u-section-7 .u-text-6 {
     margin-right: 238px;
     margin-left: 0;
   }
 
-  .u-section-8 .u-form-1 {
+  .u-section-7 .u-form-1 {
     margin-right: 0;
     margin-left: 0;
   }
-}</style><section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-9" id="sec-06c8">
+}</style><section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-8" id="sec-06c8">
       <div class="u-container-style u-dialog u-white u-dialog-1">
         <div class="u-container-layout u-container-layout-1">
           <h4 class="u-text u-text-default u-text-1">게시물 공유하기</h4>
           <p class="u-text u-text-default u-text-2">공유 할 메뉴</p>
           <div class="u-expanded-width u-form u-form-1">
             <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-              <input type="hidden" id="siteId" name="siteId" value="1571604757">
-              <input type="hidden" id="pageId" name="pageId" value="963609307">
               <div class="u-form-group u-form-select u-form-group-1">
                 <label for="select-7f6f" class="u-form-control-hidden u-label"></label>
                 <div class="u-form-select-wrapper">
@@ -444,81 +437,81 @@ borders: top right bottom left !important
           </div>
         </div><button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
       </div>
-    </section><style> .u-section-9 {
+    </section><style> .u-section-8 {
   min-height: 866px;
 }
 
-.u-section-9 .u-dialog-1 {
-  width: 681px;
+.u-section-8 .u-dialog-1 {
+  width: 643px;
   min-height: 352px;
-  height: auto;
-  margin: 193px calc(((100% - 1140px) / 2) + 194px) 60px auto;
+  margin: 193px auto 60px calc(((100% - 1140px) / 2) + 170px);
 }
 
-.u-section-9 .u-container-layout-1 {
+.u-section-8 .u-container-layout-1 {
   padding: 30px;
 }
 
-.u-section-9 .u-text-1 {
+.u-section-8 .u-text-1 {
   font-size: 1.875rem;
   font-weight: 700;
   margin: 12px auto 0 12px;
 }
 
-.u-section-9 .u-text-2 {
+.u-section-8 .u-text-2 {
   font-size: 1.5rem;
   margin: 31px auto 0 12px;
 }
 
-.u-section-9 .u-form-1 {
+.u-section-8 .u-form-1 {
   margin-bottom: 0;
   margin-top: 29px;
   height: 126px;
 }
 
-.u-section-9 .u-form-group-1 {
+.u-section-8 .u-form-group-1 {
   margin-left: 0;
 }
 
-.u-section-9 .u-btn-1 {
+.u-section-8 .u-btn-1 {
   background-image: none;
   border-style: none;
 }
 
-.u-section-9 .u-icon-1 {
+.u-section-8 .u-icon-1 {
   width: 20px;
   height: 20px;
 }
 
 @media (max-width: 1199px) {
-  .u-section-9 .u-dialog-1 {
-    width: 681px;
-    margin-right: calc(((100% - 940px) / 2) + 194px);
+  .u-section-8 .u-dialog-1 {
+    width: 643px;
+    margin-left: calc(((100% - 940px) / 2) + 170px);
+    height: auto;
   }
 }
 
 @media (max-width: 991px) {
-  .u-section-9 .u-dialog-1 {
-    margin-right: calc(((100% - 720px) / 2) + 39px);
+  .u-section-8 .u-dialog-1 {
+    margin-left: calc(((100% - 720px) / 2) + 77px);
   }
 }
 
 @media (max-width: 767px) {
-  .u-section-9 .u-dialog-1 {
+  .u-section-8 .u-dialog-1 {
     width: 540px;
-    margin-right: calc(((100% - 540px) / 2));
+    margin-left: calc(((100% - 540px) / 2));
   }
 
-  .u-section-9 .u-container-layout-1 {
+  .u-section-8 .u-container-layout-1 {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
 
 @media (max-width: 575px) {
-  .u-section-9 .u-dialog-1 {
+  .u-section-8 .u-dialog-1 {
     width: 340px;
-    margin-right: calc(((100% - 340px) / 2));
+    margin-left: calc(((100% - 340px) / 2));
   }
 }</style></body>
 </html>

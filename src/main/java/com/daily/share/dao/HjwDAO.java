@@ -8,6 +8,9 @@ public interface HjwDAO {
 
 	String IdS(String userName, String userPhone, String userEmail);
 
+	String PwS(String userId, String userName, String userPhone, String userEmail);
+
+
 	
 	
 

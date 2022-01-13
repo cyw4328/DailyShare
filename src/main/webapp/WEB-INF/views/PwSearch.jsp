@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
             
@@ -89,26 +90,6 @@
 
     <script>
     
-		    var timer = null;
-		    var isRunning = false;
-		    $(function(){
-
-    	    $(".btn_recive_num").click(function(e){
-        	var display = $('.time');
-        	var leftSec = 180;
-        	// 남은 시간
-        	// 이미 타이머가 작동중이면 중지
-        	if (isRunning){
-        		clearInterval(timer);
-        		display.html("");
-        		startTimer(leftSec, display);
-        	}else{
-        	startTimer(leftSec, display);
-        		
-        	}
-        });
-    })
-        
         
     </script>
 

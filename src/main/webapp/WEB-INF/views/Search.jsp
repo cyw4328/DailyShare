@@ -3,6 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <title></title>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
@@ -54,8 +55,8 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner">아이디 찾기
-                <div class="container"></div>
+            <div id="banner">
+                <div class="container">${title}</div>
             </div>
             <div id="contents">
                 <div class="container">
@@ -64,10 +65,10 @@
 								<td>${msg}</td>
 							</tr>
 							<tr>	
-								<th valign= "top">${IdS}</th>		
+								<th valign= "top">${IdS}${PwS}</th>		
 							</tr>			
 						</table>	
-                     <button onclick="location.href='./loginPage'">확인</button>                            
+                     <button id="btn" onclick="location.href='./loginPage'">확인</button>                            
                 </div>
             </div>
             <div id="footer">
@@ -77,7 +78,22 @@
     </body>
 
     <script>
-
+		$('#btn').click(function() {
+			var PwS = '<%=(String)session.getAttribute("PwS")%>';
+	
+	          if(PwS !="null"){ 
+	        	  if("${title}" == "아이디 찾기"){
+	        		  location.href='./loginPage';
+	        	  }else{
+	        		  console.log("세션확인")
+		        	  location.href='./PSN'
+	        	  }
+	          }
+	          else{
+	        	  location.href='./loginPage';
+	          }
+		});
+	          
     </script>
 
 </html>

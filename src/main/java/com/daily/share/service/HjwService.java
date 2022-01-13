@@ -25,6 +25,13 @@ public class HjwService {
 		logger.info("찾아온 아이디 : {}",IdS);
 		return IdS;
 	}
+	public String PwS(String userId, String userName, String userPhone, String userEmail) {
+		String PwS = "";
+		PwS = dao.PwS(userId,userName,userPhone,userEmail);
+		logger.info("찾아온 이메일 : {}",PwS);
+		return PwS;
+	}
+	
 	
 	
 	

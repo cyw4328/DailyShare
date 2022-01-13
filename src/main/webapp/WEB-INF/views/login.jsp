@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
             
@@ -91,7 +92,7 @@
         var ahr = document.getElementsByTagName('a');
         var win;
         ahr[0].addEventListener('click',function(){
-            location.href='./joinForm'
+            location.href='./shs'
         });
 
         ahr[1].addEventListener('click',function(){

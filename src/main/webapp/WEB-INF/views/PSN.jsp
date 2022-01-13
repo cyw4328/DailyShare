@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
             
@@ -32,13 +33,18 @@
                 padding :1px;
 		    }
 		    
-		    #id, #name, #phone, #email{
+		    #num{
 		    	width:290px;
 		    	height:40px; 
 		    	font-size:13px; 
 		    	padding-left: 10px; 
 		    	border: 1px solid gray; 
 		    	border-radius: 3px / 3px;
+		    }
+		    
+		    #timer{
+		    	color:blue;
+		    	margin-left:-40px;
 		    }
 		    
         </style>
@@ -53,13 +59,14 @@
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="PwS" method="POST">
+                	<form action="num" method="POST">
                         <table>
                             <!--인증번호-->
                             <tr>
-                                <td><input type="text" placeholder="인증번호를 입력하세요." id="num" name="userNum"/></td>
+                                <td><input type="text" placeholder="인증번호를 입력하세요." id="num" name="userNum"/><span id="timer"></span>
+                                </td>                          
                             </tr>
-                            						
+
                             <!--비밀번호 찾기-->
                             <tr>
                                 <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
@@ -77,27 +84,39 @@
 
     <script>
     
-		    var timer = null;
-		    var isRunning = false;
-		    $(function(){
+    function $ComTimer(){
+        //prototype extend
+    }
 
-    	    $(".btn_recive_num").click(function(e){
-        	var display = $('.time');
-        	var leftSec = 180;
-        	// 남은 시간
-        	// 이미 타이머가 작동중이면 중지
-        	if (isRunning){
-        		clearInterval(timer);
-        		display.html("");
-        		startTimer(leftSec, display);
-        	}else{
-        	startTimer(leftSec, display);
-        		
-        	}
-        });
-    })
-        
-        
+    $ComTimer.prototype = {
+        comSecond : ""
+        , fnCallback : function(){}
+        , timer : ""
+        , domId : ""
+        , fnTimer : function(){
+            var m = Math.floor(this.comSecond / 60) + ":" + (this.comSecond % 60);	// 남은 시간 계산
+            this.comSecond--;					// 1초씩 감소
+            console.log(m);
+            this.domId.innerText = m;
+            if (this.comSecond < 0) {			// 시간이 종료 되었으면..
+                clearInterval(this.timer);		// 타이머 해제
+                alert("인증시간이 초과하였습니다.");
+                location.href='./loginPage';
+            }
+        }
+        ,fnStop : function(){
+            clearInterval(this.timer);
+        }
+    };
+    
+    var AuthTimer = new $ComTimer()
+    AuthTimer.comSecond = 180;
+    AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")};
+    AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
+    AuthTimer.domId = document.getElementById("timer");
+   
+
+ 
     </script>
 
 </html>

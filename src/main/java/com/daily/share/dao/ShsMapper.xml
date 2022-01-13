@@ -6,4 +6,25 @@
 <mapper namespace="com.daily.share.dao.ShsDAO">
 
 
+	<select id="overlay" resultType="String">
+		SELECT mem_id FROM members WHERE mem_id = #{param1}
+	</select>
+
+
+<insert id="join" parameterType = "hashmap">
+      INSERT INTO members (mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_url,mem_blog)
+        VALUES(#{id},#{pw},#{name},#{phone},#{email},#{id},#{bname})
+   </insert>
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

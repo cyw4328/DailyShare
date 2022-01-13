@@ -118,7 +118,7 @@
 		
 		
 		
-		<!-- 이메일 인증을 위한 라이브러리 HS -->
+		<!-- 이메일 인증을 위한 라이브러리 HSa -->
 		<!-- 이메일 인증: https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>

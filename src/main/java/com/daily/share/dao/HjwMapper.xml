@@ -14,4 +14,8 @@
       select mem_id from members
          where mem_name = #{param1} and mem_phone = #{param2} and mem_email = #{param3}
    </select>
+   
+
+	
+	
 </mapper>

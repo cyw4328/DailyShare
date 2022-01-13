@@ -86,4 +86,22 @@ public class HjwController {
 		return "Search";
 	}
 	
+	@RequestMapping(value = "/PwS", method = RequestMethod.POST)
+	public String PwS(Model model,@RequestParam String userId,@RequestParam String userName,@RequestParam String userPhone,@RequestParam String userEmail,HttpSession session) {
+		logger.info("비밀번호 찾기 요청");
+		logger.info(userId+"/"+userName+"/"+userPhone+"/"+userEmail);
+		String msg ="입력하신 정보를 찾을 수 없습니다.";
+		String IdS = service.PwS(userId,userName,userPhone,userEmail);
+		String page = "redirect:/";
+		String loginId = service.login(userId,userPass);
+		if(PwS != null) {
+			msg ="입력하신 정보와 일치하는 아이디 정보 입니다.";
+			model.addAttribute("PwS",PwS);
+		}
+		model.addAttribute("msg",msg);
+		return "Search";
+	}
+	
+	
+	
 }

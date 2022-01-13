@@ -55,23 +55,11 @@
                 <div class="container">
                 	<form action="PwS" method="POST">
                         <table>
-                        	<!--아이디-->
+                            <!--인증번호-->
                             <tr>
-                                <td><input type="text" placeholder="아이디" id=id name="userId"/></td>
+                                <td><input type="text" placeholder="인증번호를 입력하세요." id="num" name="userNum"/></td>
                             </tr>
-                            <!--이름-->
-                            <tr>
-                                <td><input type="text" placeholder="이름" id="name" name="userName"/></td>
-                            </tr>
-                            <!--전화번호-->
-                            <tr>
-                                <td><input type="text" placeholder="전화번호"  id="phone" name="userPhone"/></td>
-                            </tr>
-                            <!--이메일-->
-                            <tr>
-                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/></td>
-                            </tr>
-			
+                            						
                             <!--비밀번호 찾기-->
                             <tr>
                                 <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>

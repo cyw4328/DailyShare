@@ -123,7 +123,7 @@ $("#btn-join").on("click", function(e) {
 	
 });
 
-
+asdf
 //인증번호를 저장할 변수
 var code = "";
 

@@ -51,8 +51,8 @@ public class ShsController {
 		//이메일 보내기
 		String setFrom = "gustjsdldi2016@gmail.com";
 		String toEmail = email;
-		String title = "독거노인 회원가입 인증 이메일 입니다.";
-		String content = "독거노인에 가입해주셔서 감사합니다."+ "<br/><br/>"+"인증 번호는 "+checkNum+" 입니다.<br/>"+
+		String title = "Daily Share 회원가입 인증 이메일 입니다.";
+		String content = "Daily Share 가입해주셔서 감사합니다."+ "<br/><br/>"+"인증 번호는 "+checkNum+" 입니다.<br/>"+
 							"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
         try {
             MimeMessage message = mailSender.createMimeMessage();

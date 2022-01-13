@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.daily.share.dao.CsjDAO;
 import com.daily.share.dto.CsjCommentDTO;
+import com.daily.share.dto.CsjMenuDTO;
 
 @Service
 public class CsjService {
@@ -77,6 +78,14 @@ public class CsjService {
 	public void com_del(String com_num) {
 		dao.com_del(com_num);
 		
+	}
+
+
+
+
+
+	public ArrayList<CsjMenuDTO> csj_menuCall() {
+		return dao.csj_menuCall();
 	}
 
 

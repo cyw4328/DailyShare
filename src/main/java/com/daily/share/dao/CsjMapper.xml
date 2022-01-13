@@ -31,6 +31,11 @@
 		insert into alarm (alarm_targetNum,alarm_target,mem_id) values(#{param1},#{param2},#{param3})
 	</insert>
 	
+	<!-- 메뉴 목록 불러오기 -->
+	<select id="csj_menuCall" resultType="com.daily.share.dto.CsjMenuDTO">
+		select menu_num,menu_name,menu_blind,mem_id,main_num,mid_num from menu
+	</select>
+	
 	
 	
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daily.share.dto.CsjCommentDTO;
+import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.service.CsjService;
 
 @Controller
@@ -49,6 +50,20 @@ public class CsjContoller {
 		return "redirect:/csj_com";
 	}
 	
+	
+	@RequestMapping(value = "/csj", method = RequestMethod.GET)
+	public String csj(Model model) {
+		return "csjWrite";
+	}
+	
+	@RequestMapping(value = "/csj_writeForm", method = RequestMethod.GET)
+	public String csj_write(Model model) {
+		logger.info("글작성 요청");
+		ArrayList<CsjMenuDTO> menuDTO =service.csj_menuCall();
+		logger.info("가져온 메뉴 : {}",menuDTO);
+		model.addAttribute("menu", menuDTO);
+		return "csjWriteForm";
+	}
 	
 	
 	

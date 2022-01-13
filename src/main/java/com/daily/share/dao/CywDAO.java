@@ -2,21 +2,26 @@ package com.daily.share.dao;
 
 import java.util.ArrayList;
 
+import com.daily.share.dto.CywDTO;
+
 public interface CywDAO {
 
-	void bigCategoryAdd(String mainCategoryAdd, int admin);
+	void bigCategoryAdd(String mainCategoryAdd, int mainAdminadmin);
 
-	ArrayList<String> bigCategoryList();
+	ArrayList<CywDTO> bigCategoryList();
 
-	void bigCategoryDel(String bigCategory);
+	void bigCategoryDel(int bigCategory);
 
 
 
-	ArrayList<String> midCategoyrList();
+	ArrayList<CywDTO> midCategoyrList();
 
-	void middleCategoryAdd(String middleCategoryAdd, int admin);
 
-	void midCategoryDel(String midCategory);
+	void midCategoryDel(int midCategory);
+
+	void middleCategoryAdd(String middleCategoryAdd, int daeCategory, int middle_admin);
+
+	void menuAdd(String menuAdd, int daeCategory, int midCategory);
 
 
 

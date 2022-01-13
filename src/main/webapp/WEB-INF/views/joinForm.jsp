@@ -10,12 +10,13 @@
 </head>
 <body>
 <div class="container">
-        <form action="/joinForm">
+        <form action="joinShs" method="post">
             <h2>Daily Share</h2>
                 <Table>
                     <tr>
                         <th>ID</th>
-                        <td><input type="text" name="id" class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/><button>중복체크</button></td>
+                        <td><input type="text" name="id" class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/>
+                        <input type="button" id="overlay" value="중복체크"/></td>
                         
                     </tr>
                     <tr>
@@ -36,11 +37,17 @@
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td><input type="text" name="email" class = "joinCL" style="border-bottom: 1px solid #ccc; "/><button id="mailCheck">메일발송</button></td>
+                        <td><input type="text" name="email" class = "joinCL" style="border-bottom: 1px solid #ccc; "/>
+                        <input type="button" id="mailCheck" value="메일발송"/></td>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="enumber">
                         <th>인증번호</th>
-                        <td><input type="text" name="ecode" class = "joinCL"  style="border-bottom: 1px solid #ccc;" /><button>인증확인</button></td>
+                        <td><input type="text" name="ecode" class = "joinCL"  style="border-bottom: 1px solid #ccc;" />
+                        <!-- 인증번호 확인 -->
+      					<div class="alert alert-success" id="alert-success-email">인증번호가 일치합니다.</div>
+      					<div class="alert alert-danger" id="alert-danger-email">인증번호가 일치하지 않습니다.</div>
+                        </td>
                     </tr>
                     <tr>
                         <th>블로그이름</th>
@@ -55,19 +62,20 @@
             </Table>
         </form>
         </div>
-        <!-- 인증번호 확인 -->
-      <div class="alert alert-success" id="alert-success-email">인증번호가 일치합니다.</div>
-      <div class="alert alert-danger" id="alert-danger-email">인증번호가 일치하지 않습니다.</div>
+        
     </div>
 
 </body>
 <script>
 $("#alert-success-email").hide();
 $("#alert-danger-email").hide();
+$("#enumber").hide();
 
 
 
 var check = false;
+var checkId = false;
+
 
 //회원가입 버튼 클릭
 $("#btn-join").on("click", function(e) {
@@ -77,13 +85,10 @@ $("#btn-join").on("click", function(e) {
    var repw = $("input[name='repw']").val();
    var name = $("input[name='name']").val();
    var phone = $("input[name='phone']").val();
-
    var bname = $("input[name='bname']").val();
-   
-   
-   console.log("회원가입_아이디: "+id);
-   console.log("회원가입_이름: "+name);
-   console.log("회원가입_비밀번호: "+pw);
+   var email = $("input[name='email']").val();
+
+
    
    
    //아이디,비밀번호 유효성 검사
@@ -112,27 +117,47 @@ $("#btn-join").on("click", function(e) {
       alert("인증번호를 확인 해주세요");
       return false;
    } 
+   
+   if (checkId == false) { 
+	      alert("중복체크 확인 해주세요");
+	      return false;
+	   }
+   
 
    if (bname == null || bname == "") { 
       alert("블로그 이름을 입력해주세요");
       return false;
    } 
    
+  
+   
+   var param = {'id':id};
+   param.pw = pw;
+   param.name = name;
+   param.phone = phone;
+   param.email = email;
+   param.bname = bname;
+   param.pw = pw;
+   
+   console.log(param);
+   console.log('서버전송 시작');
    $("form").submit();
+
+   
    
    
 });
 
-asdf
+
 //인증번호를 저장할 변수
 var code = "";
 
-      //인증번호 이메일 전송
+//인증번호 이메일 전송
 $("#mailCheck").on("click",function(e){
    console.log('버튼확인');
-   
+   $("#enumber").show();
    e.preventDefault();
-   var email = $("input[name='email']").val();
+   email = $("input[name='email']").val();
    var ecode = $("input[name='ecode']");
    
    $.ajax({
@@ -150,6 +175,86 @@ $("#mailCheck").on("click",function(e){
       }
    });
 });
+      
+
+      
+      
+      
+      
+      
+
+//인증코드 입력 시 동일성 확인
+$("input[name='ecode']").keyup(function() {
+	
+	var inputCode = $("input[name='ecode']").val();
+	if (inputCode != "" || code != "") {
+		if (inputCode == code) {
+			$("#alert-success-email").show();
+			$("#alert-danger-email").hide();
+			//$("input[name='ecode']").attr("disabled",true); //인증번호 입력 멈춤
+			check = true;
+		} else {
+			$("#alert-success-email").hide();
+			$("#alert-danger-email").show();
+			check = false;
+		}
+	}
+});      
+      
+      
+      
+      
+
+
+
+
+
+//아이디 중복 체크
+$('#overlay').click(function(){
+	console.log('중복 체크 시작!');
+	
+	var id = $('input[name="id"]').val();
+	console.log('check id : ',id);
+			
+	$.ajax({
+		type:'get',
+		url:'overlay',
+		data:{'id':id},
+		dataType:'json',
+		success:function(data){
+			console.log(data);
+			
+			if(data.overlay){
+				alert('이미 사용중인 아이디 입니다.');
+				$('input[name="id"]').val('');
+			}else{
+				alert('사용 가능한 아이디 입니다.');
+				checkId = true;
+			}	
+			
+		},
+		error:function(e){
+			console.log(e);
+		}
+	});			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
+});
+      
+      
+      
+      
+      
+      
 
 </script>
 </html>

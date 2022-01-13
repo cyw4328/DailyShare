@@ -1,5 +1,7 @@
 package com.daily.share.controller;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.daily.share.dto.ShjDTO;
 import com.daily.share.service.CywService;
 import com.daily.share.service.ProjectService;
 import com.daily.share.service.ShjService;
@@ -21,8 +24,12 @@ public class ShjController {
 	
 	@RequestMapping(value = "/shj", method = RequestMethod.GET)
 	public String home(Model model) {
-
-		return "HomePage";
+			logger.info("list 요청");
+			ArrayList <ShjDTO> list = service.list();
+			logger.info("글자수 : "+list.size());
+			model.addAttribute("size", list.size());
+			model.addAttribute("list", list);
+		return "memList";
 	}
 	
 }

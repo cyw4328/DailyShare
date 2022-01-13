@@ -5,5 +5,10 @@
 
 <mapper namespace="com.daily.share.dao.ShjDAO">
 
+	<select id="list" resultType="com.daily.share.dto.ShjDTO">
+		SELECT mem_id, mem_name, mem_email, mem_phone, mem_out, mem_san FROM members ORDER BY mem_id DESC
+	</select>
+
+
 
 </mapper>

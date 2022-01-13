@@ -45,19 +45,11 @@ public class ShjController {
 		return service.list(currPage,pagePerCnt);
 	}
 	
-	//검색기능
-	@ResponseBody
+	//검색 기능
 	@RequestMapping(value = "/searchList", method = RequestMethod.GET)
-	public List<ShjDTO> searchList(@RequestParam String type, @RequestParam String keyword) {
-		
-		logger.info("검색중...");
-		
-		ShjDTO ShjDTO = new ShjDTO();
-		ShjDTO.setType(type);
-		ShjDTO.setKeyword(keyword);
-		
-		return service.searchList(ShjDTO);
+	public String search_mem(Model model) {
+
+		return "memList";
 	}
-	
 	
 }

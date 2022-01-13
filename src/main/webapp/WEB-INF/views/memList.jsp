@@ -26,13 +26,13 @@
 <body>
 
 	<div>
-		<form action="search-mem">
-			<select name="type">
+		<form action="search_mem" name="search" method="GET">
+			<select name="type" size="1">
 				<option selected value="all">전체</option>
-				<option value="id">아이디</option>
-				<option value="name">이름</option>
+				<option value="mem_id">아이디</option>
+				<option value="mem_name">이름</option>
 			</select>
-			<input type="text" name="keyword" value="">
+			<input type="text" name="keyword" value="${keyWord}">
 			<input type="button" onclick="searchList()" value="검색">
 		</form>
 	</div>
@@ -64,16 +64,15 @@
 </body>
 <script>
 
+	
 	function searchList(){
-		console.info("검색 시작");
-		
 		$.ajax({
 			type: 'GET',
-			url : "searchList",
+			url : "/searchList",
 			data : $("form[name=search-form]").serialize(),
 			success : function(result){
 				//테이블 초기화
-				$('#list > tbody').empty();
+				$('#list').empty();
 				if(result.length>=1){
 					result.forEach(function(item){
 						str='<tr>'
@@ -90,7 +89,6 @@
 			}
 		})
 	}
-
 
 
 

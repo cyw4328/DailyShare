@@ -5,5 +5,21 @@
 
 <mapper namespace="com.daily.share.dao.CsjDAO">
 
+	<!-- 댓글 목록 -->
+	<select id="csj_com" resultType="com.daily.share.dto.CsjCommentDTO">
+		select com_num,mem_id,board_num,com_cont,com_date,com_secret,com_blind from comment where board_num=#{param1}
+	</select>
+
+	<!-- 댓글 등록 -->
+	<insert id="com_regist">
+		insert into comment(mem_id,board_num,com_cont,com_secret)
+			values(#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	
+	<!-- 답글 목록 -->
+	<select id="csj_reply" resultType="com.daily.share.dto.CsjReplyDTO">
+		select * from reply where com_num=#{param1}
+	</select>
+	
 
 </mapper>

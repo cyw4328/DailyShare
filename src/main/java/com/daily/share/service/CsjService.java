@@ -18,20 +18,36 @@ public class CsjService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired CsjDAO dao;
+	
+	
 	public int com_regist(HttpSession session, HashMap<String, String> params) {
-		String mem_id = (String) session.getAttribute("loginId");
-		int board_num = Integer.parseInt(params.get("board_num"));
-		String com_cont = params.get("com_cont");
+	
+		
+		CsjCommentDTO dto = new CsjCommentDTO();
+		dto.setMem_id((String) session.getAttribute("loginId"));
+		dto.setBoard_num(Integer.parseInt(params.get("board_num")));
+		int com_parent = Integer.parseInt(params.get("com_parent"));
+		dto.setCom_parent(com_parent);
+		
+		int com_depth = 0;
+		if (com_parent != 0) {
+			com_depth = 1;
+		}
+		dto.setCom_depth(com_depth);
+		dto.setCom_cont( params.get("com_cont"));
 		int com_secret = 0;
 		if (params.get("com_secret") != null) {
 			com_secret = Integer.parseInt(params.get("com_secret"));			
 		}
-		logger.info("댓글 등록 요청 받은 아이디,글번호 : {},{}",mem_id,board_num);
-		logger.info("댓글 등록 요청 받은 내용,비밀여부 : "+ com_cont+","+com_secret);
-		int result = dao.com_regist(mem_id,board_num,com_cont,com_secret);
-		logger.info("등록 결과 : "+result);
+		dto.setCom_secret(com_secret);
+		dao.com_regist(dto);
+		int com_num = dto.getCom_num();
+		logger.info("받아온 댓글번호 : "+ com_num);
+		if(com_parent == 0) {
+			dao.csj_com_parent(com_num);
+		}
 		
-		return result;
+		return 1;
 	}
 	public ArrayList<CsjCommentDTO> csj_com(int board_Num) {
 		ArrayList<CsjCommentDTO> comLists = dao.csj_com(board_Num);

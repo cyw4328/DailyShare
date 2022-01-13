@@ -51,25 +51,39 @@ public class HjwController {
 		return "PwSearch";
 	}
 	
-	@RequestMapping(value = "/JoinForm", method = RequestMethod.GET)
-	public String JoinForm(Model model) {
+	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
+	public String joinForm(Model model) {
 		logger.info("회원가입페이지 이동");
 
-		return "JoinForm";
+		return "joinForm";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model,@RequestParam String id,@RequestParam String pw,HttpSession session) {
+	public String login(Model model,@RequestParam String userId,@RequestParam String userPass,HttpSession session) {
 		logger.info("로그인 요청");
-		logger.info(id+"/"+pw);
+		logger.info(userId+"/"+userPass);
 		String page = "redirect:/";
-		String loginId = service.login(id,pw);
+		String loginId = service.login(userId,userPass);
 		logger.info("로그인 한 아이디 여부 : "+loginId);
 		if(loginId != null) {
 			page =  "redirect:/HomePage";
 			session.setAttribute("loginId", loginId);
 		}
 		return page;
+	}
+	
+	@RequestMapping(value = "/IdS", method = RequestMethod.POST)
+	public String IdS(Model model,@RequestParam String userName,@RequestParam String userPhone,@RequestParam String userEmail) {
+		logger.info("아이디 찾기 요청");
+		logger.info(userName+"/"+userPhone+"/"+userEmail);
+		String msg ="입력하신 정보와 일치하는 아이디가 없습니다.";
+		String IdS = service.IdS(userName,userPhone,userEmail);
+		if(IdS != null) {
+			msg ="입력하신 정보와 일치하는 아이디 정보 입니다.";
+			model.addAttribute("IdS",IdS);
+		}
+		model.addAttribute("msg",msg);
+		return "Search";
 	}
 	
 }

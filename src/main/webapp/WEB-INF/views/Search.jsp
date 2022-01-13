@@ -21,25 +21,31 @@
 
             /*테이블*/
             table{
-                height: 40px; 
-                line-height: 10px; 
+                height: 200px; 
                 margin: 0 auto;
                 position: relative;
+                border: 1px solid black; 
+                width: 500px;
             }
 
             th, td{ 
                 border-collapse: collapse;
                 padding :1px;
+                text-align : center;
 		    }
 		    
-		    #name, #phone, #email{
-		    	width:290px;
+		    button{
+		    	background-color: black; 
+		    	margin:auto; 
+		    	display:block; 
+		    	cursor:pointer; 
+		    	font-size: 16; 
+		    	width:80px;
 		    	height:40px; 
-		    	font-size:13px; 
-		    	padding-left: 10px; 
-		    	border: 1px solid gray; 
-		    	border-radius: 3px / 3px;
+		    	color:white; 
+		    	border-radius: 7px / 7px;
 		    }
+
 		    
         </style>
     </head>
@@ -53,27 +59,15 @@
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="IdS" method="POST">
-                        <table>
-                            <!--이름-->
-                            <tr>
-                                <td><input type="text" placeholder="이름" id="name" name="userName"/></td>
-                            </tr>
-                            <!--전화번호-->
-                            <tr>
-                                <td><input type="text" placeholder="전화번호"  id="phone" name="userPhone"/></td>
-                            </tr>
-                            <!--이메일-->
-                            <tr>
-                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/></td>
-                            </tr>
-                            <!--아이디 찾기-->
-                            <tr>
-                                <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
-                            </tr>
-
-                        </table>
-                	</form>
+						<table>
+							<tr>
+								<td>${msg}</td>
+							</tr>
+							<tr>	
+								<th valign= "top">${IdS}</th>		
+							</tr>			
+						</table>	
+                     <button onclick="location.href='./loginPage'">확인</button>                            
                 </div>
             </div>
             <div id="footer">
@@ -83,10 +77,7 @@
     </body>
 
     <script>
-    
-	
-        
-        
+
     </script>
 
 </html>

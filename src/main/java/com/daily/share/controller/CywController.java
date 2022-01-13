@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daily.share.dto.CywDTO;
 import com.daily.share.service.CywService;
@@ -36,6 +37,7 @@ public class CywController {
 		model.addAttribute("menuList",menuList);
 		logger.info("메뉴리스트:{}",menuList);
 		
+		
 		return "cateGory";
 	}
 
@@ -52,10 +54,17 @@ public class CywController {
 	public String bigCategoryDel(Model model, HttpSession session, @RequestParam int bigCategory) {
 		logger.info("삭제요청 : {}",bigCategory); 
 		
-		service.bigCategoryDel(bigCategory);
+		int bigCategorySearch = service.bigCategorySearch(bigCategory);
+		
+		
+		if (bigCategorySearch == 0) {
+			service.bigCategoryDel(bigCategory);
+		}else {
+//			model.addAttribute("bigCategorySearch",bigCategorySearch);
+			model.addAttribute("msg","하위 파일을 삭제하고 진행부탁드립니다.");
+		}
 		
 
-			
 		return "redirect:/cyw";
 	}
 
@@ -98,5 +107,26 @@ public class CywController {
 			
 			return "redirect:/cyw";
 		}
+		
+		@RequestMapping(value = "/midCategoryF", method = RequestMethod.GET)
+		@ResponseBody
+		public HashMap<String, Object> midCategoryF(Model model,@RequestParam int main_num,@RequestParam int mid_num) {
+			logger.info("삭제요청 : {}",main_num,mid_num); 
+			
+			HashMap<String, Object> map = service.midCategoryF(main_num,mid_num);
+			
+			return map;
+		}
+		
+		
+		/*
+		 * @RequestMapping(value = "/midCategoryF", method = RequestMethod.GET) public
+		 * String midCategoryF(Model model, HttpSession session, @RequestParam int
+		 * mid_num) { logger.info("삭제요청 : {}",mid_num);
+		 * 
+		 * int midCategoryF = service.midCategoryF(mid_num);
+		 * model.addAttribute("midCategoryF",midCategoryF);
+		 * logger.info("미드카테고리:{}",midCategoryF); return "redirect:/cyw"; }
+		 */
 
 }

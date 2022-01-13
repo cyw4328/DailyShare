@@ -27,6 +27,10 @@ public interface CywDAO {
 
 	void menuDel(int menu);
 
+	int bigCategorySearch(int bigCategory);
+
+	int midCategoryF(int mid_num);
+
 
 
 

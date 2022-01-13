@@ -20,11 +20,12 @@ public class CsjService {
 	@Autowired CsjDAO dao;
 	
 	
-	public int com_regist(HttpSession session, HashMap<String, String> params) {
+	public void com_regist(HttpSession session, HashMap<String, String> params) {
 	
 		
 		CsjCommentDTO dto = new CsjCommentDTO();
-		dto.setMem_id((String) session.getAttribute("loginId"));
+		String mem_id = (String) session.getAttribute("loginId");
+		dto.setMem_id(mem_id);
 		dto.setBoard_num(Integer.parseInt(params.get("board_num")));
 		int com_parent = Integer.parseInt(params.get("com_parent"));
 		dto.setCom_parent(com_parent);
@@ -40,6 +41,10 @@ public class CsjService {
 			com_secret = Integer.parseInt(params.get("com_secret"));			
 		}
 		dto.setCom_secret(com_secret);
+		
+		String com_targetId = params.get("com_targetId");
+		dto.setCom_targetId(com_targetId);
+		
 		dao.com_regist(dto);
 		int com_num = dto.getCom_num();
 		logger.info("받아온 댓글번호 : "+ com_num);
@@ -47,11 +52,31 @@ public class CsjService {
 			dao.csj_com_parent(com_num);
 		}
 		
-		return 1;
+		dao.com_inAlarm(com_num,1,mem_id);
+		
+		
+		
+		
+		
+		
 	}
+	
+	
+	
+	
+	
 	public ArrayList<CsjCommentDTO> csj_com(int board_Num) {
 		ArrayList<CsjCommentDTO> comLists = dao.csj_com(board_Num);
 		return comLists;
+	}
+
+
+
+
+
+	public void com_del(String com_num) {
+		dao.com_del(com_num);
+		
 	}
 
 

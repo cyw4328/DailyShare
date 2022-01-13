@@ -42,6 +42,12 @@ public class CsjContoller {
 		return "redirect:/csj_com";
 	}
 	
+	@RequestMapping(value = "/csj_com_del", method = RequestMethod.GET)
+	public String csj_com_del(Model model, @RequestParam String com_num) {
+		logger.info("삭제 요청 : {}", com_num);
+		service.com_del(com_num);
+		return "redirect:/csj_com";
+	}
 	
 	
 	

@@ -39,7 +39,6 @@
 			<input type="hidden" name="com_parent" value="0" />
 			<textarea id="csj_com_content" name="com_cont" placeholder="댓글을 입력하세요"></textarea>
 			<input type="button" id="csj_com_button" value="등록" />
-			<input type="checkbox" name="com_secret" value="1"/>&nbsp; 비밀댓글
 		</form>	
 	</div>
 	<c:forEach items="${comList}" var="comList">
@@ -51,11 +50,11 @@
 								${comList.mem_id}
 								<span id="csj_com_a">
 									<a href="#">수정</a>&nbsp;
-									<a href="#">삭제</a>&nbsp;
+									<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
 									<a href="#">신고</a>&nbsp;
 									<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 								</span>
-								<p><span>${comList.com_targetId}</span>${comList.com_cont}</p>
+								<p><span style="color:blue;">${comList.com_targetId}&nbsp;</span>${comList.com_cont}</p>
 								<input class="reply_create" type="button" value="답글"/>
 							</div>						
 						</c:if>
@@ -64,11 +63,11 @@
 								${comList.mem_id}
 								<span id="csj_com_a">
 									<a href="#">수정</a>&nbsp;
-									<a href="#">삭제</a>&nbsp;
+									<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
 									<a href="#">신고</a>&nbsp;
 									<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 								</span>
-								<p>${comList.com_cont}</p>
+								<p><span style="color:blue;">@${comList.com_targetId}&nbsp;</span>${comList.com_cont}</p>
 								<input class="reply_create" type="button" value="답글"/>
 							</div>						
 						</c:if>
@@ -82,10 +81,9 @@
 								<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
 								<input type="hidden" name="board_num" value="1" />
 								<input type="hidden" name="com_parent" value="${comList.com_num}" />
-								<textarea id="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id} 댓글을 입력하세요"></textarea>
+								<textarea id="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id}&nbsp;댓글을 입력하세요"></textarea>
 								<input class="csj_reply_submit" type="button"  value="등록" />
 								<input class="reply_close" type="button"  value="취소" />	
-								<input type="checkbox" name="com_secret" value="1"/>&nbsp; 비밀댓글
 							</form>
 						</div>
 					<td/>

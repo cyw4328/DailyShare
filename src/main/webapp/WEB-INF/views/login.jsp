@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
             
@@ -14,7 +15,7 @@
             * {margin: 0; padding: 0;}
             #wrap {text-align: center; font-size: 30px; color: #fff;}
             #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-            #banner {height: 100px; line-height: 100px; background: #fbd6e3;}
+            #banner {height: 80px; line-height: 100px; background: #fbd6e3; color: black; font-size: 16px;}
             #contents {height: 450px; line-height: 450px; background: #ead5ee;}
             #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
                 .container {width: 1100px; height: inherit; margin: 0 auto; background: rgba(0,0,0,0.1);}
@@ -32,6 +33,15 @@
                 padding :1px;
 		    }
 		    
+		    #id, #pw{
+		    	width:290px;
+		    	height:40px; 
+		    	font-size:13px; 
+		    	padding-left: 10px; 
+		    	border: 1px solid gray; 
+		    	border-radius: 3px / 3px;
+		    }
+		    
         </style>
     </head>
     <body class="no-drag">
@@ -39,7 +49,7 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner"><!--로그인화면 로고-->
+            <div id="banner">로고<!--로그인화면 로고-->
                 <div class="container"></div>
             </div>
             <div id="contents">
@@ -48,13 +58,11 @@
                         <table>
                             <!--id-->
                             <tr>
-                                <td><input type="text" placeholder="ID" id="id
-                                    style="width:290px;height:40px; font-size:13px; padding-left: 10px; border: 1px solid gray; border-radius: 3px / 3px;" name="userId"/></td>
+                                <td><input type="text" placeholder="ID" id="id" name="userId"></td>
                             </tr>
                             <!--pw-->
                             <tr>
-                                <td><input type="password" placeholder="Password"  id="pw
-                                    style="width:290px;height:40px;font-size:13px; padding-left: 10px; border: 1px solid gray; border-radius: 3px / 3px;" name="userPass"/></td>
+                                <td><input type="password" placeholder="Password"  id="pw" name="userPass"/></td>
                             </tr>
                             <!--login-->
                             <tr>
@@ -84,15 +92,15 @@
         var ahr = document.getElementsByTagName('a');
         var win;
         ahr[0].addEventListener('click',function(){
-            location.href='JoinForm'
+            location.href='./shs'
         });
 
         ahr[1].addEventListener('click',function(){
-            location.href='IdSearch'
+            location.href='./IdSearch'
         });
 
         ahr[2].addEventListener('click',function(){
-            location.href='PwSearch'
+            location.href='./PwSearch'
         });
       
         

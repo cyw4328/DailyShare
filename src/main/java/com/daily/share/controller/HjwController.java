@@ -2,6 +2,7 @@ package com.daily.share.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -30,12 +31,6 @@ public class HjwController {
 		return "HomePage";
 	}
 
-	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-	public String loginPage(Model model) {
-		logger.info("로그인페이지 이동");
-
-		return "login";
-	}
 
 	@RequestMapping(value = "/IdSearch", method = RequestMethod.GET)
 	public String IdSearch(Model model) {
@@ -51,19 +46,19 @@ public class HjwController {
 		return "PwSearch";
 	}
 	
-	@RequestMapping(value = "/JoinForm", method = RequestMethod.GET)
-	public String JoinForm(Model model) {
-		logger.info("회원가입페이지 이동");
+	@RequestMapping(value = "/PSN", method = RequestMethod.GET)
+	public String PSN(Model model) {
+		logger.info("이메일 인증 요청");
 
-		return "JoinForm";
+		return "PSN";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model,@RequestParam String id,@RequestParam String pw,HttpSession session) {
+	public String login(Model model,@RequestParam String userId,@RequestParam String userPass,HttpSession session) {
 		logger.info("로그인 요청");
-		logger.info(id+"/"+pw);
+		logger.info(userId+"/"+userPass);
 		String page = "redirect:/";
-		String loginId = service.login(id,pw);
+		String loginId = service.login(userId,userPass);
 		logger.info("로그인 한 아이디 여부 : "+loginId);
 		if(loginId != null) {
 			page =  "redirect:/HomePage";
@@ -71,5 +66,51 @@ public class HjwController {
 		}
 		return page;
 	}
+	
+	@RequestMapping(value = "/IdS", method = RequestMethod.POST)
+	public String IdS(Model model,@RequestParam String userName,@RequestParam String userPhone,@RequestParam String userEmail) {
+		logger.info("아이디 찾기 요청");
+		logger.info(userName+"/"+userPhone+"/"+userEmail);
+		String msg ="입력하신 정보와 일치하는 아이디가 없습니다.";
+		String title ="아이디 찾기";
+		String IdS = service.IdS(userName,userPhone,userEmail);
+		if(IdS != null) {
+			msg ="입력하신 정보와 일치하는 아이디 정보 입니다.";
+			model.addAttribute("IdS",IdS);
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("title",title);
+		return "Search";
+	}
+	
+	@RequestMapping(value = "/PwS", method = RequestMethod.POST)
+	public String PwS(Model model,@RequestParam String userId,@RequestParam String userName,@RequestParam String userPhone,@RequestParam String userEmail,HttpSession session) {
+		logger.info("비밀번호 찾기 요청");
+		logger.info(userId+"/"+userName+"/"+userPhone+"/"+userEmail);
+		String msg ="입력하신 정보를 찾을 수 없습니다.";
+		String title ="비밀번호 찾기";
+		String PwS = service.PwS(userId,userName,userPhone,userEmail);
+		if(PwS != null) {
+			session.setAttribute("PwS", PwS);
+			msg ="입력하신 정보와 일치하는 이메일에 인증번호를 전송 했습니다.";
+			model.addAttribute("PwS",PwS);
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("title",title);
+		return "Search";
+	}
+	
+	@RequestMapping(value="loginPage", method=RequestMethod.GET)
+    public String logoutMainGET(HttpServletRequest request) throws Exception{
+        
+        logger.info("로그인 페이지 이동");
+        
+        HttpSession session = request.getSession();
+        
+        session.invalidate();
+        
+        return "login";        
+        
+    }
 	
 }

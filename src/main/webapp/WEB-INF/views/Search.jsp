@@ -3,8 +3,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <title></title>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
             
@@ -22,25 +22,31 @@
 
             /*테이블*/
             table{
-                height: 40px; 
-                line-height: 10px; 
+                height: 200px; 
                 margin: 0 auto;
                 position: relative;
+                border: 1px solid black; 
+                width: 500px;
             }
 
             th, td{ 
                 border-collapse: collapse;
                 padding :1px;
+                text-align : center;
 		    }
 		    
-		    #name, #phone, #email{
-		    	width:290px;
+		    button{
+		    	background-color: black; 
+		    	margin:auto; 
+		    	display:block; 
+		    	cursor:pointer; 
+		    	font-size: 16; 
+		    	width:80px;
 		    	height:40px; 
-		    	font-size:13px; 
-		    	padding-left: 10px; 
-		    	border: 1px solid gray; 
-		    	border-radius: 3px / 3px;
+		    	color:white; 
+		    	border-radius: 7px / 7px;
 		    }
+
 		    
         </style>
     </head>
@@ -49,32 +55,20 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner">아이디 찾기
-                <div class="container"></div>
+            <div id="banner">
+                <div class="container">${title}</div>
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="IdS" method="POST">
-                        <table>
-                            <!--이름-->
-                            <tr>
-                                <td><input type="text" placeholder="이름" id="name" name="userName"/></td>
-                            </tr>
-                            <!--전화번호-->
-                            <tr>
-                                <td><input type="text" placeholder="전화번호"  id="phone" name="userPhone"/></td>
-                            </tr>
-                            <!--이메일-->
-                            <tr>
-                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/></td>
-                            </tr>
-                            <!--아이디 찾기-->
-                            <tr>
-                                <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
-                            </tr>
-
-                        </table>
-                	</form>
+						<table>
+							<tr>
+								<td>${msg}</td>
+							</tr>
+							<tr>	
+								<th valign= "top">${IdS}${PwS}</th>		
+							</tr>			
+						</table>	
+                     <button id="btn" onclick="location.href='./loginPage'">확인</button>                            
                 </div>
             </div>
             <div id="footer">
@@ -84,10 +78,22 @@
     </body>
 
     <script>
-    
+		$('#btn').click(function() {
+			var PwS = '<%=(String)session.getAttribute("PwS")%>';
 	
-        
-        
+	          if(PwS !="null"){ 
+	        	  if("${title}" == "아이디 찾기"){
+	        		  location.href='./loginPage';
+	        	  }else{
+	        		  console.log("세션확인")
+		        	  location.href='./PSN'
+	        	  }
+	          }
+	          else{
+	        	  location.href='./loginPage';
+	          }
+		});
+	          
     </script>
 
 </html>

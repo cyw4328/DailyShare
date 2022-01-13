@@ -137,12 +137,12 @@ $("#mailCheck").on("click",function(e){
 	
 	$.ajax({
 		type:"GET",
-		url : "/mailCheck",
+		url : "mailCheck",
 		data : {email : email},
 		contentType :"text/plain;charset=UTF-8",
 		success : function(data){ //인증번호를 가져옴
 			
-			checkBox.val(''); // 기존에 값이 있었으면 지워줌
+			//checkBox.val(''); // 기존에 값이 있었으면 지워줌
 			$("#alert-success-email").hide();
 			$("#alert-danger-email").hide();
 			check = false;

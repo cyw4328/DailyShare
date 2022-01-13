@@ -1,5 +1,6 @@
 package com.daily.share.controller;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daily.share.service.ShsService;
@@ -32,6 +34,24 @@ public class ShsController {
 			
 		return "joinForm";
 	}
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/joinShs", method = RequestMethod.POST)
+	public String join(Model model,@RequestParam HashMap<String, String> params) {
+		logger.info("회원가입 요청");	
+		logger.info("params : {}",params);
+		
+		
+		
+		service.join(params);
+		
+		return "login";
+	}
+	
+	
 	
 	
 	
@@ -74,6 +94,16 @@ public class ShsController {
 	
 	
 	
+	
+	
+	
+	//ajax 통신 - 중복 아이디 확인
+		@RequestMapping(value = "/overlay", method = RequestMethod.GET)
+		@ResponseBody
+		public HashMap<String, Object> overlay(@RequestParam String id) {		
+			logger.info("중복 아이디 체크 : {}",id);		
+			return service.overlay(id);
+		}
 	
 	
 	

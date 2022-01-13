@@ -31,5 +31,33 @@ public class CywDTO {
 		this.main_blind = main_blind;
 	}
 	
+	private int mid_num;
+	private String mid_name;
+	private int mid_admin;
+	private int mid_blind;
+	public int getMid_num() {
+		return mid_num;
+	}
+	public void setMid_num(int mid_num) {
+		this.mid_num = mid_num;
+	}
+	public String getMid_name() {
+		return mid_name;
+	}
+	public void setMid_name(String mid_name) {
+		this.mid_name = mid_name;
+	}
+	public int getMid_admin() {
+		return mid_admin;
+	}
+	public void setMid_admin(int mid_admin) {
+		this.mid_admin = mid_admin;
+	}
+	public int getMid_blind() {
+		return mid_blind;
+	}
+	public void setMid_blind(int mid_blind) {
+		this.mid_blind = mid_blind;
+	}
 	
 }

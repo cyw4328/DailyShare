@@ -1,6 +1,8 @@
 package com.daily.share.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daily.share.dto.ShjDTO;
 import com.daily.share.service.CywService;
@@ -24,12 +28,36 @@ public class ShjController {
 	
 	@RequestMapping(value = "/shj", method = RequestMethod.GET)
 	public String home(Model model) {
-			logger.info("list 요청");
-			ArrayList <ShjDTO> list = service.list();
-			logger.info("글자수 : "+list.size());
-			model.addAttribute("size", list.size());
-			model.addAttribute("list", list);
+
 		return "memList";
 	}
+	
+	
+	
+	//리스트 요청
+	@ResponseBody
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public HashMap<String, Object> list(@RequestParam String page,@RequestParam String cnt) {				
+		logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);
+		
+		int currPage = Integer.parseInt(page);
+		int pagePerCnt = Integer.parseInt(cnt);		
+		return service.list(currPage,pagePerCnt);
+	}
+	
+	//검색기능
+	@ResponseBody
+	@RequestMapping(value = "/searchList", method = RequestMethod.GET)
+	public List<ShjDTO> searchList(@RequestParam String type, @RequestParam String keyword) {
+		
+		logger.info("검색중...");
+		
+		ShjDTO ShjDTO = new ShjDTO();
+		ShjDTO.setType(type);
+		ShjDTO.setKeyword(keyword);
+		
+		return service.searchList(ShjDTO);
+	}
+	
 	
 }

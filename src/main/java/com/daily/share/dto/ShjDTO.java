@@ -9,8 +9,22 @@ public class ShjDTO {
 	private int mem_out;
 	private int mem_san;
 	
+	//검색 필터
+	private String type;
+	private String keyword;
 	
-	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}

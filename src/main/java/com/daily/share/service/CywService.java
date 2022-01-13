@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daily.share.dao.CywDAO;
-import com.daily.share.dto.CywDTO;
 
 @Service
 public class CywService {
@@ -16,30 +15,49 @@ public class CywService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired CywDAO dao;
 	
-	public void bigCategoryAdd(String text, int radiobutton) {
-		logger.info(text,radiobutton);
+	public void bigCategoryAdd(String mainCategoryAdd,int admin) {
 		
-		dao.bigCategory(text,radiobutton);
+		logger.info("서비스 :{}",mainCategoryAdd,admin);
 		
-	}
-
-	public void middleCategory(String text, int radiobutton) {
-		logger.info(text,radiobutton);
-		
-		dao.middleCategory(text,radiobutton);
+		dao.bigCategoryAdd(mainCategoryAdd,admin);
 		
 	}
 
-	public String bigCategoryList() {
+	public ArrayList<String> bigCategoryList() {
 		
-		String bigCategoryList = null;
+		ArrayList<String> mainCategory = dao.bigCategoryList();
+		logger.info("서비스 값?:{}",mainCategory);
 		
-		bigCategoryList = dao.bigCategoryList();
-		
-		logger.info("대분류리스트:{}",bigCategoryList);
-		
-		return bigCategoryList;
+		return mainCategory;
 	}
+
+	public void bigCategoryDel(String bigCategory) {
+		
+		dao.bigCategoryDel(bigCategory);
+		
+	}
+
+
+	public void middleCategoryAdd(String middleCategoryAdd, int admin) {
+		
+		dao.middleCategoryAdd(middleCategoryAdd,admin);
+		
+	}
+
+	public ArrayList<String> midCategoyrList() {
+		
+		ArrayList<String> midCategory = dao.midCategoyrList();
+		
+		return midCategory;
+	}
+
+	public void midCategoryDel(String midCategory) {
+		
+		dao.midCategoryDel(midCategory);
+		
+	}
+	
+
 	
 	
 }

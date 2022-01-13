@@ -5,29 +5,23 @@
    <meta charset="UTF-8">
    <title>Insert title here</title>
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="resources/css/commonHS.css">
+   <link rel="stylesheet" type="text/css" href="resources/css/HS.css">
    <style>
-   	header{width: 100%; height: 30px; background: #ccc;}
-   	nav ul li{float: left; }
+   
+  
    
    </style>
-</head>
-<body>
-<header>
-	<a>logo</a>
-	<nav>
-		<ul>
-			<li>피드</li>
-			<li>포럼</li>
-		</ul>
-	</nav>
-	
-</header>
+
+<%@ include file="headerShs_login.jsp"%>
+
+
+
 
 <div class="container">
+<div class="formDiv">
         <form action="joinShs" method="post">
             <h2>Daily Share</h2>
-                <Table>
+                <table>
                     <tr>
                         <th>ID</th>
                         <td><input type="text" name="id" class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/>
@@ -74,10 +68,11 @@
                     <tr>
                         <td colspan="2"><input type="submit" value="회원가입" id="btn-join"></td>
                     </tr>
-            </Table>
+            </table>
         </form>
         </div>
         
+    </div>
     </div>
 
 </body>

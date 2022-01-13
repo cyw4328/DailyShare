@@ -33,13 +33,18 @@
                 padding :1px;
 		    }
 		    
-		    #name, #phone, #email{
+		    #num{
 		    	width:290px;
 		    	height:40px; 
 		    	font-size:13px; 
 		    	padding-left: 10px; 
 		    	border: 1px solid gray; 
 		    	border-radius: 3px / 3px;
+		    }
+		    
+		    #timer{
+		    	color:blue;
+		    	margin-left:-40px;
 		    }
 		    
         </style>
@@ -49,26 +54,20 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner">아이디 찾기
+            <div id="banner">비밀번호 찾기
                 <div class="container"></div>
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="IdS" method="POST">
+                	<form action="num" method="POST">
                         <table>
-                            <!--이름-->
+                            <!--인증번호-->
                             <tr>
-                                <td><input type="text" placeholder="이름" id="name" name="userName"/></td>
+                                <td><input type="text" placeholder="인증번호를 입력하세요." id="num" name="userNum"/><span id="timer"></span>
+                                </td>                          
                             </tr>
-                            <!--전화번호-->
-                            <tr>
-                                <td><input type="text" placeholder="전화번호"  id="phone" name="userPhone"/></td>
-                            </tr>
-                            <!--이메일-->
-                            <tr>
-                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/></td>
-                            </tr>
-                            <!--아이디 찾기-->
+
+                            <!--비밀번호 찾기-->
                             <tr>
                                 <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
                             </tr>
@@ -85,9 +84,39 @@
 
     <script>
     
-	
-        
-        
+    function $ComTimer(){
+        //prototype extend
+    }
+
+    $ComTimer.prototype = {
+        comSecond : ""
+        , fnCallback : function(){}
+        , timer : ""
+        , domId : ""
+        , fnTimer : function(){
+            var m = Math.floor(this.comSecond / 60) + ":" + (this.comSecond % 60);	// 남은 시간 계산
+            this.comSecond--;					// 1초씩 감소
+            console.log(m);
+            this.domId.innerText = m;
+            if (this.comSecond < 0) {			// 시간이 종료 되었으면..
+                clearInterval(this.timer);		// 타이머 해제
+                alert("인증시간이 초과하였습니다.");
+                location.href='./loginPage';
+            }
+        }
+        ,fnStop : function(){
+            clearInterval(this.timer);
+        }
+    };
+    
+    var AuthTimer = new $ComTimer()
+    AuthTimer.comSecond = 180;
+    AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")};
+    AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
+    AuthTimer.domId = document.getElementById("timer");
+   
+
+ 
     </script>
 
 </html>

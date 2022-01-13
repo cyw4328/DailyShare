@@ -5,5 +5,9 @@
 
 <mapper namespace="com.daily.share.dao.HjwDAO">
 
-
+	<select id="login" resultType="String">
+		select mem_id from member
+		where mem_id = #{param1} and mem_pw = #{param2}
+	</select>
+	
 </mapper>

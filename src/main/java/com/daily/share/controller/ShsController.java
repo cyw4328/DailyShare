@@ -102,6 +102,28 @@ public class ShsController {
 			logger.info("중복 아이디 체크 : {}",id);		
 			return service.overlay(id);
 		}
+		
+		
+// 여기까지가 회원가입 기능 		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+
+@RequestMapping(value = "/member_de", method = RequestMethod.GET)
+	public String member_de(Model model) {
+				
+		return "member_de";
+	}		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+
 	
 	
 	

@@ -13,7 +13,7 @@
 
 <insert id="join" parameterType = "hashmap">
       INSERT INTO members (mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_url,mem_blog)
-        VALUES(#{id},#{pw},#{name},#{phone},#{email},#{id},#{bname})
+        VALUES(#{id},#{pw},#{name},#{email},#{phone},#{id},#{bname})
    </insert>
 
 

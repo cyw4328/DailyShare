@@ -43,9 +43,7 @@ public class ShsController {
 	public String join(Model model,@RequestParam HashMap<String, String> params) {
 		logger.info("회원가입 요청");	
 		logger.info("params : {}",params);
-		
-		
-		
+	
 		service.join(params);
 		
 		return "login";

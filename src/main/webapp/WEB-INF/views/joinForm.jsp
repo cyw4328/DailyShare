@@ -6,9 +6,24 @@
    <title>Insert title here</title>
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
    <link rel="stylesheet" type="text/css" href="resources/css/commonHS.css">
-   <style></style>
+   <style>
+   	header{width: 100%; height: 30px; background: #ccc;}
+   	nav ul li{float: left; }
+   
+   </style>
 </head>
 <body>
+<header>
+	<a>logo</a>
+	<nav>
+		<ul>
+			<li>피드</li>
+			<li>포럼</li>
+		</ul>
+	</nav>
+	
+</header>
+
 <div class="container">
         <form action="joinShs" method="post">
             <h2>Daily Share</h2>

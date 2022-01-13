@@ -17,16 +17,8 @@
 
 
 	<!-- 검색기능 쿼리 -->
-	<select id="searchList" parameterType="com.daily.share.dto.ShjDTO" resultType="com.daily.share.dto.ShjDTO">
-		SELECT * FROM members WHERE delete_yn='N'
-		<choose>
-			<when test="type !=null and type.equals('id')">
-				AND mem_id LIKE CONCAT ('%', #{keyword},'%')
-			</when>
-			<when test="type !=null and type.equals('name')">
-				AND mem_name LIKE CONCAT ('%', #{keyword},'%')
-			</when>
-		</choose>
+	<select id="keyword" resultType="com.daily.share.dto.ShjDTO">
+		SELECT mem_id FROM members WHERE mem_id = #{keyword}
 	</select>
 
 </mapper>

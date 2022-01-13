@@ -46,10 +46,12 @@ public class ShjController {
 	}
 	
 	//검색 기능
-	@RequestMapping(value = "/searchList", method = RequestMethod.GET)
-	public String search_mem(Model model) {
-
-		return "memList";
+	@ResponseBody
+	@RequestMapping(value = "/SearchList", method = RequestMethod.GET)
+	public HashMap<String, Object> getSearchList (@RequestParam String keyword) {
+		
+		logger.info("검색기능 체크 : "+keyword);
+		return service.SearchList(keyword);
 	}
 	
 }

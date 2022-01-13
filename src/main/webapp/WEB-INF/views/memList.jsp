@@ -26,14 +26,14 @@
 <body>
 
 	<div>
-		<form action="search_mem" name="search" method="GET">
-			<select name="type" size="1">
+		<form action="search_mem" method="GET">
+			<!-- <select name="type" id="type" size="1">
 				<option selected value="all">전체</option>
 				<option value="mem_id">아이디</option>
 				<option value="mem_name">이름</option>
-			</select>
-			<input type="text" name="keyword" value="${keyWord}">
-			<input type="button" onclick="searchList()" value="검색">
+			</select> -->
+			<input type="text" id="keyword" value="">
+			<input type="button" onclick="getSearchList()" value="검색">
 		</form>
 	</div>
 
@@ -65,33 +65,39 @@
 <script>
 
 	
-	function searchList(){
-		$.ajax({
+	function getSearchList(){
+		
+		console.log("클릭 확인");
+		console.log($('#keyword').val());
+		var keyword = $('#keyword').val();
+		
+		
+		$.ajax({	
 			type: 'GET',
-			url : "/searchList",
-			data : $("form[name=search-form]").serialize(),
-			success : function(result){
-				//테이블 초기화
+			url: 'SearchList',
+			data: {'keyword' : keyword},
+			dataTypes:'JSON',
+			success: function (data) {
 				$('#list').empty();
-				if(result.length>=1){
-					result.forEach(function(item){
-						str='<tr>'
-						str += "<td>"+item.mem_id+"</td>";
-						str+="<td>"+item.mem_name+"</td>";
-						str+="<td>"+item.mem_email+"</td>";
-						str+="<td>"+item.mem_phone+"</td>";
-						str+="<td>"+item.mem_out+"</td>";
-						str+="<td>"+item.mem_san+"</td>";
-						str+="</tr>"
-						$('#list').append(str);
-	        		})				 
-				}
+					list.forEach(function(item, mem_id){
+						//console.log(idx,item);
+						content += '<tr>';
+						content += '<td>'+item.mem_id+'</td>';
+						content += '<td>'+item.mem_name+'</td>';
+						content += '<td>'+item.mem_email+'</td>';
+						content += '<td>'+item.mem_phone+'</td>';
+						content += '<td>'+item.mem_out+'</td>';
+						content += '<td>'+item.mem_san+'</td>';
+						content += '</tr>';	
+						$('#list').append(content);	
+					});
 			}
-		})
+		
+		});
+		
+		
+		
 	}
-
-
-
 
 		var currPage = 1;
 		var totalPage = 2;

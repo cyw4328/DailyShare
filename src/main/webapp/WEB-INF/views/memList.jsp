@@ -25,15 +25,16 @@
 </head>
 <body>
 
+	<!-- 검색 select 박스 추가 -->
 	<div>
-		<form action="search_mem" method="GET">
-			<!-- <select name="type" id="type" size="1">
+		<form action="search_mem" method="GET" name="tlqkf">
+			<select name="SearchType" id="type">
 				<option selected value="all">전체</option>
 				<option value="mem_id">아이디</option>
 				<option value="mem_name">이름</option>
-			</select> -->
-			<input type="text" id="keyword" value="">
-			<input type="button" onclick="getSearchList()" value="검색">
+			</select>
+			<input type="text" name="keyword">
+			<input type="button" id="btnSearch" onclick="getSearchList()" value="검색">
 		</form>
 	</div>
 
@@ -65,39 +66,33 @@
 <script>
 
 	
-	function getSearchList(){
-		
-		console.log("클릭 확인");
-		console.log($('#keyword').val());
-		var keyword = $('#keyword').val();
-		
-		
-		$.ajax({	
-			type: 'GET',
-			url: 'SearchList',
-			data: {'keyword' : keyword},
-			dataTypes:'JSON',
-			success: function (data) {
-				$('#list').empty();
-					list.forEach(function(item, mem_id){
-						//console.log(idx,item);
-						content += '<tr>';
-						content += '<td>'+item.mem_id+'</td>';
-						content += '<td>'+item.mem_name+'</td>';
-						content += '<td>'+item.mem_email+'</td>';
-						content += '<td>'+item.mem_phone+'</td>';
-						content += '<td>'+item.mem_out+'</td>';
-						content += '<td>'+item.mem_san+'</td>';
-						content += '</tr>';	
-						$('#list').append(content);	
-					});
-			}
-		
-		});
-		
-		
-		
-	}
+		function getSearchList(){
+			$.ajax({
+				type: 'GET',
+				url : 'getSearchList',
+				data : $("form[name=tlqkf]").serialize(),
+				success : function(result){
+					console.log("확인");
+					//테이블 초기화
+					$('#list').empty();
+					if(result.length>=1){
+						result.forEach(function(item){
+							str='<tr>'
+							str += "<td>"+item.mem_id+"</td>";
+							str+="<td>"+item.mem_name+"</td>";
+							str+="<td>"+item.mem_email+"</td>";
+							str+="<td>"+item.mem_phone+"</td>";
+							str+="<td>"+item.mem_out+"</td>";
+							str+="<td>"+item.mem_san+"</td>";
+							str+="</tr>";
+							$('#list').append(str);
+		        		})				 
+					}
+				}
+			})
+		}
+
+
 
 		var currPage = 1;
 		var totalPage = 2;

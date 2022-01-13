@@ -45,16 +45,11 @@ public class ShjService {
 		return map;
 	}
 
-	
-	public HashMap<String, Object> SearchList(String keyword) {
-		logger.info("검색 키워드 확인 : "+keyword);
-		HashMap<String, Object> map = new HashMap<String, Object> ();
+
+
+	public List<ShjDTO> getSearchList(ShjDTO shjdto) {
 		
-		String searchword = dao.SearchList(keyword);
-		logger.info("검색어 확인 : "+searchword);
-		map.put("searchword", searchword);
-		
-		return map;
+		return dao.getSearchList(shjdto);
 	}
 
 

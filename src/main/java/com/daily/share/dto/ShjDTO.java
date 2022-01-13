@@ -10,14 +10,17 @@ public class ShjDTO {
 	private int mem_san;
 	
 	//검색 필터
-	private String type;
+	private String SearchType;
 	private String keyword;
 	
-	public String getType() {
-		return type;
+	
+	
+	
+	public String getSearchType() {
+		return SearchType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setSearchType(String searchType) {
+		SearchType = searchType;
 	}
 	public String getKeyword() {
 		return keyword;

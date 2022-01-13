@@ -11,7 +11,7 @@ public interface ShjDAO {
 
 	int allCount();
 
-	String SearchList(String keyword);
+	List<ShjDTO> getSearchList(ShjDTO shjdto);
 	
 	
 

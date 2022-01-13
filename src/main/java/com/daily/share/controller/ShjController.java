@@ -47,11 +47,14 @@ public class ShjController {
 	
 	//검색 기능
 	@ResponseBody
-	@RequestMapping(value = "/SearchList", method = RequestMethod.GET)
-	public HashMap<String, Object> getSearchList (@RequestParam String keyword) {
+	@RequestMapping(value = "/getSearchList", method = RequestMethod.GET)
+	private List<ShjDTO> getSearchList (@RequestParam("SearchType") String SearchType, @RequestParam("keyword") String keyword) {
 		
-		logger.info("검색기능 체크 : "+keyword);
-		return service.SearchList(keyword);
+		ShjDTO shjdto = new ShjDTO();
+		shjdto.setKeyword(keyword);
+		shjdto.setSearchType(SearchType);
+		
+		return service.getSearchList(shjdto);
 	}
 	
 }

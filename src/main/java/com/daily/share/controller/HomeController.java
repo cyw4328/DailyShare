@@ -20,7 +20,9 @@ public class HomeController {
 	public String home(Model model) {
 		logger.info("홈페이지 이동");
 
-		return "homePage";
+
+		return "HomePage";
+
 	}
 	
 }

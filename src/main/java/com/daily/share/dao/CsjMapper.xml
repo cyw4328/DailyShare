@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+
+<mapper namespace="com.daily.share.dao.CsjDAO">
+
+	<!-- 댓글 목록 -->
+	<select id="csj_com" resultType="com.daily.share.dto.CsjCommentDTO">
+		select com_num,mem_id,board_num,com_parent,com_depth,com_cont,com_date,com_secret,com_blind,com_targetId from comment where board_num=#{param1} and com_blind=0 order by com_parent, com_num
+	</select>
+
+	<!-- 댓글 등록 -->
+	<insert id="com_regist" useGeneratedKeys="true" keyProperty="com_num" keyColumn="com_num" parameterType="com.daily.share.dto.CsjCommentDTO">
+		insert into comment(mem_id,board_num,com_parent,com_depth,com_cont,com_secret,com_targetId)
+			values(#{mem_id},#{board_num},#{com_parent},#{com_depth},#{com_cont},#{com_secret},#{com_targetId})
+	</insert>
+	
+	<!-- 부모댓글 정보 등록 -->
+	<update id="csj_com_parent">
+		update comment set com_parent = #{param1} where com_num=#{param1}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="com_del">
+		update comment set com_blind=1 where com_num=#{param1}
+	</update>
+	
+	<!-- 댓글 알림 등록 -->
+	<insert id="com_inAlarm">
+		insert into alarm (alarm_targetNum,alarm_target,mem_id) values(#{param1},#{param2},#{param3})
+	</insert>
+	
+	
+	
+
+</mapper>

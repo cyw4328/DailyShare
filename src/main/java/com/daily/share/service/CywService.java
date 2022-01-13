@@ -64,6 +64,19 @@ public class CywService {
 		dao.menuAdd(menuAdd,daeCategory,midCategory);
 		
 	}
+
+	public ArrayList<CywDTO> menuList() {
+		
+		ArrayList<CywDTO> menuList = dao.menuList();
+		return menuList;
+		
+	}
+
+	public void menuDel(int menu) {
+		
+		dao.menuDel(menu);
+		
+	}
 	
 
 	

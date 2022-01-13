@@ -131,5 +131,27 @@ public class CywDTO {
 		this.mem_blog = mem_blog;
 	}
 	
+	private int menu_num;
+	private String menu_name;
+	private int menu_blind;
+	public int getMenu_num() {
+		return menu_num;
+	}
+	public void setMenu_num(int menu_num) {
+		this.menu_num = menu_num;
+	}
+	public String getMenu_name() {
+		return menu_name;
+	}
+	public void setMenu_name(String menu_name) {
+		this.menu_name = menu_name;
+	}
+	public int getMenu_blind() {
+		return menu_blind;
+	}
+	public void setMenu_blind(int menu_blind) {
+		this.menu_blind = menu_blind;
+	}
    
+	
 }

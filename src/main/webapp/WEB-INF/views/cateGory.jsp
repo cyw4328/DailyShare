@@ -66,6 +66,7 @@
 			</tr>
 		</table>
 	</form>
+	
 		<table>
 			<c:forEach var="item1" items="${midCategoyrList}">
 				<tr>
@@ -106,7 +107,16 @@
 					</td>
 				</tr>
 			</table>
-		</form>
+			</form>
+			<table>
+			<c:forEach var="item2" items="${menuList}">
+				<tr>
+						<td>${item2.menu_name}</td>
+						<td><a href="menuDel?menu=${item2.menu_num}"><button>삭제</button></a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 		
 		
 </body>

@@ -32,5 +32,13 @@
 	<insert id="menuAdd">
 		INSERT INTO menu(menu_name,main_num,mid_num)VALUES(#{param1},#{param2},#{param3})
 	</insert>
+	
+	<select id="menuList" resultType="com.daily.share.dto.CywDTO">
+		SELECT menu_num,menu_name,menu_blind,main_num,mid_num from menu
+	</select>
+	
+	<delete id="menuDel">
+		DELETE FROM menu WHERE menu_num = #{param1}
+	</delete>
 
 </mapper>

@@ -23,6 +23,10 @@ public interface CywDAO {
 
 	void menuAdd(String menuAdd, int daeCategory, int midCategory);
 
+	ArrayList<CywDTO> menuList();
+
+	void menuDel(int menu);
+
 
 
 

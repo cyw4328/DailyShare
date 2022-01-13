@@ -32,6 +32,9 @@ public class CywController {
 		model.addAttribute("bigCategoryList",bigCategoryList);
 		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
 		model.addAttribute("midCategoyrList",midCategoryList);
+		ArrayList<CywDTO> menuList = service.menuList();
+		model.addAttribute("menuList",menuList);
+		logger.info("메뉴리스트:{}",menuList);
 		
 		return "cateGory";
 	}
@@ -86,5 +89,14 @@ public class CywController {
 	 
 	 return "redirect:/cyw"; 
 	 }
+	 
+		@RequestMapping(value = "/menuDel", method = RequestMethod.GET)
+		public String menuDel(Model model, HttpSession session, @RequestParam int menu) {
+			logger.info("삭제요청 : {}",menu); 
+			
+			service.menuDel(menu);
+			
+			return "redirect:/cyw";
+		}
 
 }

@@ -14,6 +14,8 @@ public interface ShsDAO {
 
 	void userUp(String id, String pw, String email, String phone);
 
+	String memberOut(Object id);
+
 
 
 

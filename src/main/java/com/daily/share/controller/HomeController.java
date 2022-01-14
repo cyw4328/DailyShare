@@ -21,7 +21,14 @@ public class HomeController {
       logger.info("홈페이지 이동");
 
 
+<<<<<<< HEAD
       return "HomePage";
    }
    
 }
+=======
+		return "HomePage";
+	}
+	
+}
+>>>>>>> 638ef45cfa157b0c19c69e95f59ac076552569e1

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMenuDTO;
@@ -83,9 +84,12 @@ public class CsjContoller {
 		return "csjWriteForm";
 	}
 	
-	@RequestMapping(value = "/csj_write", method = RequestMethod.GET)
-	public String csj_write(Model model) {
-		return "csjWrite";
+	@RequestMapping(value = "/csj_postUpload", method = RequestMethod.POST)
+	public String csj_postUpload(Model model,@RequestParam HashMap<String, String> params,MultipartFile[] photos,HttpSession session) {
+		String loginId= (String) session.getAttribute("loginId");
+		logger.info("포스트 요청 : {},{}",params,photos);
+		logger.info("로그인 된 아이디 : {}",loginId);
+		return service.csj_postUpload(params,loginId,photos);
 	}
 	
 	

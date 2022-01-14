@@ -1,5 +1,6 @@
 package com.daily.share.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.daily.share.dao.CsjDAO;
+import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMenuDTO;
 
@@ -102,6 +105,78 @@ public class CsjService {
 
 
 
+
+
+	public String csj_postUpload(HashMap<String, String> params, String loginId, MultipartFile[] photos) {
+		String board_subject = params.get("board_subject");
+		String board_cont = params.get("board_cont");
+		int board_scope =  Integer.parseInt(params.get("board_scope"));
+		String mem_id = loginId;
+		int menu_num = Integer.parseInt(params.get("menu_num"));
+		
+		logger.info("받아온 파라메터 : "+board_subject+"/"+board_cont+"/"+board_scope+"/"+mem_id+"/"+menu_num);
+		
+		CsjBoardDTO dtoB = new CsjBoardDTO();
+		dtoB.setBoard_subject(board_subject);
+		dtoB.setBoard_cont(board_cont);
+		dtoB.setBoard_scope(board_scope);
+		dtoB.setMem_id(mem_id);
+		dtoB.setMenu_num(menu_num);
+		
+		//글등록
+		dao.csj_postUpload(dtoB);
+		String page = "redirect:/csj";
+		
+		int board_num = dtoB.getBoard_num();
+		if (board_num >0) {
+			page = "redirect:/csj";
+			
+			
+			//사진등록
+			csj_photoUpload(board_num,photos);
+		}	
+		return page;
+
+	}
+
+
+
+
+
+	private void csj_photoUpload(int board_num, MultipartFile[] photos) {
+		for (MultipartFile photo : photos) {
+				try {
+					String photo_oriName= photo.getOriginalFilename();
+					int index = photo_oriName.lastIndexOf(".");
+					if (index>0) {
+						String ext = photo_oriName.substring(index);
+						String photo_newName = System.currentTimeMillis()+ext;
+						byte[] bytes = photo.getBytes();
+						
+				
+						}	 
+				}catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+	}
+
+
+
+	
+	
+	
 
 	
 	

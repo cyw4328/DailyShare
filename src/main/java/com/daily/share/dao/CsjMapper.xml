@@ -46,6 +46,11 @@
 	</select>
 	
 	
+	<!-- 게시글(board) 등록 -->
+	<insert id="csj_postUpload" useGeneratedKeys="true" keyProperty="com_num" keyColumn="com_num" parameterType="com.daily.share.dto.CsjBoardDTO">
+		insert into board(board_subject,board_cont,board_scope,mem_id,menu_num) values(#{board_subject},#{board_cont},#{board_scope},#{mem_id},#{menu_num})
+	</insert>
+	
 	
 	
 	

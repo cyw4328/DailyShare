@@ -16,7 +16,7 @@
 #header{
     height: 60px;
     background-color: white;
-    padding-top: 27px ;    
+    padding-top: 27px ; 
 }
 
 #logo{
@@ -45,7 +45,7 @@
     position: relative;
     top: 0px;
     left: 0px;
-    width: 50px;
+    width: 80px;
 
 }
 
@@ -115,6 +115,14 @@
     font-size: 12px;
  }
 
+#id_shs{
+	float: right;
+	cursor: pointer;
+}
+
+#id_shs:hover{
+border-bottom:1px solid #black;
+}
 
    
    </style>
@@ -131,7 +139,7 @@
                 <ul>
                     <li class="nav01">피드</li>
                     <li class="nav01">포럼</li>
-                    <!-- <li class="nav01" id="nav01_01">MY블로그</li>-->
+                    <li class="nav01" >MY블로그</li>
                 </ul>
             </div>
                 <!--로그인 레이어팝업 -->
@@ -144,7 +152,7 @@
                 <div id="login_icon"><img src="./img/login_icon.jpg" onMouseOver="this.src='./img/login_icon01.jpg'"
                     onMouseOut="this.src='./img/login_icon.jpg'"></div>
                 
-                <p>${session.loginId}</p>
+                <p id="id_shs">${loginId}</p>
 
             
         </nav>

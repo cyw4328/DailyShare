@@ -7,16 +7,27 @@
 
 
 	<select id="overlay" resultType="String">
-		SELECT mem_id FROM members WHERE mem_id = #{param1}
+			SELECT mem_id FROM members WHERE mem_id = #{param1}
 	</select>
-
-
-<insert id="join" parameterType = "hashmap">
-      INSERT INTO members (mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_url,mem_blog)
-        VALUES(#{id},#{pw},#{name},#{email},#{phone},#{id},#{bname})
-   </insert>
-
-
+	
+	
+	<insert id="join" parameterType = "hashmap">
+	      INSERT INTO members (mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_url,mem_blog)
+	        VALUES(#{id},#{pw},#{name},#{email},#{phone},#{id},#{bname})
+	 </insert>
+	
+	<select id="memberDe" resultType="com.daily.share.dto.ShsDTO">
+		select mem_name,mem_email, mem_phone from members WHERE mem_id =#{param1}
+	</select>
+		
+	<update id="userUp">
+		UPDATE members SET
+			mem_id = #{param1}
+			,mem_pw = #{param2}
+			,mem_email = #{param3}
+			,mem_phone = #{param4}
+		WHERE mem_id = #{param1}
+	</update>
 
 
 

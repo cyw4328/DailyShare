@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.daily.share.dao.CywDAO;
 import com.daily.share.dao.ProjectDAO;
 import com.daily.share.dao.ShsDAO;
+import com.daily.share.dto.ShsDTO;
 
 @Service
 public class ShsService {
@@ -38,6 +39,25 @@ public class ShsService {
 		
 		return map;
 	}
+
+
+
+	public ShsDTO memberDe(String id) {
+		logger.info("회원정보 서비스 도착");
+		return dao.memberDe(id);
+	}
+
+
+
+	public void userUp(String id, String pw, String email, String phone) {
+		logger.info("회원수정 서비스 도착 : {}",id+pw+email+phone);
+		dao.userUp(id,pw,email,phone);
+		
+	}
+
+
+
+
 	
 	
 }

@@ -7,7 +7,7 @@ import com.daily.share.dto.ShjDTO;
 
 public interface ShjDAO {
 
-	ArrayList<ShjDTO> list();
+	ArrayList<ShjDTO> list(int pagePerCnt, int offset);
 
 	int allCount();
 

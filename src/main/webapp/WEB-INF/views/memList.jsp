@@ -27,7 +27,7 @@
 
 	<!-- 검색 select 박스 추가 -->
 	<div>
-		<form action="search_mem" method="GET" name="tlqkf">
+		<form action="search_mem" method="GET" name="search_mem">
 			<select name="SearchType" id="type">
 				<option selected value="all">전체</option>
 				<option value="mem_id">아이디</option>
@@ -65,12 +65,12 @@
 </body>
 <script>
 
-	
+		//검색 ajax
 		function getSearchList(){
 			$.ajax({
 				type: 'GET',
 				url : 'getSearchList',
-				data : $("form[name=tlqkf]").serialize(),
+				data : $("form[name=search_mem]").serialize(),
 				success : function(result){
 					console.log("확인");
 					//테이블 초기화
@@ -96,8 +96,9 @@
 
 		var currPage = 1;
 		var totalPage = 2;
+		var pageSize = 5;
 		
-		listCall(currPage,10);
+		listCall(currPage,5);
 		
 		function more(){ //다음 페이지로 넘겼을 때
 			currPage++;
@@ -105,7 +106,7 @@
 			if(currPage>totalPage){
 				$('button').attr('disabled',true);
 			}else{
-				listCall(currPage, 10);			
+				listCall(currPage, 5);			
 			}
 		}
 		
@@ -140,7 +141,8 @@
 		}
 		
 		function listDraw(list){ //리스트를 불러올때 하단 생성
-			var content = '';		
+			var content = '';	
+			var pageSize = 5;
 			list.forEach(function(item, mem_id){
 				//console.log(idx,item);
 				content += '<tr>';

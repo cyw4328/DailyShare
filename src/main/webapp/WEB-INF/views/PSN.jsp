@@ -47,6 +47,12 @@
 		    	margin-left:-40px;
 		    }
 		    
+		    #alert-danger-email{
+		    	color:red;
+		    	font-size:13px;
+		    	height:20px;
+		    	margin-top:5px;
+		    }
         </style>
     </head>
     <body class="no-drag">
@@ -54,26 +60,23 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner">비밀번호 찾기
-                <div class="container"></div>
+            <div id="banner">
+                <div class="container">비밀번호 찾기</div>
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="num" method="POST">
                         <table>
                             <!--인증번호-->
                             <tr>
-                                <td><input type="text" placeholder="인증번호를 입력하세요." id="num" name="userNum"/><span id="timer"></span>
+                                <td><input type="text" placeholder="인증번호를 입력하세요." id="num" name="ecode"/><span id="timer"></span>
+      							<div class="alert alert-danger" id="alert-danger-email">인증번호를 확인하세요.</div>
                                 </td>                          
                             </tr>
-
                             <!--비밀번호 찾기-->
                             <tr>
-                                <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
+                                <td><input type="button"  id="checkBtn" style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
                             </tr>
-
                         </table>
-                	</form>
                 </div>
             </div>
             <div id="footer">
@@ -83,7 +86,7 @@
     </body>
 
     <script>
-    
+ 
     function $ComTimer(){
         //prototype extend
     }
@@ -114,9 +117,63 @@
     AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")};
     AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
     AuthTimer.domId = document.getElementById("timer");
-   
+    
+    $("#alert-danger-email").hide();
 
+    var check = false;
  
+  //인증번호를 저장할 변수
+    var code = "";
+    
+    //인증번호 이메일 전송
+ 
+       email = "${PwS}";
+       var ecode = $("input[name='ecode']");
+       
+       $.ajax({
+          type:"GET",
+          url : "mailCheck",
+          data : {email : email},
+          contentType :"text/plain;charset=UTF-8",
+          success : function(data){ //인증번호를 가져옴
+             
+             //checkBox.val(''); // 기존에 값이 있었으면 지워줌
+             $("#alert-danger-email").hide();
+             check = false;
+             code = data; // 인증번호를 변수에 저장
+          }
+       });
+
+          
+          
+
+    //인증코드 입력 시 동일성 확인
+    $("input[name='ecode']").keyup(function() {
+    	
+    	var inputCode = $("input[name='ecode']").val();
+    	if (inputCode != "" || code != "") {
+    		if (inputCode == code) {
+    			$("#alert-danger-email").hide();
+    			//$("input[name='ecode']").attr("disabled",true); //인증번호 입력 멈춤
+    			check = true;
+    		} else {
+    			$("#alert-danger-email").show();
+    			check = false;
+    		}
+    	}
+    }); 
+    
+    
+    $("#checkBtn").on("click",function(e){
+    	if(check == true){
+    		alert("비밀번호 재설정 페이지로 이동합니다.");
+    		location.href='./PwChange'
+    	}else{
+    		alert("인증번호를 확인해 주세요.");
+    		$("#alert-danger-email").show();
+    	}
+    });   
+    
     </script>
 
 </html>

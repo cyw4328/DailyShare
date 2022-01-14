@@ -33,7 +33,7 @@
                 padding :1px;
 		    }
 		    
-		    #id, #name, #phone, #email{
+		    #pwCheck, #pw{
 		    	width:290px;
 		    	height:40px; 
 		    	font-size:13px; 
@@ -49,35 +49,27 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner">비밀번호 찾기
-                <div class="container"></div>
+            <div id="banner">
+                <div class="container">비밀번호 찾기</div>
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="PwS" method="POST">
+                	<form action="PwChange" method="post">
                         <table>
-                        	<!--아이디-->
+                            <!--pw-->
                             <tr>
-                                <td><input type="text" placeholder="아이디" id=id name="userId"/></td>
+                                <td><input type="password" placeholder="새로운 비밀번호"  id="pw" name="userPass"/></td>
                             </tr>
-                            <!--이름-->
+                            <!--pwCheck-->
                             <tr>
-                                <td><input type="text" placeholder="이름" id="name" name="userName"/></td>
-                            </tr>
-                            <!--전화번호-->
-                            <tr>
-                                <td><input type="text" placeholder="전화번호"  id="phone" name="userPhone"/></td>
-                            </tr>
-                            <!--이메일-->
-                            <tr>
-                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/></td>
-                            </tr>
-			
-                            <!--비밀번호 찾기-->
-                            <tr>
-                                <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
-                            </tr>
+                                <td><input type="password" placeholder="비밀번호 확인"  id="pwCheck" name="userPassCheck"/>
 
+      							</td>
+                            </tr>
+                            <!--change-->
+                            <tr>
+                                <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px;"  value="확인"/></td>
+                            </tr>
                         </table>
                 	</form>
                 </div>
@@ -89,6 +81,7 @@
     </body>
 
     <script>
+    
     
     </script>
 

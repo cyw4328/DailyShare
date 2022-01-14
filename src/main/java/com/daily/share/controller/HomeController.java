@@ -12,24 +12,16 @@ import com.daily.share.service.ProjectService;
 
 @Controller
 public class HomeController {
-	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Autowired ProjectService service;
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-		logger.info("홈페이지 이동");
-
-<<<<<<< HEAD
-
-		return "HomePage";
+   
+   private Logger logger = LoggerFactory.getLogger(this.getClass());
+   @Autowired ProjectService service;
+   
+   @RequestMapping(value = "/", method = RequestMethod.GET)
+   public String home(Model model) {
+      logger.info("홈페이지 이동");
 
 
-=======
-		return "HomePage";
-
-	
->>>>>>> cfe7da45001be668217f0d30ad7c12f49c0fb17f
-	}
-	
+      return "HomePage";
+   }
+   
 }

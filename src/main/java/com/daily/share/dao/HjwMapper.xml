@@ -20,5 +20,10 @@
          where mem_id = #{param1} and mem_name = #{param2} and mem_phone = #{param3} and mem_email = #{param4}
    </select>
 	
+	<update id='update' parameterType="hashmap">
+		UPDATE members SET
+		mem_pw = #{mem_pw}
+		WHERE mem_id = #{searchId}
+	</update>
 	
 </mapper>

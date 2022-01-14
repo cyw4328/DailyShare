@@ -49,8 +49,8 @@
             <div id="header">
                 <div class="container">header</div>
             </div>
-            <div id="banner">아이디 찾기
-                <div class="container"></div>
+            <div id="banner">
+                <div class="container">아이디 찾기</div>
             </div>
             <div id="contents">
                 <div class="container">

@@ -10,8 +10,8 @@ public interface HjwDAO {
 
 	String PwS(String userId, String userName, String userPhone, String userEmail);
 
+	int update(String userPass);
 
-	
-	
+
 
 }

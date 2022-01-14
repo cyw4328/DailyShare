@@ -65,10 +65,10 @@
 								<td>${msg}</td>
 							</tr>
 							<tr>	
-								<th valign= "top">${IdS}${PwS}</th>		
+								<th valign= "top">${search}</th>		
 							</tr>			
 						</table>	
-                     <button id="btn" onclick="location.href='./loginPage'">확인</button>                            
+                     <button id="btn">확인</button>                            
                 </div>
             </div>
             <div id="footer">
@@ -85,7 +85,7 @@
 	        	  if("${title}" == "아이디 찾기"){
 	        		  location.href='./loginPage';
 	        	  }else{
-	        		  console.log("세션확인")
+	        		  console.log("세션확인")        		  
 		        	  location.href='./PSN'
 	        	  }
 	          }

@@ -53,6 +53,15 @@ public class HjwController {
 		return "PSN";
 	}
 	
+	@RequestMapping(value = "/PwChange", method = RequestMethod.GET)
+	public String PwChange(Model model,@RequestParam String userPass, HttpSession session) {
+		logger.info("비밀번호변경페이지 이동");
+		String searchId = (String) session.getAttribute("searchId");
+		logger.info("재설정할 아이디 : {}",searchId);
+		service.PwC(userPass);
+		return "PwChange";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model,@RequestParam String userId,@RequestParam String userPass,HttpSession session) {
 		logger.info("로그인 요청");
@@ -72,14 +81,16 @@ public class HjwController {
 		logger.info("아이디 찾기 요청");
 		logger.info(userName+"/"+userPhone+"/"+userEmail);
 		String msg ="입력하신 정보와 일치하는 아이디가 없습니다.";
-		String title ="아이디 찾기";
+		String title ="아이디 찾기";	
 		String IdS = service.IdS(userName,userPhone,userEmail);
+		String search =IdS;
 		if(IdS != null) {
 			msg ="입력하신 정보와 일치하는 아이디 정보 입니다.";
 			model.addAttribute("IdS",IdS);
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("title",title);
+		model.addAttribute("search",search);
 		return "Search";
 	}
 	
@@ -89,7 +100,10 @@ public class HjwController {
 		logger.info(userId+"/"+userName+"/"+userPhone+"/"+userEmail);
 		String msg ="입력하신 정보를 찾을 수 없습니다.";
 		String title ="비밀번호 찾기";
+		session.setAttribute("searchId", userId);
+		logger.info((String) session.getAttribute("searchId"));
 		String PwS = service.PwS(userId,userName,userPhone,userEmail);
+		String search =PwS;
 		if(PwS != null) {
 			session.setAttribute("PwS", PwS);
 			msg ="입력하신 정보와 일치하는 이메일에 인증번호를 전송 했습니다.";
@@ -97,6 +111,7 @@ public class HjwController {
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("title",title);
+		model.addAttribute("search",search);
 		return "Search";
 	}
 	
@@ -112,5 +127,6 @@ public class HjwController {
         return "login";        
         
     }
+	
 	
 }

@@ -1,5 +1,7 @@
 package com.daily.share.service;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,11 @@ public class HjwService {
 		logger.info("찾아온 이메일 : {}",PwS);
 		return PwS;
 	}
-	
-	
-	
-	
+	public void PwC(String userPass) {
+		int row = dao.update(userPass);
+		logger.info("변경 성공여부 : {}",row);	
+		
+	}
+
 
 }

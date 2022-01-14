@@ -70,7 +70,7 @@
                             </tr>
                             <!--아이디 찾기-->
                             <tr>
-                                <td><input type="submit"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
+                                <td><input type="submit" id="btn"  style="background-color: black; margin:auto; display:block; cursor:pointer; font-size: 16; width:80px;height:40px; color:white; border-radius: 7px / 7px; "  value="확인"/></td>
                             </tr>
 
                         </table>
@@ -84,10 +84,7 @@
     </body>
 
     <script>
-    
-	
-        
-        
+ 
     </script>
 
 </html>

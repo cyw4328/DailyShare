@@ -51,7 +51,7 @@
 
 <div id="sujung_txt">
 <p>개인정보 수정</p>
-<input type="button" value="회원 탈퇴하기" style="float: right;">
+<input type="button" value="회원 탈퇴하기" style="float: right;" id="userOut_btn">
 <hr>
 
    <div id="formCs">
@@ -83,6 +83,42 @@ var finalPw = null;
 
 var pw =$("input[name='pw']").val();
 var repw = $("input[name='repw']").val();
+
+
+
+$("#userOut_btn").click(function() {
+    console.log('userOut_btn 확인');     
+	
+    var inputOut1 = prompt(" '탈퇴' 를 입력해주세요' ");
+    
+    if(inputOut1 != null){
+    	var trimOut1 = inputOut1.trim();
+    	
+    	if(trimOut1 != "" && trimOut1 != '탈퇴'){
+    		console.log('탈퇴불가'); 
+    		alert('탈퇴가 불가합니다. 다시 시도해 주세요.');
+    	}else if(trimOut1 == '탈퇴'){
+    		console.log('탈퇴가능');
+    		alert('탈퇴 되었습니다. 이용해 주셔서 감사합니다.');
+    		location.href="/share/memberOut";
+    	}
+    	
+    	
+    	
+
+    	
+    	
+    	
+    	
+    }
+    
+ });
+
+
+
+
+
+
 
 
 

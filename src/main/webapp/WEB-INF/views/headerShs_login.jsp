@@ -104,7 +104,7 @@
     
 }
 
-#member_icon{
+#logout_icon{
     display: block;
     width: 34px;
     height: 34px;
@@ -145,12 +145,12 @@ border-bottom:1px solid #black;
                 <!--로그인 레이어팝업 -->
                 
 
-                <div id="member_icon">
+                <a id="logout_icon" href="logoutShs">
                 <img src="./img/jang_icon.jpg" onMouseOver="this.src='./img/jang_icon02.jpg'"
-                onMouseOut="this.src='./img/jang_icon.jpg'"></div>
+                onMouseOut="this.src='./img/jang_icon.jpg'"></a>
                 
-                <div id="login_icon"><img src="./img/login_icon.jpg" onMouseOver="this.src='./img/login_icon01.jpg'"
-                    onMouseOut="this.src='./img/login_icon.jpg'"></div>
+                <a id="login_icon"><img src="./img/login_icon.jpg" onMouseOver="this.src='./img/login_icon01.jpg'"
+                    onMouseOut="this.src='./img/login_icon.jpg'"></a>
                 
                 <p id="id_shs">${loginId}</p>
 

@@ -5,21 +5,24 @@
 
 <mapper namespace="com.daily.share.dao.ShsDAO">
 
-
+	<!-- 중복체크 -->	
 	<select id="overlay" resultType="String">
 			SELECT mem_id FROM members WHERE mem_id = #{param1}
 	</select>
 	
-	
+	<!-- 회원가입 -->	
 	<insert id="join" parameterType = "hashmap">
 	      INSERT INTO members (mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_url,mem_blog)
 	        VALUES(#{id},#{pw},#{name},#{email},#{phone},#{id},#{bname})
 	 </insert>
 	
+	
+	<!-- 개인정보 확인 -->
 	<select id="memberDe" resultType="com.daily.share.dto.ShsDTO">
 		select mem_name,mem_email, mem_phone from members WHERE mem_id =#{param1}
 	</select>
 		
+	<!-- 개인정보 수정 -->
 	<update id="userUp">
 		UPDATE members SET
 			mem_id = #{param1}
@@ -28,6 +31,15 @@
 			,mem_phone = #{param4}
 		WHERE mem_id = #{param1}
 	</update>
+	
+	<!-- 회원 삭제 -->
+	<delete id="memberOut">
+		DELETE FROM members
+		WHERE mem_id = #{param1}
+	</delete>
+	
+	
+	
 
 
 

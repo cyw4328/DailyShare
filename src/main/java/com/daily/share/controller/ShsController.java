@@ -129,7 +129,7 @@ public class ShsController {
 		
 
 		
-		
+// 회원정보 수정 요청
 @RequestMapping(value = "/userUp", method = RequestMethod.POST)
 public String userUp(Model model, @RequestParam String id,@RequestParam String pw, @RequestParam String email, @RequestParam String phone) {
 	logger.info("수정 요청 : {}",id+pw+email+phone);	//null 값은 받지 않는것으로 확인
@@ -138,7 +138,42 @@ public String userUp(Model model, @RequestParam String id,@RequestParam String p
 	
 	return "memberDe";
 }
+
+
+//로그아웃
+@RequestMapping(value = "/logoutShs", method = RequestMethod.GET)
+public String logoutShs(HttpSession session) {
+	logger.info("로그아웃 컨트롤러");
+	
+	Object object = session.getAttribute("loginId");
+	
+	if(object != null) {
+		session.removeAttribute("loginId");
+		session.invalidate();
+	}
+	
+	
+	return "redirect:/";
+}
+
+
+
+//회원탈퇴
+@RequestMapping(value = "/memberOut", method = RequestMethod.GET)
+public String memberOut(HttpSession session) {
+	logger.info("회원탈퇴 컨트롤러");
+	
+	Object object = session.getAttribute("loginId");
+	
+	if(object != null) {
+		session.getAttribute("loginId");
+		logger.info("회원탈퇴 컨트롤러 : {}",object);
 		
+		service.memberOut(object);
+	}
+	
+	return "redirect:/logoutShs";
+}
 	
 
 	

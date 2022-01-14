@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.daily.share.dto.ShsDTO;
 import com.daily.share.service.ShsService;
 
 @Controller
@@ -28,6 +31,7 @@ public class ShsController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired ShsService service;
 	@Autowired private JavaMailSender mailSender;
+	@Autowired HttpSession session;
 	
 	@RequestMapping(value = "/shs", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -102,6 +106,41 @@ public class ShsController {
 			logger.info("중복 아이디 체크 : {}",id);		
 			return service.overlay(id);
 		}
+		
+		
+// 여기까지가 회원가입 기능 		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+
+//개인정보 수정페이지
+@RequestMapping(value = "/memberDe", method = RequestMethod.GET)
+	public String memberDe(Model model,HttpSession session) {
+	
+		String id = (String) session.getAttribute("loginId");
+		logger.info("세션아이디 값 : {}",id);
+		
+		ShsDTO dto = service.memberDe(id);
+		model.addAttribute("info", dto);
+		
+	return "memberDe";
+}
+
+		
+
+		
+		
+@RequestMapping(value = "/userUp", method = RequestMethod.POST)
+public String userUp(Model model, @RequestParam String id,@RequestParam String pw, @RequestParam String email, @RequestParam String phone) {
+	logger.info("수정 요청 : {}",id+pw+email+phone);	//null 값은 받지 않는것으로 확인
+	
+	service.userUp(id,pw,email,phone);
+	
+	return "memberDe";
+}
+		
+	
+
 	
 	
 	

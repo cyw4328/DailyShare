@@ -5,10 +5,33 @@
 
 <mapper namespace="com.daily.share.dao.ShjDAO">
 
+
+	<!-- 리스트 관련 쿼리 -->
 	<select id="list" resultType="com.daily.share.dto.ShjDTO">
-		SELECT mem_id, mem_name, mem_email, mem_phone, mem_out, mem_san FROM members ORDER BY mem_id DESC
+		SELECT mem_id, mem_name, mem_email, mem_phone, mem_out, mem_san FROM members ORDER BY mem_id
+	</select>
+	
+	<select id="allCount" resultType="int">
+		SELECT COUNT (mem_id) FROM members
 	</select>
 
-
+	
+	
+	<!-- 검색 쿼리 / 공백 입력 처리 안했으니 주의할것!! -->
+	<select id="getSearchList" parameterType="com.daily.share.dto.ShjDTO" resultType="com.daily.share.dto.ShjDTO">
+		SELECT mem_id, mem_name, mem_email, mem_phone, mem_out, mem_san FROM members 
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null">
+				<if test="SearchType == 'mem_id'">
+					AND mem_id LIKE CONCAT ('%',#{keyword},'%')
+				</if>
+				<if test="SearchType == 'mem_name'">
+					AND mem_name LIKE CONCAT ('%',#{keyword},'%')
+				</if>
+			</if>
+		</trim>
+	</select>
+	
 
 </mapper>

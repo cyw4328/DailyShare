@@ -11,7 +11,7 @@
   
    
    </style>
-
+<body>
 <%@ include file="headerShs_login.jsp"%>
 
 
@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td><input type="password" name="pw" class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/></td>
+                        <td><input type="password" name="pw"  class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/></td>
                     </tr>
                     <tr>
                         <th>PW 확인</th>

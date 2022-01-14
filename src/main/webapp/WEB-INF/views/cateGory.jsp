@@ -40,7 +40,7 @@
 			<tr>
 					<td>${item.main_name}</td> 
 					<td>
-						<button class="b">삭제</button>
+						<button class="bigCategoryDel">삭제</button>
 						<input type="hidden" value="${item.main_num}"/>
 					</td>
 			</tr>
@@ -83,25 +83,25 @@
 		</table>
 		<br/>
 		
-		<form action="menuAdd" method="POST">
+		<form action="menuAdd" method="POST" id="menuAdd">
 			<table>
 				<tr>
 					<td colspan="4">메뉴추가</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name="menuAdd"/>
+						<input type="text" name="menuAddName" id="menuName"/>
 					</td>
 					<td>
-						<select id="bigSelec" name="daeCategory">
-			 						<option selected="selected">대분류이름</option>
-									<c:forEach var="item" items="${bigCategoryList}">
-										<option value="${item.main_num}">${item.main_name}</option>
-									</c:forEach>
+						<select id="bigSelec" name="daeCategoryMenu">
+	 						<option selected="selected">대분류이름</option>
+							<c:forEach var="item" items="${bigCategoryList}">
+								<option value="${item.main_num}">${item.main_name}</option>
+							</c:forEach>
 						</select>
 					</td>
 					<td>
-						<select id="midSelec" name="midCategory">
+						<select id="midSelec" name="midCategoryMenu">
 	 						<option selected="selected">중분류이름</option>
 							<c:forEach var="item" items="${midCategoyrList}">
 								<option value="${item.mid_num}">${item.mid_name}</option>
@@ -109,21 +109,12 @@
 						</select>
 					</td>
 					<td>
-						<input type="submit" value="추가" id="menuAdd"/>
+						<input type="button" value="등록" id="menuAddCheck"/>
 					</td>
 				</tr>
 			</table>
 			</form>
 			<table>
-				<c:forEach var="item1" items="${midCategoyrList}">
-				<tr>	
-					<td>${item1.mid_name}</td>
-					<td>
-						<button class="midCategoryDel">삭제</button>
-						<input type="hidden" value="${item1.mid_num}">
-					</td>
-				</tr>
-			</c:forEach>
 			
 			<c:forEach var="item2" items="${menuList}">
 				<tr>
@@ -134,8 +125,24 @@
 						</td>
 				</tr>
 			</c:forEach>
-		</table>
+		</table><br/>
 		
+		<table>
+			<thead>
+				<tr>
+					<td>
+						<select id="bigSel" name="daeCategory" onchange="midCategoryCall()">
+	 						<option selected="selected">대분류이름</option>
+							<c:forEach var="item" items="${bigCategoryList}">
+								<option value="${item.main_num}">${item.main_name}</option>
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+			</thead>
+			<tbody class="midlist">
+			</tbody>
+		</table>
 		
 		
 </body>
@@ -179,6 +186,29 @@
 		}
 	
 	});
+	
+	$("#menuAddCheck").click(function() {
+		console.log("추가 버튼 클릭");
+		
+		var $menuAdd = $('input[name="menuAddName"]');
+		var $daeCategory = $('select[name=daeCategoryMenu]');
+		var $midCategory = $('select[name=midCategoryMenu]');
+		
+		if ($menuAdd.val() == '') {
+			alert('메뉴이름을 입력해주세요.');
+			$menuAdd.focus();
+		}else if ($daeCategory.val() == "대분류이름") {
+			console.log($daeCategory.val());
+			alert('메뉴가 들어갈 대분류를 정해주세요.');
+		} else if ($midCategory.val() == "중분류이름") {
+			alert('메뉴가 들어갈 중분류를 정해주세요.');
+		}else {
+			$('#menuAdd').submit();
+		}
+	});
+	
+	
+	
 	
 	$('.bigCategoryDel').click(function() {
 		console.log("버튼작동");
@@ -254,7 +284,46 @@
 				}
 			});
 		});
+		
+		// 대분류 선택시 중분류 리스트나열
+		function midCategoryCall() {
 
+			var selectValue = $("#bigSel option:selected").val();
+			console.log(selectValue);
+			
+			$.ajax({
+				type:'GET',
+				url:'midCategoryCall',
+				data:{"selectValue":selectValue},
+				dataType:'JSON',
+				success:function(data) {
+					//console.log(data.list);				
+					listDraw(data.list);	
+					
+				},
+				error:function(e) {
+					console.log(e);
+				}
+			});
+		}
 
+		function listDraw(list) {
+			var content = '';
+			
+			for (var i = 0; i < list.length; i++) {
+				//console.log(list[i]);
+				content += '<tr>';
+				content += '<td>'+list[i].mid_name+'</td>';
+				content += '</tr>';
+			}
+			$('.midlist').empty();
+			$('.midlist').append(content);
+		}
+		
+
+		
+		
+		
+		
 </script>
 </html>

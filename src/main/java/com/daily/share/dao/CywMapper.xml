@@ -4,53 +4,61 @@
 >
 
 <mapper namespace="com.daily.share.dao.CywDAO">
-
+	<!-- 대분류 추가 -->
 	<insert id="bigCategoryAdd">
 		INSERT INTO mainCategory(main_name,main_admin)VALUES (#{param1},#{param2})
 	</insert>
-		
+	<!-- 대분류 리스트 가져오기 -->	
 	<select id="bigCategoryList" resultType="com.daily.share.dto.CywDTO">
 		SELECT main_name,main_num from mainCategory WHERE main_blind = 0
 	</select>
-	
-	<!-- <delete id="bigCategoryDel">
-		DELETE FROM mainCategory WHERE main_num = #{param1}
-	</delete> -->
+
 	<!-- 대분류 블라인드 처리 -->
 	<update id="bigCategoryDel">
 		UPDATE mainCategory SET main_blind = 1 WHERE main_num = #{param1}
 	</update>
-	
+	<!-- 중분류 추가 -->
 	<insert id="middleCategoryAdd">
 		INSERT INTO middleCategory(mid_name,main_num,mid_admin)VALUES (#{param1},#{param2},#{param3})
 	</insert>
-	
+	<!-- 중분류 리스트 불러오기 -->
 	<select id="midCategoyrList" resultType="com.daily.share.dto.CywDTO">
 		SELECT mid_name,mid_num,main_num from middleCategory WHERE mid_blind = 0
 	</select>
-	
+	<!-- 중분류 블라인드 -->
 	<delete id="midCategoryDel">
 		UPDATE middleCategory SET mid_blind = 1 WHERE mid_num = #{param1}
 	</delete>
-	
+	<!-- 메뉴 추가 -->
 	<insert id="menuAdd">
 		INSERT INTO menu(menu_name,main_num,mid_num,mem_id)VALUES(#{param1},#{param2},#{param3},#{param4})
 	</insert>
-	
+	<!-- 메뉴리스트불러오기 -->
 	<select id="menuList" resultType="com.daily.share.dto.CywDTO">
 		SELECT menu_num,menu_name,menu_blind,main_num,mid_num from menu WHERE menu_blind = 0
 	</select>
-	
+	<!-- 메뉴블라인드 -->
 	<delete id="menuDel">
-		DELETE FROM menu WHERE menu_num = #{param1}
+		UPDATE menu SET menu_blind = 1 WHERE menu_num = #{param1}
 	</delete>
-	
+	<!-- 대분류 블라인드시 하위 중분류 확인 -->
 	<select id="bigCateFk" resultType="integer">
 		SELECT count(main_num) from middleCategory where main_num = #{param1}
 	</select>
-	
+	<!-- 중분류 블라인드시 하위 메뉴 확인 -->
 	<select id="midCateFk" resultType="integer">
 		SELECT count(menu_num) from menu where mid_num = #{param1}
 	</select>
+	<!-- 메뉴블라인드시 하위게시글 확인 -->
+	<select id="menuCateFk" resultType="integer">
+		SELECT count(board_num) from board where menu_num = #{param1}
+	</select>
+	
+	
+	
+	<select id="midCategoryCall" resultType="com.daily.share.dto.CywDTO">
+		SELECT mid_name from middleCategory where main_num = #{param1} and mid_blind = 0
+	</select>
+	
 
 </mapper>

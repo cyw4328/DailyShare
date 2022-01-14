@@ -1,6 +1,5 @@
 package com.daily.share.controller;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,7 +35,6 @@ public class CywController {
 		model.addAttribute("midCategoyrList",midCategoryList);
 		ArrayList<CywDTO> menuList = service.menuList();
 		model.addAttribute("menuList",menuList);
-		logger.info("메뉴리스트:{}",menuList);
 
 		return "cateGory";
 	}
@@ -82,12 +80,12 @@ public class CywController {
 	 
 
 	 @RequestMapping(value = "/menuAdd", method = RequestMethod.POST)
-	 public String menuAdd(Model model, @RequestParam String menuAdd,@RequestParam int daeCategory, 
-			 @RequestParam int midCategory,HttpSession session) {
-	 logger.info("컨트롤러 도착 메뉴생성"+menuAdd,daeCategory,midCategory);
+	 public String menuAdd(Model model, @RequestParam String menuAddName,@RequestParam int daeCategoryMenu, 
+			 @RequestParam int midCategoryMenu,HttpSession session) {
+	 logger.info("컨트롤러 도착 메뉴생성"+menuAddName,daeCategoryMenu,midCategoryMenu);
 	 String id = (String) session.getAttribute("loginId");
 	 logger.info("메뉴생성세션아이디:{}",id);
-	 service.menuAdd(menuAdd,daeCategory,midCategory,id);
+	 service.menuAdd(menuAddName,daeCategoryMenu,midCategoryMenu,id);
 	 
 	 return "redirect:/cyw"; 
 	 }
@@ -101,8 +99,15 @@ public class CywController {
 		return service.menuFk(menu_num);
 	}
 		
-
-		
+	
+	@RequestMapping(value = "/midCategoryCall", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> midCategoryCall(Model model,@RequestParam String selectValue) {
+		logger.info("리스트호출 : {}",selectValue); 
+							
+	
+		return service.midCategoryCall(selectValue);
+	}	
 		
 
 }

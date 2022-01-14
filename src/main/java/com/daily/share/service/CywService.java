@@ -1,7 +1,6 @@
 package com.daily.share.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
@@ -49,9 +48,9 @@ public class CywService {
 	}
 	
 
-	public void menuAdd(String menuAdd, int daeCategory, int midCategory, String id) {
+	public void menuAdd(String menuAddName, int daeCategoryMenu, int midCategoryMenu, String id) {
 		
-		dao.menuAdd(menuAdd,daeCategory,midCategory,id);
+		dao.menuAdd(menuAddName,daeCategoryMenu,midCategoryMenu,id);
 		
 	}
 
@@ -106,6 +105,18 @@ public class CywService {
 			dao.menuDel(menu_num);
 		}
 		map.put("row", row);
+		
+		return map;
+	}
+
+	
+	
+	
+	public HashMap<String, Object> midCategoryCall(String selectValue) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		ArrayList<CywDTO> list = dao.midCategoryCall(selectValue);
+		map.put("list", list);
 		
 		return map;
 	}

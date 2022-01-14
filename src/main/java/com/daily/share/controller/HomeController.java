@@ -22,11 +22,6 @@ public class HomeController {
 
 
 		return "HomePage";
-<<<<<<< HEAD
-=======
-
-		
->>>>>>> b8cce0c2e737064a5d057e420e3a6e4566ec17e4
 	}
 	
 }

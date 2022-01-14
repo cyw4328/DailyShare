@@ -96,7 +96,6 @@
 
 		var currPage = 1;
 		var totalPage = 2;
-		var pageSize = 5;
 		
 		listCall(currPage,5);
 		
@@ -142,7 +141,6 @@
 		
 		function listDraw(list){ //리스트를 불러올때 하단 생성
 			var content = '';	
-			var pageSize = 5;
 			list.forEach(function(item, mem_id){
 				//console.log(idx,item);
 				content += '<tr>';

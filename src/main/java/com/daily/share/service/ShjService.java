@@ -41,7 +41,8 @@ public class ShjService {
 		 logger.info("만들 수 있는 총 페이지 : {}",range);
 		 
 		 map.put("pages",range);
-		 map.put("list", dao.list());		 
+		 //list 안에 pagePerCnt 랑 offset을 넣지 않아서 생긴 문제★
+		 map.put("list", dao.list(pagePerCnt, offset));		 
 		return map;
 	}
 

@@ -8,7 +8,7 @@
 
 	<!-- 리스트 관련 쿼리 -->
 	<select id="list" resultType="com.daily.share.dto.ShjDTO">
-		SELECT mem_id, mem_name, mem_email, mem_phone, mem_out, mem_san FROM members
+		SELECT mem_id, mem_name, mem_email, mem_phone, mem_out, mem_san FROM members ORDER BY mem_id DESC LIMIT #{param1} OFFSET #{param2}
 	</select>
 	
 	<select id="allCount" resultType="int">

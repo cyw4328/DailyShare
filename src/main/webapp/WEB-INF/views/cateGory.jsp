@@ -39,7 +39,10 @@
 		<c:forEach var="item" items="${bigCategoryList}">
 			<tr>
 					<td>${item.main_name}</td> 
-					<td><a href="bigCategoryDel?bigCategory=${item.main_num}" ><button>삭제</button></a></td>
+					<td>
+						<button class="b">삭제</button>
+						<input type="hidden" value="${item.main_num}"/>
+					</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -71,7 +74,10 @@
 			<c:forEach var="item1" items="${midCategoyrList}">
 				<tr>	
 					<td>${item1.mid_name}</td>
-					<td><a href="midCategoryDel?midCategory=${item1.mid_num}"><button>삭제</button></a></td>
+					<td>
+						<button class="midCategoryDel">삭제</button>
+						<input type="hidden" value="${item1.mid_num}">
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -109,10 +115,23 @@
 			</table>
 			</form>
 			<table>
+				<c:forEach var="item1" items="${midCategoyrList}">
+				<tr>	
+					<td>${item1.mid_name}</td>
+					<td>
+						<button class="midCategoryDel">삭제</button>
+						<input type="hidden" value="${item1.mid_num}">
+					</td>
+				</tr>
+			</c:forEach>
+			
 			<c:forEach var="item2" items="${menuList}">
 				<tr>
 						<td>${item2.menu_name}</td>
-						<td><a href="menuDel?menu=${item2.menu_num}"><button>삭제</button></a></td>
+						<td>
+							<button class="menuDel">삭제</button>
+							<input type="hidden" value="${item2.menu_num}">
+						</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -161,22 +180,80 @@
 	
 	});
 	
-
-	
-	
-	/*$('.midDel').click(function() {
+	$('.bigCategoryDel').click(function() {
+		console.log("버튼작동");
+		console.log($(this).next().val());
 		
-		 console.log($(this).prev());
-		location.href='./midCategoryF?mid_num='+$(this).prev().val();
+		var main_num = $(this).next().val();
+		$.ajax({
+			type:'GET',
+			url:'bigCategoryDel',
+			data:{"main_num" : main_num},
+			dataType:'JSON',
+			success:function(data) {
+				console.log(data.row);
+				if (data.row >0) {
+					alert('[삭제불가]하위메뉴가 존재합니다.');
+				}else {
+					alert('삭제가 완료되었습니다.');
+					window.location.href="./cyw";
+				}
+			},
+			error:function(e) {
+				console.log(e);
+			}
+		});
+	});
 		
-		console.log(${midCategoryF});
-		if (${midCategoryF != 0}) {
-			alert("삭제할수 없습니다.");
-		}else{
-			location.href = "./midCategoryDel?midCategory="+$(this).prev().val();
-		} 
-	}); */
-	
+		$('.midCategoryDel').click(function() {
+			console.log("버튼작동");
+			console.log($(this).next().val());
+			
+			var mid_num = $(this).next().val();
+			$.ajax({
+				type:'GET',
+				url:'midCategoryDel',
+				data:{"mid_num" : mid_num},
+				dataType:'JSON',
+				success:function(data) {
+					console.log(data.row);
+					if (data.row >0) {
+						alert('[삭제불가]하위메뉴가 존재합니다.');
+					}else {
+						alert('삭제가 완료되었습니다.');
+						window.location.href="./cyw";
+					}
+				},
+				error:function(e) {
+					console.log(e);
+				}
+			});
+		});
+		
+		$('.menuDel').click(function() {
+			console.log("버튼작동");
+			console.log($(this).next().val());
+			
+			var menu_num = $(this).next().val();
+			$.ajax({
+				type:'GET',
+				url:'menuDel',
+				data:{"menu_num" : menu_num},
+				dataType:'JSON',
+				success:function(data) {
+					console.log(data.row);
+					if (data.row >0) {
+						alert('[삭제불가]하위메뉴가 존재합니다.');
+					}else {
+						alert('삭제가 완료되었습니다.');
+						window.location.href="./cyw";
+					}
+				},
+				error:function(e) {
+					console.log(e);
+				}
+			});
+		});
 
 
 </script>

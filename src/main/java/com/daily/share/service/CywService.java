@@ -1,6 +1,7 @@
 package com.daily.share.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
@@ -33,14 +34,6 @@ public class CywService {
 		return mainCategory;
 	}
 
-	public void bigCategoryDel(int bigCategory) {
-		
-		dao.bigCategoryDel(bigCategory);
-		
-	}
-
-
-
 
 	public ArrayList<CywDTO> midCategoyrList() {
 		
@@ -49,20 +42,16 @@ public class CywService {
 		return midCategory;
 	}
 
-	public void midCategoryDel(int midCategory) {
-		
-		dao.midCategoryDel(midCategory);
-		
-	}
 
 	public void middleCategoryAdd(String middleCategoryAdd, int daeCategory, int middle_admin) {
 		
 		dao.middleCategoryAdd(middleCategoryAdd,daeCategory,middle_admin);
 	}
+	
 
-	public void menuAdd(String menuAdd, int daeCategory, int midCategory) {
+	public void menuAdd(String menuAdd, int daeCategory, int midCategory, String id) {
 		
-		dao.menuAdd(menuAdd,daeCategory,midCategory);
+		dao.menuAdd(menuAdd,daeCategory,midCategory,id);
 		
 	}
 
@@ -73,10 +62,52 @@ public class CywService {
 		
 	}
 
-	public void menuDel(int menu) {
+
+	public HashMap<String, Object> bigCateFk(String main_num) {
 		
-		dao.menuDel(menu);
+		logger.info("서비스삭제요청값:{}",main_num);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int row= dao.bigCateFk(main_num);
+		logger.info("일치하는 메뉴 수 : {}",row);
 		
+		if (row == 0) {
+			//삭제다오
+			dao.bigCategoryDel(main_num);
+		}
+		map.put("row", row);
+		
+		return map;
+		
+	}
+
+	public HashMap<String, Object> midCateFk(String mid_num) {
+		logger.info("서비스삭제요청값:{}",mid_num);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int row= dao.midCateFk(mid_num);
+		logger.info("일치하는 메뉴 수 : {}",row);
+		
+		if (row == 0) {
+			//삭제다오
+			dao.midCategoryDel(mid_num);
+		}
+		map.put("row", row);
+		
+		return map;
+	}
+
+	public HashMap<String, Object> menuFk(String menu_num) {
+		logger.info("서비스삭제요청값:{}",menu_num);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int row= dao.menuCateFk(menu_num);
+		logger.info("일치하는 메뉴 수 : {}",row);
+		
+		if (row == 0) {
+			//삭제다오
+			dao.menuDel(menu_num);
+		}
+		map.put("row", row);
+		
+		return map;
 	}
 
 

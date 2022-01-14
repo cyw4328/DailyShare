@@ -1,5 +1,6 @@
 package com.daily.share.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,8 +37,7 @@ public class CywController {
 		ArrayList<CywDTO> menuList = service.menuList();
 		model.addAttribute("menuList",menuList);
 		logger.info("메뉴리스트:{}",menuList);
-		
-		
+
 		return "cateGory";
 	}
 
@@ -51,13 +51,12 @@ public class CywController {
 	}
 	
 	@RequestMapping(value = "/bigCategoryDel", method = RequestMethod.GET)
-	public String bigCategoryDel(Model model, HttpSession session, @RequestParam int bigCategory) {
-		logger.info("삭제요청 : {}",bigCategory); 
-		
-		service.bigCategoryDel(bigCategory);
-		
-
-		return "redirect:/cyw";
+	@ResponseBody
+	public HashMap<String, Object> bigCategoryDel(Model model,@RequestParam String main_num) {
+		logger.info("삭제요청 : {}",main_num); 
+						
+	
+		return service.bigCateFk(main_num);
 	}
 
 
@@ -73,44 +72,37 @@ public class CywController {
 	 }
 	 
 	@RequestMapping(value = "/midCategoryDel", method = RequestMethod.GET)
-	public String midCategoryDel(Model model, HttpSession session, @RequestParam int midCategory) {
-		logger.info("삭제요청 : {}",midCategory); 
-		
-		service.midCategoryDel(midCategory);
-		
-		return "redirect:/cyw";
+	@ResponseBody
+	public HashMap<String, Object> midCategoryDel(Model model,@RequestParam String mid_num) {
+		logger.info("삭제요청 : {}",mid_num); 
+							
+	
+		return service.midCateFk(mid_num);
 	}
 	 
 
 	 @RequestMapping(value = "/menuAdd", method = RequestMethod.POST)
-	 public String menuAdd(Model model, @RequestParam String menuAdd,@RequestParam int daeCategory, @RequestParam int midCategory) {
+	 public String menuAdd(Model model, @RequestParam String menuAdd,@RequestParam int daeCategory, 
+			 @RequestParam int midCategory,HttpSession session) {
 	 logger.info("컨트롤러 도착 메뉴생성"+menuAdd,daeCategory,midCategory);
-	 
-	 service.menuAdd(menuAdd,daeCategory,midCategory);
+	 String id = (String) session.getAttribute("loginId");
+	 logger.info("메뉴생성세션아이디:{}",id);
+	 service.menuAdd(menuAdd,daeCategory,midCategory,id);
 	 
 	 return "redirect:/cyw"; 
 	 }
 	 
-		@RequestMapping(value = "/menuDel", method = RequestMethod.GET)
-		public String menuDel(Model model, HttpSession session, @RequestParam int menu) {
-			logger.info("삭제요청 : {}",menu); 
-			
-			service.menuDel(menu);
-			
-			return "redirect:/cyw";
-		}
+	@RequestMapping(value = "/menuDel", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> menuDel(Model model,@RequestParam String menu_num) {
+		logger.info("삭제요청 : {}",menu_num); 
+							
+	
+		return service.menuFk(menu_num);
+	}
 		
 
 		
 		
-		/*
-		 * @RequestMapping(value = "/midCategoryF", method = RequestMethod.GET) public
-		 * String midCategoryF(Model model, HttpSession session, @RequestParam int
-		 * mid_num) { logger.info("삭제요청 : {}",mid_num);
-		 * 
-		 * int midCategoryF = service.midCategoryF(mid_num);
-		 * model.addAttribute("midCategoryF",midCategoryF);
-		 * logger.info("미드카테고리:{}",midCategoryF); return "redirect:/cyw"; }
-		 */
 
 }

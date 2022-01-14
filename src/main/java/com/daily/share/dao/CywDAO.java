@@ -1,6 +1,7 @@
 package com.daily.share.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.daily.share.dto.CywDTO;
@@ -11,19 +12,29 @@ public interface CywDAO {
 
 	ArrayList<CywDTO> bigCategoryList();
 
-	void bigCategoryDel(int bigCategory);
+	int bigCateFk(String main_num);
 
-	ArrayList<CywDTO> midCategoyrList();
-
-	void midCategoryDel(int midCategory);
+	void bigCategoryDel(String main_num);
 
 	void middleCategoryAdd(String middleCategoryAdd, int daeCategory, int middle_admin);
 
-	void menuAdd(String menuAdd, int daeCategory, int midCategory);
+	ArrayList<CywDTO> midCategoyrList();
+
+	int midCateFk(String mid_num);
+
+	void midCategoryDel(String mid_num);
+
+	void menuAdd(String menuAdd, int daeCategory, int midCategory, String id);
 
 	ArrayList<CywDTO> menuList();
 
-	void menuDel(int menu);
+	int menuCateFk(String menu_num);
+
+	void menuDel(String menu_num);
+
+	
+
+
 
 
 

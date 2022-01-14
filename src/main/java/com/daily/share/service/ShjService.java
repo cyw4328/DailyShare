@@ -33,7 +33,7 @@ public class ShjService {
 				((currPage-1) * pagePerCnt-1) : 0;		
 		logger.info("offset : {}",offset);		
 				
-		 int totalCount = dao.allCount(); // bbs 테이블의 모든 글의 갯수
+		 int totalCount = dao.allCount(); // 테이블의 모든 글의 갯수
 		//만들수 있는 총 페이지의 수(전체 갯수/보여줄 수)
 		 int range = totalCount%pagePerCnt > 0 ? 
 				 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
@@ -41,7 +41,8 @@ public class ShjService {
 		 logger.info("만들 수 있는 총 페이지 : {}",range);
 		 
 		 map.put("pages",range);
-		 map.put("list", dao.list());		 
+		 //list 안에 pagePerCnt 랑 offset을 넣지 않아서 생긴 문제★
+		 map.put("list", dao.list(pagePerCnt, offset));		 
 		return map;
 	}
 

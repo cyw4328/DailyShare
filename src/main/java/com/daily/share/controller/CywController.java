@@ -54,15 +54,7 @@ public class CywController {
 	public String bigCategoryDel(Model model, HttpSession session, @RequestParam int bigCategory) {
 		logger.info("삭제요청 : {}",bigCategory); 
 		
-		int bigCategorySearch = service.bigCategorySearch(bigCategory);
-		
-		
-		if (bigCategorySearch == 0) {
-			service.bigCategoryDel(bigCategory);
-		}else {
-//			model.addAttribute("bigCategorySearch",bigCategorySearch);
-			model.addAttribute("msg","하위 파일을 삭제하고 진행부탁드립니다.");
-		}
+		service.bigCategoryDel(bigCategory);
 		
 
 		return "redirect:/cyw";
@@ -108,15 +100,7 @@ public class CywController {
 			return "redirect:/cyw";
 		}
 		
-		@RequestMapping(value = "/midCategoryF", method = RequestMethod.GET)
-		@ResponseBody
-		public HashMap<String, Object> midCategoryF(Model model,@RequestParam int main_num,@RequestParam int mid_num) {
-			logger.info("삭제요청 : {}",main_num,mid_num); 
-			
-			HashMap<String, Object> map = service.midCategoryF(main_num,mid_num);
-			
-			return map;
-		}
+
 		
 		
 		/*

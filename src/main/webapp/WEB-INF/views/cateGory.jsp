@@ -69,18 +69,10 @@
 	
 		<table>
 			<c:forEach var="item1" items="${midCategoyrList}">
-				<tr>
-						<td>
-							<input type="hidden" value="${item1.main_num}">${item1.mid_name}
-						</td>
-						<td>
-							<input type="hidden" value="${item1.mid_num}">
-							<button onclick="midDel()">삭제</button>
-							<!-- <button class="midDel">삭제</button> -->
-						</td>
+				<tr>	
+					<td>${item1.mid_name}</td>
+					<td><a href="midCategoryDel?midCategory=${item1.mid_num}"><button>삭제</button></a></td>
 				</tr>
-				<%-- <a href="midCategoryDel?midCategory=${item1.mid_num}">
-				 onclick="location.href='midCategoryF'" --%>
 			</c:forEach>
 		</table>
 		<br/>
@@ -169,28 +161,10 @@
 	
 	});
 	
-	function midDel() {
-		$.ajax({
-			type:'GET',
-			url:'midCategoryF',
-			data:{
-				main_num = ${item1.main_num}.val(),
-				mid_num = ${item1.mid_num}.val()
-			}, 
-			dataType:'JSON',
-			success:function(data) {
-				// console.log(data.list);
-				listDraw(data.list);
-				
-			},
-			error:function(e) {
-				console.log(e);
-			}
-		});
-	}
+
 	
 	
-	/* $('.midDel').click(function() {
+	/*$('.midDel').click(function() {
 		
 		 console.log($(this).prev());
 		location.href='./midCategoryF?mid_num='+$(this).prev().val();

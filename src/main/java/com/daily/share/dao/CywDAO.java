@@ -1,6 +1,7 @@
 package com.daily.share.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.daily.share.dto.CywDTO;
 
@@ -12,10 +13,7 @@ public interface CywDAO {
 
 	void bigCategoryDel(int bigCategory);
 
-
-
 	ArrayList<CywDTO> midCategoyrList();
-
 
 	void midCategoryDel(int midCategory);
 
@@ -27,9 +25,9 @@ public interface CywDAO {
 
 	void menuDel(int menu);
 
-	int bigCategorySearch(int bigCategory);
 
-	int midCategoryF(int mid_num);
+
+
 
 
 

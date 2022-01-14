@@ -14,7 +14,7 @@
 	</select>
 	
 	<delete id="bigCategoryDel">
-		DELETE FROM mainCategory WHERE main_num = #{param1}
+		DELETE FROM mainCategory,middleCategory,menu WHERE main_num = #{param1}
 	</delete>
 	
 	<insert id="middleCategoryAdd">
@@ -41,13 +41,6 @@
 		DELETE FROM menu WHERE menu_num = #{param1}
 	</delete>
 	
-	<select id="bigCategorySearch" resultType="integer">
-		SELECT count(mid_num) FROM middleCategory WHERE main_num = (#{param1})  
-	</select>
-	
-	<!-- 중분류 삭제시 셀렉트 -->
-	<select id="midCategoryF" resultType="integer">
-		SELECT count(mid_num) FROM menu WHERE mid_num = (#{param1}) 
-	</select>
+
 
 </mapper>

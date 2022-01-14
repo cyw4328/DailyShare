@@ -79,23 +79,10 @@ public class CywService {
 		
 	}
 
-	public int bigCategorySearch(int bigCategory) {
-		
-		
-		return dao.bigCategorySearch(bigCategory);
-	}
 
-	public int midCategoryF(int mid_num) {
-		return dao.midCategoryF(mid_num);
-		
-	}
 
-	// 아작스를 이용한 셀렉트
-	public HashMap<String, Object> midCategoryF(int main_num, int mid_num) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		return null;
-	}
-	
+
+
 
 	
 	

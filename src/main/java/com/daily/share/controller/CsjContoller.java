@@ -26,6 +26,8 @@ public class CsjContoller {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired CsjService service;
 	
+	
+	//댓글 파트
 	@RequestMapping(value = "/csj_com", method = RequestMethod.GET)
 	public String csj_com(Model model, HttpSession session) {
 		session.setAttribute("loginId", "admin");
@@ -54,26 +56,36 @@ public class CsjContoller {
 	}
 	
 	
+	@RequestMapping(value = "/csj_com_update", method = RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, Object> com_update(@RequestParam String com_content,@RequestParam String com_num) {
+		logger.info("댓글 수정 요청 : {} / {}",com_num,com_content);
+		return service.com_update(com_num,com_content);
+	}
+	
+	
+	
+	
+	//게시글 작성 파트
 	@RequestMapping(value = "/csj", method = RequestMethod.GET)
 	public String csj(Model model) {
 		return "csjWrite";
 	}
 	
 	@RequestMapping(value = "/csj_writeForm", method = RequestMethod.GET)
-	public String csj_write(Model model) {
+	public String csj_writeForm(Model model,HttpSession session) {
 		logger.info("글작성 요청");
+		model.addAttribute("loginId",session.getAttribute("loginId"));
 		ArrayList<CsjMenuDTO> menuDTO =service.csj_menuCall();
 		logger.info("가져온 메뉴 : {}",menuDTO);
 		model.addAttribute("menu", menuDTO);
+		
 		return "csjWriteForm";
 	}
 	
-	
-	@RequestMapping(value = "/csj_com_update", method = RequestMethod.POST)
-	@ResponseBody
-	public HashMap<String, Object> com_update(@RequestParam String com_content,@RequestParam String com_num) {
-		logger.info("댓글 수정 요청 : {} / {}",com_num,com_content);
-		return service.com_update(com_num,com_content);
+	@RequestMapping(value = "/csj_write", method = RequestMethod.GET)
+	public String csj_write(Model model) {
+		return "csjWrite";
 	}
 	
 	

@@ -9,7 +9,7 @@
 	<style>
  	#csj_com_content, #csj_reply_content{
 		width: 500px;
-		height: 150px;
+		height: 60px;
 		resize: none;
 	}
 	
@@ -32,8 +32,8 @@
 	}
 	.com_fix_content{
 		width: 500px;
-		height: 80px;
-		border: 1px;
+		height: 40px;
+		border: 1px solid black;
 		
 	}
 	.com_fix_font{
@@ -49,6 +49,7 @@
 </head>
 <body>
 	<div>
+		<span>${loginId}</span>
 		<form id="csj_com_form" action="csj_com_regist" method="post">
 			<input type="hidden" name="com_targetId" value="게시물작성자" />
 			<input type="hidden" name="board_num" value="1" />
@@ -66,9 +67,13 @@
 								<span>${comList.mem_id}</span>
 								<input type="hidden" value="${comList.com_num}"/>
 								<span id="csj_com_a">
-									<span class="com_fix">수정</span>&nbsp;
-									<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
-									<a href="#">신고</a>&nbsp;
+									<c:if test="${loginId eq comList.mem_id}">
+										<span class="com_fix">수정</span>&nbsp;
+										<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
+									</c:if>
+									<c:if test="${loginId ne comList.mem_id}">
+										<a href="#">신고</a>&nbsp;
+									</c:if>
 									<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 								</span>
 								<div>
@@ -82,9 +87,13 @@
 								<span>${comList.mem_id}</span>
 								<input type="hidden" value="${comList.com_num}"/>
 								<span id="csj_com_a">
-									<span class="com_fix">수정</span>&nbsp;
-									<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
+									<c:if test="${loginId eq comList.mem_id}">
+										<span class="com_fix">수정</span>&nbsp;
+										<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
+									</c:if>
+									<c:if test="${loginId ne comList.mem_id}">
 									<a href="#">신고</a>&nbsp;
+									</c:if>
 									<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 								</span>
 								<div>

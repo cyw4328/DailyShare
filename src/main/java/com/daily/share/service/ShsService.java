@@ -59,9 +59,8 @@ public class ShsService {
 
 	public void memberOut(Object object) {
 		
-		logger.info("회원탈퇴 서비스 도착 : {}" );
-		String id = (String) object;
-		dao.memberOut(id);
+		logger.info("회원탈퇴 서비스 도착 : {}",object );
+		int memOutCnt = dao.memberOut(object);
 		
 		
 	}

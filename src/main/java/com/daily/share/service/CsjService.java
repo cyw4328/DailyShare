@@ -91,6 +91,18 @@ public class CsjService {
 
 
 
+
+	public HashMap<String, Object> com_update(String com_num, String com_content) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int result  = dao.com_update(com_num,com_content);
+		logger.info("업데이트 결과 : {}",result);
+		map.put("updateResult", result);
+		return map;
+	}
+
+
+
+
 	
 	
 }

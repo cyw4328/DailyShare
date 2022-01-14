@@ -1,8 +1,10 @@
 package com.daily.share.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.daily.share.dto.CsjCommentDTO;
+import com.daily.share.dto.CsjMenuDTO;
 
 public interface CsjDAO {
 
@@ -16,6 +18,10 @@ public interface CsjDAO {
 	void com_del(String com_num);
 
 	void com_inAlarm(int com_num, int i, String mem_id);
+
+	ArrayList<CsjMenuDTO> csj_menuCall();
+
+	int com_update(String com_num, String com_content);
 
 
 

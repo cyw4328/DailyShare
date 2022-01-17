@@ -52,7 +52,7 @@
 		<span>${loginId}</span>
 		<form id="csj_com_form" action="csj_com_regist" method="post">
 			<input type="hidden" name="com_targetId" value="게시물작성자" />
-			<input type="hidden" name="board_num" value="1" />
+			<input type="hidden" name="board_num" value="14" />
 			<input type="hidden" name="com_parent" value="0" />
 			<textarea id="csj_com_content" name="com_cont" placeholder="댓글을 입력하세요"></textarea>
 			<input type="button" id="csj_com_button" value="등록" />

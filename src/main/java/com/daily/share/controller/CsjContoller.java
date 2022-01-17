@@ -35,7 +35,7 @@ public class CsjContoller {
 	public String csj_com(Model model, HttpSession session) {
 		session.setAttribute("loginId", "admin");
 		model.addAttribute("loginId",session.getAttribute("loginId"));
-		int board_Num = 1;
+		int board_Num = 14;
 		ArrayList<CsjCommentDTO> comList = service.csj_com(board_Num);
 		logger.info("댓글 목록 요청 : {}",comList);
 		model.addAttribute("comList",comList);

@@ -154,10 +154,41 @@ public class CywService {
 
 	public void update(HashMap<String, String> params) {
 		
-		int row = dao.update(params);
+		dao.update(params);
 		
 		
 	}
+	
+	
+	
+	
+
+	public void ForumBoardAdd(String forumSub, String forumCont, int menuForum, String loginId) {
+		
+		dao.ForumBoardAdd(forumSub,forumCont,menuForum,loginId);
+		
+	}
+
+	public HashMap<String, Object> ForumBoardList(int currPage, int pagePerCnt) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0;
+		int end = 0;
+		
+		ArrayList<CywDTO> list = dao.ForumBoardList(pagePerCnt,offset);
+		
+		map.put("list", list);
+		
+		return map;
+	}
+
+	public ArrayList<CywDTO> ForumSearch(String forumSearch, String searchScope) {
+		ArrayList<CywDTO> dto = dao.ForumSearch(forumSearch,searchScope);
+		logger.info("서치?:{}",dto);
+		return dto;
+	}
+
 
 
 

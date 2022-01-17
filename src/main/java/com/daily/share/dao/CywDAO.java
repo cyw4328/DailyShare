@@ -48,6 +48,16 @@ public interface CywDAO {
 	// 게시글 수정
 	int update(HashMap<String, String> params);
 	
+	
+	// 포럼 게시글 추가
+	void ForumBoardAdd(String forumSub, String forumCont, int menuForum, String loginId);
+	
+	
+	ArrayList<CywDTO> ForumBoardList(int pagePerCnt, int offset);
+	
+	ArrayList<CywDTO> ForumSearch(String forumSearch, String searchScope);
+	
+
 
 	
 

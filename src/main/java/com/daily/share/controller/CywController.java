@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.daily.share.dto.CywDTO;
 import com.daily.share.service.CywService;
@@ -152,5 +153,63 @@ public class CywController {
 
 	 return "redirect:/"; 
 	 }
+	 
+	 
+	 
+	 // 포럼페이지 이동
+	 @RequestMapping(value = "/ForumBoard", method = RequestMethod.GET)
+	 public String ForumBoard(Model model) {
+
+	 return "ForumPage"; 
+	 }
+	 
+	 // 포럼페이지 리스트 출력 (페이징)
+	 @RequestMapping(value = "/forumBoardList", method = RequestMethod.POST)
+	 @ResponseBody
+	 public HashMap<String, Object> ForumBoardList(Model model,@RequestParam String page,@RequestParam String cnt) {
+		 
+		 int currPage = Integer.parseInt(page);
+		 int pagePerCnt = Integer.parseInt(cnt);
+		 
+	 return service.ForumBoardList(currPage,pagePerCnt);
+	 }
+	 
+	 
+	 
+	 
+	 //포럼 해당 게시글 작성
+
+	 @RequestMapping(value = "/ForumBoardAdd", method = RequestMethod.POST)
+	 public String ForumBoardAdd(Model model, @RequestParam String ForumSub,@RequestParam String ForumCont
+			 ,int MenuForum,HttpSession session, MultipartFile uploadFile) {
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+		 if (loginId != null) {
+			 service.ForumBoardAdd(ForumSub,ForumCont,MenuForum,loginId);			
+		}
+		 
+	 return "ForumPage"; 
+	 }
+	 
+	 // 포럼페이지 검색기능
+	 @RequestMapping(value = "/ForumSearch", method = RequestMethod.POST)
+	 public String ForumSearch(Model model, @RequestParam String ForumSearch,  @RequestParam String SearchScope) {
+		 logger.info("컨트롤러 도착 중분류"+ForumSearch+SearchScope);
+	 
+	 		ArrayList<CywDTO> dto = service.ForumSearch(ForumSearch,SearchScope);			
+	 		model.addAttribute("list",dto);
+	 		
+	 return "ForumSearchPage"; 
+	 }
+	 
+	 
+	 // 피드페이지 이동
+	 @RequestMapping(value = "/FeedPage", method = RequestMethod.GET)
+	 public String FeedPage(Model model) {
+
+	 return "FeedPage"; 
+	 }
+	 
 	 
 }

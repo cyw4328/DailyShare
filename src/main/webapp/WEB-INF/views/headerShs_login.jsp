@@ -132,14 +132,14 @@ border-bottom:1px solid #black;
 <body style="overflow-x: hidden">
     <div id="container">
     <div id="header">
-        <div id="logo"><a href="#" style="color: black;">LOGO</a></div>
+        <div id="logo"><a href="./" style="color: black;">LOGO</a></div>
         <nav>
             <div class="menubar"> 
 
                 <ul>
-                    <li class="nav01">피드</li>
-                    <li class="nav01">포럼</li>
-                    <li class="nav01" >MY블로그</li>
+                    <li class="nav01" onclick="location.href='./FeedPage'">피드</li>
+                    <li class="nav01" onclick="location.href='./ForumBoard'">포럼</li>
+                    <li class="nav01">MY블로그</li>
                 </ul>
             </div>
                 <!--로그인 레이어팝업 -->

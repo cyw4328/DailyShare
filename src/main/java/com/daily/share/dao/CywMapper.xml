@@ -85,4 +85,39 @@
 		UPDATE board SET board_subject = #{subject},board_cont = #{content}
 	</update>
 	
+	
+	
+	
+	
+	
+	<insert id="ForumBoardAdd">
+		INSERT INTO board(board_subject,board_cont,menu_num,mem_id)VALUES(#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	
+	<select id="ForumBoardList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM board WHERE menu_num = 21 order by board_num DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="ForumSearch" resultType="com.daily.share.dto.CywDTO">
+	<![CDATA[
+	select * from board
+	where 1=1
+	]]><choose>
+	<when test="param2 =='All'"><![CDATA[
+	and (mem_id LIKE CONCAT('%',#{param1},'%')
+	or board_cont LIKE CONCAT('%',#{param1},'%')
+	or board_subject LIKE CONCAT('%',#{param1},'%'))
+	]]></when>
+	<when test="param2 =='User'"><![CDATA[
+	AND mem_id LIKE CONCAT('%',#{param1},'%')
+	]]></when>
+	<otherwise><![CDATA[
+	AND (board_cont LIKE CONCAT('%',#{param1},'%')
+	or board_subject LIKE CONCAT('%',#{param1},'%'))
+	]]></otherwise>
+	</choose>
+	</select>
+	
+	
+	
 </mapper>

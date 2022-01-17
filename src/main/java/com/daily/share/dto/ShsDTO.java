@@ -75,4 +75,40 @@ public class ShsDTO {
 	
 	
 	
+	
+	
+	
+	
+	private int sub_num;
+	private String sub_id;
+	
+	
+	
+	public int getSub_num() {
+		return sub_num;
+	}
+	public void setSub_num(int sub_num) {
+		this.sub_num = sub_num;
+	}
+	public String getSub_id() {
+		return sub_id;
+	}
+	public void setSub_id(String sub_id) {
+		this.sub_id = sub_id;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+

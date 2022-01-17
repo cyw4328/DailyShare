@@ -40,8 +40,27 @@
 	
 	
 	
+	
+	<!-- 구독리스트 - 나를 구독 -->
+	<select id="FollowerList" resultType="com.daily.share.dto.ShsDTO">
+		select sub_id from subscription
+		where mem_id =#{param1}
+	</select>
+	
 
+	<!-- 구독리스트 - 내가 구독 -->
+	<select id="FollowingList" resultType="com.daily.share.dto.ShsDTO">
+		select mem_id
+		from subscription
+		where subscription.sub_id =#{param1}
+	</select>
+	
+	
+	
+	
+	
 
+	
 
 
 

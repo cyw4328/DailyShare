@@ -1,6 +1,8 @@
 package com.daily.share.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import com.daily.share.dao.CywDAO;
 import com.daily.share.dao.ProjectDAO;
 import com.daily.share.dao.ShsDAO;
 import com.daily.share.dto.ShsDTO;
+import com.daily.share.dto.ShsFollowDTO;
 
 @Service
 public class ShsService {
@@ -64,6 +67,41 @@ public class ShsService {
 		
 		
 	}
+
+
+
+	public ArrayList<ShsFollowDTO> FollowerList(Object object) {
+		ArrayList<ShsFollowDTO> FollowerList = null;		
+		FollowerList = dao.FollowerList(object);
+		logger.info("size : {}",FollowerList.size());
+		int followCnt=FollowerList.size();
+		
+		return FollowerList;
+	}
+
+
+
+	public ArrayList<ShsFollowDTO> followingShs(Object object) {
+
+		ArrayList<ShsFollowDTO> FollowingList = null;		
+		FollowingList = dao.FollowingList(object);
+		logger.info("size : {}",FollowingList.size());
+		
+		
+		
+		return FollowingList;
+	}
+
+
+
+
+
+
+	
+
+
+
+
 
 
 

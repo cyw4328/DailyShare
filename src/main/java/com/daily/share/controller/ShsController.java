@@ -1,10 +1,11 @@
 package com.daily.share.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daily.share.dto.ShsDTO;
+import com.daily.share.dto.ShsFollowDTO;
 import com.daily.share.service.ShsService;
 
 @Controller
@@ -170,15 +172,91 @@ public String memberOut(HttpSession session) {
 		logger.info("회원탈퇴 컨트롤러 : {}",object);
 		
 		service.memberOut(object);
+		session.invalidate();
 	}
 	
-	return "redirect:/logoutShs";
+	return "redirect:/";
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 	
+//구독 페이지 - 나를 구독하는 블로거
+@RequestMapping(value = "/followShs", method = RequestMethod.GET)
+public String followShs(Model model,HttpSession session) {
+	logger.info("구독관리 컨트롤러 - 나를 구독");
+	
+	Object object = session.getAttribute("loginId");
+	
+	if(object != null) {
+		session.getAttribute("loginId");
+
+		ArrayList<ShsFollowDTO> list = service.FollowerList(object);
+		model.addAttribute("list",list);
+		
+		
+	}	
+	
+	return "followShs";
+}
+
+
+//구독 페이지 - 내가 구독하는 블로거
+@RequestMapping(value = "/followingShs", method = RequestMethod.GET)
+public String followingShs(Model model,HttpSession session) {
+	logger.info("구독관리 컨트롤러 - 내가 구독");
+	
+	Object object = session.getAttribute("loginId");
+	
+	if(object != null) {
+		session.getAttribute("loginId");
+
+		ArrayList<ShsFollowDTO> list = service.followingShs(object);
+		model.addAttribute("list",list);
+		
+		
+		
+	}	
+	
+	return "following";
+}
+
+
+
+
+  //구독 버튼
+  
+//  @RequestMapping(value = "/followBtnShs", method = RequestMethod.GET) public
+//  String followBtnShs(Model model,HttpSession session,@RequestParam
+//  HashMap<String, String> params) {
+//  
+//  logger.info("params : {}",params); Object object =
+//  session.getAttribute("loginId");
+//  
+//  if(object != null) { session.getAttribute("loginId");
+//  
+//  
+//  
+//  
+//  }
+//  
+//  return "redirect:/followShs"; }
+// 
 
 	
+
+@RequestMapping(value="/followBtnShs", method = RequestMethod.GET)	
+@ResponseBody
+public HashMap<String, Object> followBtnShs(
+		@RequestParam(value="followBtnList[]") ArrayList<String> followBtnList
+		) {		
+	//배열로 오는파라메터를 받을 경우 반드시 명시 해 줘야 한다.
+	HashMap<String, Object> map = new HashMap<String, Object>();			
+	logger.info("delList : {}",followBtnList);		
+
 	
-	
+	return map;
+	}
 	
 	
 	

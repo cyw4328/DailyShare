@@ -6,7 +6,11 @@
 	<title>Insert title here</title>
 	<!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> -->
 	<style>
-
+		
+		a:link { color: black; text-decoration: none;}
+		a:visited { color: black; text-decoration: none;}
+		a:hover { color: black; text-decoration: none;}
+		
 		.blogHead{
 			border:1px solid black;
 			width: 100%;
@@ -33,6 +37,7 @@
 			width:300px;
 			min-height: 800px;
 			background-color: white;
+			z-index: 10;
 		}
 		.menuTap{
 			width: 300px;
@@ -55,7 +60,9 @@
 	<nav>
 		<ul class="blogHead">
 			<li><img  src="resources/images_csj/hambergerimg.png" onclick="menuMove();"></li>
-			<li>${mem_id}'s 블로그</li>
+			<a href="./csj_blogMain?mem_id=${mem_id}">
+				<li>${mem_id}'s 블로그</li>
+			</a>
 			<li>검색창</li>
 		</ul>
 	</nav>

@@ -160,16 +160,19 @@
 				listDraw(data.list);					
 
 				
-				$('#pagination').twbsPagination({
-					startPage: currPage,//현재 페이지
-					totalPages: totalPage,//만들수 있는 총 페이지 수
-					visiblePages:5, //[1][2][3]... 이걸 몇개 까지 보여줄 것인지
-					onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
-						console.log(evt); //현재 일어나는 클릭 이벤트 관련 정보들
-						console.log(page);//몇 페이지를 클릭 했는지에 대한 정보
-						listCall(page, 5);
-					}
-				});
+				if (data.list.length>0) {
+					$('#pagination').twbsPagination({
+						startPage: currPage,//현재 페이지
+						totalPages: totalPage,//만들수 있는 총 페이지 수
+						visiblePages:5, //[1][2][3]... 이걸 몇개 까지 보여줄 것인지
+						onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
+							console.log(evt); //현재 일어나는 클릭 이벤트 관련 정보들
+							console.log(page);//몇 페이지를 클릭 했는지에 대한 정보
+							listCall(page, 5);
+						}
+					});
+					
+				}
 			},
 			error: function(e) {
 				console.log(e);
@@ -182,7 +185,7 @@
 		if (list.length>0) {
 			list.forEach(function(item,board_num) {
 				content += '<a href="./boardDetail?board_num='+item.board_num+'"><div class="body">';
-				content += '<div class="bodyIMG"><img src="/postImageFolder'+item.board_thumFileName+'" style="max-width:230px;max-height:160px;z-index:none;"></div>';
+				content += '<div class="bodyIMG"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:230px;max-height:160px;z-index:none;"></div>';
 				content += '<spam class="bodySub">'+item.board_subject+'</spam>'
 				content += '<spam class="bodyCont">'+item.board_cont+'</spam>'
 				content += '<spam class="bodyMenu">'+item.menu_name+'</spam>'

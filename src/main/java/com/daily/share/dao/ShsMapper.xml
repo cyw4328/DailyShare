@@ -56,6 +56,10 @@
 	</select>
 	
 	
+	<!-- 구독여부 확인하기 -->
+	<select id="followBtnShs" resultType="int">
+		select count(sub_num) from subscription where mem_id = #{param1} and sub_id=#{param2}
+	</select>
 	
 	
 	

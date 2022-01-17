@@ -50,8 +50,7 @@
       	color:white;
       	margin-top: 3px;
       	margin-bottom: 3px;
-      	cursor: pointer;
-
+		cursor: pointer;
       }
       
    .tab00{
@@ -59,14 +58,8 @@
     height: 40px;
     line-height: 40px;
 	cursor: pointer;
-	padding-left: 10px;
-	
+	padding-left: 10px
    }
-   
-   .tab00 a{
-   text-decoration-line : none;
-   }
-   
    
    .tab00:hover{
     font-weight: bold;
@@ -94,10 +87,7 @@
 	padding: 5px 10px;
 	}
 
-a{
-	text-decoration : none;
-	color: black;
-}
+
 
    
    
@@ -111,19 +101,12 @@ a{
 
 
 <div id="memuBar">
-		<div id = "left">
-		
-		<p>관리자계정</p>
-		<p>URL주소</p>	
-		</div>
+		<div id = "left">관리자계정</div>
 		<div id="write">글쓰기</div>
-		<div class= "tab00" id="tab1">개인정보수정</div>
-		<a href="/share/followShs" ><div class= "tab00" id="tab2">구독관리</div></a>
-		<a href="#"><div class= "tab00" id="tab3">알림목록</div></a>
-		<a href="#"><div class= "tab00" id="tab4">차단관리</div></a>
-		<div class= "tab00" id="tab5">블로그메뉴</div>
-		<div class= "tab00" id="tab6">MY 게시글</div>
-		<div class= "tab00" id="tab7">MY 댓글</div>
+		<div class= "tab00" id="tab1">회원목록</div>
+		<div class= "tab00" id="tab2">신고목록</div>
+		<div class= "tab00" id="tab3">제재목록</div>
+		<div class= "tab00" id="tab4">관리자목록</div>
 		
 </div>	
 		
@@ -139,13 +122,10 @@ a{
 </div>			
 </body>
 <script>
-/*  $('#tab1').click(function(){
+/* $('#tab1').click(function(){
     $('#tab1').css({
-          'color':'orange' 
+          'color':'red'              
       });
-    $('#tab1').css({
-        'font-weight':'bold' 
-    });
     $('#tab2').css({
           'color':'black'
       });
@@ -159,13 +139,10 @@ a{
           'color':'black'
       });
     const title = document.getElementById('headTxt');
-    title.innerText = '개인정보수정'
+    title.innerText = '회원목록'
  
- }); */
- 
- 
-
-
+ });
+ */
 
 
 

@@ -62,7 +62,13 @@
 	</select>
 	
 	
-	
+	<!-- 구독 추가하기 -->
+	<insert  id="followPlusShs" parameterType = "hashmap">
+		
+		INSERT INTO subscription (sub_id, mem_id)
+        VALUES  	(#{param1}, #{param2})
+		WHERE mem_id = #{param1}
+	</insert >
 
 	
 

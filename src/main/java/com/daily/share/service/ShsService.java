@@ -104,6 +104,15 @@ public class ShsService {
 
 
 
+	public HashMap<String, Object> followPlusShs(String mem_id, String sub_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int result = dao.followPlusShs(mem_id,sub_id);
+		map.put("result", result);
+		return map;
+	}
+
+
+
 
 
 

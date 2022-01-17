@@ -48,17 +48,22 @@
   
   .Following{
   	float: right;
-  	border-bottom:3px solid #FFF; 
   	cursor: pointer;
   	border-bottom:3px solid #CCC; 
-  	 font-style: bold;
+	font-weight: bold;
   }
   
   .Following:hover {
 	border-bottom:3px solid #CCC; 
 	
 	}
-  
+	
+  .followCnt{
+   position: relative;
+    top :50px;
+     left:0px;
+     margin-bottom: 30px;
+   }
 
    
    
@@ -66,15 +71,15 @@
 
 <body>
 <%@ include file="headerShs_login.jsp"%>
-
+<%@ include file="MyPageShs.jsp"%>
 <div id="con_gooDock">
 
 	<div id="gooDock">
-		<span id="headTxt">구독 블로거 관리</span> 
+
 		<span class="Following">내가 구독하는 블로거</span>
 		<span class="Follow">나를 구독하는 블로거</span>
 		
-		<hr>
+
 		<p class="followCnt">현재 내가 구독하는 블로거는 ${list.size()} 명 입니다.</p>
 		<table>
 			<c:forEach var="item" items="${list}">

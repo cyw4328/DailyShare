@@ -94,15 +94,18 @@
 	        	  if("${title}" == "아이디 찾기"){
 	        		  location.href='./loginPage';
 	        	  }else{
-	        		  console.log("세션확인")        		  
+	        		  if("${msg}" == "입력하신 정보와 일치하는 이메일에 인증번호를 전송 했습니다."){
+	        		  console.log("이메일인증")        		  
 		        	  location.href='./PSN'
+	        		  }else{
+	    	        	  location.href='./loginPage';
+	    	          }
 	        	  }
 	          }
 	          else{
 	        	  location.href='./loginPage';
 	          }
 		});
-	          
     </script>
 
 </html>

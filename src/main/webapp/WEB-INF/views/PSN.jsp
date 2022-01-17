@@ -183,7 +183,6 @@
     
     $("#checkBtn").on("click",function(e){
     	if(check == true){
-    		alert("비밀번호 재설정 페이지로 이동합니다.");
     		location.href='./PwChange'
     	}else{
     		alert("인증번호를 확인해 주세요.");

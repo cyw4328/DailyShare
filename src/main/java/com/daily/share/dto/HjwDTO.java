@@ -1,5 +1,7 @@
 package com.daily.share.dto;
 
+import java.sql.Date;
+
 public class HjwDTO {
 
 	private String mem_id;
@@ -12,6 +14,10 @@ public class HjwDTO {
 	private int mem_out;
 	private int mem_san;
 	private String mem_blog;
+	private Date mem_date;
+	
+	private String SearchType;
+	private String keyword;
 	
 	public String getMem_id() {
 		return mem_id;
@@ -73,6 +79,26 @@ public class HjwDTO {
 	public void setMem_blog(String mem_blog) {
 		this.mem_blog = mem_blog;
 	}
+	public Date getMem_date() {
+		return mem_date;
+	}
+	public void setMem_date(Date mem_date) {
+		this.mem_date = mem_date;
+	}
+	public String getSearchType() {
+		return SearchType;
+	}
+	public void setSearchType(String searchType) {
+		SearchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
+	
 	
 	
 	

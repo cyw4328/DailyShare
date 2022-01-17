@@ -12,7 +12,11 @@
 <body>
 <%@ include file="headerShs_login.jsp"%>
 	<button onclick="location.href='./loginPage'">로그인 페이지</button>
+
 	<button onclick="location.href='./ForumBoard'">포럼페이지</button>
+
+	<button onclick="location.href='./managerPage'">관리자 페이지</button>
+
 </body>
 <script>
 

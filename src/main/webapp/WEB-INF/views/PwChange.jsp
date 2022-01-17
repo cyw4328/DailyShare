@@ -142,7 +142,7 @@
     	   if(check != true) {
     		    alert("비밀번호를 확인하세요.");
     	   		return false;
-			}	alert("비밀번호 변경에 성공하였습니다.");
+			}	
     	  		return true
     	}
     

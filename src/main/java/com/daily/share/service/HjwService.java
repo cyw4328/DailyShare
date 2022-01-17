@@ -31,11 +31,10 @@ public class HjwService {
 		logger.info("찾아온 이메일 : {}",PwS);
 		return PwS;
 	}
-	public void PwC(String userPass) {
-		int row = dao.update(userPass);
-		logger.info("변경 성공여부 : {}",row);	
-		
+	public void PwC(String searchId, String userPass) {
+		dao.PwC(searchId,userPass);
 	}
+	
 
 
 }

@@ -13,12 +13,12 @@
 
             /*레이아웃*/
             * {margin: 0; padding: 0;}
-            #wrap {text-align: center; font-size: 30px; color: #fff;}
-            #header {height: 140px; line-height: 140px; background: #ffe1e4;}
-            #banner {height: 80px; line-height: 100px; background: #fbd6e3; color: black; font-size: 16px;}
-            #contents {height: 450px; line-height: 450px; background: #ead5ee;}
-            #footer {height: 220px; line-height: 220px; background: #d6ebfd;}
-                .container {width: 1100px; height: inherit; margin: 0 auto; background: rgba(0,0,0,0.1);}
+            #wrap {text-align: center; font-size: 30px; color: black; font-size: 16px;}
+            #header {height: 140px; line-height: 140px; background: white; color: black; font-size: 16px;}
+            #banner {height: 150px; line-height: 250px; background: white; color: black; font-size: 16px;}
+            #contents {height: 450px; line-height: 450px; background: white; color: black; font-size: 16px;}
+            #footer {height: 220px; line-height: 220px; background: white; color: color: black; font-size: 16px;}
+                .container {width: 1100px; height: inherit; margin: 0 auto; background: white; color: black; font-size: 16px;}
 
             /*테이블*/
             table{
@@ -42,19 +42,37 @@
 		    	border-radius: 3px / 3px;
 		    }
 		    
+		    #logo{
+		  		position: absolute;
+                top: 5%;
+                left: 8%;
+                width: 80px;
+                height: 80px;
+		    	border: 1px solid black; 
+		    	cursor:pointer;
+		    }
+		    
+		    #alert-danger-pws{
+		    	color:red;
+		    	font-size:13px;
+		    	height:20px;
+		    	margin-top:5px;
+		    	text-align: center;
+		    }
         </style>
     </head>
     <body class="no-drag">
         <div id="wrap">
             <div id="header">
-                <div class="container">header</div>
+            <div id="logo" onclick="location.href='./HomePage'"><img src="./Logo1.png" alt="SiteLogo" width="80" height="80"></div>
+                <div class="container"></div>
             </div>
             <div id="banner">비밀번호 찾기
                 <div class="container"></div>
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="PwS" method="POST">
+                	<form action="PwS" method="POST" onsubmit="return submitCheck();">
                         <table>
                         	<!--아이디-->
                             <tr>
@@ -70,7 +88,9 @@
                             </tr>
                             <!--이메일-->
                             <tr>
-                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/></td>
+                                <td><input type="text" placeholder="이메일"  id="email" name="userEmail"/>
+                                <div class="alert alert-danger" id="alert-danger-pws">입력하지 않은 항목이 있습니다.</div>
+                                </td>
                             </tr>
 			
                             <!--비밀번호 찾기-->
@@ -83,13 +103,70 @@
                 </div>
             </div>
             <div id="footer">
-                <div class="container">footer</div>
+                <div class="container"></div>
             </div>
         </div>
     </body>
 
     <script>
+    $("#alert-danger-pws").hide();
+    var check = false;
+    var inputName ="";
+    var inputPhone ="";
+    var inputEmail ="";
     
+    $("input[name='userId']").keyup(function() {
+    	inputId = $("input[name='userId']").val();
+    	if (inputId != "" && inputName != "" && inputPhone != "" && inputEmail != "") {
+	    		$("#alert-danger-pws").hide();
+				check = true;
+			} else {
+				$("#alert-danger-pws").show();
+				check = false;
+    		}
+    }); 
+    
+    $("input[name='userName']").keyup(function() {
+    	inputName = $("input[name='userName']").val();
+    	if (inputId != "" && inputName != "" && inputPhone != "" && inputEmail != "") {
+	    		$("#alert-danger-pws").hide();
+				check = true;
+			} else {
+				$("#alert-danger-pws").show();
+				check = false;
+    		}
+    }); 
+    
+    $("input[name='userPhone']").keyup(function() {
+    	inputPhone = $("input[name='userPhone']").val();
+    	if (inputId != "" && inputName != "" && inputPhone != "" && inputEmail != "") {
+	    		$("#alert-danger-pws").hide();
+				check = true;
+			} else {
+				$("#alert-danger-pws").show();
+				check = false;
+    		}
+    }); 
+    
+    $("input[name='userEmail']").keyup(function() {
+    	inputEmail = $("input[name='userEmail']").val();
+    	if (inputId != "" && inputName != "" && inputPhone != "" && inputEmail != "") {
+    			$("#alert-danger-pws").hide();
+    			check = true;
+    		} else {
+    			$("#alert-danger-pws").show();
+    			check = false;
+    		}
+    }); 
+
+    
+   		 function submitCheck() {
+    	   if(check != true) {
+    		  
+    	   		return false;
+			}	
+    	  		return true
+    	}
     </script>
 
 </html>

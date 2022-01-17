@@ -72,9 +72,10 @@ public class ShsService {
 
 	public ArrayList<ShsFollowDTO> FollowerList(Object object) {
 		ArrayList<ShsFollowDTO> FollowerList = null;		
-		FollowerList = dao.FollowerList(object);
+		FollowerList = dao.FollowerList(object); 
 		logger.info("size : {}",FollowerList.size());
 		int followCnt=FollowerList.size();
+		
 		
 		return FollowerList;
 	}
@@ -83,13 +84,22 @@ public class ShsService {
 
 	public ArrayList<ShsFollowDTO> followingShs(Object object) {
 
-		ArrayList<ShsFollowDTO> FollowingList = null;		
+		ArrayList<ShsFollowDTO> FollowingList = null;	
 		FollowingList = dao.FollowingList(object);
 		logger.info("size : {}",FollowingList.size());
-		
-		
+		logger.info("{}",FollowingList);
 		
 		return FollowingList;
+	}
+
+
+
+	public HashMap<String, Object> followBtnShs(String mem_id, String sub_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int result = dao.followBtnShs(mem_id,sub_id);
+		map.put("result", result);
+		
+		return map;
 	}
 
 

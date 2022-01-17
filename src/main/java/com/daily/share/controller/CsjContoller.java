@@ -115,13 +115,15 @@ public class CsjContoller {
 	public String csj_blogMain(Model model,HttpSession session,@RequestParam String mem_id) {
 		logger.info("블로그 메인 이동 요청 : {}",mem_id);
 		model.addAttribute("mem_id",mem_id);
-			
+		
+		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
+		logger.info("메뉴 리스트만 요청 : {}",menu);
+		model.addAttribute("menu",menu);
+		
+		
 		ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
 		logger.info("헤드라인용 블로그 게시글/메뉴/사진 요청 : {}", boardList);
 		model.addAttribute("boardList",boardList);
-		for (CsjPersonalBlogDTO list : boardList) {
-			logger.info(list.getBoard_subject());
-		}
 		
 		return "csjBlogMain";
 	}
@@ -138,7 +140,33 @@ public class CsjContoller {
 	}
 	
 	
-	
+		//메뉴 글리스트 이동 요청
+		@RequestMapping(value = "/csj_menuMain", method = RequestMethod.GET)
+		public String csj_menuMain(Model model,HttpSession session,@RequestParam String mem_id,@RequestParam String menu_num) {
+			logger.info("메뉴 이동 요청 : {}/{}",mem_id,menu_num);
+			model.addAttribute("mem_id",mem_id);
+			model.addAttribute("menu_num",menu_num);
+			
+			ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
+			logger.info("메뉴 리스트만 요청 : {}",menu);
+			model.addAttribute("menu",menu);
+			
+			ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
+			logger.info("메뉴글리스트용 블로그 게시글/메뉴/사진 요청 : {}", boardList);
+			model.addAttribute("boardList",boardList);
+
+			return "csjMenuMain";
+		}
+		
+		
+		@RequestMapping(value = "/csj_pagingListMenu", method = RequestMethod.GET)
+		@ResponseBody
+		public HashMap<String, Object> csj_pagingListMenu(@RequestParam String page,@RequestParam String cnt, @RequestParam String mem_id, @RequestParam String menu_num) {
+			logger.info("리스트 요청 : {}페이지, {}개 씩",page,cnt);
+			int currPage = Integer.parseInt(page);
+			int pagePerCnt = Integer.parseInt(cnt);
+			return service.csj_pagingListMenu(currPage,pagePerCnt,mem_id,menu_num);
+		}
 	
 	
 	/*

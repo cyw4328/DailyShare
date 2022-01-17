@@ -143,7 +143,7 @@ public class CsjService {
 		
 		
 		if (board_num >0) {
-			page = "redirect:/csj";
+			page = "redirect:/boardDetail?board_num="+board_num;
 			
 			//알림 등록 
 			ArrayList<String> subList = new ArrayList<String>();
@@ -175,7 +175,7 @@ public class CsjService {
 		}
 		
 		
-		return page; //게시글 상세보기로 변경해주세요
+		return page; //게시글 상세보기로 변경해주세요(했음)
 
 	}
 
@@ -245,6 +245,28 @@ public class CsjService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pages", range);
 		ArrayList<CsjPersonalBlogDTO> pagingBoardCall= dao.pagingBoardCall(pagePerCnt,offset,mem_id);
+		logger.info("가져온 리스트 : {}",pagingBoardCall.size());
+		map.put("list", pagingBoardCall);
+		return map;
+	}
+
+
+
+
+	public HashMap<String, Object> csj_pagingListMenu(int currPage, int pagePerCnt, String mem_id, String menu_num) {
+		logger.info("리스트 서비스 요청");
+		
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0; //어디서부터 보여줘야 하는가?
+		logger.info("offset : {}",offset);
+		
+		int totalCount = dao.csjAllCountMenu(mem_id,menu_num); //bbs 테이블의 모든 데이터의 개수
+		int range = totalCount%pagePerCnt > 0 ? (totalCount/pagePerCnt)+1 : totalCount/pagePerCnt;
+		logger.info("총 개수 : {}",totalCount);
+		logger.info("만들 수 있는 총 페이지 : {}",range);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pages", range);
+		ArrayList<CsjPersonalBlogDTO> pagingBoardCall= dao.pagingBoardCallMenu(pagePerCnt,offset,mem_id,menu_num);
 		logger.info("가져온 리스트 : {}",pagingBoardCall.size());
 		map.put("list", pagingBoardCall);
 		return map;

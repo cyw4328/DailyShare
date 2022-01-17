@@ -1,5 +1,7 @@
 package com.daily.share.dto;
 
+import java.sql.Timestamp;
+
 public class CywDTO {
 
 	private int main_num;
@@ -153,5 +155,71 @@ public class CywDTO {
 		this.menu_blind = menu_blind;
 	}
    
+	private int board_num;
+	private String board_subject;
+	private String board_cont;
+	private Timestamp board_date;
+	private Timestamp board_updateDate;
+	private int board_views;
+	private int board_like;
+	private int board_scope;
+	private int board_bilnd;
+	public int getBoard_num() {
+		return board_num;
+	}
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
+	}
+	public String getBoard_subject() {
+		return board_subject;
+	}
+	public void setBoard_subject(String board_subject) {
+		this.board_subject = board_subject;
+	}
+	public String getBoard_cont() {
+		return board_cont;
+	}
+	public void setBoard_cont(String board_cont) {
+		this.board_cont = board_cont;
+	}
+	public Timestamp getBoard_date() {
+		return board_date;
+	}
+	public void setBoard_date(Timestamp board_date) {
+		this.board_date = board_date;
+	}
+	public Timestamp getBoard_updateDate() {
+		return board_updateDate;
+	}
+	public void setBoard_updateDate(Timestamp board_updateDate) {
+		this.board_updateDate = board_updateDate;
+	}
+	public int getBoard_views() {
+		return board_views;
+	}
+	public void setBoard_views(int board_views) {
+		this.board_views = board_views;
+	}
+	public int getBoard_like() {
+		return board_like;
+	}
+	public void setBoard_like(int board_like) {
+		this.board_like = board_like;
+	}
+	public int getBoard_scope() {
+		return board_scope;
+	}
+	public void setBoard_scope(int board_scope) {
+		this.board_scope = board_scope;
+	}
+	public int getBoard_bilnd() {
+		return board_bilnd;
+	}
+	public void setBoard_bilnd(int board_bilnd) {
+		this.board_bilnd = board_bilnd;
+	}
+	
+
+	
 	
 }

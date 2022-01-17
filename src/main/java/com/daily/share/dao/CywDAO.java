@@ -1,6 +1,7 @@
 package com.daily.share.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.daily.share.dto.CywDTO;
 
@@ -31,6 +32,25 @@ public interface CywDAO {
 	void menuDel(String menu_num);
 	// 대분류별 중분류 호출
 	ArrayList<CywDTO> midCategoryCall(String selectValue);
+	
+	// 대분류별 게시글 리스트 뽑기
+	ArrayList<CywDTO> middleListCall(String middleListCall);
+	
+	// 클릭시 자세히 보기
+	CywDTO boardDetail(int board_num);
+	
+	// 조회수 올리기
+	void upHit(int board_num);
+	
+	// 게시글 삭제
+	void boardDel(int board_num);
+	
+	// 게시글 수정
+	int update(HashMap<String, String> params);
+	
+
+	
+
 
 	
 

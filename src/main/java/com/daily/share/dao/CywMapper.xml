@@ -43,15 +43,15 @@
 	</delete>
 	<!-- 대분류 블라인드시 하위 중분류 확인 -->
 	<select id="bigCateFk" resultType="integer">
-		SELECT count(main_num) from middleCategory where main_num = #{param1}
+		SELECT count(main_num) from middleCategory where main_num = #{param1} and mid_blind = 0
 	</select>
 	<!-- 중분류 블라인드시 하위 메뉴 확인 -->
 	<select id="midCateFk" resultType="integer">
-		SELECT count(menu_num) from menu where mid_num = #{param1}
+		SELECT count(mid_num) from menu where mid_num = #{param1} and menu_blind = 0
 	</select>
 	<!-- 메뉴블라인드시 하위게시글 확인 -->
 	<select id="menuCateFk" resultType="integer">
-		SELECT count(board_num) from board where menu_num = #{param1}
+		SELECT count(menu_num) from board where menu_num = #{param1} and board_blind = 0
 	</select>
 	
 	
@@ -60,5 +60,29 @@
 		SELECT mid_name from middleCategory where main_num = #{param1} and mid_blind = 0
 	</select>
 	
+	<!-- 대분류 클릭시 해당 게시물 출력 -->
+	<select id="middleListCall" resultType="com.daily.share.dto.CywDTO">
+		SELECT * from 
+			menu m join board b on 
+			m.menu_num = b.menu_num where 
+			m.main_num = #{param1}
+	</select>
+	
+	<!-- 해당 게시물 클릭시 자세히보기 -->
+	<select id="boardDetail" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM board WHERE board_num = #{param1}
+	</select>
 
+	<update id="upHit">
+		UPDATE board SET board_views = board_views + 1 WHERE board_num = #{param1}
+	</update>
+	
+	<update id="boardDel">
+		UPDATE board SET board_blind = 1 WHERE board_num = #{param1}
+	</update>
+	
+	<update id="update" parameterType="hashmap">
+		UPDATE board SET board_subject = #{subject},board_cont = #{content}
+	</update>
+	
 </mapper>

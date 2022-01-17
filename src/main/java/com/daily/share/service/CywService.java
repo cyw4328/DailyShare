@@ -121,6 +121,45 @@ public class CywService {
 		return map;
 	}
 
+	public HashMap<String, Object> middleListCall(String middleListCall) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		ArrayList<CywDTO> list = dao.middleListCall(middleListCall);
+		map.put("list", list);
+		
+		return map;
+	}
+
+	public CywDTO boardDetail(int board_num, String method) {
+		
+		if (method.equals("detail")) {
+			dao.upHit(board_num);
+		}
+		
+		return dao.boardDetail(board_num);
+	}
+
+	public CywDTO updateForm(int board_num) {
+		
+		
+		
+		return dao.boardDetail(board_num);
+	}
+
+	public void boardDel(int board_num) {
+		
+		dao.boardDel(board_num);
+		
+	}
+
+	public void update(HashMap<String, String> params) {
+		
+		int row = dao.update(params);
+		
+		
+	}
+
+
 
 
 

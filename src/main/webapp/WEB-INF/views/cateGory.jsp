@@ -13,6 +13,17 @@
     	#mainCateName{
     		width: 50%;
     	};
+    	.boardList{
+    		white-space: nowrap;
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	        text-align: center;
+    	}
+    	a:link { color: black; text-decoration: none;}
+ 		a:visited { color: black; text-decoration: none;}
+ 		a:hover { color: blue; text-decoration: underline;}
+ 		
+
     </style>
 </head>
 <body>
@@ -143,6 +154,22 @@
 			<tbody class="midlist">
 			</tbody>
 		</table>
+		<br/>
+		<table>
+			<tr>
+				<c:forEach var="item" items="${bigCategoryList }">
+					<td>
+						<button class="middleListCall">${item.main_name}</button>
+						<input type="hidden" value="${item.main_num}">
+					</td>
+				</c:forEach>
+			</tr>
+		</table>
+		<table>
+			<thead></thead>
+			<tbody class="boardList"></tbody>
+		</table>
+
 		
 		
 </body>
@@ -320,9 +347,64 @@
 			$('.midlist').append(content);
 		}
 		
+		// 대분류 버튼 클릭시 해당하는 리스트 뽑아오기 (조인)
+		$('.middleListCall').click(function() {
+			var middleListCall = $(this).next().val();
+			console.log(middleListCall);
+			
+			$.ajax({
+				type:'GET',
+				url:'middleListCall',
+				data:{"middleListCall" : middleListCall},
+				dataType:'JSON',
+				success:function(data) {
+					/*	console.log(data.list);
+					console.log(data.list[1].board_subject);
+					console.log(data.list[1].board_cont); */
+					if (data.list != []) {
+						middleListCallAdd(data.list);					
+					}
+					
+				},
+				error:function(e) {
+					console.log(e);
+				}
+			});
+			
+		})
+		
+		function middleListCallAdd(list) {
+			var content = '';
+			
+			
+			
+			for (var i = 0; i < list.length; i++) {
+				
+				var date = new Date(list[i].board_date);
+				
+				//console.log(list[i]);
+				content += '<a href="./boardDetail?board_num='+list[i].board_num+'">'+'<tr>' ;
+				content += '<td>'+list[i].mid_name+'<br/>'
+				+"작성일 : "+date.getFullYear()+"-"
+			      +("0"+(date.getMonth()+1)).slice(-2)+"-"
+			      +("0" + date.getDate()).slice(-2)+" "
+			      +("0" + date.getHours()).slice(-2)+":"
+			      +("0" + date.getMinutes()).slice(-2)+":"
+			      +("0" + date.getSeconds()).slice(-2)+
+				'<br/>'+"공감수 : "+list[i].board_like+'</td>'+'<br/>';
+				content += '<td>'+"제목 : "+list[i].board_subject+'<br/>'+"내용 : "+list[i].board_cont+'<br/>'+"작성자 : "+list[i].mem_id+'</td>';
+				content += '</tr>'+'</a>'+'<hr/>';
+				
+	
+			}
+			$('.boardList').empty();
+			$('.boardList').append(content);
+		};
+		
+		$('.boardList').mouseover(function() {
+			$(this).css('cursor','pointer');
+		});
 
-		
-		
 		
 		
 </script>

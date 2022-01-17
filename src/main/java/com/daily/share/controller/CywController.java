@@ -108,6 +108,49 @@ public class CywController {
 	
 		return service.midCategoryCall(selectValue);
 	}	
+	
+	@RequestMapping(value = "/middleListCall", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> middleListCall(Model model,@RequestParam String middleListCall) {
+		logger.info("리스트호출 : {}",middleListCall); 
+							
+	
+		return service.middleListCall(middleListCall);
+	}	
 		
+	// 게시물 자세히 보기
+	 @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
+	 public String boardDetail(Model model, @RequestParam int board_num) {
+		 
+		 CywDTO dto = service.boardDetail(board_num,"detail");
+		 model.addAttribute("boardDetail",dto);
+		 
+	 return "boardDetail"; 
+	 }
+	
+	 @RequestMapping(value = "/updateForm", method = RequestMethod.GET)
+	 public String updateForm(Model model, @RequestParam int board_num) {
+		 
+		 CywDTO dto = service.boardDetail(board_num,"update");
+		 model.addAttribute("boardDetail",dto);
+		 
+	 return "updateForm"; 
+	 }
+	 
+	// 수정
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Model model, @RequestParam HashMap<String, String> params) {
+		logger.info("update 요청:{}",params);
+		service.update(params);
+		return "redirect:/boardDetail?board_num="+params.get("board_num");
+	}
+	
+	 @RequestMapping(value = "/boardDel", method = RequestMethod.GET)
+	 public String boardDel(Model model, @RequestParam int board_num) {
+		 
+		 service.boardDel(board_num);
 
+	 return "redirect:/"; 
+	 }
+	 
 }

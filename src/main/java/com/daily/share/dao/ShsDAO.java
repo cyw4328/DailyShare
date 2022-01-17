@@ -24,6 +24,8 @@ public interface ShsDAO {
 
 	int followBtnShs(Object object);
 
+	int followBtnShs(String mem_id, String sub_id);
+
 
 
 	

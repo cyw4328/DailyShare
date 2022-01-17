@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -215,7 +216,6 @@ public String followingShs(Model model,HttpSession session) {
 		model.addAttribute("list",list);
 		
 		
-		
 	}	
 	
 	return "following";
@@ -225,40 +225,16 @@ public String followingShs(Model model,HttpSession session) {
 
 
   //구독 버튼
-  
-//  @RequestMapping(value = "/followBtnShs", method = RequestMethod.GET) public
-//  String followBtnShs(Model model,HttpSession session,@RequestParam
-//  HashMap<String, String> params) {
-//  
-//  logger.info("params : {}",params); Object object =
-//  session.getAttribute("loginId");
-//  
-//  if(object != null) { session.getAttribute("loginId");
-//  
-//  
-//  
-//  
-//  }
-//  
-//  return "redirect:/followShs"; }
-// 
-
-	
-
-@RequestMapping(value="/followBtnShs", method = RequestMethod.GET)	
+@RequestMapping(value = "/followBtnShs", method = RequestMethod.GET)
 @ResponseBody
-public HashMap<String, Object> followBtnShs(
-		@RequestParam(value="followBtnList[]") ArrayList<String> followBtnList
-		) {		
-	//배열로 오는파라메터를 받을 경우 반드시 명시 해 줘야 한다.
-	HashMap<String, Object> map = new HashMap<String, Object>();			
-	logger.info("delList : {}",followBtnList);		
+public HashMap<String, Object>  followBtnShs(Model model,HttpSession session,@RequestParam String sub_id) {
+	String mem_id = (String) session.getAttribute("loginId");
+	return service.followBtnShs(mem_id,sub_id);
+}
 
-	
-	return map;
-	}
-	
-	
+
+
+
 	
 	
 }

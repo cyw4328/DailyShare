@@ -65,15 +65,14 @@
 
 <body>
 <%@ include file="headerShs_login.jsp"%>
+<%@ include file="MyPageShs.jsp"%>
 
 <div id="con_gooDock">
 
 	<div id="gooDock">
-		<span id="headTxt">구독 블로거 관리</span> 
 		<span class="Following">내가 구독하는 블로거</span>
 		<span class="Follow">나를 구독하는 블로거</span>
-		
-		<hr>
+
 		
 		<p class="followCnt">현재 나를 구독하는 블로거는 ${list.size()} 명 입니다.</p>
 		<table>
@@ -82,11 +81,44 @@
 					<!--  <td>${item.mem_blog}</td> -->
 					<td class="subId">${item.sub_id}</td>
 					<td>
-						<button type = "submit" class="followBtn">구독중</button>
+						
+						
+						
+						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" />
+						<script>
+						var $sub_id = '${item.sub_id}';
+						var id ='#'+${item.sub_num};
+						
+						
+						
+						
+
+						
+						
+						console.log('스크립트 테스트');
+						$.ajax({
+							type:'get',
+							url:'followBtnShs',
+							data:{'sub_id':$sub_id},
+							dataType:'JSON',
+							success: function(data) {
+								if (data.result>0) {
+									$(id).val('구독중');
+								}
+							},
+							error: function(e) {
+								console.log(e);
+							}
+							
+						})
+
+					</script>
+
 
 					</td>
 				</tr>
 			</c:forEach>
+			
 			
 		
 			
@@ -117,17 +149,9 @@ $('.Following').click(function(){
 
 
 
-$('.followBtn').click(function(){
-	console.log('팔로우 버튼 클릭 확인');
-	var followBtnList = [];
-	followBtnList = $(".subId").text();
-	console.log(followBtnList);
-	location.href = "/share/followBtnShs";
-	
+
 
 	
-	
-});		
 
 
 

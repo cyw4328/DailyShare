@@ -75,13 +75,47 @@
 		<span class="Follow">나를 구독하는 블로거</span>
 		
 		<hr>
-		<p class="followCnt">현재 나를 구독하는 블로거는 ${list.size()} 명 입니다.</p>
+		<p class="followCnt">현재 내가 구독하는 블로거는 ${list.size()} 명 입니다.</p>
 		<table>
 			<c:forEach var="item" items="${list}">
 				<tr>
 					<!--  <td>${item.mem_blog}</td> -->
 					<td> ${item.mem_id} 블로거</td>
-					<td><button>구독중</button></td>
+					<td>
+						
+						
+						
+						<input class="followBtn" name = "followBtn"  id="${item.mem_id}" type="button" value="구독하기" />
+						<script>
+						var $sub_id = '${item.sub_id}';
+						var id ='#'+${item.sub_num};
+
+						
+						
+						console.log('스크립트 테스트');
+						$.ajax({
+							type:'get',
+							url:'followBtnShs',
+							data:{'sub_id':$sub_id},
+							dataType:'JSON',
+							success: function(data) {
+								if (data.result>0) {
+									$(id).val('구독중');
+								}
+							},
+							error: function(e) {
+								console.log(e);
+							}
+							
+						})
+						
+
+						
+
+					</script>
+
+
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -102,8 +136,28 @@ $('.Following').click(function(){
 	console.log('팔로잉 클릭 확인');
 	location.href = "/share/followingShs";
 	
+});
+
+
+
+var goodock = $('.followBtn').val(); 
+$('.followBtn').click(function(){
+	console.log('팔로잉 클릭 확인');
+	console.log(goodock);
+	if(goodock == '구독중'){
+		$(this).val('구독중'); 
+	}else{
+		$(this).val('구독하기'); 
+	}
+
 	
 });
+
+
+
+
+
+
 
 
 </script>

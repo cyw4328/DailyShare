@@ -1,7 +1,5 @@
 package com.daily.share.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daily.share.service.HjwService;
 
@@ -54,25 +51,35 @@ public class HjwController {
 	}
 	
 	@RequestMapping(value = "/PwChange", method = RequestMethod.GET)
-	public String PwChange(Model model,@RequestParam String userPass, HttpSession session) {
+	public String PwChange(Model model) {
 		logger.info("비밀번호변경페이지 이동");
-		String searchId = (String) session.getAttribute("searchId");
-		logger.info("재설정할 아이디 : {}",searchId);
-		service.PwC(userPass);
+
 		return "PwChange";
+	}
+	@RequestMapping(value = "/PwC", method = RequestMethod.POST)
+	public String PwC(Model model,@RequestParam String userPass,@RequestParam String userPassCheck, HttpSession session) {
+		logger.info("비밀번호변경 요청");
+		String userId = (String) session.getAttribute("searchId");
+		logger.info("재설정할 아이디 : {}",userId);
+		service.PwC(userId,userPass);
+		logger.info("비밀번호변경 완료 : {}",userPass);
+		return "HomePage";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model,@RequestParam String userId,@RequestParam String userPass,HttpSession session) {
 		logger.info("로그인 요청");
 		logger.info(userId+"/"+userPass);
-		String page = "redirect:/";
+		String msg ="아이디 또는 패스워드를 확인하세요";
+		String page = "login";
 		String loginId = service.login(userId,userPass);
 		logger.info("로그인 한 아이디 여부 : "+loginId);
 		if(loginId != null) {
-			page =  "redirect:/HomePage";
+			page =  "HomePage";
 			session.setAttribute("loginId", loginId);
+			msg =null;
 		}
+		model.addAttribute("msg",msg);
 		return page;
 	}
 	

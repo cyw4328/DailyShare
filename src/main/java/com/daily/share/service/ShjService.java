@@ -55,6 +55,29 @@ public class ShjService {
 
 
 
+	public int LikeCheck(int board_num, String mem_id) {
+		
+		return dao.LikeCheck(board_num, mem_id);
+	}
+
+
+
+	public void deleteLike(int board_num, String mem_id) {
+		
+		dao.deleteLike(board_num, mem_id);
+		
+	}
+
+
+
+	public void insertLike(int board_num, String mem_id) {
+		
+		dao.insertLike(board_num, mem_id);
+		
+	}
+
+
+
 
 
 

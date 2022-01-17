@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +58,32 @@ public class ShjController {
 		
 		return service.getSearchList(shjdto);
 	}
+	
+	//추천
+	@ResponseBody
+	@RequestMapping(value = "/updateLike", method = RequestMethod.GET)
+	public int updateLike (@RequestParam int board_num, HttpSession session) {
+
+			String mem_id = (String) session.getAttribute("loginId");
+			
+			logger.info("번호 : "+ board_num + ", sessionID : "+mem_id);
+			
+			int LikeCheck = service.LikeCheck(board_num, mem_id);
+			
+			logger.info("LikeCheck : "+LikeCheck);
+			
+			if (LikeCheck == 2) {
+				service.deleteLike(board_num, mem_id);
+			}else {
+				service.insertLike(board_num, mem_id);
+				
+			}
+				
+		return LikeCheck;
+	}
+	
+	
+	
+	
 	
 }

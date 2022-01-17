@@ -14,8 +14,17 @@ public class ShjDTO {
 	private String keyword;
 	
 	
+	//추천필터
+	private int board_num;
 	
 	
+	
+	public int getBoard_num() {
+		return board_num;
+	}
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
+	}
 	public String getSearchType() {
 		return SearchType;
 	}

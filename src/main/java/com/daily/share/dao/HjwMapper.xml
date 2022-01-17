@@ -24,4 +24,34 @@
 		update members set mem_pw = #{param2} where mem_Id = #{param1}
 	</update>
 	
+	<!-- 리스트 관련 쿼리 -->
+	<select id="MemberList" resultType="com.daily.share.dto.HjwDTO">
+		SELECT mem_id, mem_name, mem_email, mem_phone, mem_date,mem_out, mem_san FROM members ORDER BY mem_id DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="allCount" resultType="int">
+		SELECT COUNT (mem_id) FROM members
+	</select>
+
+	
+	
+	<!-- 검색 쿼리 / 공백 입력 처리 안했으니 주의할것!! -->
+	<select id="MemSearchList" parameterType="com.daily.share.dto.HjwDTO" resultType="com.daily.share.dto.HjwDTO">
+		SELECT mem_id, mem_name, mem_email, mem_phone,mem_date, mem_out, mem_san FROM members 
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null">
+				<if test="SearchType == 'all'">
+					AND mem_id OR mem_name LIKE CONCAT ('%',#{keyword},'%')
+				</if>
+				<if test="SearchType == 'mem_id'">
+					AND mem_id LIKE CONCAT ('%',#{keyword},'%')
+				</if>
+				<if test="SearchType == 'mem_name'">
+					AND mem_name LIKE CONCAT ('%',#{keyword},'%')
+				</if>
+			</if>
+		</trim>
+	</select>
+
 </mapper>

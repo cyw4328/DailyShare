@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="java.io.*"%>
+
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 	<style>
-		#multiple_container{
-			width: 800px;
-			height: 800px;
-			border: 1px solid black;
+	
+	 	#multiple_container{
+	 		text-align: center;
+	 	}
+		
+		#content_box{
+			border: 0px solid black;
+			min-width: 600px;
+			min-height: 600px;
 		}
-		#multiple_container:empty:before{
-  			content: attr(placeholder);
- 			display: block;
- 			color: grey;
+		
+		#board_cont{
+			border: 0px solid black;
+			width: 100%;
+			min-height: 600px;
+			resize: none;
+			overflow: hidden;
 		}
 		
 		#post_tag{
@@ -23,18 +33,29 @@
 		
 		
 		#board_sub{
-			width: 800px;
+			width: 100%;
 		}
 		
 		table, td, th, tr {
-		border: 1px solid black;
-		border-collapse: collapse; 
+			border: 1px solid black;
+			border-collapse: collapse; 
 		}
 		
 		#board_file{
 			width: 50px;
 			height: 50px;
 		}
+		
+		
+		#input_img{
+			display: none;
+		}
+		
+		#file_label{
+			cursor: pointer;
+		}
+		
+
 		
 
 	</style>
@@ -65,19 +86,29 @@
 	  	</tr>
 	  	<tr>
 	    	<td colspan="4">
-	    		<textarea id="board_cont" placeholder="내용을 입력하세요" name="board_cont" hidden="true" ></textarea>
-	    		<div id="multiple_container" contenteditable="true" placeholder="내용을 입력하세요."></div>
+	    		<div id="content_box">
+		    		<div id="multiple_container"></div>
+		    		<textarea  id="board_cont" placeholder="내용을 입력하세요" name="board_cont" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+	    		</div>
 	    	</td>
 	  	</tr>
 	  	<tr>
 	    	<td colspan="2">
 				#<input id="post_tag" placeholder="태그" type="text" />
-				<input id="post_tagNum" type="hidden" name="tag_num" value=""/>
+				<input id="post_tagNum" type="hidden" name="tag_num" value="0"/>
 	    	</td>
 	    	<td>
-	    		<img id="board_file" alt="" src="resources/images_csj/folderimg.png">
-	    		<!-- <input id="input_img" type="file" name="photos" multiple="multiple" accept="image/*" onchange="imgPrev(event);"/> -->
-	    		<input id="input_img" type="file" name="photos" multiple="multiple" accept="image/*" onchange="handleImgFileSelect(event);"/> 
+	    		<div id="input_imgBox">	    		
+		    		<!-- <input id="input_img" type="file" name="photos" multiple="multiple" accept="image/*" onchange="imgPrev(event);"/> -->
+		    		
+		    		<label id="file_label" for="input_img">
+		    			<img id="board_file" alt="" src="resources/images_csj/folderimg.png"/>
+		    			&nbsp;사진 : <span >0</span>
+		    		</label>
+		    		
+		    		
+		    		<input id="input_img" type="file" name="photos" multiple="multiple" accept="image/*" onchange="handleImgFileSelect(event);" /> 
+	    		</div>
 	    	</td>
 	    	<td>
 	    		<select name="board_scope">
@@ -98,10 +129,11 @@
 	
 </body>
 <script>
+
 var img_files = [];
 
 function handleImgFileSelect(e){
-	$("#multiple_container").children($('a')).remove();
+	$('#multiple_container').children('a').remove();
 	img_files=[];
 	
 	var files = e.target.files;
@@ -114,27 +146,34 @@ function handleImgFileSelect(e){
 			return;
 		}
 		img_files.push(f);
-		
+		console.log(img_files.length);
 		var reader = new FileReader();
 		reader.onload = function(e){
-			var html = '<a href=\"javascript:void(0);\" ondblclick=\"imgSelect('+index+')\" id=\"img_id'+index+'\"><img style="max-width:200px;max-height:200px;z-index:none;position:relative;" src=\"'+e.target.result+'\"data-file="'+f.name+'" class="img_file" title="Click to remove"></a>';
+			var html = '<a href=\"javascript:void(0);\" ondblclick=\"imgSelect('+index+')\" id=\"img_id'+index+'\"><img style="max-width:300px;max-height:300px;z-index:none;position:relative;" src=\"'+e.target.result+'\"data-file="'+f.name+'" class="img_file" title="dblClick to remove"></a>';
 			$("#multiple_container").append(html);
 			index++;
 			
 		}
 		reader.readAsDataURL(f);
 		
-		
+		$('#file_label').children().html(img_files.length);
 		
 	});
 };
 
 
 function imgSelect(index) {
-	console.log(index);
 	var img_id = '#img_id'+index;
-	console.log($(img_id));
+
+	img_files.splice(index,1);
+	
 	$(img_id).remove();
+	
+	console.log(img_files.length);
+	
+	$('#file_label').children().html(img_files.length);
+	
+
 	
 }
 
@@ -158,13 +197,17 @@ function imgSelect(index) {
 
 
 var i =0;
+
+/* 게시글 작성 submit */
 $('#post_submit').click( function() {
 /* 	console.log($('#image_container').html()); */
-	$('#board_cont').html($('#multiple_container').html());
+/* 	console.log($('#multiple_container').text());
+	console.log($('#multiple_container').html()); */
+	/* $('#board_cont').html($('#multiple_container').html()); */
 	if ($('#board_sub').val() == "") {
 		alert('제목을 입력하세요.');
 		$('#board_sub').focus();
-	}else if ($('#board_cont').text() == "") {
+	}else if ($('#board_cont').val() == "") {
 		alert('내용을 입력하세요.');
 		$('#multiple_container').focus();
 	}else {
@@ -173,6 +216,8 @@ $('#post_submit').click( function() {
 /* 	console.log($('#board_cont').html()); */
 });
 
+
+/* 태그 여러개 전송하기 */
 $('#post_tag').keydown(function(key) {
 	if (key.keyCode == 13) {
 		console.log('엔터 입력');
@@ -187,6 +232,16 @@ $('#post_tag').keydown(function(key) {
 		}
 	}
 });
+
+
+
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	  
+	}
+
+
 
 </script>
 </html>

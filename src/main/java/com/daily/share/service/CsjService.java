@@ -19,6 +19,7 @@ import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjSubDTO;
 
 @Service
 public class CsjService {
@@ -227,6 +228,47 @@ public class CsjService {
 		return dao.boardCall(mem_id);
 	}
 
+
+
+
+	public HashMap<String, Object> csj_pagingList(int currPage, int pagePerCnt, String mem_id) {
+		logger.info("리스트 서비스 요청");
+		
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0; //어디서부터 보여줘야 하는가?
+		logger.info("offset : {}",offset);
+		
+		int totalCount = dao.csjAllCount(mem_id); //bbs 테이블의 모든 데이터의 개수
+		int range = totalCount%pagePerCnt > 0 ? (totalCount/pagePerCnt)+1 : totalCount/pagePerCnt;
+		logger.info("총 개수 : {}",totalCount);
+		logger.info("만들 수 있는 총 페이지 : {}",range);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pages", range);
+		ArrayList<CsjPersonalBlogDTO> pagingBoardCall= dao.pagingBoardCall(pagePerCnt,offset,mem_id);
+		logger.info("가져온 리스트 : {}",pagingBoardCall.size());
+		map.put("list", pagingBoardCall);
+		return map;
+	}
+
+
+
+
+	
+
+
+
+	//구독 관련
+	/*
+	 * public ArrayList<CsjSubDTO> csjSubList(String loginId) { return
+	 * dao.csjSubList(loginId); }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * public HashMap<String, Object> csjSubCall(String mem_id, String sub_id) {
+	 * HashMap<String, Object> map = new HashMap<String, Object>(); int result =
+	 * dao.csjSubCall(mem_id,sub_id); map.put("result", result); return map; }
+	 */
 
 
 	

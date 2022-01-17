@@ -6,6 +6,7 @@ import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjSubDTO;
 
 public interface CsjDAO {
 
@@ -37,6 +38,16 @@ public interface CsjDAO {
 	ArrayList<CsjPersonalBlogDTO> boardCall(String mem_id);
 
 	void csj_thumbUpdate(int board_num, String photo_newName);
+
+	int csjAllCount(String mem_id);
+
+	ArrayList<CsjPersonalBlogDTO> pagingBoardCall(int pagePerCnt, int offset, String mem_id);
+
+	/*
+	 * ArrayList<CsjSubDTO> csjSubList(String loginId);
+	 * 
+	 * int csjSubCall(String mem_id, String sub_id);
+	 */
 
 
 

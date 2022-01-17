@@ -20,6 +20,7 @@ import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjSubDTO;
 import com.daily.share.service.CsjService;
 
 @Controller
@@ -116,7 +117,7 @@ public class CsjContoller {
 		model.addAttribute("mem_id",mem_id);
 			
 		ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
-		logger.info("해당 블로그 게시글/메뉴/사진 요청 : {}", boardList);
+		logger.info("헤드라인용 블로그 게시글/메뉴/사진 요청 : {}", boardList);
 		model.addAttribute("boardList",boardList);
 		for (CsjPersonalBlogDTO list : boardList) {
 			logger.info(list.getBoard_subject());
@@ -124,6 +125,41 @@ public class CsjContoller {
 		
 		return "csjBlogMain";
 	}
+	
+	
+	
+	@RequestMapping(value = "/csj_pagingList", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> csj_pagingList(@RequestParam String page,@RequestParam String cnt, @RequestParam String mem_id) {
+		logger.info("리스트 요청 : {}페이지, {}개 씩",page,cnt);
+		int currPage = Integer.parseInt(page);
+		int pagePerCnt = Integer.parseInt(cnt);
+		return service.csj_pagingList(currPage,pagePerCnt,mem_id);
+	}
+	
+	
+	
+	
+	
+	/*
+	 * //나를 구독중인 아이디 목록 불러오기
+	 * 
+	 * @RequestMapping(value = "/csj_subtest", method = RequestMethod.GET) public
+	 * String csj_subtest(Model model,HttpSession session) {
+	 * session.setAttribute("loginId", "test03"); String loginId=(String)
+	 * session.getAttribute("loginId"); ArrayList<CsjSubDTO> subList=
+	 * service.csjSubList(loginId); model.addAttribute("subList",subList);
+	 * model.addAttribute("loginId",loginId); return "csjsubtest"; }
+	 * 
+	 * //구독 여부 확인
+	 * 
+	 * @RequestMapping(value = "/csjSubCall", method = RequestMethod.GET)
+	 * 
+	 * @ResponseBody public HashMap<String, Object> csjSubCall(Model
+	 * model,HttpSession session,@RequestParam String sub_id) { String mem_id =
+	 * (String) session.getAttribute("loginId"); return
+	 * service.csjSubCall(mem_id,sub_id); }
+	 */
 	
 	
 	

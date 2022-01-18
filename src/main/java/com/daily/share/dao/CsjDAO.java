@@ -43,6 +43,12 @@ public interface CsjDAO {
 
 	ArrayList<CsjPersonalBlogDTO> pagingBoardCall(int pagePerCnt, int offset, String mem_id);
 
+	int csjAllCountMenu(String mem_id, String menu_num);
+
+	ArrayList<CsjPersonalBlogDTO> pagingBoardCallMenu(int pagePerCnt, int offset, String mem_id, String menu_num);
+
+	String blogName(String mem_id);
+
 	/*
 	 * ArrayList<CsjSubDTO> csjSubList(String loginId);
 	 * 

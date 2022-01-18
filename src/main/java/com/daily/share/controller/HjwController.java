@@ -1,6 +1,7 @@
 package com.daily.share.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -148,7 +149,11 @@ public class HjwController {
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
 	public String managerPage(Model model) {
 		logger.info("관리자페이지 이동");
-
+		logger.info("list 요청");
+		ArrayList<HjwDTO> list=service.list();
+		logger.info("회원 수 : {}",list.size());
+		model.addAttribute("size", list.size());
+		model.addAttribute("MemberList", list);
 		return "manager";
 	}
 	

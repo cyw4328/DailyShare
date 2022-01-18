@@ -78,6 +78,20 @@ public class ShjService {
 
 
 
+	public void CancelBLike(int board_num) {
+		dao.CancelBLike(board_num);
+		
+	}
+
+
+
+	public void updateBLike(int board_num) {
+		dao.updateBLike(board_num);
+		
+	}
+
+
+
 
 
 

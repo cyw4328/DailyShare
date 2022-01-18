@@ -275,6 +275,13 @@ public class CsjService {
 
 
 
+	public String blogName(String mem_id) {	
+		return dao.blogName(mem_id);
+	}
+
+
+
+
 	
 
 

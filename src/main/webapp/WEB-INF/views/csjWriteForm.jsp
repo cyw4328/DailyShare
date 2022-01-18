@@ -50,19 +50,19 @@
 			height:35px;
 			right: 0px;
 			bottom: 0px;
-			background-color: grey;
+			background-color: gray;
 			color: white;
 			font-size: 15px;
 		}
 		#sub_wrap{
 			position:relative;
 			height: 70px;
-			border-bottom:2px solid grey;
+			border-bottom:2px solid gray;
 		}
 		#sub_wrap input{
 			position:absolute;
 			border:none;
-			/* border-bottom:2px solid grey; */
+			/* border-bottom:2px solid gray; */
 			width: 100%;
 			height: 70px;
 			font-size: 25px;
@@ -74,14 +74,14 @@
 		}
 		#sub_wrap input:focus{
 			outline:none;
-			/* outline-bottom:2px solid grey; */
+			/* outline-bottom:2px solid gray; */
 		}
 		
 		#multiple_container{
 	 		position:relative;
 	 		width: 100%;
 	 		min-height: 600px;
-	 		border-bottom:2px solid grey;
+	 		border-bottom:2px solid gray;
 
 	 	}
 	 	#multiple_container p{
@@ -90,7 +90,7 @@
 	 	#multiple_container:empty:before{
 		  content: attr(placeholder);
 		  display: block;
-		  color: grey;
+		  color: gray;
 		}
 
 	 	

@@ -34,9 +34,9 @@ public class CsjContoller {
 	//댓글 파트
 	@RequestMapping(value = "/csj_com", method = RequestMethod.GET)
 	public String csj_com(Model model, HttpSession session) {
-		session.setAttribute("loginId", "admin");
+		//session.setAttribute("loginId", "admin");
 		model.addAttribute("loginId",session.getAttribute("loginId"));
-		int board_Num = 14;
+		int board_Num = 14; //게시글 번호 받아와 주세요
 		ArrayList<CsjCommentDTO> comList = service.csj_com(board_Num);
 		logger.info("댓글 목록 요청 : {}",comList);
 		model.addAttribute("comList",comList);
@@ -117,6 +117,10 @@ public class CsjContoller {
 		logger.info("블로그 메인 이동 요청 : {}",mem_id);
 		model.addAttribute("mem_id",mem_id);
 		
+		String mem_blog =service.blogName(mem_id);
+		logger.info("블로그 이름 요청 {}",mem_blog);
+		model.addAttribute("mem_blog",mem_blog);
+		
 		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
 		logger.info("메뉴 리스트만 요청 : {}",menu);
 		model.addAttribute("menu",menu);
@@ -168,6 +172,16 @@ public class CsjContoller {
 		int pagePerCnt = Integer.parseInt(cnt);
 		return service.csj_pagingListMenu(currPage,pagePerCnt,mem_id,menu_num);
 		}
+
+	
+	@RequestMapping(value = "/csj_detail", method = RequestMethod.GET)
+	public String csj_detail(Model model,HttpSession session) {
+
+		return "csjboardDetail";
+	}
+		
+	
+	
 	
 	
 	/*

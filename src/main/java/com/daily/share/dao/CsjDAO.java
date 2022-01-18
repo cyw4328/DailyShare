@@ -47,6 +47,8 @@ public interface CsjDAO {
 
 	ArrayList<CsjPersonalBlogDTO> pagingBoardCallMenu(int pagePerCnt, int offset, String mem_id, String menu_num);
 
+	String blogName(String mem_id);
+
 	/*
 	 * ArrayList<CsjSubDTO> csjSubList(String loginId);
 	 * 

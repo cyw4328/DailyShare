@@ -5,21 +5,67 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script> -->
 	<style>
- 	#csj_com_content, #csj_reply_content{
-		width: 500px;
-		height: 60px;
-		resize: none;
+	#comment_wrap{
+		position: relative;
+		width: 100%;
+		/* border: 1px solid blue; */
+		border-bottom: 2px solid gray;
+	}
+	#comment_wrap span{
+		position: relative;
+		left: 17%;
+		margin-top: 20px;
+		margin-bottom:10px;
+		display: inline-block;
+		
+	}
+	#input_wrap{
+		/* border: 1px solid red; */
+		text-align: center;
+		height:130px;
 	}
 	
+	table{
+		width: 600px;
+		margin:0 auto;
+		border: 1px solid black;
+	}
+	
+	
+	#comList_wrap{
+		text-align: center;
+	}
+	
+	
+	#csj_com_form{
+		margin: 0 auto;
+	}
+	
+	#csj_com_button{
+		position: absolute;
+		width: 60px;
+		height: 30px;
+		top: 42%;
+		margin-left: 20px;
+	}
+ 	#csj_com_content, #csj_reply_content{
+ 		margin:0 auto;
+		width: 600px;
+		height: 80px;
+		resize: none;
+		border-radius: 5px;
+	}
+	
+	
 	.com_content_text{
-		width: 500px;
+		width: 600px;
 	}
 	
 	
 	.csj_com_list{
-		width :500px;
+		width :100%;
 		height: 150px;
 		border: 1px solid black;
 	}
@@ -48,79 +94,83 @@
 	</style>
 </head>
 <body>
-	<div>
-		<span>${loginId}</span>
-		<form id="csj_com_form" action="csj_com_regist" method="post">
-			<input type="hidden" name="com_targetId" value="게시물작성자" />
-			<input type="hidden" name="board_num" value="14" />
-			<input type="hidden" name="com_parent" value="0" />
-			<textarea id="csj_com_content" name="com_cont" placeholder="댓글을 입력하세요"></textarea>
-			<input type="button" id="csj_com_button" value="등록" />
-		</form>	
+	<div id="comment_wrap">
+		<span>${loginId}작성자</span>
+		<div id="input_wrap">
+			<form id="csj_com_form" action="csj_com_regist" method="post">
+				<input type="hidden" name="com_targetId" value="게시물작성자" />
+				<input type="hidden" name="board_num" value="14" />
+				<input type="hidden" name="com_parent" value="0" />
+				<textarea id="csj_com_content" name="com_cont" placeholder="댓글을 입력하세요"></textarea>
+				<input type="button" id="csj_com_button" value="등록" />
+			</form>	
+		</div>
+		<div id="comList_wrap">
+			<c:forEach items="${comList}" var="comList">
+					<table>
+						<tr>
+							<td>
+								<c:if test="${comList.com_depth eq 0}">
+									<div class="csj_com_list" style="margin-left:0px;">
+										<span>${comList.mem_id}</span>
+										<input type="hidden" value="${comList.com_num}"/>
+										<span id="csj_com_a">
+											<c:if test="${loginId eq comList.mem_id}">
+												<span class="com_fix">수정</span>&nbsp;
+												<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
+											</c:if>
+											<c:if test="${loginId ne comList.mem_id}">
+												<a href="#">신고</a>&nbsp;
+											</c:if>
+											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+										</span>
+										<div>
+											<span style="color:blue;">${comList.com_targetId}&nbsp;</span>
+											<span>${comList.com_cont}&nbsp;<input class="reply_create" type="button" value="답글"/></span>
+										</div>
+									</div>						
+								</c:if>
+								<c:if test="${comList.com_depth eq 1}">
+									<div class="csj_com_list" style="margin-left:100px;">
+										<span>${comList.mem_id}</span>
+										<input type="hidden" value="${comList.com_num}"/>
+										<span id="csj_com_a">
+											<c:if test="${loginId eq comList.mem_id}">
+												<span class="com_fix">수정</span>&nbsp;
+												<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
+											</c:if>
+											<c:if test="${loginId ne comList.mem_id}">
+											<a href="#">신고</a>&nbsp;
+											</c:if>
+											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+										</span>
+										<div>
+											<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
+											<span>${comList.com_cont}&nbsp;<input class="reply_create" type="button" value="답글"/></span>
+										</div>
+									</div>						
+								</c:if>
+							</td>
+						</tr>
+						
+						<tr class="csj_reply_box" >
+							<td>
+								<div>
+									<form  action="csj_com_regist" method="post">
+										<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
+										<input type="hidden" name="board_num" value="1" />
+										<input type="hidden" name="com_parent" value="${comList.com_num}" />
+										<textarea id="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id}&nbsp;댓글을 입력하세요"></textarea>
+										<input class="csj_reply_submit" type="button"  value="등록" />
+										<input class="reply_close" type="button"  value="취소" />	
+									</form>
+								</div>
+							<td/>
+						</tr>
+					</table>
+			</c:forEach>
+		</div>
 	</div>
-	<c:forEach items="${comList}" var="comList">
-			<table>
-				<tr>
-					<td>
-						<c:if test="${comList.com_depth eq 0}">
-							<div class="csj_com_list" style="margin-left:0px;">
-								<span>${comList.mem_id}</span>
-								<input type="hidden" value="${comList.com_num}"/>
-								<span id="csj_com_a">
-									<c:if test="${loginId eq comList.mem_id}">
-										<span class="com_fix">수정</span>&nbsp;
-										<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
-									</c:if>
-									<c:if test="${loginId ne comList.mem_id}">
-										<a href="#">신고</a>&nbsp;
-									</c:if>
-									<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
-								</span>
-								<div>
-									<span style="color:blue;">${comList.com_targetId}&nbsp;</span>
-									<span>${comList.com_cont}&nbsp;<input class="reply_create" type="button" value="답글"/></span>
-								</div>
-							</div>						
-						</c:if>
-						<c:if test="${comList.com_depth eq 1}">
-							<div class="csj_com_list" style="margin-left:100px;">
-								<span>${comList.mem_id}</span>
-								<input type="hidden" value="${comList.com_num}"/>
-								<span id="csj_com_a">
-									<c:if test="${loginId eq comList.mem_id}">
-										<span class="com_fix">수정</span>&nbsp;
-										<a href="./csj_com_del?com_num=${comList.com_num}">삭제</a>&nbsp;
-									</c:if>
-									<c:if test="${loginId ne comList.mem_id}">
-									<a href="#">신고</a>&nbsp;
-									</c:if>
-									<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
-								</span>
-								<div>
-									<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
-									<span>${comList.com_cont}&nbsp;<input class="reply_create" type="button" value="답글"/></span>
-								</div>
-							</div>						
-						</c:if>
-					</td>
-				</tr>
-				
-				<tr class="csj_reply_box" >
-					<td>
-						<div>
-							<form  action="csj_com_regist" method="post">
-								<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
-								<input type="hidden" name="board_num" value="1" />
-								<input type="hidden" name="com_parent" value="${comList.com_num}" />
-								<textarea id="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id}&nbsp;댓글을 입력하세요"></textarea>
-								<input class="csj_reply_submit" type="button"  value="등록" />
-								<input class="reply_close" type="button"  value="취소" />	
-							</form>
-						</div>
-					<td/>
-				</tr>
-			</table>
-	</c:forEach>
 
 
 </body>
@@ -130,6 +180,7 @@
 	$('#csj_com_button').click(function(){
 		if ($('#csj_com_content').val() == "") {
 			alert("내용을 입력하세요.");
+			$('#csj_com_content').focus();
 		}else {
 			$('#csj_com_form').submit();
 		}
@@ -150,6 +201,8 @@
 		console.log('답글 submit 작동');
 		if ($(this).prev().val() == "") {
 			alert("내용을 입력하세요.");
+			
+			
 		}else {
 			$(this).parent().submit();
 		}

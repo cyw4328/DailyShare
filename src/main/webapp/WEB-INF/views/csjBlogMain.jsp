@@ -14,11 +14,6 @@
 	
 	
 	<style>
-	
-		
-
-		
-		
 		#container_wrap{
 			position:relative;
 			width: 1400px;

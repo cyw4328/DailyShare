@@ -100,7 +100,7 @@
 
 </body>
 <script>
-	var currPage = 1;
+var currPage = 1;
 
 ForumListCall(currPage,10);
 

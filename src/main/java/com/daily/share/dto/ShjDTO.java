@@ -16,9 +16,18 @@ public class ShjDTO {
 	
 	//추천필터
 	private int board_num;
+	private int board_like;
 	
 	
 	
+	
+	
+	public int getBoard_like() {
+		return board_like;
+	}
+	public void setBoard_like(int board_like) {
+		this.board_like = board_like;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}

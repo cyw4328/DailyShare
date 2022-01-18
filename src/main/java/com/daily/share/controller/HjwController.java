@@ -1,5 +1,6 @@
 package com.daily.share.controller;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daily.share.dto.HjwDTO;
-import com.daily.share.dto.ShjDTO;
 import com.daily.share.service.HjwService;
 
 @Controller
@@ -149,30 +149,12 @@ public class HjwController {
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
 	public String managerPage(Model model) {
 		logger.info("관리자페이지 이동");
-
+		logger.info("list 요청");
+		ArrayList<HjwDTO> list=service.list();
+		logger.info("회원 수 : {}",list.size());
+		model.addAttribute("size", list.size());
+		model.addAttribute("MemberList", list);
 		return "manager";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/MemberList", method = RequestMethod.GET)
-	public HashMap<String, Object> MemberList(@RequestParam String page,@RequestParam String cnt) {				
-		logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);
-		
-		int currPage = Integer.parseInt(page);
-		int pagePerCnt = Integer.parseInt(cnt);		
-		return service.MemberList(currPage,pagePerCnt);
-	}
-	
-	//검색 기능
-	@ResponseBody
-	@RequestMapping(value = "/MemSearchList", method = RequestMethod.GET)
-	private List<HjwDTO> MemSearchList (@RequestParam("SearchType") String SearchType, @RequestParam("keyword") String keyword) {
-		
-		HjwDTO hjwdto = new HjwDTO();
-		hjwdto.setKeyword(keyword);
-		hjwdto.setSearchType(SearchType);
-		
-		return service.MemSearchList(hjwdto);
 	}
 	
 }

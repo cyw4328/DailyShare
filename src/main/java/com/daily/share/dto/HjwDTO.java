@@ -15,10 +15,6 @@ public class HjwDTO {
 	private int mem_san;
 	private String mem_blog;
 	private Date mem_date;
-	
-	private String SearchType;
-	private String keyword;
-	
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -85,18 +81,7 @@ public class HjwDTO {
 	public void setMem_date(Date mem_date) {
 		this.mem_date = mem_date;
 	}
-	public String getSearchType() {
-		return SearchType;
-	}
-	public void setSearchType(String searchType) {
-		SearchType = searchType;
-	}
-	public String getKeyword() {
-		return keyword;
-	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
+
 	
 	
 	

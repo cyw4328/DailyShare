@@ -6,167 +6,138 @@
         <title></title>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>  
-        <script src="resources/js/jquery.twbsPagination.js"></script>
+        <script src="resources/js_csj/jquery.twbsPagination.js"></script>
+        <link rel="icon" href="./icon.png">
         <style type="text/css">
             
             /*드래그 금지*/
             .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
 
 		    #left{
-		    	position :absolute;
+		    	position :static;
                 border: 1px solid black;
                 width: 240px;
 				height: 80px;
                 margin-top: 70px; 
                 margin-left: 160px;
-                text-align: center;
                 line-height: 80px; 
                 text-align: left;
-                padding-left: 10px;
-       
-		    }
-		    
+                padding-left: 10px;     
+		    }		    
 		    #write{
-		    	position :absolute;
+		    	position :relative;
                 border: 1px solid black;
                 width: 250px;
 				height: 40px;
-                margin-top: 170px; 
+                margin-top: 10px; 
                 margin-left: 160px;
                 text-align: center;
                 line-height: 35px; 
                 background: black;
                 color: white; 
                 cursor:pointer;
-		    }
-		    
+		    }	    
 		    #tab1{
-		    	position :absolute;
+		    	position :relative;
                 border: 1px solid black;
                 width: 240px;
 				height: 40px;
-                margin-top: 230px; 
+                margin-top: 10px; 
                 margin-left: 160px;
-                text-align: center;
                 line-height: 35px; 
-                color: black; 
                 text-align: left;
                 padding-left: 10px;
                 cursor:pointer;
                 color:red;
 		    }
-		    #tab2{
-		    	position :absolute;
+		    #tab2,#tab3,#tab4,#tab5{
+		    	position :relative;
                 border: 1px solid black;
                 width: 240px;
 				height: 40px;
-                margin-top: 272px; 
                 margin-left: 160px;
-                text-align: center;
                 line-height: 35px; 
-                color: black; 
                 text-align: left;
                 padding-left: 10px;
                 cursor:pointer;
-		    }
-		    #tab3{
-		    	position :absolute;
-                border: 1px solid black;
-                width: 240px;
-				height: 40px;
-                margin-top: 314px; 
-                margin-left: 160px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
-                text-align: left;
-                padding-left: 10px;
-                cursor:pointer;
-		    }
-		    #tab4{
-		    	position :absolute;
-                border: 1px solid black;
-                width: 240px;
-				height: 40px;
-                margin-top: 355px; 
-                margin-left: 160px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
-                text-align: left;
-                padding-left: 10px;
-                cursor:pointer;
-		    }
-		    #tab5{
-		    	position :absolute;
-                border: 1px solid black;
-                width: 240px;
-				height: 40px;
-                margin-top: 396px; 
-                margin-left: 160px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
-                text-align: left;
-                padding-left: 10px;
-                cursor:pointer;
-		    }
+		    }		    
 		    #title{
-		    	position :absolute;
-                margin-top: 70px; 
+		    	position :static;
+                margin-top: -360px; 
                 margin-left: 450px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
                 text-align: left;
-                padding-left: 10px;
                 font-size: 20px;
+                padding-left: 10px;
+		    }
+		    #dec{
+		    	position :absolute;
+		    	margin-top: -20px; 
+                margin-left: 1000px;
+                font-size: 16px;
 		    }
 		    #hr{
-		    	position :absolute;
+		    	position :relative;
 		    	width: 900px;
-                margin-top: 110px; 
+                margin-top: 10px; 
                 margin-left: 450px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
-                text-align: left;
-                padding-left: 10px;
 		    }
-		    #select{
-		    	position :absolute;
-                margin-top: 125px; 
-                margin-left: 1050px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
-                text-align: left;
-                padding-left: 10px;
+		    #memS{
+		    	position :relative;
+                margin-top: 15px; 
+                margin-left: 1060px;
+		    }  
+		    #decS{
+		    	position :relative;
+                margin-top: 15px; 
+                margin-left: 1020px;
+		    }    
+		    #decM{
+		    	position :relative;
+                margin-top: 25px; 
+                margin-left: 700px;
+                
 		    }
-		    
 		    #ListTable{
-		    	position :absolute;
-		    	width: 900px;
-				height: 400px;
-                margin-top: 180px; 
-                margin-left: 450px;
-                text-align: center;
-                line-height: 35px; 
-                color: black; 
-                text-align: center;
-                padding-left: 10px;
+		    	position :relative;
+                margin-top: 20px; 
+                margin-left: 280px;
 		    }
-		    
+		    #DecTable1{
+		    	position :relative;
+		    	margin-top: 20px; 
+                margin-left: 280px;
+		    }	  
+		    #DecTable2{
+		    	position :relative;
+		    	margin-top: 20px; 
+                margin-left: 280px;
+		    }	   	 
+		    #DecTable3{
+		    	position :relative;
+		    	margin-top: 20px; 
+                margin-left: 280px;
+		    }	   	  	    
 		    table, th, td{
 				border : 1px solid black;
 				border-collapse : collapse;
-				padding : 5px 10px;
+				padding : 8px;
 				text-align: center;
 			}
-			
 			table{
-				width : 900px;
+				width: 900px;
 			}
+			.clicked {
+	        	box-shadow: inset 0 -6px 0 gray;
+	        }
+	        #decMSearch{
+	        	width:60px;
+		    	height:40px; 
+		    	font-size:16px; 
+		    	border-radius: 5px / 5px;
+		    	background:black;
+		    	color: white; 
+		    	cursor:pointer;
+	        }
         </style>
     </head>
     <body class="no-drag">
@@ -179,8 +150,13 @@
 		<div id="tab4">관리자목록</div>
 		<div id="tab5">카테고리목록</div>
 		<div id="title">회원목록</div>
+		<div id="dec">
+        	<a target="_blank" id="a1" style="box-shadow: inset 0 -6px 0 gray; cursor:pointer;">접수된신고</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        	<a target="_blank" id="a2" style="cursor:pointer;">처리된신고</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        	<a target="_blank" id="a3" style="cursor:pointer;">항목관리</a>
+		</div>
 		<div id="hr"><hr></div>
-		<div id="select">
+		<div id="memS">
 		<form action="search_mem" method="GET" name="search_mem">
 			<select name="SearchType" id="type">
 				<option selected value="all">전체</option>
@@ -188,12 +164,29 @@
 				<option value="mem_name">이름</option>
 			</select>
 			<input type="text" name="keyword">
-			<input type="button" id="btnSearch" onclick="MemSearchList()" value="검색">
+			<input type="button" id="memSearch" onclick="getSearchList()" value="검색">
+        </form>
+		</div>
+		<div id="decS">
+		<form action="search_dec" method="GET" name="search_dec">
+			<select name="SearchType" id="type">
+				<option selected value="all">전체</option>
+				<option value="mem_id">신고자아이디</option>
+				<option value="dec_target">신고된아이디</option>
+				<option value="dec_name">신고항목</option>
+			</select>
+			<input type="text" name="keyword">
+			<input type="button" id="decSearch" onclick="getSearchList()" value="검색">
+        </form>
+		</div>
+		<div id="decM">
+		<form action="search_decM" method="GET" name="search_decM">
+			<input type="text" placeholder="새로 등록할 항목" name="keyword" style="width : 300px; font-size:16px; height:30px; border-radius: 5px / 5px;">
+			<input type="button" id="decMSearch" onclick="getSearchList()" value="등록">
         </form>
 		</div>
 		<div id="ListTable">
 			<table>
-				<thead>
 				<tr>
 					<th>아이디</th>
 					<th>이름</th>
@@ -203,17 +196,96 @@
 					<th>회원탈퇴여부</th>
 					<th>회원제재상태</th>
 				</tr>
-				</thead>
-				<tbody id="list"></tbody>
+				<c:if test="${MemberList eq null || size == 0}">
+				<tr><td colspan="5">등록된 글이 없습니다.</td></tr>
+				</c:if>
+				<c:forEach items="${MemberList}" var="members">
 				<tr>
-					<td colspan="7" id="paging">
-						<div class="container">                           
-			               <nav aria-label="Page navigation" style="text-align:center">
-			                  <ul class="pagination" id="pagination"></ul>
-			               </nav>               
-			            </div>
-					</td>
+					<td>${members.mem_id}</td>
+					<td>${members.mem_name}</td>
+					<td>${members.mem_email}</td>
+					<td>${members.mem_phone}</td>
+					<td>${members.mem_date}</td>
+					<td>${members.mem_out}</td>
+					<td>${members.mem_san}</td>
 				</tr>
+				</c:forEach>
+			</table>
+		</div>
+		
+		<div id="DecTable1">
+			<table>
+				<tr>
+					<th>신고번호</th>
+					<th>신고자아이디</th>
+					<th>신고된아이디</th>
+					<th>신고항목</th>
+					<th>신고한날짜</th>
+					<th>신고내용</th>
+				</tr>
+				<c:if test="${DecList eq null || size == 0}">
+				<tr><td colspan="6">등록된 항목이 없습니다.</td></tr>
+				</c:if>
+				<c:forEach items="${DecList1}" var="dec1">
+				<tr>
+					<td>${dec1.dec_num}</td>
+					<td>${dec1.mem_id}</td>
+					<td>${dec1.target_id}</td>
+					<td>${dec1.dec_name}</td>
+					<td>${dec1.dec_date}</td>
+					<td>${dec1.dec_cont}</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+		
+		<div id="DecTable2">
+			<table>
+				<tr>
+					<th>신고번호</th>
+					<th>신고자아이디</th>
+					<th>신고된아이디</th>
+					<th>신고항목</th>
+					<th>처리한날짜</th>
+					<th>처리내용</th>
+					<th>처리자</th>
+				</tr>
+				<c:if test="${DecList eq null || size == 0}">
+				<tr><td colspan="7">등록된 항목이 없습니다.</td></tr>
+				</c:if>
+				<c:forEach items="${DecList2}" var="dec2">
+				<tr>
+					<td>${dec2.dec_num}</td>
+					<td>${dec2.mem_id}</td>
+					<td>${dec21.target_id}</td>
+					<td>${dec2.dec_name}</td>
+					<td>${dec2.sol_date}</td>
+					<td>${dec2.sol_state}</td>
+					<td>${dec2.sol_admin}</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+		
+		<div id="DecTable3">
+			<table>
+				<tr>
+					<th>코드</th>
+					<th>신고항목</th>
+					<th>사용여부</th>
+					<th></th>
+				</tr>
+				<c:if test="${DecList eq null || size == 0}">
+				<tr><td colspan="4">등록된 항목이 없습니다.</td></tr>
+				</c:if>
+				<c:forEach items="${DecList3}" var="dec3">
+				<tr>
+					<td>${dec3.dec_code}</td>
+					<td>${dec3.dec_name}</td>
+					<td>${dec3.dec_blind}</td>
+					<td>${dec3.dec_update}</td>
+				</tr>
+				</c:forEach>
 			</table>
 		</div>
 		
@@ -221,8 +293,12 @@
     </body>
 
     <script>
-
-    
+    	const title = document.getElementById('title');
+    	var ahr = document.getElementsByTagName('a');
+    	$("#dec").hide();
+    	$("#decS").hide();
+    	$("#decM").hide();
+    	$("#DecTable").hide();
 	    $('#tab1').click(function(){
 	    	$('#tab1').css({
                 'color':'red'           	
@@ -239,12 +315,15 @@
 	    	$('#tab5').css({
                 'color':'black'
             });
-	    	const title = document.getElementById('title');
 	    	title.innerText = '회원목록'
-	    	$("#select").show();
-	    	$("#search").show();
+	    	$("#memS").show();
 	    	$("#ListTable").show();	
-	    	location.href='./MemberList'
+	    	$("#dec").hide();
+	    	$("#decS").hide();
+	    	$("#decM").hide();
+	    	$("#DecTable1").hide();
+	    	$("#DecTable2").hide();
+	    	$("#DecTable3").hide();
 	    });
 	    
 	    $('#tab2').click(function(){
@@ -263,11 +342,16 @@
 	    	$('#tab5').css({
                 'color':'black'
             });
-	    	const title = document.getElementById('title');
 	    	title.innerText = '신고목록'
-	    	$("#select").hide();
-    		$("#search").hide();
+	    	$("#dec").show();
+	    	$("#decS").show();
+	    	$("#memS").hide();
+	    	$("#decM").hide();
     		$("#ListTable").hide();
+    		$("#DecTable1").show();
+    		$("#DecTable2").hide();
+    		$("#DecTable3").hide();
+    		$('#a1').click();
 	    });
 	    
 	    $('#tab3').click(function(){
@@ -286,11 +370,15 @@
 	    	$('#tab5').css({
                 'color':'black'
             });
-	    	const title = document.getElementById('title');
 	    	title.innerText = '제재목록'
-	    	$("#select").hide();
-    		$("#search").hide();
+	    	$("#memS").hide();
     		$("#ListTable").hide();
+    		$("#DecTable1").hide();
+    		$("#DecTable2").hide();
+    		$("#DecTable3").hide();
+    		$("#dec").hide();
+    		$("#decS").hide();
+    		$("#decM").hide();
 	    });
 	    
 	    $('#tab4').click(function(){
@@ -309,11 +397,15 @@
 	    	$('#tab5').css({
                 'color':'black'
             });
-	    	const title = document.getElementById('title');
 	    	title.innerText = '관리자목록'
-	    	$("#select").hide();
-    		$("#search").hide();
+	    	$("#memS").hide();
     		$("#ListTable").hide();
+    		$("#DecTable1").hide();
+    		$("#DecTable2").hide();
+    		$("#DecTable3").hide();
+    		$("#dec").hide();
+    		$("#decS").hide();
+    		$("#decM").hide();
 	    });
 	    
 	    $('#tab5').click(function(){
@@ -332,103 +424,51 @@
 	    	$('#tab5').css({
                 'color':'red'
             });
-	    	const title = document.getElementById('title');
 	    	title.innerText = '카테고리목록'
-	    	$("#select").hide();
-    		$("#search").hide();
+	    	$("#memS").hide();
     		$("#ListTable").hide();
+    		$("#DecTable1").hide();
+    		$("#DecTable2").hide();
+    		$("#DecTable3").hide();
+    		$("#dec").hide();
+    		$("#decS").hide();
+    		$("#decM").hide();
 	    });
         
-	    
-	    function MemSearchList(){
-			$.ajax({
-				type: 'GET',
-				url : 'MemSearchList',
-				data : $("form[name=search_mem]").serialize(),
-				success : function(result){
-					console.log("확인");
-					//테이블 초기화
-					$('#list').empty();
-					if(result.length>=1){
-						result.forEach(function(item){
-								str += '<tr>';
-								str += '<td>'+item.mem_id+'</td>';
-								str += '<td>'+item.mem_name+'</td>';
-								str += '<td>'+item.mem_email+'</td>';
-								str += '<td>'+item.mem_phone+'</td>';
-								str += '<td>'+item.mem_date+'</td>';
-								str += '<td>'+item.mem_out+'</td>';
-								str += '<td>'+item.mem_san+'</td>';
-								str += '</tr>';
-							$('#list').append(str);
-		        		})				 
-					}
-				}
-			})
-		}
-		
-		var currPage = 1;
-		var totalPage =2;
-		
-		listCall(currPage,10);
-		
-		function more(){
-			currPage++;
-			console.log('currPage',currPage);
-			if(currPage > totalPage){
-				$('button').attr('disabled',true);	
-			}else{
-				listCall(currPage,10);
-			}
-		}
-		
-		function listCall(page, cnt){
-			
-			$.ajax({
-				type:'GET',
-				url:'list',
-				data:{'page':page,'cnt':cnt},
-				dataType:'JSON',
-				success: function(data){
-					console.log(data);
-					totalPage = data.pages;
-					listDraw(data.list);
-					
-					$('#pagination').twbsPagination({
-						startPage:currPage,//현재 페이지
-						totalPages:totalPage,//만들수 있는 총 페이지 수
-						visiblePages:5,//[1][2][3]...이걸 몇개 까지 보여줄 것인지
-						onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
-							console.log(evt);
-							console.log(page);
-							listCall(page,10);
-						}
-					});
-
-				},
-				error:function(e){
-					console.log(e);
-				}
-			});
-			
-		function listDraw(list){//배열 안에 있는 내용을 표로 그리는 함수
-			var content ='';
-			list.forEach(function(item, idx){
-				content += '<tr>';
-				content += '<td>'+item.mem_id+'</td>';
-				content += '<td>'+item.mem_name+'</td>';
-				content += '<td>'+item.mem_email+'</td>';
-				content += '<td>'+item.mem_phone+'</td>';
-				content += '<td>'+item.mem_date+'</td>';
-				content += '<td>'+item.mem_out+'</td>';
-				content += '<td>'+item.mem_san+'</td>';
-				content += '</tr>';	
-			});
-			$("#list").empty();
-			$("#list").append(content);
-		
-			}
-		}
+        $('#a1').click(function(){
+        	document.getElementById("a1").style = "box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
+        	document.getElementById("a2").style = "cursor:pointer;";
+        	document.getElementById("a3").style = "cursor:pointer;";
+	    	$("#decS").show();
+	    	$("#decM").hide();
+	    	$("#DecTable1").show();
+	    	$("#DecTable2").hide();
+	    	$("#DecTable3").hide();
+	    	
+        });
+        
+		$('#a2').click(function(){
+			document.getElementById("a1").style = "cursor:pointer;";
+        	document.getElementById("a2").style = "box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
+        	document.getElementById("a3").style = "cursor:pointer;";
+	    	$("#decS").show();
+	    	$("#decM").hide();
+	    	$("#DecTable1").hide();
+	    	$("#DecTable2").show();
+	    	$("#DecTable3").hide();
+        });
+        
+		$('#a3').click(function(){
+			document.getElementById("a1").style = "cursor:pointer;";
+        	document.getElementById("a2").style = "cursor:pointer;";
+        	document.getElementById("a3").style = "box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
+    		$("#decS").hide();
+    		$("#decM").show();
+    		$("#DecTable1").hide();
+	    	$("#DecTable2").hide();
+	    	$("#DecTable3").show();
+		});
+        
     </script>
 
 </html>

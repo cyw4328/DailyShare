@@ -17,12 +17,5 @@ public interface HjwDAO {
 
 	void PwC(String searchId, String userPass);
 
-	int allCount();
-
-	Object MemberList(int pagePerCnt, int offset);
-
-	List<HjwDTO> MemSearchList(HjwDTO hjwdto);
-
-
 
 }

@@ -75,10 +75,10 @@
 <div id="con_gooDock">
 
 	<div id="gooDock">
-
+		<span id="headTxt">구독관리 목록</span>
 		<span class="Following">내가 구독하는 블로거</span>
 		<span class="Follow">나를 구독하는 블로거</span>
-		
+		<hr>
 
 		<p class="followCnt">현재 내가 구독하는 블로거는 ${list.size()} 명 입니다.</p>
 		<table>
@@ -89,34 +89,7 @@
 					<td>
 						
 						
-						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" /> 
-						<!--  <input class="followBtn" name = "followBtn"  id="${item.mem_id}" type="button" value="구독하기" />-->
-						<script>
-						var id ='#'+${item.sub_num};
-						var $mem_id = '${item.sub_id}';
-
-						
-						
-						
-						console.log('스크립트 테스트');
-						$.ajax({
-							type:'get',
-							url:'followBtnShs',
-							data:{'mem_id':$mem_id},
-							dataType:'JSON',
-							success: function(data) {
-								console.log(data.result);
-								if (data.result>0) {
-									$(id).val('구독중');
-									//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
-									
-								}
-							},
-							error: function(e) {
-								console.log(e);
-							}
-							
-						});
+						<input class="followBtn" id="${item.sub_num}" type="button" value="구독중" /> 
 						
 
 						
@@ -154,11 +127,46 @@ $('.followBtn').click(function(){
 	console.log('팔로잉 클릭 확인');
 	console.log(goodock);
 	if(goodock == '구독중'){
-		$(this).val('구독중'); 
-	}else{
 		$(this).val('구독하기'); 
+
 	}
 
+	
+});
+
+
+var BtnVal = '';
+$('.followBtn').click(function followCall(){
+	console.log($(this).parent().prev().text());
+	BtnVal = $(this).val();
+	console.log('스크립트 테스트'+BtnVal);
+	
+	var $mem_id = $(this).parent().prev().text();
+
+		
+		$.ajax({
+			type:'post',
+			url:'followDelShs',
+			data:{'mem_id':$mem_id},
+			dataType:'JSON',
+			success: function(data) {
+
+				console.log(data.result);
+				//$(BtnVal).html('<input class="UnfollowBtn" id="${item.sub_num}" type="button" value="구독중" />');
+				//location.href="/share/followShs";
+
+			
+				
+			},
+			error: function(e) {
+				console.log(e);
+			}
+			
+		}); 
+	
+		
+		
+		
 	
 });
 

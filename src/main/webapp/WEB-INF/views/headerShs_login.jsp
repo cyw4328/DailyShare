@@ -124,6 +124,10 @@
 border-bottom:1px solid #black;
 }
 
+.iconSize{
+	width: 20px;
+}
+
    
    </style>
 </head>
@@ -139,20 +143,20 @@ border-bottom:1px solid #black;
                 <ul>
                     <li class="nav01" onclick="location.href='./FeedPage'">피드</li>
                     <li class="nav01" onclick="location.href='./ForumBoard'">포럼</li>
-                    <li class="nav01">MY블로그</li>
+                    <a href="/share/csj_blogMain"><li class="nav01" >MY블로그</li></a>
                 </ul>
             </div>
                 <!--로그인 레이어팝업 -->
                 
 
                 <a id="logout_icon" href="logoutShs">
-                <img src="./img/jang_icon.jpg" onMouseOver="this.src='./img/jang_icon02.jpg'"
-                onMouseOut="this.src='./img/jang_icon.jpg'"></a>
+                <img src="resources/images/logout_icon.png" class = "iconSize"  onMouseOver="this.src='resources/images/logout_icon.png'"
+                onMouseOut="this.src='resources/images/logout_icon.png'"></a>
                 
-                <a id="login_icon"><img src="./img/login_icon.jpg" onMouseOver="this.src='./img/login_icon01.jpg'"
-                    onMouseOut="this.src='./img/login_icon.jpg'"></a>
+                <a id="login_icon"><img src="resources/images/bell_icon.png" class = "iconSize" onMouseOver="this.src='resources/images/bell_icon.png'"
+                    onMouseOut="this.src='resources/images/bell_icon.png'" ></a>
                 
-                <p id="id_shs">${loginId}</p>
+                <a href="/share/memberPassCk"><p id="id_shs">${loginId}</p></a>
 
             
         </nav>

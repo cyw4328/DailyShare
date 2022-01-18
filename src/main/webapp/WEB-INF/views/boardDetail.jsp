@@ -32,11 +32,18 @@
 			<td>${boardDetail.board_cont }</td>
 		</tr>
 		<tr>
-		<!-- 추천 기능 -->
-			<div>
-				<input type="button" onclick="like()" value="♡" id ="heart">
-
-			</div>
+			<td colspan="2">
+					<!-- 추천 기능 -->
+				<c:choose>
+					<c:when test="${LikeCheck eq '0' or empty LikeCheck }">
+						<input type="button" onclick="like()" value="♡" id ="heart"/>
+					</c:when>
+					<c:otherwise>
+						<input type="button" onclick="like()" value="♥" id ="heart"/>
+					</c:otherwise>
+				</c:choose>
+				<p id="likecnt"> ${board_like} </p>
+			</td>
 		</tr>
 		<tr>
 			<th colspan="2">
@@ -57,8 +64,8 @@ function like() {
 		
  	var board_num = ${boardDetail.board_num}
 
-	console.log("고마워ㅠ");
-	console.log(board_num);
+	//console.log("고마워ㅠ");
+	//console.log(board_num);
 		
 	$.ajax({
 		url: "updateLike",
@@ -66,11 +73,13 @@ function like() {
 		data: {'board_num':board_num},
 		dataType: "JSON",
 		success: function (LikeCheck) {
-			alert("추천 성공");
+			
 			if (LikeCheck == 1) {
-				$("#heart").text("♥")
+				alert("추천 취소 완료");
+				$("#heart").val("♡")
 			}else{
-				$("#heart").text("♡")
+				alert("추천 완료");
+				$("#heart").val("♥")
 			}
 		},
 		error : function () {

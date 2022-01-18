@@ -126,6 +126,7 @@ public class CywController {
 		 CywDTO dto = service.boardDetail(board_num,"detail");
 		 model.addAttribute("boardDetail",dto);
 		 
+		 
 	 return "boardDetail"; 
 	 }
 	

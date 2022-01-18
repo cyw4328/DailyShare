@@ -18,6 +18,10 @@ public interface ShjDAO {
 	void deleteLike(int board_num, String mem_id);
 
 	void insertLike(int board_num, String mem_id);
+
+	void CancelBLike(int board_num);
+
+	void updateBLike(int board_num);
 	
 	
 

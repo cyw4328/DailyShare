@@ -176,8 +176,14 @@ public class CywService {
 		return dto;
 	}
 
+
 	// 구독자있는지 확인
 	public ArrayList<CywDTO> FeedPageListCall(String loginId) {
+
+	
+
+
+
 
 		return dao.FeedPageListCall(loginId);
 

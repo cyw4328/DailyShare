@@ -39,18 +39,30 @@
 	
 	<!-- 게시글 추천시 insert -->
 	<insert id="insertLike">
-		INSERT INTO likes (board_num, mem_id) VALUES (#{board_num}, #{mem_id})
+		INSERT INTO likes (board_num, mem_id) VALUES (#{param1}, #{param2})
 	</insert>
+	
+	<!-- 게시글 테이블에 좋아요 추가 -->
+	<update id="updateBLike" parameterType="int">
+		UPDATE board SET board_like = board_like+1 WHERE board_num = #{param1}
+	</update>
+	
 	
 	<!-- 한번 더 눌러서 삭제 -->
 	<delete id="deleteLike">
-		DELETE FROM likes where board_num = #{board_num} AND mem_id = #{mem_id}
+		DELETE FROM likes where board_num = #{param1} AND mem_id = #{param2}
 	</delete>
 	
+	<!-- 게시글 테이블에 좋아요 제거 -->
+	<update id="CancelBLike" parameterType="int">
+		UPDATE board SET board_like = board_like-1 WHERE board_num = #{param1}
+	</update>
+	
 	<!-- 좋아요 유무 확인 -->
-	<select id="LikeCheck" parameterType="com.daily.share.dto.ShjDTO" resultType="com.daily.share.dto.ShjDTO">
-		SELECT count(*) FROM likes WHERE board_num = {param2} AND mem_id = {param3}
+	<select id="LikeCheck"  resultType="int">
+		SELECT count(rec_num) FROM likes WHERE board_num = #{param1} AND mem_id = #{param2}
 	</select>
 	
+
 	
 </mapper>

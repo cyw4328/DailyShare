@@ -7,6 +7,9 @@
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
    <link rel="stylesheet" type="text/css" href="resources/css/HS.css">
    <style>
+   li{
+   list-style:none;
+   }
    *{margin: 0 auto;}
    .container{
    		background: #ccc;
@@ -155,10 +158,126 @@ font-size: 13px;
 }
 
 
+<!----------------------------------------------------------------------------------------------------------->
+
+.list_Story{
+	list-style:none;
+}
 
 
+.list_Story li {
+    position: relative;
+    width: 100%;
+   list-style:none;
+}
+
+.boardImg{
+	display: block;
+	float: right;
+	position: relative;
+	width: 128px;
+	height: 128px;
+	padding: 0px;
+	margin: 0 0 0 46px;
+}
 
 
+.section_list {
+	border-top:1px solid #cecece;
+	border-bottom:1px solid #cecece;
+   	width: 1000px;
+   	position: relative;
+   	top:950px;
+   	left: 0px;
+   	height: 200px;
+   	
+}
+
+    .boardA{
+   	position: relative;
+   	top:25px;
+   	left:0px;
+   	text-decoration : none;
+   	
+   }
+   
+   .board_title{
+   	display: block;
+    overflow: hidden;
+    position: absolute;
+    max-width: 500px;
+	top:0px;
+	left:158px;
+    font-size: 22px;
+    line-height: 1;
+    color: #000;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+   }
+   
+   .boardSTxt{
+    position: absolute;
+    top: 60px;
+    left: 158px;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    width: 564px;
+    max-height: 44px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 15px;
+    color: #777;
+    line-height: 22px;
+    padding: 0 0 0 1px;
+    }
+    
+    .innerData{
+    	font-size: 13px;
+    	color: #909090;
+    	border-bottom: 1px solid #909090;
+    }
+    
+    .screenOut{
+	    font-size: 13px;
+	    line-height: 13px;
+	    font-family: fontARD;
+	    color: #909090;
+	    position: absolute;
+	    top:60px;
+	    left: 0p;
+	    width: 50px;
+   }
+   
+   .boardBlogId{
+   		position: absolute;
+   		top:120px;
+   		left:158px;
+   		max-width: 300px;
+   		text-overflow: ellipsis;
+   		white-space: nowrap;
+   		color: black;
+   		font-size: 14px;
+   }
+   
+   .boardLike{
+   		font-size: 14px;
+   		position: absolute;
+   		top:80px;
+   		left:0px;
+   		width: 60px;
+   		color: black;
+   }
+   
+   .theBogi{
+   	
+
+   }
+
+	.likeCnt{
+		color: red;
+	}   
    </style>
 <body>
 <%@ include file="headerShs_login.jsp"%>
@@ -167,7 +286,24 @@ font-size: 13px;
 	<div id="mainBanner"></div>
 	<div id="CateBg"></div>
 	
-
+	<div>
+		<form action="ForumSearch" method="POST">
+     		<table>
+     			<tr>
+     				<td>
+     					<select name="SearchScope">
+     						<option selected="selected" value="All">전체</option>
+     						<option value="User">작성자</option>
+     						<option value="subCont">제목+내용</option>
+     					</select>
+     					<input type="text" name="ForumSearch"/>
+     					<input type="submit" value="검색"/>
+     				</td>
+     			</tr>
+     		</table>
+     	</form>
+	</div>
+	
 
 
 	
@@ -198,7 +334,7 @@ font-size: 13px;
 									</div>
 									<div class="ContTxt">
 										<div class="ContSmall">	
-												<span style=""> 중카테</span>
+												<span>중카테</span>
 												<span>좋아요</span>
 												<span style="color: red">5</span>
 											</dl>
@@ -263,14 +399,49 @@ font-size: 13px;
 				</ul>
 		</div>
 
-	</div>
 
-	<div class="boardListShs">
-			ggg
-			
-	</div>
-
-
+	</div> 
+<div class="section_list">
+						<ul class = "list_Story">
+							<li>
+								<a target="_blank" href="#" class = "boardA">
+									<div class ="boardImg">
+										<img src="resources/images_shs/ContDe00.png" width ="128px" height="128px" alt="boardImg" class = "thumb_g">
+									</div>
+									<div class="boardCont">
+										<div class="boardCate">
+											<dl class="listData">
+												<dd>
+													<span class="innerData">중카테</span>
+												</dd>
+											</dl>
+											<dl class="listData">
+												<dd>
+													<span class="screenOut">3시간전</span>
+												</dd>
+											</dl>
+											<dl class="boardLike">
+												<span>공감</span>
+												<span class="likeCnt">6</span>
+												
+											</dl>
+										</div>
+										<strong class="board_title">
+											<span>집에가고싶다.집에가고싶다.집에가고싶다.집에가고싶다.</span>
+										</strong>
+										<p class="boardSTxt">꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ</p>					
+									</div>
+									<div class="boardBlogId">
+										<span>아이디</span>
+										<span>by 블로그 이름이다</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+						
+					</div>
+					<button class="theBogi">더보기</button>
+					
 
 </body>
 <script>

@@ -58,6 +58,8 @@ public interface CywDAO {
 	ArrayList<CywDTO> ForumSearch(String forumSearch, String searchScope);
 	
 
+	
+
 
 	
 

@@ -60,10 +60,13 @@ public class ShjController {
 	}
 	
 	//추천
+	//session.setAttribute 는 세션 아이디를 지정해주기 위해서 설정.
+	//실제로 할때는 뺄것.
 	@ResponseBody
 	@RequestMapping(value = "/updateLike", method = RequestMethod.GET)
 	public int updateLike (@RequestParam int board_num, HttpSession session) {
-
+			session.setAttribute("loginId", "admin");
+			
 			String mem_id = (String) session.getAttribute("loginId");
 			
 			logger.info("번호 : "+ board_num + ", sessionID : "+mem_id);
@@ -72,11 +75,12 @@ public class ShjController {
 			
 			logger.info("LikeCheck : "+LikeCheck);
 			
-			if (LikeCheck == 2) {
+			if (LikeCheck == 1) {
 				service.deleteLike(board_num, mem_id);
+				service.CancelBLike(board_num);
 			}else {
 				service.insertLike(board_num, mem_id);
-				
+				service.updateBLike(board_num);
 			}
 				
 		return LikeCheck;

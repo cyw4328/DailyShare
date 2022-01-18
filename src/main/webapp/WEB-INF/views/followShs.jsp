@@ -86,20 +86,17 @@
 			<c:forEach var="item" items="${list}">
 				<tr>
 					<!--  <td>${item.mem_blog}</td> -->
-					<td class="subId">${item.sub_id}</td>
+					<td class="subId">${item.mem_id}</td>
 					<td>
 
-						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" onclick="followCall()"/> 
+						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" /> 
 						<%-- <button class="followBtn" id="${item.sub_num}">구독하기</button> --%>
 						<script>
-						var $sub_id = '${item.sub_id}';
 						var id ='#'+${item.sub_num};
 						
 						
+						var $mem_id = '${item.mem_id}';
 
-						$(id).on('click', function() {
-							follow(false);
-						});
 						
 						
 						
@@ -107,7 +104,7 @@
 						$.ajax({
 							type:'get',
 							url:'followBtnShs',
-							data:{'sub_id':$sub_id},
+							data:{'mem_id':$mem_id},
 							dataType:'JSON',
 							success: function(data) {
 								if (data.result>0) {
@@ -122,38 +119,16 @@
 							
 						});
 						
-						var BtnVal = $('.followBtn').val();
-						function followCall(){
-							console.log('스크립트 테스트');
-							if((BtnVal) == '구독하기'){	
-								console.log('구독 테스트');
-								
-								
-								$.ajax({
-									type:'post',
-									url:'followPlusShs',
-									data:{'sub_id':$sub_id},
-									dataType:'JSON',
-									success: function(data) {
-										if (data.result>0) {
-											//$(id).val('구독중');
-											$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
-											
-										}
-									},
-									error: function(e) {
-										console.log(e);
-									}
-									
-								});
-								
-								
-								
-							}
-						}
+						
 							
 							
 						
+						
+						
+						
+
+						
+
 							
 						
 						
@@ -182,6 +157,7 @@
 </body>
 <script>
 
+
  $('.Follow').click(function(){
 	 location.href = "/share/followShs";
 });
@@ -194,7 +170,42 @@ $('.Following').click(function(){
 
 
 
-
+var BtnVal = '';
+$('.followBtn').click(function followCall(){
+	console.log($(this).parent().prev().text());
+	BtnVal = $(this).val();
+	console.log('스크립트 테스트'+BtnVal);
+	
+	var $mem_id = $(this).parent().prev().text();
+	if((BtnVal) == '구독하기'){	
+		console.log('구독 테스트');
+		console.log(BtnVal);
+		
+		$.ajax({
+			type:'post',
+			url:'followPlusShs',
+			data:{'mem_id':$mem_id},
+			dataType:'JSON',
+			success: function(data) {
+				if(data.result > 0){
+				console.log(data.result);
+				//$(BtnVal).html('<input class="UnfollowBtn" id="${item.sub_num}" type="button" value="구독중" />');
+				location.href="/share/followShs";
+				//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
+				}	
+				
+			},
+			error: function(e) {
+				console.log(e);
+			}
+			
+		}); 
+	}
+		
+		
+		
+	
+});
 
 
 

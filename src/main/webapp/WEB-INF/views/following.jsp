@@ -85,34 +85,38 @@
 			<c:forEach var="item" items="${list}">
 				<tr>
 					<!--  <td>${item.mem_blog}</td> -->
-					<td> ${item.mem_id} 블로거</td>
+					<td> ${item.sub_id}</td>
 					<td>
 						
 						
-						
-						<input class="followBtn" name = "followBtn"  id="${item.mem_id}" type="button" value="구독하기" />
+						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" /> 
+						<!--  <input class="followBtn" name = "followBtn"  id="${item.mem_id}" type="button" value="구독하기" />-->
 						<script>
-						var $sub_id = '${item.sub_id}';
 						var id ='#'+${item.sub_num};
+						var $mem_id = '${item.sub_id}';
 
+						
 						
 						
 						console.log('스크립트 테스트');
 						$.ajax({
 							type:'get',
 							url:'followBtnShs',
-							data:{'sub_id':$sub_id},
+							data:{'mem_id':$mem_id},
 							dataType:'JSON',
 							success: function(data) {
+								console.log(data.result);
 								if (data.result>0) {
 									$(id).val('구독중');
+									//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
+									
 								}
 							},
 							error: function(e) {
 								console.log(e);
 							}
 							
-						})
+						});
 						
 
 						

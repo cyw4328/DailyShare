@@ -15,187 +15,196 @@ import com.daily.share.dto.CywDTO;
 public class CywService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Autowired CywDAO dao;
-	
-	public void bigCategoryAdd(String mainCategoryAdd,int mainAdminadmin) {
-		
-		logger.info("서비스 :{}",mainCategoryAdd,mainAdminadmin);
-		
-		dao.bigCategoryAdd(mainCategoryAdd,mainAdminadmin);
-		
+	@Autowired
+	CywDAO dao;
+
+	public void bigCategoryAdd(String mainCategoryAdd, int mainAdminadmin) {
+
+		logger.info("서비스 :{}", mainCategoryAdd, mainAdminadmin);
+
+		dao.bigCategoryAdd(mainCategoryAdd, mainAdminadmin);
+
 	}
 
 	public ArrayList<CywDTO> bigCategoryList() {
-		
+
 		ArrayList<CywDTO> mainCategory = dao.bigCategoryList();
-		logger.info("서비스 값?:{}",mainCategory);
-		
+		logger.info("서비스 값?:{}", mainCategory);
+
 		return mainCategory;
 	}
 
-
 	public ArrayList<CywDTO> midCategoyrList() {
-		
+
 		ArrayList<CywDTO> midCategory = dao.midCategoyrList();
-		
+
 		return midCategory;
 	}
 
-
 	public void middleCategoryAdd(String middleCategoryAdd, int daeCategory, int middle_admin) {
-		
-		dao.middleCategoryAdd(middleCategoryAdd,daeCategory,middle_admin);
+
+		dao.middleCategoryAdd(middleCategoryAdd, daeCategory, middle_admin);
 	}
-	
 
 	public void menuAdd(String menuAddName, int daeCategoryMenu, int midCategoryMenu, String id) {
-		
-		dao.menuAdd(menuAddName,daeCategoryMenu,midCategoryMenu,id);
-		
+
+		dao.menuAdd(menuAddName, daeCategoryMenu, midCategoryMenu, id);
+
 	}
 
 	public ArrayList<CywDTO> menuList() {
-		
+
 		ArrayList<CywDTO> menuList = dao.menuList();
 		return menuList;
-		
+
 	}
 
-
 	public HashMap<String, Object> bigCateFk(String main_num) {
-		
-		logger.info("서비스삭제요청값:{}",main_num);
+
+		logger.info("서비스삭제요청값:{}", main_num);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int row= dao.bigCateFk(main_num);
-		logger.info("일치하는 메뉴 수 : {}",row);
-		
+		int row = dao.bigCateFk(main_num);
+		logger.info("일치하는 메뉴 수 : {}", row);
+
 		if (row == 0) {
-			//삭제다오
+			// 삭제다오
 			dao.bigCategoryDel(main_num);
 		}
 		map.put("row", row);
-		
+
 		return map;
-		
+
 	}
 
 	public HashMap<String, Object> midCateFk(String mid_num) {
-		logger.info("서비스삭제요청값:{}",mid_num);
+		logger.info("서비스삭제요청값:{}", mid_num);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int row= dao.midCateFk(mid_num);
-		logger.info("일치하는 메뉴 수 : {}",row);
-		
+		int row = dao.midCateFk(mid_num);
+		logger.info("일치하는 메뉴 수 : {}", row);
+
 		if (row == 0) {
-			//삭제다오
+			// 삭제다오
 			dao.midCategoryDel(mid_num);
 		}
 		map.put("row", row);
-		
+
 		return map;
 	}
 
 	public HashMap<String, Object> menuFk(String menu_num) {
-		logger.info("서비스삭제요청값:{}",menu_num);
+		logger.info("서비스삭제요청값:{}", menu_num);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		int row= dao.menuCateFk(menu_num);
-		logger.info("일치하는 메뉴 수 : {}",row);
-		
+		int row = dao.menuCateFk(menu_num);
+		logger.info("일치하는 메뉴 수 : {}", row);
+
 		if (row == 0) {
-			//삭제다오
+			// 삭제다오
 			dao.menuDel(menu_num);
 		}
 		map.put("row", row);
-		
+
 		return map;
 	}
 
-	
-	
-	
 	public HashMap<String, Object> midCategoryCall(String selectValue) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
+
 		ArrayList<CywDTO> list = dao.midCategoryCall(selectValue);
 		map.put("list", list);
-		
+
 		return map;
 	}
 
 	public HashMap<String, Object> middleListCall(String middleListCall) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
+
 		ArrayList<CywDTO> list = dao.middleListCall(middleListCall);
 		map.put("list", list);
-		
+
 		return map;
 	}
 
 	public CywDTO boardDetail(int board_num, String method) {
-		
+
 		if (method.equals("detail")) {
 			dao.upHit(board_num);
 		}
-		
+
 		return dao.boardDetail(board_num);
 	}
 
 	public CywDTO updateForm(int board_num) {
-		
-		
-		
+
 		return dao.boardDetail(board_num);
 	}
 
 	public void boardDel(int board_num) {
-		
+
 		dao.boardDel(board_num);
-		
+
 	}
 
 	public void update(HashMap<String, String> params) {
-		
+
 		dao.update(params);
-		
-		
+
 	}
-	
-	
-	
-	
 
 	public void ForumBoardAdd(String forumSub, String forumCont, int menuForum, String loginId) {
-		
-		dao.ForumBoardAdd(forumSub,forumCont,menuForum,loginId);
-		
+
+		dao.ForumBoardAdd(forumSub, forumCont, menuForum, loginId);
+
 	}
 
 	public HashMap<String, Object> ForumBoardList(int currPage, int pagePerCnt) {
-		
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0;
+
+		int offset = ((currPage - 1) * pagePerCnt - 1) >= 0 ? ((currPage - 1) * pagePerCnt - 1) : 0;
 		int end = 0;
-		
-		ArrayList<CywDTO> list = dao.ForumBoardList(pagePerCnt,offset);
-		
+
+		ArrayList<CywDTO> list = dao.ForumBoardList(pagePerCnt, offset);
+
 		map.put("list", list);
-		
+
 		return map;
 	}
 
 	public ArrayList<CywDTO> ForumSearch(String forumSearch, String searchScope) {
-		ArrayList<CywDTO> dto = dao.ForumSearch(forumSearch,searchScope);
-		logger.info("서치?:{}",dto);
+		ArrayList<CywDTO> dto = dao.ForumSearch(forumSearch, searchScope);
+		logger.info("서치?:{}", dto);
 		return dto;
 	}
 
+	// 구독자있는지 확인
+	public ArrayList<CywDTO> FeedPageListCall(String loginId) {
 
+		return dao.FeedPageListCall(loginId);
 
+	}
 
+	// 구독자수 알아오기
+	public int subCount(String loginId) {
 
-
-
+		return dao.subCount(loginId);
+	}
 
 	
-	
+	public HashMap<String, Object> feedListCall(int currPage, int pagePerCnt, String loginId){ 
+		
+		HashMap<String, Object> map = new HashMap<String,Object>();
+	 
+	 //어디서부터 보여줘야 하는가? 
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0; logger.info("offset:{}",offset);
+	 
+	 int totalCount = dao.allCount(loginId); // bbs 테이블의 모든 글의 갯수 // 만들 수 있는 총 페이지의 수(전체 갯수 / 보여줄 갯수) 
+	 int range = totalCount%pagePerCnt > 0 ? (totalCount/pagePerCnt+1) : (totalCount/pagePerCnt);
+	 
+	 logger.info("총 갯수 : {}",totalCount); logger.info("만들수 있는 총 페이지 :{}",range);
+	 
+	 map.put("pages", range); map.put("list",dao.feedListCall(pagePerCnt,offset,loginId));
+	 
+	 return map; }
+	 
+
 }

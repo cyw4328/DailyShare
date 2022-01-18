@@ -4,23 +4,202 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
+    <script src="resources/js/jquery.twbsPagination.js"></script>
+
     <style>
+    #gudokJa{
+    	position: absolute;
+    	right: 550px;
+    	top: 190px;
+    }
+    #gudokJa:hover{
+		color: red;
+		cursor: pointer;
+    }
+    #FeedPageMain{
+    	position: absolute;
+    	left: 400px;
+    	top: 150px;
+    }
+    #gudokjaBoard{
+    	/* background-color: black; */
+    	width: 1000px;
+    	height: 600px;
+    	position: absolute;
+    	top: 300px;
+    	left: 400px;
+    	display: none;
+    }
+    
+        #gudokjaBoardNone{
+    	/* background-color: black; */
+    	width: 1000px;
+    	height: 600px;
+    	position: absolute;
+    	top: 300px;
+    	left: 400px;
+    	display: none;
+    }
+    
+    #feedTable{
+    	width: 1000px;
+    	height: 500px;
+    	position: absolute;
+    	/* border: 1px solid black; */
+    	text-align: center;
+    }
+    #feedCont{
+    	border-bottom: 3px black;
+    }
+    #feedTr{
+    	border-bottom: 2px solid black;
+    }
+	
+	
     </style>
 </head>
 <body>
 	<%@ include file="headerShs_login.jsp"%>
-
-	<h2>FEED</h2>
-    <p>내가 구독하고 있는 글 입니다.</p>
-	<p>구독중<b>0</b><p>
-	<hr/>
-	<table>
-		<tr>
+	
+	<div>
+		<div id="FeedPageMain">
+			<p><b>FEED</b></p>
+	    	<h4>내가 구독하고 있는 글 입니다.</h4>	
+		</div>
+		<div id="gudokJa">
+			<p>구독중 : ${subCont }<p>
+		</div>
+	</div>
+	
+	<div id="gudokjaBoard">
+		<table id="feedTable">
 		
-		</tr>
-	</table>
+			<tbody id="list"></tbody>
+		
+			<tr>
+				<td colspan="3" id="paging">
+					<div class="container">                           
+               			<nav aria-label="Page navigation" style="text-align:center">
+                  			<ul class="pagination" id="pagination"></ul>
+              			</nav>               
+            		</div>
+				</td>
+			</tr>
+		
+			<%-- <c:forEach var="item" items="${subsBoard}">
+					<tr id="feedCont">
+						<td>작성자 : ${item.mem_id}<br/>${item.board_date}<br/>좋아요 : ${item.board_like}</td>
+						<td>제목 : ${item.board_subject}<br/>내용 : ${item.board_cont }<br/></td>
+						<td><img src="/photo/${item.board_thumFileName}" width="100px"/></td>
+					</tr>
+			</c:forEach> --%>
+		</table>
+	</div>
+	
+	<div id="gudokjaBoardNone">
+		<h1>로그인 후 사용 할 수 있습니다.</h1>
+		<h3>오늘을 공유하는 Daily Share!</h3>
+	</div>
 </body>
 <script>
+
+display();
+
+	$('#gudokJa').click(function() {
+		window.location.href="./";
+	})
+	
+function display() {
+		var loginId = '<%=(String)session.getAttribute("loginId")%>';
+		
+		if (loginId == "null") {
+			/* $('#gudokjaBoardNone').css{'display':'block'}; */
+			var None = document.getElementById('gudokjaBoardNone');
+			None.style.display = 'block';
+		}else{
+			var True = document.getElementById('gudokjaBoard');
+			True.style.display = 'block';	
+		}
+		
+}
+	
+	
+	
+	
+	
+	var currPage = 1;
+	var totalPage = 2;
+	
+	listCall(currPage,10);
+	
+	function listCall(page,cnt) {
+		
+		// 페이지 도착하자마자 ajax 실행
+		$.ajax({
+			type:'POST',
+			url:'feedListCall',
+			data:{'page':page,'cnt':cnt}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+			dataType:'JSON',
+			success:function(data) {
+				
+				totalPage = data.pages;
+				listDraw(data.list);
+				if (data.list.length > 0) {
+					$('#pagination').twbsPagination({
+						startPage:currPage, // 현재 페이지
+						totalPages:totalPage, // 만들수 있는 총 페이지 수
+						visiblePages:5, // [1][2][3]... 이걸 몇개까지 보여줄 것인가? 밑에 페이지클릭숫자
+						onPageClick:function(event,page) { // 해당 페이지 번호를 클릭 했을때 일어날 일들
+							console.log(event); // 현재 일어나는 클릭 이벤트 관련 정보들
+							console.log(page); // 몇 페이지를 클릭 했는지에 대한 정보
+							listCall(page,10);
+						}
+					
+					});	
+				}
+			
+				
+				
+			},
+			error:function(e) {
+				console.log(e);
+			}
+		});
+	}
+
+	
+	function listDraw(list) {
+        var content = '';
+        list.forEach(function(item,board_num) {
+        	var date = new Date(item.board_date);
+   		 	content +='<tr onclick=location.href="./boardDetail?board_num='+item.board_num+'" style="cursor:hand">';
+			content += '<td  id="forumTd">'+item.mem_id+'<br/>'
+			+"작성일 : "+date.getFullYear()+"-"
+		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
+		      +("0" + date.getDate()).slice(-2)+" "
+		      +("0" + date.getHours()).slice(-2)+":"
+		      +("0" + date.getMinutes()).slice(-2)+":"
+		      +("0" + date.getSeconds()).slice(-2)+'<br/>'+"좋아요 : "+item.board_like+'</td>';
+			content += '<td>'+'<b>'+item.board_subject+'</b>'+'<br/>'+item.board_cont+'</td>';
+			content += '<td>'+'<img src="/photo/'+item.board_thumFileName+'"width="100px">'+'</td>'
+			content += '</tr>'+'<br/>';
+        });
+        $('#list').empty();
+        $('#list').append(content);
+    }
+	
+	
+	<%-- <c:forEach var="item" items="${subsBoard}">
+	<tr id="feedCont">
+		<td>작성자 : ${item.mem_id}<br/>${item.board_date}<br/>좋아요 : ${item.board_like}</td>
+		<td>제목 : ${item.board_subject}<br/>내용 : ${item.board_cont }<br/></td>
+		<td><img src="/photo/${item.board_thumFileName}" width="100px"/></td>
+	</tr>
+</c:forEach> --%>
+
+
 </script>
 </html>

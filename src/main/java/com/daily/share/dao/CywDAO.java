@@ -57,6 +57,19 @@ public interface CywDAO {
 	
 	ArrayList<CywDTO> ForumSearch(String forumSearch, String searchScope);
 	
+	ArrayList<CywDTO> FeedPageListCall(String loginId);
+	int subCount(String loginId);
+	
+	
+	
+	 ArrayList<CywDTO> feedListCall(int pagePerCnt, int offset, String loginId);
+	 int allCount(String loginId);
+	 
+	
+
+	
+
+	
 
 
 	

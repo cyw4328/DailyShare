@@ -201,7 +201,7 @@ font-size: 13px;
 												<span style=""> 중카테</span>
 												<span>좋아요</span>
 												<span style="color: red">5</span>
-											</dl>
+											</dlv>
 										</div>
 											<strong class="ContTitle">
 												<span>MZ세대, 딩크족 알아보기알라라라 김치수제비 알리오올리오 까르보나라</span>

@@ -164,6 +164,14 @@ public class CywDTO {
 	private int board_like;
 	private int board_scope;
 	private int board_bilnd;
+	private String board_thumFileName;
+	
+	public String getBoard_thumFileName() {
+		return board_thumFileName;
+	}
+	public void setBoard_thumFileName(String board_thumFileName) {
+		this.board_thumFileName = board_thumFileName;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -220,6 +228,21 @@ public class CywDTO {
 	}
 	
 
+	private int sub_num;
+	private String sub_id;
+	public int getSub_num() {
+		return sub_num;
+	}
+	public void setSub_num(int sub_num) {
+		this.sub_num = sub_num;
+	}
+	public String getSub_id() {
+		return sub_id;
+	}
+	public void setSub_id(String sub_id) {
+		this.sub_id = sub_id;
+	}
+	
 	
 	
 }

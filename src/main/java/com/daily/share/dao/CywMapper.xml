@@ -118,6 +118,21 @@
 	</choose>
 	</select>
 	
+	<select id="FeedPageListCall" resultType="com.daily.share.dto.CywDTO">
+		select *from (select sub_id from subscription where mem_id=#{param1}) s left outer join board b on s.sub_id = b.mem_id where board_blind=0 order by board_date desc
+	</select>
 	
+	<select id="subCount" resultType="Integer">
+		SELECT count(sub_id) FROM subscription WHERE mem_id = #{param1}
+	</select>
+	
+	<select id="feedListCall" resultType="com.daily.share.dto.CywDTO">
+		select *from (select sub_id from subscription where mem_id=#{param3}) s left outer join board b on s.sub_id = b.mem_id where board_blind=0 order by board_date desc LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="allCount" resultType="int">
+		select COUNT(board_num) from (select sub_id from subscription where mem_id=#{param1}) s left outer join board b on s.sub_id = b.mem_id where board_blind=0 order by board_date desc
+	</select>
+
 	
 </mapper>

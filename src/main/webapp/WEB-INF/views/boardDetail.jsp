@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="button" onclick="location.href='./cyw'" value="리스트"/>
+				<input type="button" onclick="location.href='./ForumBoard'" value="리스트"/>
 				<input type="button" onclick="location.href='./updateForm?board_num=${boardDetail.board_num}'" value="수정"/>
 				<input type="button" onclick="del()" value="삭제"/>
 				<input type="button" onclick="" value="공유하기"/>	

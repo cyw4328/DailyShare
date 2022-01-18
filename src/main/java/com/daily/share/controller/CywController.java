@@ -206,11 +206,33 @@ public class CywController {
 	 
 	 // 피드페이지 이동
 	 @RequestMapping(value = "/FeedPage", method = RequestMethod.GET)
-	 public String FeedPage(Model model) {
-
+	 public String FeedPage(Model model,HttpSession session) {
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 ArrayList<CywDTO> dto = service.FeedPageListCall(loginId);
+		 logger.info("구독자가져왔니?:{}",dto);
+		 model.addAttribute("subsBoard",dto);
+		 
+		 //구독자 수 알아오기
+		 int subCont = service.subCount(loginId);
+		 model.addAttribute("subCont",subCont);
+		 
 	 return "FeedPage"; 
 	 }
 	 
-	 
+	 // 피드페이지 리스트 불러오기
+		
+		 @RequestMapping(value = "/feedListCall", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> feedListCall(Model model,@RequestParam String page,@RequestParam String cnt,HttpSession session){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+		 int currPage = Integer.parseInt(page); 
+		 int pagePerCnt =Integer.parseInt(cnt);
+		 
+		 return service.feedListCall(currPage,pagePerCnt,loginId); 
+		 }
+		 
 	 
 }

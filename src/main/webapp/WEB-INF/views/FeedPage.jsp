@@ -15,7 +15,11 @@
     <p>내가 구독하고 있는 글 입니다.</p>
 	<p>구독중<b>0</b><p>
 	<hr/>
-	
+	<table>
+		<tr>
+		
+		</tr>
+	</table>
 </body>
 <script>
 </script>

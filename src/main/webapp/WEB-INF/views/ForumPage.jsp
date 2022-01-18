@@ -9,13 +9,17 @@
     <style>
     	.ForumInput{
     		 text-align: center; 
+    		 font-size: 20px;
+    		 padding: 15px 200px;
     	}
-
-    /* 	#ForumBoardListTable{
-    		border: 1px solid black;
-    	} */
+    	p{
+    		font-size: 15px;
+		} 
     	#forumTd{
     		border: 1px solid black;
+    		width: 500px;
+    		height: 100px;
+    		text-align: center;
     	}
     	#moreBtn{
     		position: absolute;
@@ -24,6 +28,9 @@
     		width: 100px;
     		height: 50px;
     		color: white;
+    	}
+    	#ForumBoardAdd{
+    		padding: 15px 200px;
     	}
     	
     </style>
@@ -35,8 +42,8 @@
         <div class="ForumInput">
         <h2>FORUM</h2>
         <p>자유롭게 이야기를 나눠보세요</p>
-        <div class="u-form u-form-1">
-	    	<form action="ForumBoardAdd" method="POST">
+ 		</div>
+	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd">
 	    		<input type="hidden" value="21" name="MenuForum"/>
         		<table>
 		         	<tr>
@@ -52,12 +59,12 @@
 		         	<tr>
 		         		<td><p>파일첨부</p></td>
 		         		<td><input type="file" value="사진은 3장까지만 첨부 가능합니다."></td>	
-		         		<td><input type="submit" value="등록하기"></td>	
+		         		<td><button id="ForomBoardCheck">등록하기</button></td>	
 		         	</tr>
 		         </table>
           	</form>
-          </div>
-		</div>
+         
+
 		<br/>
         <hr/>
         <br/>
@@ -79,16 +86,17 @@
      	</form>
      
    		<br/>
-        <hr/>
-        <br/>  
-     
+
+     	<div>
         <table id="ForumBoardListTable">
+        	<thead></thead>
         	<tbody class="ForumBoardList">
         	</tbody>
 		</table>
 		<br/>
 		<button onclick="more()" id="moreBtn">더보기</button>
 		<br/>
+		</div>
 
 </body>
 <script>
@@ -128,20 +136,7 @@ function ForumBoardList(list) {
 	for (var i = 0; i < list.length; i++) {
 		
 		var date = new Date(list[i].board_date);
-		
-		//console.log(list[i]);
-		/* content += '<a href="./boardDetail?board_num='+list[i].board_num+'">'+'<tr>';
-		content += '<td>'+list[i].mem_id
-		+"작성일 : "+date.getFullYear()+"-"
-	      +("0"+(date.getMonth()+1)).slice(-2)+"-"
-	      +("0" + date.getDate()).slice(-2)+" "
-	      +("0" + date.getHours()).slice(-2)+":"
-	      +("0" + date.getMinutes()).slice(-2)+":"
-	      +("0" + date.getSeconds()).slice(-2)+
-			"공감수 : "+list[i].board_like+'</td>'+'</tr>';
-		content += '<tr>'+'<td>'+"제목 : "+list[i].board_subject+'<br/>'+"내용 : "+list[i].board_cont+'<br/>'+"작성자 : "+list[i].mem_id+'</td>';
-		content += '</tr>'+'</a>'+'<hr/>'; */
-		
+			
 		 content +='<tr onclick=location.href="./boardDetail?board_num='+list[i].board_num+'" style="cursor:hand">';
 			content += '<td  id="forumTd">'+list[i].mem_id+'&nbsp;&nbsp;&nbsp;&nbsp;'
 			+"작성일 : "+date.getFullYear()+"-"
@@ -156,9 +151,20 @@ function ForumBoardList(list) {
 		
 
 	}
-	/* $('.ForumBoardList').empty(); */
 	$('.ForumBoardList').append(content);
 };
+
+$('#ForomBoardCheck').click(function() {
+	var loginId = '<%=(String)session.getAttribute("loginId")%>';
+	
+	if (loginId == "null") {
+		alert("로그인이 필요한 기능입니다.");
+	}else{
+		$('#ForomBoardCheck').submit();
+		
+	}
+	
+})
 
 
 </script>

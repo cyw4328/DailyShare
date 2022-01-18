@@ -138,7 +138,7 @@ public class CywController {
 	 return "updateForm"; 
 	 }
 	 
-	// 수정
+	// 게시글수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Model model, @RequestParam HashMap<String, String> params) {
 		logger.info("update 요청:{}",params);
@@ -210,6 +210,7 @@ public class CywController {
 
 	 return "FeedPage"; 
 	 }
+	 
 	 
 	 
 }

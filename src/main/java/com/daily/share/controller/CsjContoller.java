@@ -34,9 +34,9 @@ public class CsjContoller {
 	//댓글 파트
 	@RequestMapping(value = "/csj_com", method = RequestMethod.GET)
 	public String csj_com(Model model, HttpSession session) {
-		session.setAttribute("loginId", "admin");
+		//session.setAttribute("loginId", "admin");
 		model.addAttribute("loginId",session.getAttribute("loginId"));
-		int board_Num = 14;
+		int board_Num = 14; //게시글 번호 받아와 주세요
 		ArrayList<CsjCommentDTO> comList = service.csj_com(board_Num);
 		logger.info("댓글 목록 요청 : {}",comList);
 		model.addAttribute("comList",comList);
@@ -72,7 +72,8 @@ public class CsjContoller {
 	
 	//게시글 작성 파트
 	@RequestMapping(value = "/csj_write", method = RequestMethod.GET)
-	public String csj(Model model){
+	public String csj_write(Model model, HttpSession session){
+		session.setAttribute("loginId", "admin");
 		return "csjWrite";
 	}
 	
@@ -81,7 +82,7 @@ public class CsjContoller {
 	public String csj_writeForm(Model model,HttpSession session) {
 		logger.info("글작성 요청");
 		String loginId = (String) session.getAttribute("loginId");
-		model.addAttribute("loginId",loginId);
+		model.addAttribute("mem_id",loginId);
 		ArrayList<CsjMenuDTO> menuDTO =service.csj_menuCall(loginId);
 		logger.info("가져온 메뉴 : {}",menuDTO);
 		model.addAttribute("menu", menuDTO);
@@ -100,8 +101,8 @@ public class CsjContoller {
 	
 	
 	//회원 리스트 불러오기
-	@RequestMapping(value = "/csj", method = RequestMethod.GET)
-	public String csj(Model model,HttpSession session) {
+	@RequestMapping(value = "/csj_memList", method = RequestMethod.GET)
+	public String csj_memList(Model model,HttpSession session) {
 		String loginId=(String) session.getAttribute("loginId");
 		ArrayList<CsjMembersDTO> memberList= service.testList();
 		model.addAttribute("memberList",memberList);
@@ -115,13 +116,19 @@ public class CsjContoller {
 	public String csj_blogMain(Model model,HttpSession session,@RequestParam String mem_id) {
 		logger.info("블로그 메인 이동 요청 : {}",mem_id);
 		model.addAttribute("mem_id",mem_id);
-			
+		
+		String mem_blog =service.blogName(mem_id);
+		logger.info("블로그 이름 요청 {}",mem_blog);
+		model.addAttribute("mem_blog",mem_blog);
+		
+		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
+		logger.info("메뉴 리스트만 요청 : {}",menu);
+		model.addAttribute("menu",menu);
+		
+		
 		ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
 		logger.info("헤드라인용 블로그 게시글/메뉴/사진 요청 : {}", boardList);
 		model.addAttribute("boardList",boardList);
-		for (CsjPersonalBlogDTO list : boardList) {
-			logger.info(list.getBoard_subject());
-		}
 		
 		return "csjBlogMain";
 	}
@@ -137,6 +144,42 @@ public class CsjContoller {
 		return service.csj_pagingList(currPage,pagePerCnt,mem_id);
 	}
 	
+	
+		//메뉴 글리스트 이동 요청
+	@RequestMapping(value = "/csj_menuMain", method = RequestMethod.GET)
+	public String csj_menuMain(Model model,HttpSession session,@RequestParam String mem_id,@RequestParam String menu_num) {
+		logger.info("메뉴 이동 요청 : {}/{}",mem_id,menu_num);
+		model.addAttribute("mem_id",mem_id);
+		model.addAttribute("menu_num",menu_num);
+		
+		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
+		logger.info("메뉴 리스트만 요청 : {}",menu);
+		model.addAttribute("menu",menu);
+		
+		ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
+		logger.info("메뉴글리스트용 블로그 게시글/메뉴/사진 요청 : {}", boardList);
+		model.addAttribute("boardList",boardList);
+
+		return "csjMenuMain";
+		}
+		
+		
+	@RequestMapping(value = "/csj_pagingListMenu", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> csj_pagingListMenu(@RequestParam String page,@RequestParam String cnt, @RequestParam String mem_id, @RequestParam String menu_num) {
+		logger.info("리스트 요청 : {}페이지, {}개 씩",page,cnt);
+		int currPage = Integer.parseInt(page);
+		int pagePerCnt = Integer.parseInt(cnt);
+		return service.csj_pagingListMenu(currPage,pagePerCnt,mem_id,menu_num);
+		}
+
+	
+	@RequestMapping(value = "/csj_detail", method = RequestMethod.GET)
+	public String csj_detail(Model model,HttpSession session) {
+
+		return "csjboardDetail";
+	}
+		
 	
 	
 	

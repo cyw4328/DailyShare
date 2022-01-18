@@ -42,7 +42,7 @@
 	
 	<!-- 메뉴 목록 불러오기 -->
 	<select id="csj_menuCall" resultType="com.daily.share.dto.CsjMenuDTO">
-		select menu_num,menu_name,menu_blind,mem_id,main_num,mid_num from menu where mem_id = #{param1}
+		select menu_num,menu_name,menu_blind,mem_id,main_num,mid_num from menu where mem_id = #{param1} and menu_blind=0
 	</select>
 	
 	
@@ -74,30 +74,45 @@
 	
 	<!-- 멤버 리스트 불러오기 -->
 	<select id="testList" resultType="com.daily.share.dto.CsjMembersDTO">
-		select mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_admin,mem_url,mem_out,mem_san,mem_blog from members;
+		select mem_id,mem_pw,mem_name,mem_email,mem_phone,mem_admin,mem_url,mem_out,mem_san,mem_blog from members where mem_out=0
 	</select>
 	
+	
+	
+	<select id="blogName" resultType="String">
+		select mem_blog from members where mem_id=#{param1}
+	</select>
 	
 	<!-- 개인 블로그에서 글 목록 불러오기 -->
 	<select id="boardCall" resultType="com.daily.share.dto.CsjPersonalBlogDTO">
 		select b.board_num,b.board_subject,b.board_cont,b.board_date,b.board_updateDate,b.board_views,b.board_like,b.board_scope,b.board_blind,b.mem_id,b.board_thumFileName
 			,m.menu_num,m.menu_name,m.menu_blind,m.main_num,m.mid_num 
-				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param1} order by  b.board_num desc
+				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param1} and b.board_blind=0 order by  b.board_num desc
 	</select>
 	
 	<!-- 블로그 페이징용 개수 확인 -->
 	<select id="csjAllCount" resultType="int">
-		select count(board_num) from board where mem_id = #{param1}
+		select count(board_num) from board where mem_id = #{param1} and board_blind=0 
 	</select>
 	
-	<!-- 페이징하면서 글 목록 불러오기 -->
+	<!-- 메인 페이징하면서 글 목록 불러오기 -->
 	<select id="pagingBoardCall" resultType="com.daily.share.dto.CsjPersonalBlogDTO">
 		select b.board_num,b.board_subject,b.board_cont,b.board_date,b.board_updateDate,b.board_views,b.board_like,b.board_scope,b.board_blind,b.mem_id,b.board_thumFileName
 			,m.menu_num,m.menu_name,m.menu_blind,m.main_num,m.mid_num 
-				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param3} order by  b.board_num desc limit #{param1} offset #{param2}
+				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param3} and b.board_blind=0  order by  b.board_num desc limit #{param1} offset #{param2}
 	</select>
 	
+	<!-- 메뉴글 페이징용 개수 확인 -->
+	<select id="csjAllCountMenu" resultType="int">
+		select count(board_num) from board where mem_id = #{param1} and menu_num =#{param2} and board_blind=0 
+	</select>
 	
+	<!-- 메뉴페이징하면서 메뉴글 목록 불러오기 -->
+	<select id="pagingBoardCallMenu" resultType="com.daily.share.dto.CsjPersonalBlogDTO">
+		select b.board_num,b.board_subject,b.board_cont,b.board_date,b.board_updateDate,b.board_views,b.board_like,b.board_scope,b.board_blind,b.mem_id,b.board_thumFileName
+			,m.menu_num,m.menu_name,m.menu_blind,m.main_num,m.mid_num 
+				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param3} and m.menu_num=#{param4} and b.board_blind=0  order by  b.board_num desc limit #{param1} offset #{param2}
+	</select>
 	
 	
 	<!-- 나를 구독중인 사람 목록 불러오기 -->

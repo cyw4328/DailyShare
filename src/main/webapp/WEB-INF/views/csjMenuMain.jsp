@@ -14,6 +14,13 @@
 	
 	
 	<style>
+	
+		a:link { color: black; text-decoration: none;}
+		a:visited { color: black; text-decoration: none;}
+		a:hover { color: black; text-decoration: none;}
+
+		
+		
 		#container_wrap{
 			position:relative;
 			width: 1400px;
@@ -45,7 +52,7 @@
 		}
 		#body_wrap{
 			width: 906px;
-			height: 1000px;
+			min-height: 400px;
 			border:1px solid black;
 			margin: 0 auto;
 		}
@@ -77,7 +84,6 @@
 		margin:0 auto;
 			
 		}
-		
 		.bodyNone{
 			margin: 100px;
 			text-align: center;
@@ -90,26 +96,6 @@
 <body>
 	<div id="container_wrap">
 		<%@ include file="csjBlogHead.jsp" %>
-	
-		<div id="headline_wrap">
-			<c:forEach items="${boardList}" var="boardList" begin="0" end="2">
-				<!-- 서버에서 path 설정해줘야 함 -->
-				<div class='headLine'>
-					<div class='headIMG'>
-						<c:if test="${not empty boardList.board_thumFileName }">
-							<img src="/postImageFolder/${boardList.board_thumFileName}" style="max-width:200px;max-height:150px;z-index:none;"/>
-						</c:if>
-						<c:if test="${empty boardList.board_thumFileName }">
-							<img src="/postImageFolder/noimage.png"  style="max-width:200px;max-height:150px; z-index:none;"/>
-						</c:if>
-					</div>
-					${boardList.board_subject}<br/>
-					${boardList.menu_name}<br/>
-					<fmt:formatDate value="${boardList.board_date}" pattern="yyyy. MM. dd HH:mm"/>
-				</div>		
-			</c:forEach>
-		</div>
-		
 		<div id="body_wrap">	
 		</div>	
 	
@@ -145,6 +131,7 @@
 	var currPage = 1;
 	var totalPage = 2;
 	var $mem_id = '${mem_id}';
+	var $menu_num = '${menu_num}'
 	
 	listCall(currPage,5);
 	
@@ -164,13 +151,14 @@
 		
 		$.ajax({
 			type:'get',
-			url: 'csj_pagingList',
-			data: {'page':page,'cnt':cnt,'mem_id':$mem_id},
+			url: 'csj_pagingListMenu',
+			data: {'page':page,'cnt':cnt,'mem_id':$mem_id,'menu_num':$menu_num},
 			dataType: 'JSON',
 			success: function(data) {
 				console.log(data);
 				totalPage = data.pages;
-				listDraw(data.list);
+				listDraw(data.list);					
+
 				
 				if (data.list.length>0) {
 					$('#pagination').twbsPagination({
@@ -193,10 +181,9 @@
 	}
 	function listDraw(list) {
 		var content = '';
+		
 		if (list.length>0) {
-			
 			list.forEach(function(item,board_num) {
-				
 				content += '<a href="./boardDetail?board_num='+item.board_num+'"><div class="body">';
 				content += '<div class="bodyIMG"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:230px;max-height:160px;z-index:none;"></div>';
 				content += '<spam class="bodySub">'+item.board_subject+'</spam>'
@@ -209,10 +196,8 @@
 	
 			});
 		}else {
-			$('#headline_wrap').remove();
 			content='<p class="bodyNone">게시글이 존재하지 않습니다.</p>'
 		}
-		
 	 	$('#body_wrap').empty();
 		$('#body_wrap').append(content);
 	}

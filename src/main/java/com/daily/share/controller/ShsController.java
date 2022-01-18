@@ -224,7 +224,7 @@ public String followingShs(Model model,HttpSession session) {
 
 
 
-  //구독 버튼
+  //구독 여부 확인
 @RequestMapping(value = "/followBtnShs", method = RequestMethod.GET)
 @ResponseBody
 public HashMap<String, Object>  followBtnShs(Model model,HttpSession session,@RequestParam String sub_id) {
@@ -232,12 +232,38 @@ public HashMap<String, Object>  followBtnShs(Model model,HttpSession session,@Re
 	return service.followBtnShs(mem_id,sub_id);
 }
 
-
-
-
+// 구독 추가
+//구독 버튼
+@RequestMapping(value = "/followPlusShs", method = RequestMethod.POST)
+@ResponseBody
+public HashMap<String, Object>  followPlusShs(Model model,HttpSession session,@RequestParam String sub_id) {
+	String mem_id = (String) session.getAttribute("loginId");
+	logger.info("팔로우 버튼 컨트롤러");
 	
-	
+	logger.info("{}",mem_id+sub_id);
+	return service.followPlusShs(mem_id,sub_id);
 }
+
+
+
+
+
+
+
+
+
+
+@RequestMapping(value = "/MainPageShs", method = RequestMethod.GET)
+public String MainPageShs(Model model) {
+	logger.info("메인페이지 요청");	
+
+	
+	return "MainPageShs";
+		}
+
+}
+
+
 
 
 

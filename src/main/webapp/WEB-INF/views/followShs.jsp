@@ -15,6 +15,13 @@
       float:right;
       width:900px;   
    }
+   
+   .followCnt{
+   position: relative;
+    top :50px;
+     left:0px;
+     margin-bottom: 20px;
+   }
   
   #headTxt{
   font-size: 28px;
@@ -38,9 +45,9 @@
 	.Follow {
 	float: right;
 	margin-right: 14px;
-	border-bottom:3px solid #FFF; 
 	cursor: pointer;
-	border-bottom:3px solid #CCC; 
+	border-bottom:3px solid #CCC;
+	font-weight: bold; 
 	}
 
 	.Follow:hover {
@@ -81,18 +88,19 @@
 					<!--  <td>${item.mem_blog}</td> -->
 					<td class="subId">${item.sub_id}</td>
 					<td>
-						
-						
-						
-						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" />
+
+						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" onclick="followCall()"/> 
+						<%-- <button class="followBtn" id="${item.sub_num}">구독하기</button> --%>
 						<script>
 						var $sub_id = '${item.sub_id}';
 						var id ='#'+${item.sub_num};
 						
 						
-						
-						
 
+						$(id).on('click', function() {
+							follow(false);
+						});
+						
 						
 						
 						console.log('스크립트 테스트');
@@ -104,13 +112,52 @@
 							success: function(data) {
 								if (data.result>0) {
 									$(id).val('구독중');
+									//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
+									
 								}
 							},
 							error: function(e) {
 								console.log(e);
 							}
 							
-						})
+						});
+						
+						var BtnVal = $('.followBtn').val();
+						function followCall(){
+							console.log('스크립트 테스트');
+							if((BtnVal) == '구독하기'){	
+								console.log('구독 테스트');
+								
+								
+								$.ajax({
+									type:'post',
+									url:'followPlusShs',
+									data:{'sub_id':$sub_id},
+									dataType:'JSON',
+									success: function(data) {
+										if (data.result>0) {
+											//$(id).val('구독중');
+											$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
+											
+										}
+									},
+									error: function(e) {
+										console.log(e);
+									}
+									
+								});
+								
+								
+								
+							}
+						}
+							
+							
+						
+							
+						
+						
+					
 
 					</script>
 

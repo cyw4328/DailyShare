@@ -43,16 +43,16 @@
 	
 	<!-- 구독리스트 - 나를 구독 -->
 	<select id="FollowerList" resultType="com.daily.share.dto.ShsDTO">
-		select sub_id from subscription
-		where mem_id =#{param1}
+		select mem_id from subscription
+		where sub_id =#{param1}
 	</select>
 	
 
 	<!-- 구독리스트 - 내가 구독 -->
 	<select id="FollowingList" resultType="com.daily.share.dto.ShsDTO">
-		select mem_id
+		select sub_id
 		from subscription
-		where subscription.sub_id =#{param1}
+		where subscription.mem_id =#{param1}
 	</select>
 	
 	
@@ -63,11 +63,10 @@
 	
 	
 	<!-- 구독 추가하기 -->
-	<insert  id="followPlusShs" parameterType = "hashmap">
-		
+	<insert  id="followPlusShs">
+
 		INSERT INTO subscription (sub_id, mem_id)
         VALUES  	(#{param1}, #{param2})
-		WHERE mem_id = #{param1}
 	</insert >
 
 	

@@ -105,10 +105,11 @@
 						$.ajax({
 							type:'get',
 							url:'followBtnShs',
-							data:{'mem_id':$mem_id},
+							data:{'sub_id':$mem_id},
 							dataType:'JSON',
 							success: function(data) {
 								if (data.result>0) {
+									console.log('data.result');
 									$(id).val('구독중');
 									//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
 									
@@ -190,7 +191,6 @@ $('.followBtn').click(function followCall(){
 			success: function(data) {
 				if(data.result > 0){
 				console.log(data.result);
-				//$(BtnVal).html('<input class="UnfollowBtn" id="${item.sub_num}" type="button" value="구독중" />');
 				location.href="/share/followShs";
 				//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
 				}	

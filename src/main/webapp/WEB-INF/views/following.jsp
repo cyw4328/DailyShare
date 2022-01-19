@@ -85,7 +85,7 @@
 			<c:forEach var="item" items="${list}">
 				<tr>
 					<!--  <td>${item.mem_blog}</td> -->
-					<td> ${item.sub_id}</td>
+					<td>${item.sub_id}</td>
 					<td>
 						
 						
@@ -126,10 +126,10 @@ var goodock = $('.followBtn').val();
 $('.followBtn').click(function(){
 	console.log('팔로잉 클릭 확인');
 	console.log(goodock);
-	if(goodock == '구독중'){
+/* 	if(goodock == '구독중'){
 		$(this).val('구독하기'); 
 
-	}
+	} */
 
 	
 });
@@ -141,17 +141,21 @@ $('.followBtn').click(function followCall(){
 	BtnVal = $(this).val();
 	console.log('스크립트 테스트'+BtnVal);
 	
-	var $mem_id = $(this).parent().prev().text();
+	var $sub_id = $(this).parent().prev().text();
+	console.log($sub_id);
 
 		
 		$.ajax({
 			type:'post',
 			url:'followDelShs',
-			data:{'mem_id':$mem_id},
+			data:{'mem_id':$sub_id},
 			dataType:'JSON',
 			success: function(data) {
-
 				console.log(data.result);
+				if(data.result>0){
+					location.href="/share/followingShs";
+				}
+				
 				//$(BtnVal).html('<input class="UnfollowBtn" id="${item.sub_num}" type="button" value="구독중" />');
 				//location.href="/share/followShs";
 

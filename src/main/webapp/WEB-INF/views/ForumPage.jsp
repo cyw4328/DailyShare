@@ -32,6 +32,17 @@
     	#ForumBoardAdd{
     		padding: 15px 200px;
     	}
+    	.forumTd{
+         max-width: 500px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         color: black;
+         font-size: 14px;
+         text-align: center;
+         border-bottom: 1px solid black;
+   }
+    	
+
     	
     </style>
 </head>
@@ -100,7 +111,7 @@
 
 </body>
 <script>
-	var currPage = 1;
+var currPage = 1;
 
 ForumListCall(currPage,10);
 
@@ -138,7 +149,7 @@ function ForumBoardList(list) {
 		var date = new Date(list[i].board_date);
 			
 		 content +='<tr onclick=location.href="./boardDetail?board_num='+list[i].board_num+'" style="cursor:hand">';
-			content += '<td  id="forumTd">'+list[i].mem_id+'&nbsp;&nbsp;&nbsp;&nbsp;'
+			content += '<td  class="forumTd">'+list[i].mem_id+'&nbsp;&nbsp;&nbsp;&nbsp;'
 			+"작성일 : "+date.getFullYear()+"-"
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "

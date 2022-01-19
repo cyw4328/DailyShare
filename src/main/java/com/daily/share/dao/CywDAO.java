@@ -25,7 +25,7 @@ public interface CywDAO {
 	// 메뉴 추가
 	void menuAdd(String menuAddName, int daeCategoryMenu, int midCategoryMenu, String id);
 	// 메뉴 가져오기
-	ArrayList<CywDTO> menuList();
+	ArrayList<CywDTO> menuList(String loginId);
 	// 메뉴 블라인드 시 하위게시글 확인
 	int menuCateFk(String menu_num);
 	// 메뉴 블라인드
@@ -34,7 +34,7 @@ public interface CywDAO {
 	ArrayList<CywDTO> midCategoryCall(String selectValue);
 	
 	// 대분류별 게시글 리스트 뽑기
-	ArrayList<CywDTO> middleListCall(String middleListCall);
+	ArrayList<CywDTO> middleListCall(String MainNum);
 	
 	// 클릭시 자세히 보기
 	CywDTO boardDetail(int board_num);
@@ -64,6 +64,29 @@ public interface CywDAO {
 	
 	 ArrayList<CywDTO> feedListCall(int pagePerCnt, int offset, String loginId);
 	 int allCount(String loginId);
+	 
+	 
+
+	
+	ArrayList<CywDTO> AlrimPageList(String loginId, int pagePerCnt, int offset);
+	int allCountAlrim(String loginId);
+	
+	ArrayList<CywDTO> reviewList(int pagePerCnt, int offset, String loginId);
+	int allCountReview(String loginId);
+	
+	ArrayList<CywDTO> boardList(int pagePerCnt, int offset, String loginId);
+	int allCountBoard(String loginId);
+	
+	
+	int alrimDel(String alram_num);
+	int MyComDel(String com_num);
+	int MyBoardDel(String board_num);
+	
+	
+	void boardSingo(String board_num, String loginId);
+	
+	// 메인페이지 대분류목록가져오기
+	ArrayList<CywDTO> MainPageBigCateGory();
 	 
 	
 

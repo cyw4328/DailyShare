@@ -250,7 +250,6 @@ public HashMap<String, Object>  followPlusShs(Model model,HttpSession session,@R
 
 
 //구독삭제
-//구독 버튼
 @RequestMapping(value = "/followDelShs", method = RequestMethod.POST)
 @ResponseBody
 public HashMap<String, Object>  followDelShs(Model model,HttpSession session,@RequestParam String mem_id) {
@@ -263,6 +262,15 @@ public HashMap<String, Object>  followDelShs(Model model,HttpSession session,@Re
 
 
 
+
+
+
+@RequestMapping(value = "/followBtnPage", method = RequestMethod.GET)
+public String  followBtnPage(Model model,HttpSession session) {
+	String mem_id = (String) session.getAttribute("loginId");
+	logger.info("followBtnPage 컨트롤러");
+	return "followBtnPage";
+}
 
 
 
@@ -287,7 +295,7 @@ public String MainPageShs(Model model) {
 @RequestMapping(value = "/memberPassCk", method = RequestMethod.GET)
 public String memberPassCk(Model model,HttpSession session) {
 	logger.info("비밀번호체크 페이지 컨트롤러");	
-	Object object = session.getAttribute("loginId");
+	String object = (String) session.getAttribute("loginId");
 
 	String Page ="redirect:/loginPage";
 	if(object != null) {

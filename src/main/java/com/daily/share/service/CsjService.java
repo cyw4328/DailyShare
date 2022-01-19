@@ -15,10 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.daily.share.dao.CsjDAO;
+import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjPhotoDTO;
 import com.daily.share.dto.CsjSubDTO;
 
 @Service
@@ -143,7 +145,7 @@ public class CsjService {
 		
 		
 		if (board_num >0) {
-			page = "redirect:/boardDetail?board_num="+board_num;
+			page = "redirect:/csj_detail?board_num="+board_num;
 			
 			//알림 등록 
 			ArrayList<String> subList = new ArrayList<String>();
@@ -277,6 +279,27 @@ public class CsjService {
 
 	public String blogName(String mem_id) {	
 		return dao.blogName(mem_id);
+	}
+
+
+
+
+	public CsjPersonalBlogDTO csj_detail(String board_num) {
+		return dao.csj_detail(board_num);
+	}
+
+
+
+
+	public ArrayList<String> tagCall(String board_num) {
+		return dao.tagCall(board_num);
+	}
+
+
+
+
+	public ArrayList<CsjPhotoDTO> photoCall(String board_num) {
+		return dao.photoCall(board_num);
 	}
 
 

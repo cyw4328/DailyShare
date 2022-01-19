@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <link rel="stylesheet" href="resources/common.css">
     <style>
     	#container_wrap{
 			position:relative;
 			width: 1400px;
 			height: 1500px;
-			border:2px solid red; 
+			/* border:2px solid red;  */
 			margin: 0 auto;
 		}
 		#form_wrap{
@@ -94,6 +94,10 @@
 	 	.buttons a:link { color: gray; text-decoration: none;}
 		.buttons a:visited { color: gray; text-decoration: none;}
 		.buttons a:hover { color: gray; text-decoration: none;}
+		
+		.photo{
+			text-align: center;
+		}
 
 	
 
@@ -106,36 +110,51 @@
 		<div id="form_wrap">
 			<div id="category_wrap">
 				<img src="resources/images_csj/backimage.png" onclick="javascript:history.back();">
-				<span class="menu">게시글 메뉴</span>
-				<span class="writer">작성자 ${boardDetail.mem_id } &nbsp;작성 날짜</span>
+				<span class="menu">${boardDetail.menu_name}</span>
+				<span class="writer">${boardDetail.mem_id } &nbsp;<fmt:formatDate value="${boardDetail.board_date }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
 				<input type="hidden" name="board_num" value="${boardDetail.board_views }"/>
 			</div>
 			
 			<div id="sub_wrap">
 				<span class="subject">
-					햄스터 ${boardDetail.board_subject}				
+					${boardDetail.board_subject}				
 				</span> 
 			</div>
 			<div id="multiple_container">
-				<p>이미지 첨부</p>
-				<p>${boardDetail.board_cont } 게시글 내용</p>
+				<c:if test="${not empty photos.size()}">
+					<c:forEach items="${photos}" var="photo">
+						<p class="photo">
+							<img src="/postImageFolder/${photo.photo_newName}" style="max-width:300px;max-height:250px;z-index:none;"/>
+						</p>			
+					</c:forEach>
+				</c:if>
+				<p>${boardDetail.board_cont }</p>
 				
 				<div class="likesTag">
-					댓글 수 (<span>0</span>)&nbsp;
-					<input type="button" onclick="like()" value="♡" id ="heart">
-					<span>#태그1&nbsp;</span>
-					<span>#태그2&nbsp;</span>
-					<span>#태그3&nbsp;</span>
+					댓글 수 (<span style="color: gray;font-weight:600">&nbsp;${comList.size()}&nbsp;</span>)&nbsp;&nbsp;
+					<c:choose>
+						<c:when test="${LikeCheck eq '0' or empty LikeCheck }">
+							<input type="button" onclick="like()" value="♡" id ="heart"/>&nbsp;${boardDetail.board_likes}&nbsp;&nbsp;
+						</c:when>
+						<c:otherwise>
+							<input type="button" onclick="like()" value="♥" id ="heart"/>&nbsp;${boardDetail.board_likes}&nbsp;&nbsp;
+						</c:otherwise>
+					</c:choose>
+					<c:if test="${tags.size() gt 0}">
+						<c:forEach items="${tags}" var="tag">
+							<span>#${tag}&nbsp;</span>						
+						</c:forEach>
+					</c:if>
 				</div>
 				
 				<div class="buttons">
 					<c:if test="${loginId eq boardDetail.mem_id}">
-						<a href="./updateForm?board_num=${boardDetail.board_num}">수정</a>
-						<a href="#" onclick="del();">삭제</a>					
+						<a href="./updateForm?board_num=${boardDetail.board_num}">수정</a>&nbsp;&nbsp;
+						<a href="#" onclick="del();">삭제</a>&nbsp;&nbsp;		
 					</c:if>
 					<c:if test="${loginId ne boardDetail.mem_id}">
-						<a href="#">공유</a>
-						<a href="#">신고</a>					
+						<a href="#">공유</a>&nbsp;&nbsp;
+						<a href="#">신고</a>&nbsp;&nbsp;					
 					</c:if>					
 				</div>
 			</div>
@@ -149,7 +168,8 @@
 	</div>
 
 </body>
-<script>
+<script>	
+
 
 	//추천 기능
 
@@ -158,8 +178,8 @@ function like() {
 		
  	var board_num = ${boardDetail.board_num}
 
-	console.log("고마워ㅠ");
-	console.log(board_num);
+	//console.log("고마워ㅠ");
+	//console.log(board_num);
 		
 	$.ajax({
 		url: "updateLike",
@@ -167,11 +187,13 @@ function like() {
 		data: {'board_num':board_num},
 		dataType: "JSON",
 		success: function (LikeCheck) {
-			alert("추천 성공");
+			
 			if (LikeCheck == 1) {
-				$("#heart").text("♥")
+				alert("추천 취소 완료");
+				$("#heart").val("♡")
 			}else{
-				$("#heart").text("♡")
+				alert("추천 완료");
+				$("#heart").val("♥")
 			}
 		},
 		error : function () {

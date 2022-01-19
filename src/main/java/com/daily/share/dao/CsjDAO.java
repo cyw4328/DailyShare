@@ -2,10 +2,12 @@ package com.daily.share.dao;
 
 import java.util.ArrayList;
 
+import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjPhotoDTO;
 import com.daily.share.dto.CsjSubDTO;
 
 public interface CsjDAO {
@@ -48,6 +50,12 @@ public interface CsjDAO {
 	ArrayList<CsjPersonalBlogDTO> pagingBoardCallMenu(int pagePerCnt, int offset, String mem_id, String menu_num);
 
 	String blogName(String mem_id);
+
+	CsjPersonalBlogDTO csj_detail(String board_num);
+
+	ArrayList<String> tagCall(String board_num);
+
+	ArrayList<CsjPhotoDTO> photoCall(String board_num);
 
 	/*
 	 * ArrayList<CsjSubDTO> csjSubList(String loginId);

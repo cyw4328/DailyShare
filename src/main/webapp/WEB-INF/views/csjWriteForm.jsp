@@ -12,14 +12,14 @@
 			position:relative;
 			width: 1400px;
 			height: 1500px;
-			border:2px solid red; 
+			/* border:2px solid red; */ 
 			margin: 0 auto;
 		}
 		#form_wrap{
 			position:relative;
 			width: 900px;
 			/* height: 90%; */
-			border:1px solid black;
+			/* border:1px solid black; */
 			margin: 0 auto;
 		}
 		#category_wrap{
@@ -100,7 +100,7 @@
 			position: relative;
 			width: 100%;
 			min-height:600px;
-			border:2px solid red;
+			/* border:2px solid red; */
 			
 		}
 		
@@ -124,17 +124,17 @@
 	 		position: absolute;
 	 		max-width: 700px;
 	 		min-height:50px;
-	 		border:2px solid green;
+	 		/* border:2px solid green; */
 	 		left: 0px;
 	 	}
 	 	#file_wrap{
 	 		position: absolute;
-	 		border:2px solid blue;
+	 		/* border:2px solid blue; */
 	 		left: 80%;
 	 	}
 	 	#scope_wrap{
 	 		position: absolute;
-	 		border:2px solid yellow;
+	 		/* border:2px solid yellow; */
 	 		right: 0px;
 	 	}
 	 	
@@ -264,6 +264,9 @@ function handleImgFileSelect(e){
 	var files = e.target.files;
 	var fileArr = Array.prototype.slice.call(files);
 	
+	var minHeight = $('#multiple_container').css('min-height').split('px');
+	var height = parseInt(minHeight[0]);
+	
 	var index = 0;
 	fileArr.forEach(function(f){
 		if(!f.type.match('image.*')){
@@ -275,10 +278,12 @@ function handleImgFileSelect(e){
 		var reader = new FileReader();
 		reader.onload = function(e){
 			var html = '<p><a href=\"javascript:void(0);\" ondblclick=\"imgSelect('+index+')\" id=\"img_id'+index+'\"><img style="max-width:300px;max-height:300px;z-index:none;position:relative;" src=\"'+e.target.result+'\"data-file="'+f.name+'" class="img_file" title="dblClick to remove"></a></p>';
-			$("#multiple_container").append(html);
+			$('#multiple_container').append(html);
 			index++;
 			
+			$('#multiple_container').css('min-height',height+300*index);
 		}
+
 		reader.readAsDataURL(f);
 		
 		$('#photoNum').html(img_files.length);
@@ -289,11 +294,12 @@ function handleImgFileSelect(e){
 
 function imgSelect(index) {
 	var img_id = '#img_id'+index;
-
+	minHeight = $('#multiple_container').css('min-height').split('px');
+	height = parseInt(minHeight[0]);
 	img_files.splice(index,1);
 	
 	$(img_id).remove();
-	
+	$('#multiple_container').css('min-height',height-300);
 	console.log(img_files.length);
 	
 	$('#photoNum').html(img_files.length);

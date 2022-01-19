@@ -14,7 +14,8 @@ public class CsjBoardDTO {
 	private int board_scope;
 	private int board_blind;
 	private String mem_id;
-	
+	private int menu_num;
+	private String board_thumFileName;
 	
 	
 	public int getBoard_num() {
@@ -77,6 +78,21 @@ public class CsjBoardDTO {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-
+	public int getMenu_num() {
+		return menu_num;
+	}
+	public void setMenu_num(int menu_num) {
+		this.menu_num = menu_num;
+	}
+	public String getBoard_thumFileName() {
+		return board_thumFileName;
+	}
+	public void setBoard_thumFileName(String board_thumFileName) {
+		this.board_thumFileName = board_thumFileName;
+	}
+	
+	
+	
+	
 
 }

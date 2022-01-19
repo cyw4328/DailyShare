@@ -184,14 +184,14 @@
 		
 		if (list.length>0) {
 			list.forEach(function(item,board_num) {
-				content += '<a href="./boardDetail?board_num='+item.board_num+'"><div class="body">';
+				content += '<a href="./csj_detail?board_num='+item.board_num+'&mem_id='+$mem_id+'"><div class="body">';
 				content += '<div class="bodyIMG"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:230px;max-height:160px;z-index:none;"></div>';
-				content += '<spam class="bodySub">'+item.board_subject+'</spam>'
-				content += '<spam class="bodyCont">'+item.board_cont+'</spam>'
-				content += '<spam class="bodyMenu">'+item.menu_name+'</spam>'
+				content += '<span class="bodySub">'+item.board_subject+'</span>'
+				content += '<span class="bodyCont">'+item.board_cont+'</span>'
+				content += '<span class="bodyMenu">'+item.menu_name+'</span>'
 				
 				var date = new Date(item.board_date).toLocaleString();	
-				content += '<spam class="bodyDate">'+date+'</spam>'
+				content += '<span class="bodyDate">'+date+'</span>'
 				content += '</div></a>'
 	
 			});

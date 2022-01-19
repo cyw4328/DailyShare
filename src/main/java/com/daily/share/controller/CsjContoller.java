@@ -187,14 +187,16 @@ public class CsjContoller {
 	@RequestMapping(value = "/csj_detail", method = RequestMethod.GET)
 	public String csj_detail(Model model,HttpSession session,@RequestParam String board_num,@RequestParam String mem_id) {
 		/* session.setAttribute("loginId", "admin"); */
+		//게시글 작성자 아이디
 		model.addAttribute("mem_id",mem_id);
 		logger.info("상세보기 요청 : {}",board_num);
 		
-		
+		//게시글 작성자의 블로그
 		String mem_blog =service.blogName(mem_id);
 		logger.info("블로그 이름 요청 {}",mem_blog);
 		model.addAttribute("mem_blog",mem_blog);
 		
+		//게시글 작성자의 메뉴
 		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
 		logger.info("메뉴 리스트만 요청 : {}",menu);
 		model.addAttribute("menu",menu);
@@ -210,9 +212,15 @@ public class CsjContoller {
 		model.addAttribute("tags",tags);
 		
 		
+		//로그인된 아이디
 		String loginId= (String) session.getAttribute("loginId");
 		logger.info("상세보기 로그인 된 아이디 : {}",loginId);
 		model.addAttribute("loginId",loginId);
+		
+		//로그인된 아이디의 메뉴
+		ArrayList<CsjMenuDTO>myMenu = service.csj_menuCall(loginId);
+		logger.info("나의메뉴 리스트만 요청 : {}",myMenu);
+		model.addAttribute("myMenu",myMenu);
 		
 		//사진 요청
 		ArrayList<CsjPhotoDTO> photos = service.photoCall(board_num);
@@ -307,6 +315,19 @@ public class CsjContoller {
 			
 			
 			return service.csj_postUpdate(params,loginId,photos);
+		}
+		
+		//공유하기
+		@RequestMapping(value = "/csj_share", method = RequestMethod.GET)
+		public String csj_share(Model model,@RequestParam String menu_num,@RequestParam String board_num,HttpSession session) {
+			String loginId= (String) session.getAttribute("loginId");
+			
+			logger.info("게시글 공유 요청 : 메뉴{}/게시글{}",menu_num,board_num);
+			logger.info("로그인 된 아이디 : {}",loginId);
+			
+			
+			
+			return service.csj_share(menu_num,board_num,loginId);
 		}
 	
 	

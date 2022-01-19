@@ -4,7 +4,6 @@
 <head>
    <meta charset="UTF-8">
    <title>Insert title here</title>
-   <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
    <style>
    
    #con_gooDock{width: 1200px;
@@ -15,7 +14,7 @@
    #gooDock{
    	display:inline;
       position: absolute;
-      top :100x;
+      top :100px;
       right:0px;
       float:right;
       width:900px;   

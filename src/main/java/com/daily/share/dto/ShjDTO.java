@@ -19,9 +19,17 @@ public class ShjDTO {
 	private int board_like;
 	
 	
+	//관리자
+	private int mem_admin;
 	
 	
 	
+	public int getMem_admin() {
+		return mem_admin;
+	}
+	public void setMem_admin(int mem_admin) {
+		this.mem_admin = mem_admin;
+	}
 	public int getBoard_like() {
 		return board_like;
 	}

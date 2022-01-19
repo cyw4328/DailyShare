@@ -15,6 +15,16 @@
 		SELECT COUNT (mem_id) FROM members
 	</select>
 
+
+
+	<!-- 관리자 리스트 -->
+	<select id="adlist" resultType="com.daily.share.dto.ShjDTO">
+		SELECT mem_id, mem_name, mem_email, mem_phone FROM members WHERE mem_admin = 1 ORDER BY mem_id DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	
+	
+	
 	
 	
 	<!-- 검색 쿼리 / 공백 입력 처리 안했으니 주의할것!! -->
@@ -63,6 +73,19 @@
 		SELECT count(rec_num) FROM likes WHERE board_num = #{param1} AND mem_id = #{param2}
 	</select>
 	
-
+	<!-- 관리자 찾기 -->
+	<select id="AdRegist" resultType="com.daily.share.dto.ShjDTO">
+		SELECT mem_id FROM members WHERE mem_id = #{param1}
+	</select>
+	
+	<!-- 관리자 등록 -->
+	<update id="AdRegistUP" parameterType="com.daily.share.dto.ShjDTO">
+		UPDATE members SET mem_admin = 1 WHERE mem_id = #{param1}
+	</update>
+	
+	<!-- 관리자 해제 -->
+	<update id="AdRegistDW" parameterType="com.daily.share.dto.ShjDTO">
+		UPDATE members SET mem_admin = 0 WHERE mem_id = #{param1}
+	</update>
 	
 </mapper>

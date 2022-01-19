@@ -87,7 +87,44 @@ public class ShjController {
 	}
 	
 	
+	//관리자 등록
+	@RequestMapping(value = "/AdRegist", method = RequestMethod.GET)
+	public String AdRegist(Model model, @RequestParam String adminT) {
+		
+		logger.info("값 확인 : "+adminT);
+		//service.AdRegist(adminT);
+		service.AdRegistUP(adminT);
+		
+		return "/shjadmin";
+	}
+	
+	//관리자 등록 해제
+	@RequestMapping(value = "/AdRegistDW", method = RequestMethod.GET)
+	public String AdRegistDW(Model model, @RequestParam String adminT) {
+		
+		logger.info("값 확인 : "+adminT);
+//		service.AdRegist(adminT);
+		service.AdRegistDW(adminT);
+		
+		return "/shjadmin";
+	}
 	
 	
+	@RequestMapping(value = "/shjadmin", method = RequestMethod.GET)
+	public String shjadmin(Model model) {
+
+		return "Shjadmin";
+	}
+
+	//관리자 리스트 요청
+	@ResponseBody
+	@RequestMapping(value = "/adlist", method = RequestMethod.GET)
+	public HashMap<String, Object> adlist(@RequestParam String page,@RequestParam String cnt) {				
+		logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);
+		
+		int currPage = Integer.parseInt(page);
+		int pagePerCnt = Integer.parseInt(cnt);		
+		return service.adlist(currPage,pagePerCnt);
+	}
 	
 }

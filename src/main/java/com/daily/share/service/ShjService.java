@@ -92,6 +92,51 @@ public class ShjService {
 
 
 
+	public HashMap<String, Object> adlist(int currPage, int pagePerCnt) {
+		HashMap<String, Object> map = new HashMap<String, Object>();			
+		
+		//어디서 부터 보여줘야 하는가?
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0  ? 
+				((currPage-1) * pagePerCnt-1) : 0;		
+		logger.info("offset : {}",offset);		
+				
+		 int totalCount = dao.allCount(); // 테이블의 모든 글의 갯수
+		//만들수 있는 총 페이지의 수(전체 갯수/보여줄 수)
+		 int range = totalCount%pagePerCnt > 0 ? 
+				 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
+		 logger.info("총 갯수 : {}",totalCount);
+		 logger.info("만들 수 있는 총 페이지 : {}",range);
+		 
+		 map.put("pages",range);
+		 
+		 //list 안에 pagePerCnt 랑 offset을 넣지 않아서 생긴 문제★
+		 //오류나면 여기 adlist로 수정해보기
+		 map.put("adlist", dao.adlist(pagePerCnt, offset));		 
+		return map;
+	}
+
+
+
+	public String AdRegist(String adminT) {
+
+		return dao.AdRegist(adminT);
+	}
+
+
+	//관리자 등록
+	public void AdRegistUP(String adminT) {
+		dao.AdRegistUP(adminT);
+		
+	}
+
+
+
+	public void AdRegistDW(String adminT) {
+		dao.AdRegistDW(adminT);
+	}
+
+
+
 
 
 

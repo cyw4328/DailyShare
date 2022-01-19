@@ -22,6 +22,15 @@ public interface ShjDAO {
 	void CancelBLike(int board_num);
 
 	void updateBLike(int board_num);
+
+	ArrayList<ShjDTO> adlist(int pagePerCnt, int offset);
+
+	String AdRegist(String adminT);
+
+
+	void AdRegistDW(String adminT);
+
+	void AdRegistUP(String adminT);
 	
 	
 

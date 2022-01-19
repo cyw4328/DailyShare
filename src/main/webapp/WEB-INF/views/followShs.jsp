@@ -80,7 +80,8 @@
 		<span class="Following">내가 구독하는 블로거</span>
 		<span class="Follow">나를 구독하는 블로거</span>
 
-		
+		<span id="headTxt">구독관리 목록</span>
+		<hr>
 		<p class="followCnt">현재 나를 구독하는 블로거는 ${list.size()} 명 입니다.</p>
 		<table>
 			<c:forEach var="item" items="${list}">

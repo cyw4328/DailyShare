@@ -28,6 +28,14 @@ public interface ShsDAO {
 
 	int followPlusShs(String sub_id,String mem_id);
 
+	String PassCk(String id, String pw);
+
+	int followDelShs(String mem_id, String sub_id);
+
+
+
+
+
 
 
 	

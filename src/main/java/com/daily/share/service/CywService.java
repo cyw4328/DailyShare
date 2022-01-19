@@ -52,9 +52,9 @@ public class CywService {
 
 	}
 
-	public ArrayList<CywDTO> menuList() {
+	public ArrayList<CywDTO> menuList(String loginId) {
 
-		ArrayList<CywDTO> menuList = dao.menuList();
+		ArrayList<CywDTO> menuList = dao.menuList(loginId);
 		return menuList;
 
 	}
@@ -211,6 +211,67 @@ public class CywService {
 	 map.put("pages", range); map.put("list",dao.feedListCall(pagePerCnt,offset,loginId));
 	 
 	 return map; }
+
+	
+
+
+	public HashMap<String, Object> AlrimPageList(String loginId, int currPage, int pagePerCnt) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		//어디서부터 보여줘야 하는가?
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0; 
+		logger.info("offset:{}",offset);
+		
+		int totalCount = dao.allCountAlrim(loginId); // bbs 테이블의 모든 글의 갯수
+		// 만들 수 있는 총 페이지의 수(전체 갯수 / 보여줄 갯수)
+		int range = totalCount%pagePerCnt > 0 ?  (totalCount/pagePerCnt+1) : (totalCount/pagePerCnt);
+		
+		logger.info("총 갯수 : {}",totalCount);
+		logger.info("만들수 있는 총 페이지 :{}",range);
+		
+		map.put("pages", range);
+		map.put("list", dao.AlrimPageList(loginId,pagePerCnt,offset));
+		
+		
+		return map;
+	}
+
+	public HashMap<String, Object> reviewList(int currPage, int pagePerCnt, String loginId) {
+		
+	HashMap<String, Object> map = new HashMap<String,Object>();
+		 
+	 //어디서부터 보여줘야 하는가? 
+		int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0; logger.info("offset:{}",offset);
+	 
+	 int totalCount = dao.allCountReview(loginId); // bbs 테이블의 모든 글의 갯수 // 만들 수 있는 총 페이지의 수(전체 갯수 / 보여줄 갯수) 
+	 int range = totalCount%pagePerCnt > 0 ? (totalCount/pagePerCnt+1) : (totalCount/pagePerCnt);
+	 
+	 logger.info("총 갯수 : {}",totalCount); logger.info("만들수 있는 총 페이지 :{}",range);
+	 
+	 map.put("pages", range); 
+	 map.put("list",dao.reviewList(pagePerCnt,offset,loginId));
+	 map.put("totalCount", totalCount);
+	 return map; 
+	}
+
+	
+	public HashMap<String, Object> boardList(int currPage, int pagePerCnt, String loginId) {
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		 
+		 //어디서부터 보여줘야 하는가? 
+			int offset = ((currPage-1) * pagePerCnt-1) >= 0 ? ((currPage-1) * pagePerCnt-1) : 0; logger.info("offset:{}",offset);
+		 
+		 int totalCount = dao.allCountBoard(loginId); // bbs 테이블의 모든 글의 갯수 // 만들 수 있는 총 페이지의 수(전체 갯수 / 보여줄 갯수) 
+		 int range = totalCount%pagePerCnt > 0 ? (totalCount/pagePerCnt+1) : (totalCount/pagePerCnt);
+		 
+		 logger.info("총 갯수 : {}",totalCount); logger.info("만들수 있는 총 페이지 :{}",range);
+		 
+		 map.put("pages", range); 
+		 map.put("list",dao.boardList(pagePerCnt,offset,loginId));
+		 map.put("totalCount", totalCount);
+		 return map; 
+	}
 	 
 
 }

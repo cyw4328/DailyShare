@@ -35,7 +35,7 @@
 	</insert>
 	<!-- 메뉴리스트불러오기 -->
 	<select id="menuList" resultType="com.daily.share.dto.CywDTO">
-		SELECT menu_num,menu_name,menu_blind,main_num,mid_num from menu WHERE menu_blind = 0
+		SELECT * from menu WHERE menu_blind = 0 and mem_id = #{param1}
 	</select>
 	<!-- 메뉴블라인드 -->
 	<delete id="menuDel">
@@ -132,6 +132,31 @@
 	
 	<select id="allCount" resultType="int">
 		select COUNT(board_num) from (select sub_id from subscription where mem_id=#{param1}) s left outer join board b on s.sub_id = b.mem_id where board_blind=0 order by board_date desc
+	</select>
+	
+
+	<select id="AlrimPageList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM alarm WHERE mem_id = #{param1} ORDER BY alarm_num DESC LIMIT #{param2} OFFSET #{param3}
+	</select>
+	
+	<select id="allCountAlrim" resultType="int">
+		SELECT COUNT(alarm_num) FROM alarm WHERE mem_id = #{param1}
+	</select>
+	
+	<select id="reviewList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM comment WHERE mem_id = #{param3} ORDER BY com_num DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="allCountReview" resultType="int">
+		SELECT COUNT(com_num) FROM comment WHERE mem_id = #{param3}
+	</select>
+	
+		<select id="boardList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM board WHERE mem_id = #{param3} ORDER BY board_num DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="allCountBoard" resultType="int">
+		SELECT COUNT(board_num) FROM board WHERE mem_id = #{param3}
 	</select>
 
 	

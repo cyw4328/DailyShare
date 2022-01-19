@@ -32,6 +32,7 @@
     	#ForumBoardAdd{
     		padding: 15px 200px;
     	}
+
     	
     </style>
 </head>

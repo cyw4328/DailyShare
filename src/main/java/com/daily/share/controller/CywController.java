@@ -34,12 +34,16 @@ public class CywController {
 		model.addAttribute("bigCategoryList",bigCategoryList);
 		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
 		model.addAttribute("midCategoyrList",midCategoryList);
-		ArrayList<CywDTO> menuList = service.menuList();
-		model.addAttribute("menuList",menuList);
+		
+		 ArrayList<CywDTO> menuList = service.menuList(null);
+		 model.addAttribute("menuList",menuList);
+		
 
 		return "cateGory";
 	}
 
+	
+	
 	@RequestMapping(value = "/bigCategoryAdd", method = RequestMethod.POST)
 	public String bigCategoryAdd(Model model, @RequestParam String mainCategoryAdd, @RequestParam int mainAdmin) {
 		logger.info("컨트롤러 도착 대분류" + mainCategoryAdd, mainAdmin);
@@ -78,9 +82,22 @@ public class CywController {
 	
 		return service.midCateFk(mid_num);
 	}
-	 
+	@RequestMapping(value = "/menuAddPage", method = RequestMethod.GET)
+	public String menuAddPage(Model model,HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
 
-	 @RequestMapping(value = "/menuAdd", method = RequestMethod.POST)
+		 ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
+			model.addAttribute("bigCategoryList",bigCategoryList);
+			ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
+			model.addAttribute("midCategoyrList",midCategoryList);
+			ArrayList<CywDTO> menuList = service.menuList(loginId);
+			model.addAttribute("menuList",menuList);
+
+		return "MenuAdd";
+	}
+
+	 @RequestMapping(value = "/menuAdd", method = RequestMethod.GET)
 	 public String menuAdd(Model model, @RequestParam String menuAddName,@RequestParam int daeCategoryMenu, 
 			 @RequestParam int midCategoryMenu,HttpSession session) {
 	 logger.info("컨트롤러 도착 메뉴생성"+menuAddName,daeCategoryMenu,midCategoryMenu);
@@ -88,10 +105,10 @@ public class CywController {
 	 logger.info("메뉴생성세션아이디:{}",id);
 	 service.menuAdd(menuAddName,daeCategoryMenu,midCategoryMenu,id);
 	 
-	 return "redirect:/cyw"; 
+	 return "redirect:/menuAddPage"; 
 	 }
 	 
-	@RequestMapping(value = "/menuDel", method = RequestMethod.GET)
+	@RequestMapping(value = "/menuDel", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> menuDel(Model model,@RequestParam String menu_num) {
 		logger.info("삭제요청 : {}",menu_num); 
@@ -146,6 +163,7 @@ public class CywController {
 		service.update(params);
 		return "redirect:/boardDetail?board_num="+params.get("board_num");
 	}
+	
 	
 	 @RequestMapping(value = "/boardDel", method = RequestMethod.GET)
 	 public String boardDel(Model model, @RequestParam int board_num) {
@@ -235,5 +253,94 @@ public class CywController {
 		 return service.feedListCall(currPage,pagePerCnt,loginId); 
 		 }
 		 
+		 
+		 // 마이페이지 알림 페이지 이동
+		 @RequestMapping(value = "/MyAlrimPage", method = RequestMethod.GET)
+		 public String MyAlrimPage(Model model,HttpSession session) {
+			 
+			 String page = "MyPageAlram";
+			 
+			 String loginId = (String) session.getAttribute("loginId");
+			 if (loginId == null) {
+				 page ="redirect:/";
+			}
+
+		 return page; 
+		 }
+		 
+		 
+
+		 //마이페이지 알림 리스트
+		 @RequestMapping(value = "/AlrimPageList", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> AlrimPageList(Model model,HttpSession session,@RequestParam String page,@RequestParam String cnt){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+			int currPage = Integer.parseInt(page);
+			int pagePerCnt = Integer.parseInt(cnt);
+
+		 
+		 return service.AlrimPageList(loginId,currPage,pagePerCnt); 
+		 }
+		 
+		 
+		 // 마이페이지 내 댓글리스트 이동
+		 @RequestMapping(value = "/MyReviewControlPage", method = RequestMethod.GET)
+		 public String MyReviewControlPage(Model model,HttpSession session) {
+			 
+			 String page = "reviewControl";
+			 
+			 String loginId = (String) session.getAttribute("loginId");
+			 if (loginId == null) {
+				 page ="redirect:/";
+			}
+
+		 return page; 
+		 }
+		 
+		 
+		 // 마이페이지 내가 쓴 댓글 관리
+		 @RequestMapping(value = "/reviewList", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> reviewList(Model model,@RequestParam String page,@RequestParam String cnt,HttpSession session){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+		 int currPage = Integer.parseInt(page); 
+		 int pagePerCnt =Integer.parseInt(cnt);
+		 
+		 return service.reviewList(currPage,pagePerCnt,loginId); 
+		 }
+		 
+		 // 마이페이지 내글리스트 이동
+		 @RequestMapping(value = "/MyBoardControlPage", method = RequestMethod.GET)
+		 public String MyBoardControlPage(Model model,HttpSession session) {
+			 
+			 String page = "MyBoardControl";
+			 
+			 String loginId = (String) session.getAttribute("loginId");
+			 if (loginId == null) {
+				 page ="redirect:/";
+			}
+
+		 return page; 
+		 }
+		 
+		 
+		 // 마이페이지 내가 쓴 댓글 관리
+		 @RequestMapping(value = "/boardList", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> boardList(Model model,@RequestParam String page,@RequestParam String cnt,HttpSession session){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+		 int currPage = Integer.parseInt(page); 
+		 int pagePerCnt =Integer.parseInt(cnt);
+		 
+		 return service.boardList(currPage,pagePerCnt,loginId); 
+		 }
+		 
+
 	 
 }

@@ -12,17 +12,17 @@
     <style>
     #gudokJa{
     	position: absolute;
-    	right: 550px;
-    	top: 190px;
+    	right: 400px;
+    	top: 270px;
     }
     #gudokJa:hover{
 		color: red;
 		cursor: pointer;
     }
     #FeedPageMain{
-    	position: absolute;
-    	left: 400px;
-    	top: 150px;
+    	position: relative;
+    	left: 350px;
+    	top: 100px;
     }
     #gudokjaBoard{
     	/* background-color: black; */
@@ -30,7 +30,7 @@
     	height: 600px;
     	position: absolute;
     	top: 300px;
-    	left: 400px;
+    	left: 330px;
     	display: none;
     }
     
@@ -45,11 +45,11 @@
     }
     
     #feedTable{
-    	width: 1000px;
+    	width: 200px;
     	height: 500px;
     	position: absolute;
-    	/* border: 1px solid black; */
     	text-align: center;
+    	border: 1px solid black; 
     }
     #feedCont{
     	border-bottom: 3px black;
@@ -57,6 +57,7 @@
     #feedTr{
     	border-bottom: 2px solid black;
     }
+
 	
 	
     </style>
@@ -66,7 +67,7 @@
 	
 	<div>
 		<div id="FeedPageMain">
-			<p><b>FEED</b></p>
+			<h2>FEED</h2>
 	    	<h4>내가 구독하고 있는 글 입니다.</h4>	
 		</div>
 		<div id="gudokJa">
@@ -76,9 +77,7 @@
 	
 	<div id="gudokjaBoard">
 		<table id="feedTable">
-		
 			<tbody id="list"></tbody>
-		
 			<tr>
 				<td colspan="3" id="paging">
 					<div class="container">                           

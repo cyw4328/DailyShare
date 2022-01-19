@@ -25,7 +25,7 @@ public interface CywDAO {
 	// 메뉴 추가
 	void menuAdd(String menuAddName, int daeCategoryMenu, int midCategoryMenu, String id);
 	// 메뉴 가져오기
-	ArrayList<CywDTO> menuList();
+	ArrayList<CywDTO> menuList(String loginId);
 	// 메뉴 블라인드 시 하위게시글 확인
 	int menuCateFk(String menu_num);
 	// 메뉴 블라인드
@@ -64,6 +64,18 @@ public interface CywDAO {
 	
 	 ArrayList<CywDTO> feedListCall(int pagePerCnt, int offset, String loginId);
 	 int allCount(String loginId);
+	 
+	 
+
+	
+	ArrayList<CywDTO> AlrimPageList(String loginId, int pagePerCnt, int offset);
+	int allCountAlrim(String loginId);
+	
+	ArrayList<CywDTO> reviewList(int pagePerCnt, int offset, String loginId);
+	int allCountReview(String loginId);
+	
+	ArrayList<CywDTO> boardList(int pagePerCnt, int offset, String loginId);
+	int allCountBoard(String loginId);
 	 
 	
 

@@ -110,6 +110,27 @@ public class ShsService {
 		map.put("result", result);
 		return map;
 	}
+	
+	
+	
+	public HashMap<String, Object> followDelShs(String mem_id, String sub_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int result = dao.followDelShs(mem_id,sub_id);
+		map.put("result", result);
+		return map;
+
+	}
+	
+
+
+
+	public String PassCk(String id, String pw) {
+		logger.info("비밀번호체크 서비스 도착{}",id+pw);	
+		return dao.PassCk(id,pw);
+	}
+
+
+
 
 
 

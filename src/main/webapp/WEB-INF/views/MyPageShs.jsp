@@ -113,11 +113,12 @@ a{
 <div id="memuBar">
 		<div id = "left">
 		
-		<p>관리자계정</p>
+		<p>개인계정</p>
 		<p>URL주소</p>	
 		</div>
-		<div id="write">글쓰기</div>
-		<div class= "tab00" id="tab1">개인정보수정</div>
+		
+		<a href="/share/csj_writeForm" ><div id="write">글쓰기</div></a>
+		<a href="/share/memberPassCk" ><div class= "tab00" id="tab1">개인정보수정</div></a>
 		<a href="/share/followShs" ><div class= "tab00" id="tab2">구독관리</div></a>
 		<a href="#"><div class= "tab00" id="tab3">알림목록</div></a>
 		<a href="#"><div class= "tab00" id="tab4">차단관리</div></a>
@@ -131,40 +132,15 @@ a{
 	<div id="gooDock">
 	
 	
-		<span id="headTxt">구독 블로거 관리</span> 
-<!-- 		<span class="Following">내가 구독하는 블로거</span>
-		<span class="Follow">나를 구독하는 블로거</span> -->		
-		<hr>
+<!--		<span id="headTxt">구독 블로거 관리</span> 
+ 		<span class="Following">내가 구독하는 블로거</span>
+		<span class="Follow">나를 구독하는 블로거</span> 
+		<hr>-->		
 	
 </div>			
 </body>
 <script>
-/*  $('#tab1').click(function(){
-    $('#tab1').css({
-          'color':'orange' 
-      });
-    $('#tab1').css({
-        'font-weight':'bold' 
-    });
-    $('#tab2').css({
-          'color':'black'
-      });
-    $('#tab3').css({
-          'color':'black'
-      });
-    $('#tab4').css({
-          'color':'black'
-      });
-    $('#tab5').css({
-          'color':'black'
-      });
-    const title = document.getElementById('headTxt');
-    title.innerText = '개인정보수정'
- 
- }); */
- 
- 
-
+	
 
 
 

@@ -2,6 +2,7 @@ package com.daily.share.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.daily.share.dto.HjwDTO;
 
@@ -20,6 +21,10 @@ public interface HjwDAO {
 	ArrayList<HjwDTO> memlist(int currPage, int pagePerCnt);
 
 	int allCount();
+
+	List<HjwDTO> SearchList(HjwDTO hjwdto);
+
+
 
 
 }

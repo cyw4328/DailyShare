@@ -44,6 +44,10 @@ public class HjwService {
 	public int allCount() {
 		return dao.allCount();
 	}
+	public List<HjwDTO> SearchList(HjwDTO hjwdto) {
+		return dao.SearchList(hjwdto);
+	}
+
 
 	
 

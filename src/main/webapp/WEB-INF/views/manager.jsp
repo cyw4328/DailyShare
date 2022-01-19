@@ -89,7 +89,7 @@
 		    #memS{
 		    	position :relative;
                 margin-top: 15px; 
-                margin-left: 1060px;
+                margin-left: 1050px;
 		    }  
 		    #decS{
 		    	position :relative;
@@ -136,8 +136,10 @@
 				border-collapse : collapse;
 				padding : 8px;
 				text-align: center;
+	
 			}
 			table{
+
 				width: 900px;
 			}
 			.clicked {
@@ -182,17 +184,20 @@
         	<a target="_blank" id="a3" style="color: black; cursor:pointer;">항목관리</a>
 		</div>
 		<div id="hr"><hr/></div>
-		<div id="memS">
-		<form action="search_mem" method="GET" name="search_mem">
-			<select name="SearchType" style="height:25px;" id="type">
-				<option selected value="all">전체</option>
-				<option value="mem_id">아이디</option>
-				<option value="mem_name">이름</option>
-			</select>
-			<input type="text" name="memkeyword">
-			<input type="button" id="memSearch" onclick="memSearchList()" value="검색">
-        </form>
+		
+		<!-- 검색 select 박스 추가 -->
+		<div  id="memS">
+			<form action="search_mem" method="GET" name="search_mem">
+				<select name="SearchType" id="type" style="height: 25px;">
+					<option selected value="all">전체</option>
+					<option value="mem_id">아이디</option>
+					<option value="mem_name">이름</option>
+				</select>
+				<input type="text" name="keyword">
+				<input type="button" id="btnSearch" onclick="SearchList()" value="검색">
+			</form>
 		</div>
+		
 		<div id="decS">
 		<form action="search_dec" method="GET" name="search_dec">
 			<select name="SearchType" style="height:25px;" id="type">
@@ -228,15 +233,13 @@
 					<th>이메일</th>
 					<th>전화번호</th>
 					<th>가입날짜</th>
-					<th>회원탈퇴여부</th>
-					<th>회원제재상태</th>
 				</tr>
 			</thead>
 			<tbody id="memlist"></tbody>
 			<tr>
-				<td colspan="7" id="paging">
-					<div class="container">                           
-		               <nav aria-label="Page navigation" style="text-align:center">
+				<td colspan="5" id="paging" >
+					<div class="container" style="width:700px;">                           
+		               <nav aria-label="Page navigation" style="text-align:center;">
 		                  <ul class="pagination" id="pagination"></ul>
 		               </nav>               
 		            </div>
@@ -255,19 +258,16 @@
 					<th>신고한날짜</th>
 					<th>신고내용</th>
 				</tr>
-				<c:if test="${DecList eq null || size == 0}">
-				<tr><td colspan="6">검색 결과가 없습니다.</td></tr>
-				</c:if>
-				<c:forEach items="${DecList1}" var="dec1">
+				<tbody id="declist1"></tbody>
 				<tr>
-					<td>${dec1.dec_num}</td>
-					<td>${dec1.mem_id}</td>
-					<td>${dec1.target_id}</td>
-					<td>${dec1.dec_name}</td>
-					<td>${dec1.dec_date}</td>
-					<td>${dec1.dec_cont}</td>
+					<td colspan="6" id="paging" >
+						<div class="container" style="width:700px;">                           
+			               <nav aria-label="Page navigation" style="text-align:center;">
+			                  <ul class="pagination" id="pagination"></ul>
+			               </nav>               
+			            </div>
+					</td>
 				</tr>
-				</c:forEach>
 			</table>
 		</div>
 		
@@ -282,20 +282,16 @@
 					<th>처리내용</th>
 					<th>처리자</th>
 				</tr>
-				<c:if test="${DecList eq null || size == 0}">
-				<tr><td colspan="7">검색 결과가 없습니다.</td></tr>
-				</c:if>
-				<c:forEach items="${DecList2}" var="dec2">
+				<tbody id="declist2"></tbody>
 				<tr>
-					<td>${dec2.dec_num}</td>
-					<td>${dec2.mem_id}</td>
-					<td>${dec21.target_id}</td>
-					<td>${dec2.dec_name}</td>
-					<td>${dec2.sol_date}</td>
-					<td>${dec2.sol_state}</td>
-					<td>${dec2.sol_admin}</td>
+					<td colspan="7" id="paging" >
+						<div class="container" style="width:700px;">                           
+			               <nav aria-label="Page navigation" style="text-align:center;">
+			                  <ul class="pagination" id="pagination"></ul>
+			               </nav>               
+			            </div>
+					</td>
 				</tr>
-				</c:forEach>
 			</table>
 		</div>
 		
@@ -308,17 +304,16 @@
 					<th>사용여부</th>
 					<th></th>
 				</tr>
-				<c:if test="${DecList eq null || size == 0}">
-				<tr><td colspan="4">검색 결과가 없습니다.</td></tr>
-				</c:if>
-				<c:forEach items="${DecList3}" var="dec3">
+				<tbody id="declist3"></tbody>
 				<tr>
-					<td>${dec3.dec_code}</td>
-					<td>${dec3.dec_name}</td>
-					<td>${dec3.dec_blind}</td>
-					<td>${dec3.dec_update}</td>
+					<td colspan="4" id="paging" >
+						<div class="container" style="width:700px;">                           
+			               <nav aria-label="Page navigation" style="text-align:center;">
+			                  <ul class="pagination" id="pagination"></ul>
+			               </nav>               
+			            </div>
+					</td>
 				</tr>
-				</c:forEach>
 			</table>
 		</div>
 		
@@ -349,37 +344,38 @@
     </body>
 
     <script>
-    
+
   //검색 ajax
-	function memSearchList(){
+	function SearchList(){
 		$.ajax({
 			type: 'GET',
-			url : 'memSearchList',
+			url : 'SearchList',
 			data : $("form[name=search_mem]").serialize(),
 			success : function(result){
 				console.log("확인");
 				//테이블 초기화
 				$('#memlist').empty();
 				if(result.length>=1){
+					var str = '';
 					result.forEach(function(item){
+						var date = new Date(item.mem_date);
 						str='<tr>'
 						str += "<td>"+item.mem_id+"</td>";
 						str+="<td>"+item.mem_name+"</td>";
 						str+="<td>"+item.mem_email+"</td>";
 						str+="<td>"+item.mem_phone+"</td>";
-						atr+= '<td>'+item.mem_date+'</td>';
-						str+="<td>"+item.mem_out+"</td>";
-						str+="<td>"+item.mem_san+"</td>";
+						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
 						str+="</tr>";
 						$('#memlist').append(str);
+						
+		
 	        		})				 
 				}
 			}
 		})
-	}
-
-
-
+	};
+    
+    
 	var currPage = 1;
 	var totalPage = 2;
 	
@@ -425,26 +421,319 @@
 		});		
 	}
 	
+	
 	function listDraw(list){ //리스트를 불러올때 하단 생성
 		var content = '';	
 		list.forEach(function(item, mem_id){
-			//console.log(idx,item);
-			content += '<tr class="something">';
+			var date = new Date(item.mem_date);
+			content += '<tr>';
 			content += '<td>'+item.mem_id+'</td>';
 			content += '<td>'+item.mem_name+'</td>';
 			content += '<td>'+item.mem_email+'</td>';
 			content += '<td>'+item.mem_phone+'</td>';
-			content += '<td>'+item.mem_date+'</td>';
-			content += '<td>'+item.mem_out+'</td>';
-			content += '<td>'+item.mem_san+'</td>';
+			content += '<td>'+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+'</td>';
 			content += '</tr>';	
 		});
 		//console.log(content);
 		$('#memlist').empty();
 		$('#memlist').append(content);		
 	}
+ 
+
+	
+////////////////////////////////////////////////////////////////////////////////////////////////	
+	/*
+	//검색 ajax
+	function SearchList(){
+		$.ajax({
+			type: 'GET',
+			url : 'SearchList1',
+			data : $("form[name=search_dec]").serialize(),
+			success : function(result){
+				console.log("확인");
+				//테이블 초기화
+				$('#declist').empty();
+				if(result.length>=1){
+					var str = '';
+					result.forEach(function(item){
+						var date = new Date(item.mem_date);
+						str='<tr>'
+						str += "<td>"+item.mem_id+"</td>";
+						str+="<td>"+item.mem_name+"</td>";
+						str+="<td>"+item.mem_email+"</td>";
+						str+="<td>"+item.mem_phone+"</td>";
+						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+						str+="</tr>";
+						$('#declist1').append(str);
+						
+		
+	        		})				 
+				}
+			}
+		})
+	};
     
     
+	var currPage = 1;
+	var totalPage = 2;
+	
+	listCall(currPage,5);
+	
+	function more(){ //다음 페이지로 넘겼을 때
+		currPage++;
+		console.log('currPage',currPage);
+		if(currPage>totalPage){
+			$('button').attr('disabled',true);
+		}else{
+			listCall(currPage, 5);			
+		}
+	}
+	
+	function listCall(page, cnt){				
+		
+		$.ajax({
+			type:'GET',
+			url:'declist1',
+			data:{'page':page,'cnt':cnt},
+			dataTyps:'JSON',
+			success: function(data){
+				console.log(data);
+				totalPage = data.pages;
+				listDraw(data.list);
+				
+				$('#pagination').twbsPagination({
+					startPage: currPage,//현재 페이지
+					totalPages: totalPage,//만들수 있는 총 페이지 수
+					visiblePages:5, //[1][2][3]... 이걸 몇개 까지 보여줄 것인지
+					onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
+						console.log(evt); //현재 일어나는 클릭 이벤트 관련 정보들
+						console.log(page);//몇 페이지를 클릭 했는지에 대한 정보
+						listCall(page, 5);
+					}
+				});
+								
+			},
+			error:function(e){
+				console.log(e);
+			}
+		});		
+	}
+	
+	
+	function listDraw(list){ //리스트를 불러올때 하단 생성
+		var content = '';	
+		list.forEach(function(item, mem_id){
+			var date = new Date(item.mem_date);
+			content += '<tr>';
+			content += '<td>'+item.mem_id+'</td>';
+			content += '<td>'+item.mem_name+'</td>';
+			content += '<td>'+item.mem_email+'</td>';
+			content += '<td>'+item.mem_phone+'</td>';
+			content += '<td>'+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+'</td>';
+			content += '</tr>';	
+		});
+		//console.log(content);
+		$('#declist1').empty();
+		$('#declist1').append(content);		
+	}
+	*/
+////////////////////////////////////////////////////////////////////////////////////////////////	
+	/*
+	//검색 ajax
+	function SearchList(){
+		$.ajax({
+			type: 'GET',
+			url : 'SearchList2',
+			data : $("form[name=search_dec]").serialize(),
+			success : function(result){
+				console.log("확인");
+				//테이블 초기화
+				$('#declist').empty();
+				if(result.length>=1){
+					var str = '';
+					result.forEach(function(item){
+						var date = new Date(item.mem_date);
+						str='<tr>'
+						str += "<td>"+item.mem_id+"</td>";
+						str+="<td>"+item.mem_name+"</td>";
+						str+="<td>"+item.mem_email+"</td>";
+						str+="<td>"+item.mem_phone+"</td>";
+						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+						str+="</tr>";
+						$('#declist2').append(str);
+						
+		
+	        		})				 
+				}
+			}
+		})
+	};
+    
+    
+	var currPage = 1;
+	var totalPage = 2;
+	
+	listCall(currPage,5);
+	
+	function more(){ //다음 페이지로 넘겼을 때
+		currPage++;
+		console.log('currPage',currPage);
+		if(currPage>totalPage){
+			$('button').attr('disabled',true);
+		}else{
+			listCall(currPage, 5);			
+		}
+	}
+	
+	function listCall(page, cnt){				
+		
+		$.ajax({
+			type:'GET',
+			url:'declist2',
+			data:{'page':page,'cnt':cnt},
+			dataTyps:'JSON',
+			success: function(data){
+				console.log(data);
+				totalPage = data.pages;
+				listDraw(data.list);
+				
+				$('#pagination').twbsPagination({
+					startPage: currPage,//현재 페이지
+					totalPages: totalPage,//만들수 있는 총 페이지 수
+					visiblePages:5, //[1][2][3]... 이걸 몇개 까지 보여줄 것인지
+					onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
+						console.log(evt); //현재 일어나는 클릭 이벤트 관련 정보들
+						console.log(page);//몇 페이지를 클릭 했는지에 대한 정보
+						listCall(page, 5);
+					}
+				});
+								
+			},
+			error:function(e){
+				console.log(e);
+			}
+		});		
+	}
+	
+	
+	function listDraw(list){ //리스트를 불러올때 하단 생성
+		var content = '';	
+		list.forEach(function(item, mem_id){
+			var date = new Date(item.mem_date);
+			content += '<tr>';
+			content += '<td>'+item.mem_id+'</td>';
+			content += '<td>'+item.mem_name+'</td>';
+			content += '<td>'+item.mem_email+'</td>';
+			content += '<td>'+item.mem_phone+'</td>';
+			content += '<td>'+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+'</td>';
+			content += '</tr>';	
+		});
+		//console.log(content);
+		$('#declist2').empty();
+		$('#declist2').append(content);		
+	}
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+	//검색 ajax
+	function SearchList(){
+		$.ajax({
+			type: 'GET',
+			url : 'SearchList3',
+			data : $("form[name=search_dec]").serialize(),
+			success : function(result){
+				console.log("확인");
+				//테이블 초기화
+				$('#declist').empty();
+				if(result.length>=1){
+					var str = '';
+					result.forEach(function(item){
+						var date = new Date(item.mem_date);
+						str='<tr>'
+						str += "<td>"+item.mem_id+"</td>";
+						str+="<td>"+item.mem_name+"</td>";
+						str+="<td>"+item.mem_email+"</td>";
+						str+="<td>"+item.mem_phone+"</td>";
+						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+						str+="</tr>";
+						$('#declist3').append(str);
+						
+		
+	        		})				 
+				}
+			}
+		})
+	};
+    
+    
+	var currPage = 1;
+	var totalPage = 2;
+	
+	listCall(currPage,5);
+	
+	function more(){ //다음 페이지로 넘겼을 때
+		currPage++;
+		console.log('currPage',currPage);
+		if(currPage>totalPage){
+			$('button').attr('disabled',true);
+		}else{
+			listCall(currPage, 5);			
+		}
+	}
+	
+	function listCall(page, cnt){				
+		
+		$.ajax({
+			type:'GET',
+			url:'declist3',
+			data:{'page':page,'cnt':cnt},
+			dataTyps:'JSON',
+			success: function(data){
+				console.log(data);
+				totalPage = data.pages;
+				listDraw(data.list);
+				
+				$('#pagination').twbsPagination({
+					startPage: currPage,//현재 페이지
+					totalPages: totalPage,//만들수 있는 총 페이지 수
+					visiblePages:5, //[1][2][3]... 이걸 몇개 까지 보여줄 것인지
+					onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
+						console.log(evt); //현재 일어나는 클릭 이벤트 관련 정보들
+						console.log(page);//몇 페이지를 클릭 했는지에 대한 정보
+						listCall(page, 5);
+					}
+				});
+								
+			},
+			error:function(e){
+				console.log(e);
+			}
+		});		
+	}
+	
+	
+	function listDraw(list){ //리스트를 불러올때 하단 생성
+		var content = '';	
+		list.forEach(function(item, mem_id){
+			var date = new Date(item.mem_date);
+			content += '<tr>';
+			content += '<td>'+item.mem_id+'</td>';
+			content += '<td>'+item.mem_name+'</td>';
+			content += '<td>'+item.mem_email+'</td>';
+			content += '<td>'+item.mem_phone+'</td>';
+			content += '<td>'+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+'</td>';
+			content += '</tr>';	
+		});
+		//console.log(content);
+		$('#declist3').empty();
+		$('#declist3').append(content);		
+	}
+	
+	*/
+	
+	
+	
     
     	const title = document.getElementById('title');
     	var ahr = document.getElementsByTagName('a');

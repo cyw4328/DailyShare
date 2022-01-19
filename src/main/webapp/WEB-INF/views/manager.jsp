@@ -139,7 +139,6 @@
 	
 			}
 			table{
-
 				width: 900px;
 			}
 			.clicked {
@@ -456,13 +455,14 @@
 				if(result.length>=1){
 					var str = '';
 					result.forEach(function(item){
-						var date = new Date(item.mem_date);
+						var date = new Date(item.dec_date);
 						str='<tr>'
-						str += "<td>"+item.mem_id+"</td>";
-						str+="<td>"+item.mem_name+"</td>";
-						str+="<td>"+item.mem_email+"</td>";
-						str+="<td>"+item.mem_phone+"</td>";
+						str += "<td>"+item.dec_num+"</td>";
+						str+="<td>"+item.mem_id+"</td>";
+						str+="<td>"+item.target_id+"</td>";
+						str+="<td>"+item.dec_name+"</td>";
 						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+						str+="<td>"+item.dec_cont+"</td>";
 						str+="</tr>";
 						$('#declist1').append(str);
 						
@@ -472,8 +472,8 @@
 			}
 		})
 	};
-    
-    
+    */
+    /*
 	var currPage = 1;
 	var totalPage = 2;
 	
@@ -524,13 +524,14 @@
 		var content = '';	
 		list.forEach(function(item, mem_id){
 			var date = new Date(item.mem_date);
-			content += '<tr>';
-			content += '<td>'+item.mem_id+'</td>';
-			content += '<td>'+item.mem_name+'</td>';
-			content += '<td>'+item.mem_email+'</td>';
-			content += '<td>'+item.mem_phone+'</td>';
-			content += '<td>'+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+'</td>';
-			content += '</tr>';	
+				content='<tr>'
+				content+= "<td>"+item.dec_num+"</td>";
+				content+="<td>"+item.mem_id+"</td>";
+				content+="<td>"+item.target_id+"</td>";
+				content+="<td>"+item.dec_name+"</td>";
+				content+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+				content+="<td>"+item.dec_cont+"</td>";
+				content+="</tr>";	
 		});
 		//console.log(content);
 		$('#declist1').empty();
@@ -552,16 +553,18 @@
 				if(result.length>=1){
 					var str = '';
 					result.forEach(function(item){
-						var date = new Date(item.mem_date);
+						var date = new Date(item.sol_date);
 						str='<tr>'
-						str += "<td>"+item.mem_id+"</td>";
-						str+="<td>"+item.mem_name+"</td>";
-						str+="<td>"+item.mem_email+"</td>";
-						str+="<td>"+item.mem_phone+"</td>";
+						str += "<td>"+item.dec_num+"</td>";
+						str+="<td>"+item.mem_id+"</td>";
+						str+="<td>"+item.target_id+"</td>";
+						str+="<td>"+item.dec_name+"</td>";
 						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+						str+="<td>"+item.sol_state+"</td>";
+						str+="<td>"+item.sol_admin+"</td>";
 						str+="</tr>";
 						$('#declist2').append(str);
-						
+
 		
 	        		})				 
 				}
@@ -651,14 +654,12 @@
 					result.forEach(function(item){
 						var date = new Date(item.mem_date);
 						str='<tr>'
-						str += "<td>"+item.mem_id+"</td>";
-						str+="<td>"+item.mem_name+"</td>";
-						str+="<td>"+item.mem_email+"</td>";
-						str+="<td>"+item.mem_phone+"</td>";
-						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
+						str += "<td>"+item.dec_code+"</td>";
+						str+="<td>"+item.dec_name+"</td>";
+						str+="<td>"+item.dec_blind+"</td>";
+						str+="<td></td>";
 						str+="</tr>";
 						$('#declist3').append(str);
-						
 		
 	        		})				 
 				}

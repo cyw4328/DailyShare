@@ -41,11 +41,18 @@ public class HjwService {
 	public ArrayList<HjwDTO> memlist(int currPage, int pagePerCnt) {
 		return dao.memlist(currPage,pagePerCnt);
 	}
+	public ArrayList<HjwDTO> declist1(int currPage, int pagePerCnt) {
+		return dao.declist1(currPage,pagePerCnt);
+	}
 	public int allCount() {
 		return dao.allCount();
 	}
 	public List<HjwDTO> SearchList(HjwDTO hjwdto) {
 		return dao.SearchList(hjwdto);
+	}
+	
+	public List<HjwDTO> SearchList1(HjwDTO hjwdto) {
+		return dao.SearchList1(hjwdto);
 	}
 
 

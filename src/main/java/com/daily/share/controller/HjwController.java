@@ -151,7 +151,13 @@ public class HjwController {
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
 	public String managerPage(Model model) {
 		logger.info("관리자페이지 이동");
-		return "manager";
+		return "memberList";
+	}
+	
+	@RequestMapping(value = "/decPage", method = RequestMethod.GET)
+	public String decPage(Model model) {
+		logger.info("관리자페이지 이동");
+		return "decList";
 	}
 	
 	//리스트 요청
@@ -188,7 +194,7 @@ public class HjwController {
 			return service.SearchList(hjwdto);
 		}
 		
-		/*
+		
 		
 		@ResponseBody
 		@RequestMapping(value = "/declist1", method = RequestMethod.GET)
@@ -213,14 +219,14 @@ public class HjwController {
 		
 		@ResponseBody
 		@RequestMapping(value = "/SearchList1", method = RequestMethod.GET)
-		private List<HjwDTO> SearchList1 (@RequestParam("SearchType") String SearchType, @RequestParam("keyword") String keyword) {
+		private List<HjwDTO> SearchList1 (@RequestParam("decSearchType") String decSearchType, @RequestParam("deckeyword") String deckeyword) {
 			
 			HjwDTO hjwdto = new HjwDTO();
-			hjwdto.setKeyword(keyword);
-			hjwdto.setSearchType(SearchType);
+			hjwdto.setDeckeyword(deckeyword);
+			hjwdto.setDecSearchType(decSearchType);
 			
 			return service.SearchList1(hjwdto);
 		}
-		*/
+	
 }
 	

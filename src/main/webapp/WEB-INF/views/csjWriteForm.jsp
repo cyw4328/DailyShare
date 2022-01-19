@@ -183,6 +183,9 @@
 		#file_label{
 			cursor: pointer;
 		}
+		.img_file{
+			cursor: pointer;
+		}
 		
 
 		
@@ -277,11 +280,11 @@ function handleImgFileSelect(e){
 		console.log(img_files.length);
 		var reader = new FileReader();
 		reader.onload = function(e){
-			var html = '<p><a href=\"javascript:void(0);\" ondblclick=\"imgSelect('+index+')\" id=\"img_id'+index+'\"><img style="max-width:300px;max-height:300px;z-index:none;position:relative;" src=\"'+e.target.result+'\"data-file="'+f.name+'" class="img_file" title="dblClick to remove"></a></p>';
+			var html = '<p class="newFile"><a href=\"javascript:void(0);\" ondblclick=\"imgSelect('+index+')\" id=\"img_id'+index+'\"><img style="max-width:300px;max-height:300px;z-index:none;position:relative;" src=\"'+e.target.result+'\"data-file="'+f.name+'" class="img_file" title="dblClick to remove"></a></p>';
 			$('#multiple_container').append(html);
 			index++;
 			
-			$('#multiple_container').css('min-height',height+300*index);
+			$('#multiple_container').css('min-height',height+100*index);
 		}
 
 		reader.readAsDataURL(f);

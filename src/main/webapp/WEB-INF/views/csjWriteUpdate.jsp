@@ -151,6 +151,10 @@
 	 		cursor: pointer;
 	 	}
 	 	
+	 	.img_file{
+			cursor: pointer;
+		}
+		
 	 	
 	 	
 	 	

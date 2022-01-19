@@ -35,7 +35,7 @@
 	</insert>
 	<!-- 메뉴리스트불러오기 -->
 	<select id="menuList" resultType="com.daily.share.dto.CywDTO">
-		SELECT menu_num,menu_name,menu_blind,main_num,mid_num from menu WHERE menu_blind = 0
+		SELECT * from menu WHERE menu_blind = 0 and mem_id = #{param1}
 	</select>
 	<!-- 메뉴블라인드 -->
 	<delete id="menuDel">
@@ -60,13 +60,19 @@
 		SELECT mid_name from middleCategory where main_num = #{param1} and mid_blind = 0
 	</select>
 	
+
 	<!-- 대분류 클릭시 해당 게시물 출력 -->
 	<select id="middleListCall" resultType="com.daily.share.dto.CywDTO">
 		SELECT * from 
-			menu m join board b on 
-			m.menu_num = b.menu_num where 
-			m.main_num = #{param1}
+			menu m join mainCategory b 
+			on m.main_num = b.main_num
+			join middleCategory j
+			on m.mid_num = j.mid_num
+			join board d 
+			on m.menu_num = d.menu_num
+			WHERE b.main_num = #{param1}
 	</select>
+
 	
 	<!-- 해당 게시물 클릭시 자세히보기 -->
 	<select id="boardDetail" resultType="com.daily.share.dto.CywDTO">
@@ -85,11 +91,6 @@
 		UPDATE board SET board_subject = #{subject},board_cont = #{content}
 	</update>
 	
-	
-	
-	
-	
-	
 	<insert id="ForumBoardAdd">
 		INSERT INTO board(board_subject,board_cont,menu_num,mem_id)VALUES(#{param1},#{param2},#{param3},#{param4})
 	</insert>
@@ -104,7 +105,7 @@
 	where 1=1
 	]]><choose>
 	<when test="param2 =='All'"><![CDATA[
-	and (mem_id LIKE CONCAT('%',#{param1},'%')
+	and (mem_id LIKE CONCAT('%',#{param1},'%')  %a%
 	or board_cont LIKE CONCAT('%',#{param1},'%')
 	or board_subject LIKE CONCAT('%',#{param1},'%'))
 	]]></when>
@@ -133,6 +134,51 @@
 	<select id="allCount" resultType="int">
 		select COUNT(board_num) from (select sub_id from subscription where mem_id=#{param1}) s left outer join board b on s.sub_id = b.mem_id where board_blind=0 order by board_date desc
 	</select>
+	
 
+	<select id="AlrimPageList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM alarm WHERE mem_id = #{param1} ORDER BY alarm_num DESC LIMIT #{param2} OFFSET #{param3}
+	</select>
+	
+	<select id="allCountAlrim" resultType="int">
+		SELECT COUNT(alarm_num) FROM alarm WHERE mem_id = #{param1}
+	</select>
+	
+	<select id="reviewList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM comment WHERE mem_id = #{param3} and com_blind = 0 ORDER BY com_num DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="allCountReview" resultType="int">
+		SELECT COUNT(com_num) FROM comment WHERE mem_id = #{param3}
+	</select>
+	
+	<select id="boardList" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM board WHERE mem_id = #{param3} and board_blind = 0 ORDER BY board_num DESC LIMIT #{param1} OFFSET #{param2}
+	</select>
+	
+	<select id="allCountBoard" resultType="int">
+		SELECT COUNT(board_num) FROM board WHERE mem_id = #{param3}
+	</select>
+
+	<delete id="alrimDel">
+		DELETE FROM alarm WHERE alarm_num = #{param1}
+	</delete>
+	
+	<delete id="MyComDel">
+		UPDATE comment SET com_blind = 1 WHERE com_num = #{param1}
+	</delete>
+	
+	<delete id="MyBoardDel">
+		UPDATE board SET board_blind = 1 WHERE board_num = #{param1}
+	</delete>
+
+	<insert id="boardSingo">
+		INSERT INTO declarationList(dec_target,dec_targetNum,mem_id)VALUES(1,#{param1},#{param2})
+	</insert>
+	
+		
+	<select id="MainPageBigCateGory" resultType="com.daily.share.dto.CywDTO">
+		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0
+	</select>
 	
 </mapper>

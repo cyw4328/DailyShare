@@ -295,7 +295,7 @@ public String MainPageShs(Model model) {
 @RequestMapping(value = "/memberPassCk", method = RequestMethod.GET)
 public String memberPassCk(Model model,HttpSession session) {
 	logger.info("비밀번호체크 페이지 컨트롤러");	
-	Object object = session.getAttribute("loginId");
+	String object = (String) session.getAttribute("loginId");
 
 	String Page ="redirect:/loginPage";
 	if(object != null) {

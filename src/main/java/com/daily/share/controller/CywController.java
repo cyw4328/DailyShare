@@ -40,7 +40,7 @@ public class CywController {
 
 		return "MainPageShs";
 	}
-	@RequestMapping(value = "/cywtest", method = RequestMethod.GET)
+	@RequestMapping(value = "/CateGory", method = RequestMethod.GET)
 	public String cywtest(Model model) {
 		
 		ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
@@ -348,7 +348,7 @@ public class CywController {
 		 }
 		 
 		 // 마이페이지 내글리스트 이동
-		 @RequestMapping(value = "/MyBoardControlPage", method = RequestMethod.POST)
+		 @RequestMapping(value = "/MyBoardControlPage", method = RequestMethod.GET)
 		 public String MyBoardControlPage(Model model,HttpSession session) {
 			 
 			 String page = "MyBoardControl";

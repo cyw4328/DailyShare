@@ -137,7 +137,7 @@
 	
 
 	<select id="AlrimPageList" resultType="com.daily.share.dto.CywDTO">
-		SELECT * FROM alarm WHERE mem_id = #{param1} ORDER BY alarm_num DESC LIMIT #{param2} OFFSET #{param3}
+		select a.alarm_num ,a.alarm_date ,a.alarm_targetNum ,a.alarm_target,b.mem_id from alarm a left join board b on b.board_num =a.alarm_targetNum where a.mem_id=#{param1} ORDER BY a.alarm_num DESC LIMIT #{param2} OFFSET #{param3}
 	</select>
 	
 	<select id="allCountAlrim" resultType="int">

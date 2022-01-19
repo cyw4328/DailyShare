@@ -229,7 +229,7 @@ public class CywService {
 		
 		logger.info("총 갯수 : {}",totalCount);
 		logger.info("만들수 있는 총 페이지 :{}",range);
-		
+		map.put("loginId", loginId);
 		map.put("pages", range);
 		map.put("list", dao.AlrimPageList(loginId,pagePerCnt,offset));
 		

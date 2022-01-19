@@ -375,9 +375,9 @@
 			$(this).parent().submit();
 		}
 	});
-	var loginId = '${loginId}'
+	var loginId = '${loginId}';
 	var $board_num=${boardDetail.board_num};
-	var $mem_id= '${boardDetail.mem_id}'
+	var $mem_id= '${boardDetail.mem_id}';
 	/* 댓글 수정 버튼 */
 	$('.com_fix').click(function() {
 		var $com_num = $(this).parent().prev().val();

@@ -102,7 +102,7 @@ function AlrimPageList(page,cnt) {
 		success:function(data) {
 
 			totalPage = data.pages;
-			listDraw(data.list);
+			listDraw(data.list,data.loginId);
 			console.log(data.list);
 			
 			if (data.list.length > 0) {
@@ -125,7 +125,7 @@ function AlrimPageList(page,cnt) {
 	});
 }
 
-function listDraw(list) {
+function listDraw(list,loginId) {
     var content = '';
     
     
@@ -142,7 +142,7 @@ function listDraw(list) {
 		}
 
 		content +='<tr>';
-		content += '<td  class="alrimTd" onclick=location.href="./boardDetail?board_num='+item.alarm_targetNum+'" style="cursor:hand">'+item.mem_id+"님 "+msg+'</td>'
+		content += '<td  class="alrimTd" onclick=location.href="./csj_detail?board_num='+item.alarm_targetNum+'&mem_id='+item.mem_id+'" style="cursor:hand">'+loginId+"님 "+msg+'</td>'
 		+'<td>'+date.getFullYear()+"-"
 	      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 	      +("0" + date.getDate()).slice(-2)+" "

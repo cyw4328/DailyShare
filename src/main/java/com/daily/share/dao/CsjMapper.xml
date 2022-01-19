@@ -58,7 +58,7 @@
 	
 	<!-- 썸네일 정보 업데이트 -->
 	<update id="csj_thumbUpdate">
-		update board set board_thumFileName = #{param2} where board_num=#{param1}
+		update board set board_thumFileName=#{param2} where board_num=#{param1}
 	</update>
 	
 	<!-- 태그 등록 -->
@@ -114,6 +114,50 @@
 				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param3} and m.menu_num=#{param4} and b.board_blind=0  order by  b.board_num desc limit #{param1} offset #{param2}
 	</select>
 	
+	
+	<!-- 게시글 상세보기 -->
+	<select id="csj_detail" resultType="com.daily.share.dto.CsjPersonalBlogDTO">
+		select b.board_num,b.board_subject,b.board_cont,b.board_date,b.board_updateDate,b.board_views,b.board_like,b.board_scope,b.board_blind,b.mem_id,b.board_thumFileName
+			,m.menu_num,m.menu_name,m.menu_blind,m.main_num,m.mid_num 
+				from board b left outer join menu m on b.menu_num = m.menu_num where b.board_num =#{param1} and b.board_blind=0;
+	</select>
+	
+	
+	<!-- 게시글 태그 불러오기 -->
+	<select id="tagCall" resultType="String">
+		select tag_content from tag where board_num=#{param1}
+	</select>
+	
+	
+	
+	<!-- 사진 불러오기 -->
+	<select id="photoCall" resultType="com.daily.share.dto.CsjPhotoDTO">
+		select * from photo where board_num=#{param1}
+	</select>
+	
+	<!-- 태그 삭제 -->
+	<delete id="csj_tagDel">
+		delete from tag where tag_content=#{param1} and board_num=#{param2}
+	</delete>
+	
+	
+	<!-- 게시글 수정 -->
+	<update id="csj_postUpdate" parameterType="com.daily.share.dto.CsjPersonalBlogDTO">
+		update board set board_subject=#{board_subject},board_cont=#{board_cont},board_scope=#{board_scope},menu_num=#{menu_num} where board_num=#{board_num}
+	</update>
+	
+	
+	
+	<!-- 사진 삭제 -->
+	<delete id="photoDelete">
+		delete from photo where board_num=#{param1} and photo_newName =#{param2} 
+	</delete>
+	
+	
+	<!-- 썸네일 업데이트 2 -->
+	<update id="csj_thumbUpdateTwo">
+		update board set board_thumFileName=#{param2} where board_num=#{param1}
+	</update>
 	
 	<!-- 나를 구독중인 사람 목록 불러오기 -->
 <!-- 	<select id="csjSubList" resultType="com.daily.share.dto.CsjSubDTO">

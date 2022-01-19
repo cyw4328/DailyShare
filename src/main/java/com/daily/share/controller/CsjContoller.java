@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjPhotoDTO;
 import com.daily.share.dto.CsjSubDTO;
+import com.daily.share.dto.CywDTO;
 import com.daily.share.service.CsjService;
 
 @Controller
@@ -49,14 +52,15 @@ public class CsjContoller {
 		/* session.setAttribute("loginId", "test"); */
 		logger.info("댓글 등록 요청 : {} / {}", session,params);
 		service.com_regist(session,params);
-		return "redirect:/csj_com";
+		String mem_id = params.get("mem_id");
+		return "redirect:/csj_detail?board_num="+params.get("board_num")+"&mem_id="+mem_id;
 	}
 	
 	@RequestMapping(value = "/csj_com_del", method = RequestMethod.GET)
-	public String csj_com_del(Model model, @RequestParam String com_num) {
+	public String csj_com_del(Model model, @RequestParam String com_num,@RequestParam String board_num,@RequestParam String mem_id) {
 		logger.info("삭제 요청 : {}", com_num);
 		service.com_del(com_num);
-		return "redirect:/csj_com";
+		return "redirect:/csj_detail?board_num="+board_num+"&mem_id="+mem_id;
 	}
 	
 	
@@ -126,6 +130,7 @@ public class CsjContoller {
 		model.addAttribute("menu",menu);
 		
 		
+		
 		ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
 		logger.info("헤드라인용 블로그 게시글/메뉴/사진 요청 : {}", boardList);
 		model.addAttribute("boardList",boardList);
@@ -152,6 +157,11 @@ public class CsjContoller {
 		model.addAttribute("mem_id",mem_id);
 		model.addAttribute("menu_num",menu_num);
 		
+		String mem_blog =service.blogName(mem_id);
+		logger.info("블로그 이름 요청 {}",mem_blog);
+		model.addAttribute("mem_blog",mem_blog);
+		
+		
 		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
 		logger.info("메뉴 리스트만 요청 : {}",menu);
 		model.addAttribute("menu",menu);
@@ -175,13 +185,129 @@ public class CsjContoller {
 
 	
 	@RequestMapping(value = "/csj_detail", method = RequestMethod.GET)
-	public String csj_detail(Model model,HttpSession session) {
-
+	public String csj_detail(Model model,HttpSession session,@RequestParam String board_num,@RequestParam String mem_id) {
+		/* session.setAttribute("loginId", "admin"); */
+		model.addAttribute("mem_id",mem_id);
+		logger.info("상세보기 요청 : {}",board_num);
+		
+		
+		String mem_blog =service.blogName(mem_id);
+		logger.info("블로그 이름 요청 {}",mem_blog);
+		model.addAttribute("mem_blog",mem_blog);
+		
+		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(mem_id);
+		logger.info("메뉴 리스트만 요청 : {}",menu);
+		model.addAttribute("menu",menu);
+		
+		//게시글 요청
+		CsjPersonalBlogDTO boardDetail =service.csj_detail(board_num);
+		logger.info("불러온 게시글 내용 : {}",boardDetail);
+		model.addAttribute("boardDetail",boardDetail);
+		
+		//태그 요청
+		ArrayList<String>tags = service.tagCall(board_num);
+		logger.info("불러온 태그 사이즈 : {}",tags.size());
+		model.addAttribute("tags",tags);
+		
+		
+		String loginId= (String) session.getAttribute("loginId");
+		logger.info("상세보기 로그인 된 아이디 : {}",loginId);
+		model.addAttribute("loginId",loginId);
+		
+		//사진 요청
+		ArrayList<CsjPhotoDTO> photos = service.photoCall(board_num);
+		logger.info("가져온 사진 : {}",photos.size());
+		model.addAttribute("photos",photos);
+		
+		
+		//댓글 요청
+		int board_Num = Integer.parseInt(board_num);
+		ArrayList<CsjCommentDTO> comList = service.csj_com(board_Num);
+		logger.info("댓글 목록 요청 : {}",comList);
+		model.addAttribute("comList",comList);
+		
+		
 		return "csjboardDetail";
 	}
 		
 	
+	//게시글 수정csj_writeUpdate
+	@RequestMapping(value = "/csj_UpdateForm", method = RequestMethod.GET)
+	public String csj_writeUpdate(Model model,HttpSession session,@RequestParam String board_num) {
+		/* session.setAttribute("loginId", "admin"); */
+		String loginId= (String) session.getAttribute("loginId");
+		logger.info("상세보기 로그인 된 아이디 : {}",loginId);
+		model.addAttribute("mem_id",loginId);
+		logger.info("수정 요청 : {}",board_num);
+		model.addAttribute("board_num",board_num);
+		
+		
+		String mem_blog =service.blogName(loginId);
+		logger.info("블로그 이름 요청 {}",mem_blog);
+		model.addAttribute("mem_blog",mem_blog);
 	
+		ArrayList<CsjMenuDTO>menu = service.csj_menuCall(loginId);
+		logger.info("메뉴 리스트만 요청 : {}",menu);
+		model.addAttribute("menu",menu);
+		
+		//게시글 요청
+		CsjPersonalBlogDTO boardDetail =service.csj_detail(board_num);
+		logger.info("불러온 게시글 내용 : {}",boardDetail);
+		model.addAttribute("boardDetail",boardDetail);
+		
+		//태그 요청
+		ArrayList<String>tags = service.tagCall(board_num);
+		logger.info("불러온 태그 사이즈 : {}",tags.size());
+		model.addAttribute("tags",tags);
+		
+		
+	
+		
+		//사진 요청
+		ArrayList<CsjPhotoDTO> photos = service.photoCall(board_num);
+		logger.info("가져온 사진 : {}",photos.size());
+		model.addAttribute("photos",photos);
+		
+		
+		
+		
+		
+		return "csjWriteUpdate";
+	}
+	
+	
+	@RequestMapping(value = "/csj_tagCall", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> csj_tagCall(@RequestParam String board_num) {
+		logger.info("태그 요청 :{}",board_num);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		ArrayList<String>tags = service.tagCall(board_num);
+		logger.info("불러온 태그 사이즈 : {}",tags.size());
+		map.put("tags", tags);
+		
+		return map;
+	}
+	
+	
+	@RequestMapping(value = "/csj_tagDel", method = RequestMethod.GET)
+	@ResponseBody
+	public HashMap<String, Object> csj_tagDel(@RequestParam String tag_content,@RequestParam String board_num) {
+		logger.info("태그 삭제 요청 :{}/{}",tag_content,board_num);
+		
+		return service.csj_tagDel(tag_content,board_num);
+	}
+	
+	
+	//게시글 업데이트 요청
+		@RequestMapping(value = "/csj_postUpdate", method = RequestMethod.POST)
+		public String csj_postUpdate(Model model,@RequestParam HashMap<String, String> params,MultipartFile[] photos,HttpSession session) {
+			String loginId= (String) session.getAttribute("loginId");
+			logger.info("게시글 수정 요청 : {},{}",params,photos);
+			logger.info("로그인 된 아이디 : {}",loginId);
+			
+			
+			return service.csj_postUpdate(params,loginId,photos);
+		}
 	
 	
 	/*

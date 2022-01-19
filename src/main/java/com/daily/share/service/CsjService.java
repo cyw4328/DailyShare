@@ -1,5 +1,6 @@
 package com.daily.share.service;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.daily.share.dao.CsjDAO;
+import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
+import com.daily.share.dto.CsjPhotoDTO;
 import com.daily.share.dto.CsjSubDTO;
 
 @Service
@@ -143,7 +146,7 @@ public class CsjService {
 		
 		
 		if (board_num >0) {
-			page = "redirect:/boardDetail?board_num="+board_num;
+			page = "redirect:/csj_detail?board_num="+board_num+"&mem_id="+mem_id;
 			
 			//알림 등록 
 			ArrayList<String> subList = new ArrayList<String>();
@@ -282,7 +285,131 @@ public class CsjService {
 
 
 
-	
+	public CsjPersonalBlogDTO csj_detail(String board_num) {
+		return dao.csj_detail(board_num);
+	}
+
+
+
+
+	public ArrayList<String> tagCall(String board_num) {
+		return dao.tagCall(board_num);
+	}
+
+
+
+
+	public ArrayList<CsjPhotoDTO> photoCall(String board_num) {
+		return dao.photoCall(board_num);
+	}
+
+
+
+
+	public HashMap<String, Object> csj_tagDel(String tag_content, String board_num) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int result=dao.csj_tagDel(tag_content,board_num);
+		map.put("result",result);
+		
+		return map;
+	}
+
+
+	//게시글 수정
+	public String csj_postUpdate(HashMap<String, String> params, String loginId, MultipartFile[] photos) {
+		int iboard_num = Integer.parseInt(params.get("board_num"));
+		String board_num = params.get("board_num");
+		String board_subject = params.get("board_subject");
+		String board_cont = params.get("board_cont");
+		int board_scope =  Integer.parseInt(params.get("board_scope"));
+		String mem_id = loginId;
+		int menu_num = Integer.parseInt(params.get("menu_num"));
+		
+		logger.info("받아온 파라메터 : "+board_subject+"/"+board_cont+"/"+board_scope+"/"+mem_id+"/"+menu_num);
+		
+		CsjPersonalBlogDTO dtoB = new CsjPersonalBlogDTO();
+		dtoB.setBoard_num(iboard_num);
+		dtoB.setBoard_subject(board_subject);
+		dtoB.setBoard_cont(board_cont);
+		dtoB.setBoard_scope(board_scope);
+		dtoB.setMem_id(mem_id);
+		dtoB.setMenu_num(menu_num);
+		
+		//글업데이트
+		int result = dao.csj_postUpdate(dtoB);
+		String page = "redirect:/csj";
+		logger.info("등록 결과 : {}",result);
+		
+		
+		
+		if (result >0) {
+			page = "redirect:/csj_detail?board_num="+board_num+"&mem_id="+mem_id;
+			
+
+			
+			if (photos.length>0) {
+				//사진등록
+				csj_photoUpload(iboard_num,photos);
+			}
+			
+			//태그 등록
+			int tagLength= Integer.parseInt(params.get("tag_num"));
+			logger.info("태그 개수 : {}",tagLength);
+			
+			if (tagLength>0) {
+				for (int i = 0; i < tagLength; i++) {
+					String tag = params.get("tag_content"+i);
+					logger.info(tag);
+					dao.csj_tagUpload(iboard_num,tag);
+				}
+			}
+			
+		}
+		int delPhotoNum=Integer.parseInt(params.get("delPhotoNum"));
+		logger.info("지우려는 사진 수 : {}",delPhotoNum);
+		if (delPhotoNum>0) {
+			for (int i = 0; i < delPhotoNum; i++) {
+				String photo_newName= params.get("photo_newName"+i);
+				logger.info(photo_newName);
+				//사진 삭제 요청
+				photoDelete(board_num, photo_newName);
+			}
+		}
+		
+		
+		return page; //게시글 상세보기로 변경해주세요(했음)
+
+	}
+
+
+
+
+	public void photoDelete(String board_num, String photo_newName) {
+		dao.photoDelete(board_num,photo_newName);
+		logger.info("삭제 진행: {}/{}",board_num,photo_newName);
+		File file = new File("C:/upload/"+photo_newName);
+		boolean yn = file.delete();
+		logger.info(photo_newName+"삭제 : "+yn);
+		ArrayList<CsjPhotoDTO> photoList= dao.photoCall(board_num);
+		logger.info("게시글 사진 수: "+photoList.size());
+		photo_newName = "noImage.png";
+		if (photoList.size() > 0) {
+			for (CsjPhotoDTO photo : photoList) {
+				photo_newName = photo.getPhoto_newName();
+				logger.info(photo_newName);
+				dao.csj_thumbUpdateTwo(board_num, photo_newName);	
+			}
+		}else {
+			logger.info("사진 no썸네일 업데이트"+board_num);
+			dao.csj_thumbUpdateTwo(board_num,photo_newName);
+		}
+
+		
+	}
+
+
+
+
 
 
 

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.io.*"%>
 
 <html>
 <head>
@@ -148,8 +147,14 @@
 	 	
 	 	
 	 	
+	 	.photo{
+	 		cursor: pointer;
+	 	}
 	 	
-	 	
+	 	.img_file{
+			cursor: pointer;
+		}
+		
 	 	
 	 	
 	 	
@@ -183,10 +188,12 @@
 		#file_label{
 			cursor: pointer;
 		}
-		.img_file{
+		.hasTag{
 			cursor: pointer;
 		}
-		
+		#tag_had{
+			display: inline-block;
+		}
 
 		
 
@@ -195,27 +202,43 @@
 <body>
 	<div id="container_wrap">
 		<%@ include file="csjBlogHead.jsp" %>
-		<form id="post_form" action="csj_postUpload" method="post" enctype="multipart/form-data">
+		<form id="post_form" action="csj_postUpdate" method="post" enctype="multipart/form-data">
 		<div id="form_wrap">
 			<div id=category_wrap>
 				<img src="resources/images_csj/backimage.png" onclick="javascript:history.back();">
 				<select name="menu_num">
 								<c:forEach items="${menu}" var="menu">
-									<option value="${menu.menu_num}">${menu.menu_name}</option>			
+									<c:if test="${menu.menu_num eq boardDetail.menu_num}">
+										<option value="${menu.menu_num}" selected="selected">${menu.menu_name}</option>			
+									</c:if>
+									<c:if test="${menu.menu_num ne boardDetail.menu_num}">
+										<option value="${menu.menu_num}">${menu.menu_name}</option>			
+									</c:if>
 								</c:forEach>
 				</select>
 				<input  id="post_submit" type="button" value="완료"/>
 			</div>
 			
 			
-			
+			<input type="hidden" name="board_num" value="${board_num}"/>
 			<div id="sub_wrap">
-				<input id="board_sub" placeholder="&nbsp;제목을 입력하세요" type="text" name="board_subject"/>
+				<input id="board_sub" placeholder="&nbsp;제목을 입력하세요" type="text" name="board_subject" value="${boardDetail.board_subject}"/>
 			</div>
 			
-			<div id="multiple_container" contenteditable="true" placeholder="내용을 입력하세요" onkeydown="resize(this)" onkeyup="resize(this)"></div>
+			<div id="multiple_container" contenteditable="true" placeholder="내용을 입력하세요" onkeydown="resize(this)" onkeyup="resize(this)">
+				<c:if test="${not empty photos.size()}">
+					<c:forEach items="${photos}" var="photo">
+						<p class="photo" ondblclick="photoDel('${photo.photo_newName}','${photo.photo_num}')" id="${photo.photo_num}">
+							<img src="/postImageFolder/${photo.photo_newName}" style="max-width:300px;max-height:250px;z-index:none;"/>
+						</p>			
+					</c:forEach>
+				</c:if>
+				${boardDetail.board_cont}
+				
+			</div>
 			<!-- 실제 textarea 는 숨겨둠 -->
 			<div id="content_wrap">
+				<input id="delPhotoNum" type="hidden" name="delPhotoNum" value="0">
 				<textarea  id="board_cont" placeholder="내용을 입력하세요" name="board_cont" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
 			</div>
 			
@@ -226,6 +249,7 @@
 				<div id="tag_wrap">
 					#<input id="post_tag" placeholder="태그 입력" type="text" />
 					<input id="post_tagNum" type="hidden" name="tag_num" value="0"/>
+					<div id="tag_had"></div>
 				</div>
 				<div id="file_wrap">
 					<div id="input_imgBox">	    		
@@ -252,16 +276,32 @@
 			</div>
 		</div>
 		</form>
-		
+	</div>	
 
 	
 </body>
 <script>
 
+
+/* 사진 삭제 */
+var delPhoto;
+var p=0;
+function photoDel(photo,idx) {
+	console.log(photo+"사진 더블 클릭");
+	var id='#'+idx;
+	console.log(id);
+	console.log($(id));
+	$(id).remove();
+	delPhoto='<input type="hidden" name="photo_newName'+p+'" value="'+photo+'"/>';
+	$('#content_wrap').append(delPhoto);
+	p++
+	$('#delPhotoNum').val(p);
+}
+
 var img_files = [];
 
 function handleImgFileSelect(e){
-	$('#multiple_container').children('p').remove();
+	$('.newFile').remove();
 	img_files=[];
 	
 	var files = e.target.files;
@@ -284,8 +324,8 @@ function handleImgFileSelect(e){
 			$('#multiple_container').append(html);
 			index++;
 			
-			$('#multiple_container').css('min-height',height+100*index);
 		}
+		$('#multiple_container').css('min-height',height+300*index);
 
 		reader.readAsDataURL(f);
 		
@@ -337,7 +377,7 @@ $('#post_tag').keydown(function(key) {
 		console.log('엔터 입력');
 		var tag_cont = $('#post_tag').val();
 		if(tag_cont != "" && tag_cont != " " && tag_cont != "   " && tag_cont != "   "){
-			$('#post_tag').parent().append('&nbsp;<span style="color:grey;font-size:15px;">#'+tag_cont+'</span>');
+			$('#post_tag').parent().append('<span style="color:grey;font-size:15px;">#'+tag_cont+'</span>&nbsp;');
 			$('#post_tag').after('<input id="tag'+i+'" type="hidden" name="tag_content'+i+'" value="'+tag_cont+'"/>');
 			i++;
 			$('#post_tagNum').val(i);
@@ -346,6 +386,64 @@ $('#post_tag').keydown(function(key) {
 		}
 	}
 });
+
+
+var $board_num = ${boardDetail.board_num};
+/* 태그 불러오기 */
+ 
+tagCall();
+function tagCall() {
+console.log("tagCall 작동");
+$.ajax({
+		type:'get',
+		url:'csj_tagCall',
+		data:{'board_num':$board_num},
+		dataType:'JSON',
+		success: function(data) {
+			console.log(data.tags);
+			tagDraw(data.tags);
+		},
+		error: function(e) {
+			console.log(e);
+		}
+		
+	});
+	
+}
+
+function tagDraw(tags) {
+	$('#tag_had').empty();
+	var content = '';
+	if (tags.length>0) {
+		for (var i = 0; i < tags.length; i++) {
+			console.log(String(tags[i]));
+			content = '&nbsp;<span class="hasTag" ondblclick="tagDel(\''+tags[i]+'\')" style="color:grey;font-size:15px;">#'+tags[i]+'</span>'
+			$('#tag_had').append(content);
+		}
+	}
+	
+ 	
+}
+
+
+/* 태그 삭제 */
+function tagDel(tag) {
+	console.log(tag);
+		$.ajax({
+		type:'get',
+		url:'csj_tagDel',
+		data:{'tag_content':tag,'board_num':$board_num},
+		dataType:'JSON',
+		success: function(data) {
+			console.log(data.result);
+				tagCall();				
+		},
+		error: function(e) {
+			console.log(e);
+		}
+		
+	});
+}
 
 
 

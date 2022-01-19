@@ -10,7 +10,7 @@
  *{margin: 0 auto;}
 
 #container{
-    width: 1200px;    
+    width: 1250px;    
 }
 
 #header{
@@ -55,6 +55,10 @@
 
 }
 
+.menubar li:last-child{ 
+    margin-left:6px;
+
+}
 
 .menubar li:hover{ 
     color: rgb(0, 112, 163);
@@ -75,7 +79,7 @@
 
 
 .nav01:first-child{
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 
@@ -128,7 +132,32 @@ border-bottom:1px solid #black;
 	width: 20px;
 }
 
-   
+.writeBtn{
+	float:right; 
+	margin-right:10px; 
+	background-color:black; 
+	color:#FFF; 
+	font-weight:bold; 
+	border:0px;
+	padding:3px 10px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+#gongji{
+	max-width: 200px;
+   	text-overflow: ellipsis;
+   	font-size:13px;
+	white-space: nowrap;
+	margin-left:0px;
+	padding-left:-20px;
+	font-weight: normal;
+	cursor: pointer;
+}
+#gongji:hover{
+border-bottom:1px solid black;
+}
+
    </style>
 </head>
 
@@ -143,38 +172,44 @@ border-bottom:1px solid #black;
                 <ul>
                     <li class="nav01" onclick="location.href='./FeedPage'">피드</li>
                     <li class="nav01" onclick="location.href='./ForumBoard'">포럼</li>
-                    <a href="/share/csj_blogMain"><li class="nav01" >MY블로그</li></a>
+                    <a href="/share/csj_blogMain" id = "myBlogck"><li class="nav01" >MY블로그</li></a>
+                    <li class="nav01" ><img src="resources/images/gongji_icon.png" class = "iconSize"></li>
+                    <li class="nav01" id="gongji">공지사항이다 우헤헤ㅔ헤헤후에에에ㅔ에엥ㅇ</span>
                 </ul>
             </div>
                 <!--로그인 레이어팝업 -->
                 
 
-                <a id="logout_icon" href="logoutShs">
-                <img src="resources/images/logout_icon.png" class = "iconSize"  onMouseOver="this.src='resources/images/logout_icon.png'"
-                onMouseOut="this.src='resources/images/logout_icon.png'"></a>
+                <span id="logout_icon"><a href="logoutShs">
+                <img src="resources/images/logout_icon.png" class = "iconSize"></a></span>
                 
-                <a id="login_icon"><img src="resources/images/bell_icon.png" class = "iconSize" onMouseOver="this.src='resources/images/bell_icon.png'"
-                    onMouseOut="this.src='resources/images/bell_icon.png'" ></a>
-                
+                <span id="login_icon"><a href="#"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
                 <a href="/share/memberPassCk"><p id="id_shs">${loginId}</p></a>
-
+				<button class ="writeBtn">글쓰기</button>
             
         </nav>
         
         
     </div>
     <hr style="position: absolute; width: 100%; left: 0px; top: 80px; border-top : 1px solid rgb(226, 226, 226);">
-    <div id="main">
-        <div id="wrap">
 
-        </div>
-    </div>
 
 </div>
 </body>
-	
-</header>
+<script>
 
-</body>
+var login = '${loginId}';
+
+if(login == null ||login == ''){
+	$('#myBlogck').hide();
+	$('.writeBtn').hide();
+	
+	$('#logout_icon').html('<a href="/share/shs"><img src="resources/images/icon_join.png" class = "iconSize"></a>');
+	$('#login_icon').html('<a href="/share/loginPage"><img src="resources/images/icon_login.PNG" class = "iconSize"></a>');
+	
+	
+};
+
+</script>
 
 </html>

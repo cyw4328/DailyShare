@@ -34,19 +34,50 @@ public class CywController {
 		model.addAttribute("bigCategoryList",bigCategoryList);
 		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
 		model.addAttribute("midCategoyrList",midCategoryList);
-		ArrayList<CywDTO> menuList = service.menuList();
-		model.addAttribute("menuList",menuList);
+		 ArrayList<CywDTO> menuList = service.menuList(null);
+		 model.addAttribute("menuList",menuList);
+		
+
+		return "MainPageShs";
+	}
+	@RequestMapping(value = "/cywtest", method = RequestMethod.GET)
+	public String cywtest(Model model) {
+		
+		ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
+		model.addAttribute("bigCategoryList",bigCategoryList);
+		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
+		model.addAttribute("midCategoyrList",midCategoryList);
+		
+		 ArrayList<CywDTO> menuList = service.menuList(null);
+		 model.addAttribute("menuList",menuList);
+
+
+		return "CategoryControl";
+	}
+
+	@RequestMapping(value = "/cywtest1", method = RequestMethod.GET)
+	public String cywtest1(Model model) {
+		
+		ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
+		model.addAttribute("bigCategoryList",bigCategoryList);
+		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
+		model.addAttribute("midCategoyrList",midCategoryList);
+		
+		 ArrayList<CywDTO> menuList = service.menuList(null);
+		 model.addAttribute("menuList",menuList);
+
 
 		return "cateGory";
 	}
-
+	
+	
 	@RequestMapping(value = "/bigCategoryAdd", method = RequestMethod.POST)
 	public String bigCategoryAdd(Model model, @RequestParam String mainCategoryAdd, @RequestParam int mainAdmin) {
 		logger.info("컨트롤러 도착 대분류" + mainCategoryAdd, mainAdmin);
 
 		service.bigCategoryAdd(mainCategoryAdd, mainAdmin);
 
-		return "redirect:/cyw";
+		return "redirect:/cywtest";
 	}
 	
 	@RequestMapping(value = "/bigCategoryDel", method = RequestMethod.GET)
@@ -67,7 +98,7 @@ public class CywController {
 	 
 	 service.middleCategoryAdd(middleCategoryAdd,daeCategory,middle_admin);
 	 
-	 return "redirect:/cyw"; 
+	 return "redirect:/cywtest"; 
 	 }
 	 
 	@RequestMapping(value = "/midCategoryDel", method = RequestMethod.GET)
@@ -78,7 +109,20 @@ public class CywController {
 	
 		return service.midCateFk(mid_num);
 	}
-	 
+	@RequestMapping(value = "/menuAddPage", method = RequestMethod.GET)
+	public String menuAddPage(Model model,HttpSession session) {
+		
+		String loginId = (String) session.getAttribute("loginId");
+
+		 ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
+			model.addAttribute("bigCategoryList",bigCategoryList);
+			ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
+			model.addAttribute("midCategoyrList",midCategoryList);
+			ArrayList<CywDTO> menuList = service.menuList(loginId);
+			model.addAttribute("menuList",menuList);
+
+		return "MenuAdd";
+	}
 
 	 @RequestMapping(value = "/menuAdd", method = RequestMethod.POST)
 	 public String menuAdd(Model model, @RequestParam String menuAddName,@RequestParam int daeCategoryMenu, 
@@ -88,10 +132,10 @@ public class CywController {
 	 logger.info("메뉴생성세션아이디:{}",id);
 	 service.menuAdd(menuAddName,daeCategoryMenu,midCategoryMenu,id);
 	 
-	 return "redirect:/cyw"; 
+	 return "redirect:/menuAddPage"; 
 	 }
 	 
-	@RequestMapping(value = "/menuDel", method = RequestMethod.GET)
+	@RequestMapping(value = "/menuDel", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> menuDel(Model model,@RequestParam String menu_num) {
 		logger.info("삭제요청 : {}",menu_num); 
@@ -146,6 +190,7 @@ public class CywController {
 		service.update(params);
 		return "redirect:/boardDetail?board_num="+params.get("board_num");
 	}
+	
 	
 	 @RequestMapping(value = "/boardDel", method = RequestMethod.GET)
 	 public String boardDel(Model model, @RequestParam int board_num) {
@@ -235,5 +280,156 @@ public class CywController {
 		 return service.feedListCall(currPage,pagePerCnt,loginId); 
 		 }
 		 
-	 
+		 
+		 // 마이페이지 알림 페이지 이동
+		 @RequestMapping(value = "/MyAlrimPage", method = RequestMethod.GET)
+		 public String MyAlrimPage(Model model,HttpSession session) {
+			 
+			 String page = "MyPageAlram";
+			 
+			 String loginId = (String) session.getAttribute("loginId");
+			 if (loginId == null) {
+				 page ="redirect:/";
+			}
+
+		 return page; 
+		 }
+		 
+		 
+
+		 //마이페이지 알림 리스트
+		 @RequestMapping(value = "/AlrimPageList", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> AlrimPageList(Model model,HttpSession session,@RequestParam String page,@RequestParam String cnt){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+			int currPage = Integer.parseInt(page);
+			int pagePerCnt = Integer.parseInt(cnt);
+
+		 
+		 return service.AlrimPageList(loginId,currPage,pagePerCnt); 
+		 }
+		 
+		 // 마이페이지 알림 삭제alrimDel
+		 @RequestMapping(value = "/alrimDel", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> alrimDel(Model model,@RequestParam String alram_num){
+		 
+		 return service.alrimDel(alram_num); 
+		 }
+		 
+		 
+		 // 마이페이지 내 댓글리스트 이동
+		 @RequestMapping(value = "/MyReviewControlPage", method = RequestMethod.GET)
+		 public String MyReviewControlPage(Model model,HttpSession session) {
+			 
+			 String page = "reviewControl";
+			 
+			 String loginId = (String) session.getAttribute("loginId");
+			 if (loginId == null) {
+				 page ="redirect:/";
+			}
+
+		 return page; 
+		 }
+		 
+		 // 마이페이지 내가 쓴 댓글 관리
+		 @RequestMapping(value = "/reviewList", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> reviewList(Model model,@RequestParam String page,@RequestParam String cnt,HttpSession session){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+		 int currPage = Integer.parseInt(page); 
+		 int pagePerCnt =Integer.parseInt(cnt);
+		 
+		 return service.reviewList(currPage,pagePerCnt,loginId); 
+		 }
+		 
+		 // 마이페이지 내글리스트 이동
+		 @RequestMapping(value = "/MyBoardControlPage", method = RequestMethod.POST)
+		 public String MyBoardControlPage(Model model,HttpSession session) {
+			 
+			 String page = "MyBoardControl";
+			 
+			 String loginId = (String) session.getAttribute("loginId");
+			 if (loginId == null) {
+				 page ="redirect:/";
+			}
+
+		 return page; 
+		 }
+		 
+		 
+		 // 마이페이지 내가 쓴 댓글 관리
+		 @RequestMapping(value = "/boardList", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> boardList(Model model,@RequestParam String page,@RequestParam String cnt,HttpSession session){
+		 
+		 String loginId = (String) session.getAttribute("loginId");
+		 
+		 int currPage = Integer.parseInt(page); 
+		 int pagePerCnt =Integer.parseInt(cnt);
+		 
+		 return service.boardList(currPage,pagePerCnt,loginId); 
+		 }
+		 
+		 // 마이페이지 내가 쓴 댓글 삭제
+		 @RequestMapping(value = "/MyComDel", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> MyComDel(Model model,@RequestParam String com_num){
+		 
+		 return service.MyComDel(com_num); 
+		 }
+		 
+		 // 마이페이지 내가 쓴 게시물 삭제
+
+		 @RequestMapping(value = "/MyBoardDel", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> MyBoardDel(Model model,@RequestParam String board_num){
+		 
+		 return service.MyBoardDel(board_num); 
+		 }
+		 
+		 
+		 // 게시글 신고
+
+		 @RequestMapping(value = "/boardSingo", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> boardSingo(Model model,@RequestParam String board_num,HttpSession session){
+		 
+			 String loginId = (String) session.getAttribute("loginId");
+			 
+		 return service.boardSingo(board_num,loginId); 
+		 }
+
+		 
+		 // 메인 페이지 대분류 카테고리 버튼 가져오기
+		 
+		 @RequestMapping(value = "/MainPageBigCateGory", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> MainPageBigCateGory(Model model){
+		 
+			 
+			 
+		 return service.MainPageBigCateGory(); 
+		 }
+		 
+		 
+		 // 대분류 클릭시 게시글 뽑아오기
+			@RequestMapping(value = "/GoodBoardList", method = RequestMethod.POST)
+			@ResponseBody
+			public HashMap<String, Object> GoodBoardList(Model model,@RequestParam String MainNum) {
+				logger.info("리스트호출 : {}",MainNum); 
+									
+			
+				return service.middleListCall(MainNum);
+			}	
+		 
+		 
+		 
+		 
+		 
+		 
 }

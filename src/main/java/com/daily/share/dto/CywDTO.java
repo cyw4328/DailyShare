@@ -243,6 +243,91 @@ public class CywDTO {
 		this.sub_id = sub_id;
 	}
 	
+	private int alarm_num;
+	private Timestamp alarm_date;
+	private int alarm_targetNum;
+	private int alarm_target;
+	public int getAlarm_num() {
+		return alarm_num;
+	}
+	public void setAlarm_num(int alarm_num) {
+		this.alarm_num = alarm_num;
+	}
+	public Timestamp getAlarm_date() {
+		return alarm_date;
+	}
+	public void setAlarm_date(Timestamp alarm_date) {
+		this.alarm_date = alarm_date;
+	}
+	public int getAlarm_targetNum() {
+		return alarm_targetNum;
+	}
+	public void setAlarm_targetNum(int alarm_targetNum) {
+		this.alarm_targetNum = alarm_targetNum;
+	}
+	public int getAlarm_target() {
+		return alarm_target;
+	}
+	public void setAlarm_target(int alarm_target) {
+		this.alarm_target = alarm_target;
+	}
+	
+	private int com_num;
+	private int com_parent;
+	private int com_depth;
+	private String com_cont;
+	private Timestamp com_date;
+	private int com_secret;
+	private int com_blind;
+	private String com_targetId;
+	public int getCom_num() {
+		return com_num;
+	}
+	public void setCom_num(int com_num) {
+		this.com_num = com_num;
+	}
+	public int getCom_parent() {
+		return com_parent;
+	}
+	public void setCom_parent(int com_parent) {
+		this.com_parent = com_parent;
+	}
+	public int getCom_depth() {
+		return com_depth;
+	}
+	public void setCom_depth(int com_depth) {
+		this.com_depth = com_depth;
+	}
+	public String getCom_cont() {
+		return com_cont;
+	}
+	public void setCom_cont(String com_cont) {
+		this.com_cont = com_cont;
+	}
+	public Timestamp getCom_date() {
+		return com_date;
+	}
+	public void setCom_date(Timestamp com_date) {
+		this.com_date = com_date;
+	}
+	public int getCom_secret() {
+		return com_secret;
+	}
+	public void setCom_secret(int com_secret) {
+		this.com_secret = com_secret;
+	}
+	public int getCom_blind() {
+		return com_blind;
+	}
+	public void setCom_blind(int com_blind) {
+		this.com_blind = com_blind;
+	}
+	public String getCom_targetId() {
+		return com_targetId;
+	}
+	public void setCom_targetId(String com_targetId) {
+		this.com_targetId = com_targetId;
+	}
 	
 	
 }

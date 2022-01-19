@@ -5,6 +5,7 @@
    <meta charset="UTF-8">
    <title>Insert title here</title>
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="resources/css/HS.css">
    <style>
    
    #con_memberDe{width: 1200px;}
@@ -22,12 +23,7 @@
    display: inline;
    }
    
-   #formCs{
-      border:1px solid #ccc;
-      width:300px;
-      margin-top:70px;
-      padding:60px 50px   ;
-   }
+
    
    .formSt{
       padding:5px;
@@ -63,16 +59,36 @@
    <div id="formCs">
    
      	 <form action="userUp" method="POST">
-            ID : <input type="text" name="id"  value="${loginId}" class="formSt" readonly="readonly" /></br>
-            비밀번호 : <input type="password" name="pw" placeholder="새로운 비밀번호" class="pw" " value="${info.mem_name}"/></br>
-            확인 : <input type="password" name="repw" placeholder="비밀번호 확인"  class="pw"  value="${info.mem_name}""/></br>
-            <div class="successPw" id="successPw">비밀번호가 일치합니다.</div>
-      		<div class="dangerPw" id="dangerPw">비밀번호가 일치하지 않습니다.</div>
-            이름 : <input type="text" value="${info.mem_name}" name="name" class="formSt" readonly="readonly"></br>
-            E-MAIL : <input type="text" value="${info.mem_email}" name="email"  class="formSt"  ></br>
-            전화번호 : <input type="text" value="${info.mem_phone}" name="phone" class="formSt" ></br>
-            <button id="btn-join">저장</button>
-
+     	 
+     	 	<table style ="width:420px;">
+     	 		<tr>
+	            	<th>ID</th>
+	            		<td  style="border-bottom:1px solid #dedede;"><input type="text" name="id"  value="${loginId}" class="formSt" readonly="readonly" /></td>
+	            </tr>
+	            <tr>
+	            	<th>비밀번호</th>
+	           		<td  style="border-bottom:1px solid #dedede;"><input type="password" name="pw" placeholder="새로운 비밀번호" class="pw" " value="${info.mem_name}"  style="border:1px solid #ccc;"/></td>
+	           	</tr>
+	            	<th>확인</th>
+	            	<td  style="border-bottom:1px solid #dedede;"><input type="password" name="repw" placeholder="비밀번호 확인"  class="pw"  value="${info.mem_name}" style="border:1px solid #ccc;"/></td>
+	            </tr>
+	        		<div class="successPw" id="successPw" style="color:#2cba00;">비밀번호가 일치합니다.</div>
+					<div class="dangerPw" id="dangerPw" style="color:#ce0000;">비밀번호가 일치하지 않습니다.</div>
+	      		</tr>
+	            <tr>
+	            	<th>이름</th>
+	            	<td  style="border-bottom:1px solid #dedede;"><input type="text" value="${info.mem_name}" name="name" class="formSt" readonly="readonly"></td>
+	            </tr>
+	           <tr>
+	           		<th>E-MAIL</th>
+	           		<td  style="border-bottom:1px solid #dedede;"><input type="text" value="${info.mem_email}" name="email"  class="formSt"   style="border:1px solid #ccc;"></td>
+	           		</tr>
+	           <tr>
+	           		<th>전화번호</th>
+	           		<td  style="border-bottom:1px solid #dedede;"><input type="text" value="${info.mem_phone}" name="phone" class="formSt"  style="border:1px solid #ccc;"></td>
+	           	</tr>
+	            <tr><td colspan="2" style="border:0px; text-align: center; border-bottom:1px solid #dedede;"><button id="btn-join"  style="border:1px solid #fff; font-size: 15px; font-weight: bold; border-radius: 10px; cursor: pointer;" >저장</button></td></tr>
+			</table>
 	      </form>
 	   </div>
 	</div>

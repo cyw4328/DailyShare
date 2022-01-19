@@ -139,7 +139,7 @@ public String userUp(Model model, @RequestParam String id,@RequestParam String p
 	
 	service.userUp(id,pw,email,phone);
 	
-	return "memberDe";
+	return "redirect:/memberPassCk";
 }
 
 
@@ -249,6 +249,25 @@ public HashMap<String, Object>  followPlusShs(Model model,HttpSession session,@R
 
 
 
+//구독삭제
+//구독 버튼
+@RequestMapping(value = "/followDelShs", method = RequestMethod.POST)
+@ResponseBody
+public HashMap<String, Object>  followDelShs(Model model,HttpSession session,@RequestParam String mem_id) {
+	String sub_id = (String) session.getAttribute("loginId");
+	logger.info("언팔 컨트롤러");
+	
+	logger.info("{}",mem_id+sub_id);
+	return service.followDelShs(mem_id,sub_id);
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -262,7 +281,57 @@ public String MainPageShs(Model model) {
 	return "MainPageShs";
 		}
 
+
+
+
+@RequestMapping(value = "/memberPassCk", method = RequestMethod.GET)
+public String memberPassCk(Model model,HttpSession session) {
+	logger.info("비밀번호체크 페이지 컨트롤러");	
+	Object object = session.getAttribute("loginId");
+
+	String Page ="redirect:/loginPage";
+	if(object != null) {
+		session.getAttribute("loginId");
+		Page ="memberPassCk";
+	}	
+
+	return Page;
+	}
+
+
+
+@RequestMapping(value = "/PassCk", method = RequestMethod.POST)
+	public String PassCk(Model model,HttpSession session, @RequestParam String pw,@RequestParam String id) {
+		logger.info("비밀번호체크 컨트롤러{}",pw+id);	
+		Object object = session.getAttribute("loginId");
+	
+		String Page ="redirect:/loginPage";
+		if(object != null) {
+			session.getAttribute("loginId");
+			String msg ="비밀번호가 일치하지 않습니다.";
+			String Ck = service.PassCk(id,pw);
+			
+			if(Ck != null) {
+				Page ="redirect:/memberDe";
+			}else {
+				Page ="redirect:/memberPassCk";
+
+			}
+			
+			
+		}	
+	
+		return Page;
+	}
+
+
+
+
+
 }
+
+
+
 
 
 

@@ -69,8 +69,18 @@
         VALUES  	(#{param1}, #{param2})
 	</insert >
 
-	
+	<!-- 언팔 하기 -->
+	<delete id="followDelShs" >
+		DELETE FROM subscription
+		WHERE sub_id = #{param1} AND mem_id = #{param2}
+	</delete>	
 
+
+	
+	<!-- 개인정보 확인 -->
+	<select id="PassCk" resultType="String">
+		select mem_id,mem_pw from members WHERE mem_id =#{param1} and mem_pw=#{param2}
+	</select>
 
 
 

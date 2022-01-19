@@ -40,17 +40,23 @@
       margin-bottom: 5px;
    }
 
+	#headTxt{
+	  font-size: 28px;
+ 	 font-style: bold;
+	}
+	
    
    
    </style>
 
 <body>
 <%@ include file="headerShs_login.jsp"%>
+<%@ include file="MyPageShs.jsp"%>
 
 <div id="con_memberDe">
 
 <div id="sujung_txt">
-<p>개인정보 수정</p>
+<p id="headTxt">개인정보 수정</p>
 <input type="button" value="회원 탈퇴하기" style="float: right;" id="userOut_btn">
 <hr>
 
@@ -84,6 +90,13 @@ var finalPw = null;
 var pw =$("input[name='pw']").val();
 var repw = $("input[name='repw']").val();
 
+
+$("#btn-join").click(function() {
+	
+	alert('저장이 완료되었습니다.');
+	$("form").submit();
+});	
+	
 
 
 $("#userOut_btn").click(function() {

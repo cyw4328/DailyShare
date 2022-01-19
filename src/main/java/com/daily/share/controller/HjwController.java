@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.daily.share.dto.CywDTO;
 import com.daily.share.dto.HjwDTO;
+import com.daily.share.dto.ShjDTO;
 import com.daily.share.service.HjwService;
 
 @Controller
@@ -149,13 +151,76 @@ public class HjwController {
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
 	public String managerPage(Model model) {
 		logger.info("관리자페이지 이동");
-		logger.info("list 요청");
-		ArrayList<HjwDTO> list=service.list();
-		logger.info("회원 수 : {}",list.size());
-		model.addAttribute("size", list.size());
-		model.addAttribute("MemberList", list);
 		return "manager";
 	}
 	
+	//리스트 요청
+		@ResponseBody
+		@RequestMapping(value = "/memlist", method = RequestMethod.GET)
+		public HashMap<String, Object> memlist(@RequestParam String page,@RequestParam String cnt) {	
+		
+			logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
+			HashMap<String, Object> map = new HashMap<String, Object>();	
+			int currPage = Integer.parseInt(page);
+			int pagePerCnt = Integer.parseInt(cnt);
+			int offset = ((currPage-1) * pagePerCnt-1) >= 0  ? 
+					((currPage-1) * pagePerCnt-1) : 0;		
+			logger.info("offset : {}",offset);				
+			int totalCount = service.allCount(); 
+			int range = totalCount%pagePerCnt > 0 ? 
+					 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
+			logger.info("총 갯수 : {}",totalCount);
+			logger.info("만들 수 있는 총 페이지 : {}",range);
+			map.put("pages",range);
+			map.put("list", service.memlist(pagePerCnt, offset));
+			return map;
+		}
+		
+		//검색 기능
+		@ResponseBody
+		@RequestMapping(value = "/SearchList", method = RequestMethod.GET)
+		private List<HjwDTO> SearchList (@RequestParam("SearchType") String SearchType, @RequestParam("keyword") String keyword) {
+			
+			HjwDTO hjwdto = new HjwDTO();
+			hjwdto.setKeyword(keyword);
+			hjwdto.setSearchType(SearchType);
+			
+			return service.SearchList(hjwdto);
+		}
+		
+		/*
+		
+		@ResponseBody
+		@RequestMapping(value = "/declist1", method = RequestMethod.GET)
+		public HashMap<String, Object> declist1(@RequestParam String page,@RequestParam String cnt) {	
+		
+			logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
+			HashMap<String, Object> map = new HashMap<String, Object>();	
+			int currPage = Integer.parseInt(page);
+			int pagePerCnt = Integer.parseInt(cnt);
+			int offset = ((currPage-1) * pagePerCnt-1) >= 0  ? 
+					((currPage-1) * pagePerCnt-1) : 0;		
+			logger.info("offset : {}",offset);				
+			int totalCount = service.allCount(); 
+			int range = totalCount%pagePerCnt > 0 ? 
+					 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
+			logger.info("총 갯수 : {}",totalCount);
+			logger.info("만들 수 있는 총 페이지 : {}",range);
+			map.put("pages",range);
+			map.put("list", service.declist1(pagePerCnt, offset));
+			return map;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "/SearchList1", method = RequestMethod.GET)
+		private List<HjwDTO> SearchList1 (@RequestParam("SearchType") String SearchType, @RequestParam("keyword") String keyword) {
+			
+			HjwDTO hjwdto = new HjwDTO();
+			hjwdto.setKeyword(keyword);
+			hjwdto.setSearchType(SearchType);
+			
+			return service.SearchList1(hjwdto);
+		}
+		*/
 }
 	

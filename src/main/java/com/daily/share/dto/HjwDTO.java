@@ -11,10 +11,11 @@ public class HjwDTO {
 	private String mem_phone;
 	private int mem_admin;
 	private String mem_url;
-	private int mem_out;
-	private int mem_san;
 	private String mem_blog;
 	private Date mem_date;
+	
+	private String SearchType;
+	private String keyword;
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -57,18 +58,6 @@ public class HjwDTO {
 	public void setMem_url(String mem_url) {
 		this.mem_url = mem_url;
 	}
-	public int getMem_out() {
-		return mem_out;
-	}
-	public void setMem_out(int mem_out) {
-		this.mem_out = mem_out;
-	}
-	public int getMem_san() {
-		return mem_san;
-	}
-	public void setMem_san(int mem_san) {
-		this.mem_san = mem_san;
-	}
 	public String getMem_blog() {
 		return mem_blog;
 	}
@@ -81,10 +70,18 @@ public class HjwDTO {
 	public void setMem_date(Date mem_date) {
 		this.mem_date = mem_date;
 	}
-
-	
-	
-	
+	public String getSearchType() {
+		return SearchType;
+	}
+	public void setSearchType(String searchType) {
+		SearchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	
 	
 	

@@ -38,10 +38,17 @@ public class HjwService {
 	public void PwC(String searchId, String userPass) {
 		dao.PwC(searchId,userPass);
 	}
-	public ArrayList<HjwDTO> list() {
-		logger.info("list 쿼리 요청");
-		return dao.list();
+	public ArrayList<HjwDTO> memlist(int currPage, int pagePerCnt) {
+		return dao.memlist(currPage,pagePerCnt);
+	}
+	public int allCount() {
+		return dao.allCount();
+	}
+	public List<HjwDTO> SearchList(HjwDTO hjwdto) {
+		return dao.SearchList(hjwdto);
 	}
 
+
+	
 
 }

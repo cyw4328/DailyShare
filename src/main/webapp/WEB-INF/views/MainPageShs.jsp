@@ -278,6 +278,23 @@ font-size: 13px;
 	.likeCnt{
 		color: red;
 	}   
+	
+	
+	.MainSearch{
+		position: absolute;
+		top:240px;
+		left:25%;
+		border:0px;
+	}
+	
+	
+	
+	
+	
+	
+<!---------------------------------------------------------------------아래서치관련css-->	
+	
+	
    </style>
 <body>
 <%@ include file="headerShs_login.jsp"%>
@@ -286,24 +303,7 @@ font-size: 13px;
 	<div id="mainBanner"></div>
 	<div id="CateBg"></div>
 	
-	<div>
-		<form action="ForumSearch" method="POST">
-     		<table>
-     			<tr>
-     				<td>
-     					<select name="SearchScope">
-     						<option selected="selected" value="All">전체</option>
-     						<option value="User">작성자</option>
-     						<option value="subCont">제목+내용</option>
-     					</select>
-     					<input type="text" name="ForumSearch"/>
-     					<input type="submit" value="검색"/>
-     				</td>
-     			</tr>
-     		</table>
-     	</form>
-	</div>
-	
+
 
 
 	
@@ -315,10 +315,14 @@ font-size: 13px;
 	<div class="container">
 	
 
+	
+
 	<div id="Category">
 
 	</div>
 
+	
+	
 	
 	<div class = "ContBox">
 			<ul class="CateCont" >
@@ -393,18 +397,81 @@ font-size: 13px;
 				
 				</ul>
 		</div>
-
-
+		
+		<div class="MainSearch">
+		<form action="Search" method="POST">
+     		<table>
+     			<tr>
+     				<td>
+     					<select name="SearchScope">
+     						<option selected="selected" value="All">전체</option>
+     						<option value="User">작성자</option>
+     						<option value="subCont">제목+내용</option>
+     					</select>
+     					<input type="text" name="ForumSearch"/>
+     					<input type="submit" value="검색"/>
+     				</td>
+     			</tr>
+     		</table>
+     	</form>
+	</div>
 	</div> 
+<<<<<<< HEAD
 	<div class="section_list">
 		 <ul class = "list_Story">
 		 </ul>			
 	</div>
 				
+=======
+	
+	
+	
+<div class="section_list">
+						<ul class = "list_Story">
+							<li>
+								<a target="_blank" href="#" class = "boardA">
+									<div class ="boardImg">
+										<img src="resources/images_shs/ContDe00.png" width ="128px" height="128px" alt="boardImg" class = "thumb_g">
+									</div>
+									<div class="boardCont">
+										<div class="boardCate">
+											<dl class="listData">
+												<dd>
+													<span class="innerData">중카테</span>
+												</dd>
+											</dl>
+											<dl class="listData">
+												<dd>
+													<span class="screenOut">3시간전</span>
+												</dd>
+											</dl>
+											<dl class="boardLike">
+												<span>공감</span>
+												<span class="likeCnt">6</span>
+												
+											</dl>
+										</div>
+										<strong class="board_title">
+											<span>집에가고싶다.집에가고싶다.집에가고싶다.집에가고싶다.</span>
+										</strong>
+										<p class="boardSTxt">꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ</p>					
+									</div>
+									<div class="boardBlogId">
+										<span>아이디</span>
+										<span>by 블로그 이름이다</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+						
+					</div>
+					<button class="theBogi">더보기</button>
+
 					
 
 </body>
 <script>
+
 
 MainBigCategoryCall();
 
@@ -490,6 +557,12 @@ function ForumBoardList(list) {
 };
 
 
+=======
+
+      
+      
+      
+>>>>>>> 1d272da87614b9c19cd49edd25e840b1144e66c8
       
 
 </script>

@@ -70,10 +70,9 @@
 	</insert >
 
 	<!-- 언팔 하기 -->
-	<delete id="followDelShs" >
-		DELETE FROM subscription
-		WHERE sub_id = #{param1} AND mem_id = #{param2}
-	</delete>	
+	<delete id="followDelShs">
+	delete from subscription where sub_id=#{param1} and mem_id=#{param2}
+	</delete>
 
 
 	

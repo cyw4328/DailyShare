@@ -115,7 +115,9 @@ public class ShsService {
 	
 	public HashMap<String, Object> followDelShs(String mem_id, String sub_id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		logger.info("언팔 서비스");
 		int result = dao.followDelShs(mem_id,sub_id);
+		logger.info("결과"+result);
 		map.put("result", result);
 		return map;
 

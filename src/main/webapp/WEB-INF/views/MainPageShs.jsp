@@ -278,6 +278,23 @@ font-size: 13px;
 	.likeCnt{
 		color: red;
 	}   
+	
+	
+	.MainSearch{
+		position: absolute;
+		top:240px;
+		left:25%;
+		border:0px;
+	}
+	
+	
+	
+	
+	
+	
+<!---------------------------------------------------------------------아래서치관련css-->	
+	
+	
    </style>
 <body>
 <%@ include file="headerShs_login.jsp"%>
@@ -286,24 +303,7 @@ font-size: 13px;
 	<div id="mainBanner"></div>
 	<div id="CateBg"></div>
 	
-	<div>
-		<form action="ForumSearch" method="POST">
-     		<table>
-     			<tr>
-     				<td>
-     					<select name="SearchScope">
-     						<option selected="selected" value="All">전체</option>
-     						<option value="User">작성자</option>
-     						<option value="subCont">제목+내용</option>
-     					</select>
-     					<input type="text" name="ForumSearch"/>
-     					<input type="submit" value="검색"/>
-     				</td>
-     			</tr>
-     		</table>
-     	</form>
-	</div>
-	
+
 
 
 	
@@ -315,6 +315,8 @@ font-size: 13px;
 	<div class="container">
 	
 
+	
+
 	<div id="Category">
 		<span class="BigCate">라이프</span>
 		<span class="BigCate">여행.맛집</span>
@@ -324,6 +326,8 @@ font-size: 13px;
 		<span class="BigCate">시사</span>
 	</div>
 
+	
+	
 	
 	<div class = "ContBox">
 			<ul class="CateCont" >
@@ -398,9 +402,28 @@ font-size: 13px;
 				
 				</ul>
 		</div>
-
-
+		
+		<div class="MainSearch">
+		<form action="Search" method="POST">
+     		<table>
+     			<tr>
+     				<td>
+     					<select name="SearchScope">
+     						<option selected="selected" value="All">전체</option>
+     						<option value="User">작성자</option>
+     						<option value="subCont">제목+내용</option>
+     					</select>
+     					<input type="text" name="ForumSearch"/>
+     					<input type="submit" value="검색"/>
+     				</td>
+     			</tr>
+     		</table>
+     	</form>
+	</div>
 	</div> 
+	
+	
+	
 <div class="section_list">
 						<ul class = "list_Story">
 							<li>
@@ -446,7 +469,7 @@ font-size: 13px;
 </body>
 <script>
 
-      
+
       
       
       

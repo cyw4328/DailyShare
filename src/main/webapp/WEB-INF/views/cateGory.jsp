@@ -393,7 +393,7 @@
 			      +("0" + date.getSeconds()).slice(-2)+
 				'<br/>'+"공감수 : "+list[i].board_like+'</td>'+'<br/>';
 				content += '<td>'+"제목 : "+list[i].board_subject+'<br/>'+"내용 : "+list[i].board_cont+'<br/>'+"작성자 : "+list[i].mem_id+'</td>';
-				content += '</tr>'+'</a>'+'<hr/>';
+				content += '</tr>'+'</a>'+'<button onclick="boardSingo('+list[i].board_num+')">'+"신고하기"+'</button>'+'<hr/>';
 				
 	
 			}
@@ -405,6 +405,37 @@
 			$(this).css('cursor','pointer');
 		});
 
+		
+function boardSingo(e) {
+	console.log(e);
+	var loginId <%session.getAttribute("loginId");%>
+	if (loginId != null) {
+		
+		var yn = confirm("정말 이글을 신고 하시겠습니까?");
+		
+		if (yn) {
+			
+			$.ajax({
+				type:'POST',
+				url:'boardSingo',
+				data:{"board_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+				dataType:'JSON',
+				success:function(data) {
+					console.log(data.list);
+					/* window.location.href="./MyReviewControlPage"; */
+					
+				},
+				error:function(e) {
+					console.log(e);
+				}
+			});
+		}
+	}else{
+		alert("로그인이 필요한 서비스입니다.");
+	}
+	
+	
+}		
 		
 		
 </script>

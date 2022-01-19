@@ -115,10 +115,10 @@ public class CywService {
 		return map;
 	}
 
-	public HashMap<String, Object> middleListCall(String middleListCall) {
+	public HashMap<String, Object> middleListCall(String MainNum) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-		ArrayList<CywDTO> list = dao.middleListCall(middleListCall);
+		ArrayList<CywDTO> list = dao.middleListCall(MainNum);
 		map.put("list", list);
 
 		return map;
@@ -271,6 +271,54 @@ public class CywService {
 		 map.put("list",dao.boardList(pagePerCnt,offset,loginId));
 		 map.put("totalCount", totalCount);
 		 return map; 
+	}
+
+	
+	public HashMap<String, Object> alrimDel(String alram_num) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		int row = dao.alrimDel(alram_num);
+
+
+		return map;
+	}
+
+	public HashMap<String, Object> MyComDel(String com_num) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		int row = dao.MyComDel(com_num);
+
+
+		return map;
+	}
+
+	public HashMap<String, Object> MyBoardDel(String board_num) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		int row = dao.MyBoardDel(board_num);
+
+
+		return map;
+	}
+
+	public HashMap<String, Object> boardSingo(String board_num, String loginId) {
+		
+		dao.boardSingo(board_num,loginId);
+		
+		return null;
+	}
+
+	public HashMap<String, Object> MainPageBigCateGory() {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		ArrayList<CywDTO> list = dao.MainPageBigCateGory();
+		
+		map.put("list", list);
+		
+		return map;
 	}
 	 
 

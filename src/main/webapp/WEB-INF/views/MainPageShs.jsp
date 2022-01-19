@@ -36,8 +36,9 @@
    }
    
    .BigCate{
-   margin-left:13px;
+   	margin : 0px 30px;
 	cursor: pointer;
+	display: inline-block;
    }
    
    .BigCate:hover{
@@ -49,7 +50,7 @@
    #CateBg{
    background: #f4f4f4;
    width: 100%;
-   height:550px;
+   height:600px;
    position: absolute;
    top:455px;
    left: 0;
@@ -184,7 +185,6 @@ font-size: 13px;
 
 .section_list {
 	border-top:1px solid #cecece;
-	border-bottom:1px solid #cecece;
    	width: 1000px;
    	position: relative;
    	top:950px;
@@ -264,7 +264,7 @@ font-size: 13px;
    .boardLike{
    		font-size: 14px;
    		position: absolute;
-   		top:80px;
+   		top:100px;
    		left:0px;
    		width: 60px;
    		color: black;
@@ -316,12 +316,7 @@ font-size: 13px;
 	
 
 	<div id="Category">
-		<span class="BigCate">라이프</span>
-		<span class="BigCate">여행.맛집</span>
-		<span class="BigCate">문화.연예</span>
-		<span class="BigCate">IT</span>
-		<span class="BigCate">스포츠</span>
-		<span class="BigCate">시사</span>
+
 	</div>
 
 	
@@ -401,55 +396,100 @@ font-size: 13px;
 
 
 	</div> 
-<div class="section_list">
-						<ul class = "list_Story">
-							<li>
-								<a target="_blank" href="#" class = "boardA">
-									<div class ="boardImg">
-										<img src="resources/images_shs/ContDe00.png" width ="128px" height="128px" alt="boardImg" class = "thumb_g">
-									</div>
-									<div class="boardCont">
-										<div class="boardCate">
-											<dl class="listData">
-												<dd>
-													<span class="innerData">중카테</span>
-												</dd>
-											</dl>
-											<dl class="listData">
-												<dd>
-													<span class="screenOut">3시간전</span>
-												</dd>
-											</dl>
-											<dl class="boardLike">
-												<span>공감</span>
-												<span class="likeCnt">6</span>
-												
-											</dl>
-										</div>
-										<strong class="board_title">
-											<span>집에가고싶다.집에가고싶다.집에가고싶다.집에가고싶다.</span>
-										</strong>
-										<p class="boardSTxt">꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ</p>					
-									</div>
-									<div class="boardBlogId">
-										<span>아이디</span>
-										<span>by 블로그 이름이다</span>
-									</div>
-								</a>
-							</li>
-						</ul>
-						
-					</div>
-					<button class="theBogi">더보기</button>
+	<div class="section_list">
+		 <ul class = "list_Story">
+		 </ul>			
+	</div>
+				
 					
 
 </body>
 <script>
 
-      
-      
-      
-      
+MainBigCategoryCall();
+
+
+function MainBigCategoryCall() {
+		
+	$.ajax({
+		type:'POST',
+		url:'MainPageBigCateGory',
+		data:{}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.list);
+			/* window.location.href="./MyReviewControlPage"; */
+			MainCategorylistDraw(data.list) 
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});      
+}
+function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 그리는 함수
+	var content = '';
+	
+	for (var i = 0; i <list.length; i++) {
+		console.log(list[i].main_name);
+		content += '<span class="BigCate" onclick="MainNum('+list[i].main_num+')">'+list[i].main_name+'</span>';
+		content += '<input type="hidden" value="'+list[i].main_num+'"/>'
+		
+	}
+	$('#Category').empty();
+	$('#Category').append(content); // 선택한 뒤에 내용을 추가하는 append
+}
+
+function MainNum(e) {
+	console.log(e);
+	
+	$.ajax({
+		type:'POST',
+		url:'GoodBoardList',
+		data:{"MainNum":e}, 
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.list);
+			ForumBoardList(data.list)
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});      
+}
+
+function ForumBoardList(list) {
+	var content = '';
+	
+	
+	 /* list.length */
+	for (var i = 0; i < list.length; i++) {
+		
+		var date = new Date(list[i].board_date);
+			
+
+			content += '<li>';
+			content += '<a target="_blank" href="./boardDetail?board_num='+list[i].board_num+'" class = "boardA">';
+			content += '<div class ="boardImg">';
+			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="128px" height="128px" alt="boardImg" class = "thumb_g">';
+			content += '</div>';
+			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
+			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
+		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
+		      +("0" + date.getDate()).slice(-2)+" "
+		      +'</span>'+'</dd>'+'</dl>';
+			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
+			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
+			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
+			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'<span>'+list[i].mem_blog+'</div>';
+			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';
+
+						
+	}
+	$('.list_Story').empty();
+	$('.list_Story').append(content);
+};
+
+
       
 
 </script>

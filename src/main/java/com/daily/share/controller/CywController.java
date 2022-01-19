@@ -34,14 +34,41 @@ public class CywController {
 		model.addAttribute("bigCategoryList",bigCategoryList);
 		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
 		model.addAttribute("midCategoyrList",midCategoryList);
-		
 		 ArrayList<CywDTO> menuList = service.menuList(null);
 		 model.addAttribute("menuList",menuList);
 		
 
-		return "cateGory";
+		return "MainPageShs";
+	}
+	@RequestMapping(value = "/cywtest", method = RequestMethod.GET)
+	public String cywtest(Model model) {
+		
+		ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
+		model.addAttribute("bigCategoryList",bigCategoryList);
+		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
+		model.addAttribute("midCategoyrList",midCategoryList);
+		
+		 ArrayList<CywDTO> menuList = service.menuList(null);
+		 model.addAttribute("menuList",menuList);
+
+
+		return "CategoryControl";
 	}
 
+	@RequestMapping(value = "/cywtest1", method = RequestMethod.GET)
+	public String cywtest1(Model model) {
+		
+		ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
+		model.addAttribute("bigCategoryList",bigCategoryList);
+		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
+		model.addAttribute("midCategoyrList",midCategoryList);
+		
+		 ArrayList<CywDTO> menuList = service.menuList(null);
+		 model.addAttribute("menuList",menuList);
+
+
+		return "cateGory";
+	}
 	
 	
 	@RequestMapping(value = "/bigCategoryAdd", method = RequestMethod.POST)
@@ -50,7 +77,7 @@ public class CywController {
 
 		service.bigCategoryAdd(mainCategoryAdd, mainAdmin);
 
-		return "redirect:/cyw";
+		return "redirect:/cywtest";
 	}
 	
 	@RequestMapping(value = "/bigCategoryDel", method = RequestMethod.GET)
@@ -71,7 +98,7 @@ public class CywController {
 	 
 	 service.middleCategoryAdd(middleCategoryAdd,daeCategory,middle_admin);
 	 
-	 return "redirect:/cyw"; 
+	 return "redirect:/cywtest"; 
 	 }
 	 
 	@RequestMapping(value = "/midCategoryDel", method = RequestMethod.GET)
@@ -97,7 +124,7 @@ public class CywController {
 		return "MenuAdd";
 	}
 
-	 @RequestMapping(value = "/menuAdd", method = RequestMethod.GET)
+	 @RequestMapping(value = "/menuAdd", method = RequestMethod.POST)
 	 public String menuAdd(Model model, @RequestParam String menuAddName,@RequestParam int daeCategoryMenu, 
 			 @RequestParam int midCategoryMenu,HttpSession session) {
 	 logger.info("컨트롤러 도착 메뉴생성"+menuAddName,daeCategoryMenu,midCategoryMenu);
@@ -284,6 +311,14 @@ public class CywController {
 		 return service.AlrimPageList(loginId,currPage,pagePerCnt); 
 		 }
 		 
+		 // 마이페이지 알림 삭제alrimDel
+		 @RequestMapping(value = "/alrimDel", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> alrimDel(Model model,@RequestParam String alram_num){
+		 
+		 return service.alrimDel(alram_num); 
+		 }
+		 
 		 
 		 // 마이페이지 내 댓글리스트 이동
 		 @RequestMapping(value = "/MyReviewControlPage", method = RequestMethod.GET)
@@ -299,7 +334,6 @@ public class CywController {
 		 return page; 
 		 }
 		 
-		 
 		 // 마이페이지 내가 쓴 댓글 관리
 		 @RequestMapping(value = "/reviewList", method = RequestMethod.POST)
 		 
@@ -314,7 +348,7 @@ public class CywController {
 		 }
 		 
 		 // 마이페이지 내글리스트 이동
-		 @RequestMapping(value = "/MyBoardControlPage", method = RequestMethod.GET)
+		 @RequestMapping(value = "/MyBoardControlPage", method = RequestMethod.POST)
 		 public String MyBoardControlPage(Model model,HttpSession session) {
 			 
 			 String page = "MyBoardControl";
@@ -341,6 +375,61 @@ public class CywController {
 		 return service.boardList(currPage,pagePerCnt,loginId); 
 		 }
 		 
+		 // 마이페이지 내가 쓴 댓글 삭제
+		 @RequestMapping(value = "/MyComDel", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> MyComDel(Model model,@RequestParam String com_num){
+		 
+		 return service.MyComDel(com_num); 
+		 }
+		 
+		 // 마이페이지 내가 쓴 게시물 삭제
 
-	 
+		 @RequestMapping(value = "/MyBoardDel", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> MyBoardDel(Model model,@RequestParam String board_num){
+		 
+		 return service.MyBoardDel(board_num); 
+		 }
+		 
+		 
+		 // 게시글 신고
+
+		 @RequestMapping(value = "/boardSingo", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> boardSingo(Model model,@RequestParam String board_num,HttpSession session){
+		 
+			 String loginId = (String) session.getAttribute("loginId");
+			 
+		 return service.boardSingo(board_num,loginId); 
+		 }
+
+		 
+		 // 메인 페이지 대분류 카테고리 버튼 가져오기
+		 
+		 @RequestMapping(value = "/MainPageBigCateGory", method = RequestMethod.POST)
+		 
+		 @ResponseBody public HashMap<String, Object> MainPageBigCateGory(Model model){
+		 
+			 
+			 
+		 return service.MainPageBigCateGory(); 
+		 }
+		 
+		 
+		 // 대분류 클릭시 게시글 뽑아오기
+			@RequestMapping(value = "/GoodBoardList", method = RequestMethod.POST)
+			@ResponseBody
+			public HashMap<String, Object> GoodBoardList(Model model,@RequestParam String MainNum) {
+				logger.info("리스트호출 : {}",MainNum); 
+									
+			
+				return service.middleListCall(MainNum);
+			}	
+		 
+		 
+		 
+		 
+		 
+		 
 }

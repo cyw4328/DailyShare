@@ -139,7 +139,7 @@ function listDraw(list) {
 	      +("0" + date.getHours()).slice(-2)+":"
 	      +("0" + date.getMinutes()).slice(-2)+":"
 	      +("0" + date.getSeconds()).slice(-2);
-		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button class="alrimDel">'+"X"+'</button>'+'</td>';
+		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button onclick="MyBoardDel('+item.board_num+')">'+"X"+'</button>'+'</td>';
 		content += '</tr>';
 
 
@@ -147,6 +147,23 @@ function listDraw(list) {
     });
     $('#list').empty();
     $('#list').append(content);
+}
+
+function MyBoardDel(e) {
+	$.ajax({
+		type:'POST',
+		url:'MyBoardDel',
+		data:{"board_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.list);
+			window.location.href="./MyBoardControlPage";
+			
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});
 }
 	
 

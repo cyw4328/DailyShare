@@ -54,18 +54,6 @@
 		<h2>내가 쓴 댓글 목록</h2>
 	</div>
 	
-	<div id="Search">
-		<form action="MyBoardSearch" method="POST">
-			<table>
-				<tr>
-					<td>
-						<input type="text"  name="MyBoardSearchInput"/>
-						<input type="submit" value="검색" />
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
 	
 	<div id="sival">
 		<table>
@@ -73,7 +61,7 @@
 			<tr>
 				<td colspan="4" id="paging">
 					<div class="container">                           
-               			<nav aria-label="Page navigation" style="text-align:center">
+               			<nav aria-label="Page navigation" style="text-align:center; width:500px;">
                   			<ul class="pagination" id="pagination"></ul>
               			</nav>               
             		</div>
@@ -139,7 +127,7 @@ function listDraw(list) {
 	      +("0" + date.getHours()).slice(-2)+":"
 	      +("0" + date.getMinutes()).slice(-2)+":"
 	      +("0" + date.getSeconds()).slice(-2);
-		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button class="alrimDel">'+"X"+'</button>'+'</td>';
+		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button onclick="MyComDel('+item.com_num+')">'+"삭제"+'</button>'+'</td>';
 		content += '</tr>';
 
 
@@ -147,6 +135,23 @@ function listDraw(list) {
     });
     $('#list').empty();
     $('#list').append(content);
+}
+
+function MyComDel(e) {
+	$.ajax({
+		type:'POST',
+		url:'MyComDel',
+		data:{"com_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.list);
+			window.location.href="./MyReviewControlPage";
+			
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});
 }
 	
 

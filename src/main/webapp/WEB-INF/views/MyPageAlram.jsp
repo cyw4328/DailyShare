@@ -64,9 +64,12 @@
 
 	<div id="AlrimPageList">
 		<table>
-			<tbody id="list"></tbody>
+			<thead id="list">
+			
+			</thead>
+			<tbody>
 			<tr>
-				<td colspan="4" id="paging">
+				<td colspan="2" id="paging">
 					<div class="container">                           
                			<nav aria-label="Page navigation" style="text-align:center">
                   			<ul class="pagination" id="pagination"></ul>
@@ -74,6 +77,7 @@
             		</div>
 				</td>
 			</tr>
+			</tbody>
 		</table>
 	</div>
 
@@ -138,25 +142,38 @@ function listDraw(list) {
 		}
 
 		content +='<tr>';
-		content += '<td  class="alrimTd" onclick=location.href="./boardDetail?board_num='+item.alarm_targetNum+'" style="cursor:hand">'+item.mem_id+"님 "+msg
+		content += '<td  class="alrimTd" onclick=location.href="./boardDetail?board_num='+item.alarm_targetNum+'" style="cursor:hand">'+item.mem_id+"님 "+msg+'</td>'
 		+'<td>'+date.getFullYear()+"-"
 	      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 	      +("0" + date.getDate()).slice(-2)+" "
 	      +("0" + date.getHours()).slice(-2)+":"
 	      +("0" + date.getMinutes()).slice(-2)+":"
 	      +("0" + date.getSeconds()).slice(-2);
-		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button class="alrimDel">'+"X"+'</button>'+'</td>';
+		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button onclick="alrimDel('+item.alarm_num+')">'+"X"+'</button>'+'<input type="hidden" value="'+item.alarm_num+'"/>'+'</td>';
 		content += '</tr>';
     });
     $('#list').empty();
     $('#list').append(content);
 }
 
-$('.alrimDel').click(function() {
-	$(this).next().val();
-	console.log($(this).next().val());
-	console.log("버튼");
-})
+
+
+function alrimDel(e) {
+	$.ajax({
+		type:'POST',
+		url:'alrimDel',
+		data:{"alram_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.list);
+			window.location.href="./MyAlrimPage";
+			
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});
+}
 
 
 </script>

@@ -34,7 +34,7 @@ public interface CywDAO {
 	ArrayList<CywDTO> midCategoryCall(String selectValue);
 	
 	// 대분류별 게시글 리스트 뽑기
-	ArrayList<CywDTO> middleListCall(String middleListCall);
+	ArrayList<CywDTO> middleListCall(String MainNum);
 	
 	// 클릭시 자세히 보기
 	CywDTO boardDetail(int board_num);
@@ -76,6 +76,17 @@ public interface CywDAO {
 	
 	ArrayList<CywDTO> boardList(int pagePerCnt, int offset, String loginId);
 	int allCountBoard(String loginId);
+	
+	
+	int alrimDel(String alram_num);
+	int MyComDel(String com_num);
+	int MyBoardDel(String board_num);
+	
+	
+	void boardSingo(String board_num, String loginId);
+	
+	// 메인페이지 대분류목록가져오기
+	ArrayList<CywDTO> MainPageBigCateGory();
 	 
 	
 

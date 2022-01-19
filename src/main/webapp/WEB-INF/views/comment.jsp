@@ -251,7 +251,7 @@
 		<span id="loginId">${loginId}</span>
 		<div id="input_wrap">
 			<form id="csj_com_form" action="csj_com_regist" method="post">
-				<input type="hidden" name="mem_id" value="${mem_id}" />
+				<input type="hidden" name="mem_id" value="${loginId}" />
 				<input type="hidden" name="com_targetId" value="${boardDetail.mem_id }" />
 				<input type="hidden" name="board_num" value="${boardDetail.board_num}" />
 				<input type="hidden" name="com_parent" value="0" />
@@ -266,12 +266,14 @@
 							<td>
 								<c:if test="${comList.com_depth eq 0}">
 									<div class="csj_com_list" style="margin-left:0px;width: 755px">
-										<span class="csj_com_mem_id">${comList.mem_id}</span>
+										<span class="csj_com_mem_id">
+											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
+										</span>
 										<input type="hidden" value="${comList.com_num}"/>
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
 												<span class="com_fix">수정</span>&nbsp;
-												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}">삭제</a>&nbsp;
+												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
 												<a href="#">신고</a>&nbsp;
@@ -290,12 +292,14 @@
 								</c:if>
 								<c:if test="${comList.com_depth eq 1}">
 									<div class="csj_com_list" style="margin-left:100px; width: 655px">
-										<span class="csj_com_mem_id">${comList.mem_id}</span>
+										<span class="csj_com_mem_id">
+											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
+										</span>
 										<input type="hidden" value="${comList.com_num}"/>
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
 												<span class="com_fix">수정</span>&nbsp;
-												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}">삭제</a>&nbsp;
+												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
 											<a href="#">신고</a>&nbsp;
@@ -320,7 +324,7 @@
 							<td>
 								<div class="csj_reply_wrap">
 									<form  action="csj_com_regist" method="post">
-										<input type="hidden" name="mem_id" value="${mem_id}" />
+										<input type="hidden" name="mem_id" value="${loginId}" />
 										<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
 										<input type="hidden" name="board_num" value="${boardDetail.board_num}" />
 										<input type="hidden" name="com_parent" value="${comList.com_num}" />
@@ -373,7 +377,7 @@
 	});
 	var loginId = '${loginId}'
 	var $board_num=${boardDetail.board_num};
-	var $mem_id= '${mem_id}'
+	var $mem_id= '${boardDetail.mem_id}'
 	/* 댓글 수정 버튼 */
 	$('.com_fix').click(function() {
 		var $com_num = $(this).parent().prev().val();
@@ -388,7 +392,7 @@
 		);
 		
 		$('.cancle').click(function (){
-			$(this).parent().hide();
+			$(this).parent().remove();
 		});
 		
 		$('.submit').click(function (){
@@ -401,10 +405,10 @@
 				success: function(data) {
 					if(data.updateResult>0){
 						alert('댓글이 수정되었습니다.');
-						location.href="./csj_detail?board_num="+board_num;	
+						location.href="./csj_detail?board_num="+$board_num+"&mem_id="+$mem_id;
 					}else {
 						alert('댓글 수정에 실패했습니다.')
-						location.href="./csj_detail?board_num="+board_num;
+						location.href="./csj_detail?board_num="+$board_num+"&mem_id="+$mem_id;
 					}
 				},
 				error: function(e) {

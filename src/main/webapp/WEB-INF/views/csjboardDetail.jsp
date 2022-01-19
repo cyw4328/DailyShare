@@ -75,7 +75,7 @@
 		#multiple_container{
 	 		position:relative;
 	 		width: 100%;
-	 		min-height: 500px;
+	 		min-height: 700px;
 	 		border-bottom:2px solid gray;
 	 	}
 	 	.likesTag{
@@ -111,7 +111,9 @@
 			<div id="category_wrap">
 				<img src="resources/images_csj/backimage.png" onclick="javascript:history.back();">
 				<span class="menu">${boardDetail.menu_name}</span>
-				<span class="writer">${boardDetail.mem_id } &nbsp;<fmt:formatDate value="${boardDetail.board_date }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+				<span class="writer">
+					<a href="./csj_blogMain?mem_id=${boardDetail.mem_id }">${boardDetail.mem_id }</a> &nbsp;<fmt:formatDate value="${boardDetail.board_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</span>
 				<input type="hidden" name="board_num" value="${boardDetail.board_views }"/>
 			</div>
 			
@@ -149,7 +151,7 @@
 				
 				<div class="buttons">
 					<c:if test="${loginId eq boardDetail.mem_id}">
-						<a href="./updateForm?board_num=${boardDetail.board_num}">수정</a>&nbsp;&nbsp;
+						<a href="./csj_UpdateForm?board_num=${boardDetail.board_num}">수정</a>&nbsp;&nbsp;
 						<a href="#" onclick="del();">삭제</a>&nbsp;&nbsp;		
 					</c:if>
 					<c:if test="${loginId ne boardDetail.mem_id}">

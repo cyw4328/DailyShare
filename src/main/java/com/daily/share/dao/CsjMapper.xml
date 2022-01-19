@@ -58,7 +58,7 @@
 	
 	<!-- 썸네일 정보 업데이트 -->
 	<update id="csj_thumbUpdate">
-		update board set board_thumFileName = #{param2} where board_num=#{param1}
+		update board set board_thumFileName=#{param2} where board_num=#{param1}
 	</update>
 	
 	<!-- 태그 등록 -->
@@ -135,6 +135,29 @@
 		select * from photo where board_num=#{param1}
 	</select>
 	
+	<!-- 태그 삭제 -->
+	<delete id="csj_tagDel">
+		delete from tag where tag_content=#{param1} and board_num=#{param2}
+	</delete>
+	
+	
+	<!-- 게시글 수정 -->
+	<update id="csj_postUpdate" parameterType="com.daily.share.dto.CsjPersonalBlogDTO">
+		update board set board_subject=#{board_subject},board_cont=#{board_cont},board_scope=#{board_scope},menu_num=#{menu_num} where board_num=#{board_num}
+	</update>
+	
+	
+	
+	<!-- 사진 삭제 -->
+	<delete id="photoDelete">
+		delete from photo where board_num=#{param1} and photo_newName =#{param2} 
+	</delete>
+	
+	
+	<!-- 썸네일 업데이트 2 -->
+	<update id="csj_thumbUpdateTwo">
+		update board set board_thumFileName=#{param2} where board_num=#{param1}
+	</update>
 	
 	<!-- 나를 구독중인 사람 목록 불러오기 -->
 <!-- 	<select id="csjSubList" resultType="com.daily.share.dto.CsjSubDTO">

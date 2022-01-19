@@ -57,6 +57,14 @@ public interface CsjDAO {
 
 	ArrayList<CsjPhotoDTO> photoCall(String board_num);
 
+	int csj_tagDel(String tag_content, String board_num);
+
+	int csj_postUpdate(CsjPersonalBlogDTO dtoB);
+
+	int photoDelete(String board_num, String photo_newName);
+
+	void csj_thumbUpdateTwo(String board_num, String photo_newName);
+
 	/*
 	 * ArrayList<CsjSubDTO> csjSubList(String loginId);
 	 * 

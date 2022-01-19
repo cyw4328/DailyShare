@@ -172,7 +172,7 @@ border-bottom:1px solid black;
                 <ul>
                     <li class="nav01" onclick="location.href='./FeedPage'">피드</li>
                     <li class="nav01" onclick="location.href='./ForumBoard'">포럼</li>
-                    <a href="/share/csj_blogMain" id = "myBlogck"><li class="nav01" >MY블로그</li></a>
+                    <a href="/share/csj_blogMain?mem_id=${loginId}" id = "myBlogck"><li class="nav01" >MY블로그</li></a>
                     <li class="nav01" ><img src="resources/images/gongji_icon.png" class = "iconSize"></li>
                     <li class="nav01" id="gongji">공지사항이다 우헤헤ㅔ헤헤후에에에ㅔ에엥ㅇ</span>
                 </ul>
@@ -183,9 +183,9 @@ border-bottom:1px solid black;
                 <span id="logout_icon"><a href="logoutShs">
                 <img src="resources/images/logout_icon.png" class = "iconSize"></a></span>
                 
-                <span id="login_icon"><a href="#"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
+                <span id="login_icon"><a href="./MyAlrimPage"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
                 <a href="/share/memberPassCk"><p id="id_shs">${loginId}</p></a>
-				<button class ="writeBtn">글쓰기</button>
+				<button class ="writeBtn" onclick="location.href='./csj_writeForm'">글쓰기</button>
             
         </nav>
         

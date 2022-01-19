@@ -171,9 +171,8 @@
 		<div id="write">게시글 쓰기</div>
 		<div id="tab1">회원목록</div>
 		<div id="tab2">신고목록</div>
-		<div id="tab3">재재목록</div>
 		<div id="tab4">관리자목록</div>
-		<div id="tab5">카테고리목록</div>
+		<a href="./CateGory"><div id="tab5">카테고리목록</div></a>
 		<div id="title">회원목록</div>
 		<div id="dec">
         	<a target="_blank" id="a1" style="color: black; box-shadow: inset 0 -6px 0 gray; cursor:pointer;">접수된신고</a>

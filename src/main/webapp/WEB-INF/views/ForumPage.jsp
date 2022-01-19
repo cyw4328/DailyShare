@@ -148,7 +148,7 @@ function ForumBoardList(list) {
 		
 		var date = new Date(list[i].board_date);
 			
-		 content +='<tr onclick=location.href="./boardDetail?board_num='+list[i].board_num+'" style="cursor:hand">';
+		 content +='<tr onclick=location.href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" style="cursor:hand">';
 			content += '<td  class="forumTd">'+list[i].mem_id+'&nbsp;&nbsp;&nbsp;&nbsp;'
 			+"작성일 : "+date.getFullYear()+"-"
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"

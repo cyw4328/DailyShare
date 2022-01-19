@@ -416,56 +416,16 @@ font-size: 13px;
      	</form>
 	</div>
 	</div> 
-<<<<<<< HEAD
+
 	<div class="section_list">
 		 <ul class = "list_Story">
 		 </ul>			
 	</div>
 				
-=======
+
 	
-	
-	
-<div class="section_list">
-						<ul class = "list_Story">
-							<li>
-								<a target="_blank" href="#" class = "boardA">
-									<div class ="boardImg">
-										<img src="resources/images_shs/ContDe00.png" width ="128px" height="128px" alt="boardImg" class = "thumb_g">
-									</div>
-									<div class="boardCont">
-										<div class="boardCate">
-											<dl class="listData">
-												<dd>
-													<span class="innerData">중카테</span>
-												</dd>
-											</dl>
-											<dl class="listData">
-												<dd>
-													<span class="screenOut">3시간전</span>
-												</dd>
-											</dl>
-											<dl class="boardLike">
-												<span>공감</span>
-												<span class="likeCnt">6</span>
-												
-											</dl>
-										</div>
-										<strong class="board_title">
-											<span>집에가고싶다.집에가고싶다.집에가고싶다.집에가고싶다.</span>
-										</strong>
-										<p class="boardSTxt">꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ꾸에에엑에겡ㅇ엥에에에에우에에에에에ㅔㅇ</p>					
-									</div>
-									<div class="boardBlogId">
-										<span>아이디</span>
-										<span>by 블로그 이름이다</span>
-									</div>
-								</a>
-							</li>
-						</ul>
-						
-					</div>
-					<button class="theBogi">더보기</button>
+
+
 
 					
 
@@ -535,7 +495,7 @@ function ForumBoardList(list) {
 			
 
 			content += '<li>';
-			content += '<a target="_blank" href="./boardDetail?board_num='+list[i].board_num+'" class = "boardA">';
+			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
 			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="128px" height="128px" alt="boardImg" class = "thumb_g">';
 			content += '</div>';
@@ -557,13 +517,7 @@ function ForumBoardList(list) {
 };
 
 
-=======
 
-      
-      
-      
->>>>>>> 1d272da87614b9c19cd49edd25e840b1144e66c8
-      
 
 </script>
 </html>

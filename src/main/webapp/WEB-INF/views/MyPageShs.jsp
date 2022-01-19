@@ -120,11 +120,10 @@ a{
 		<a href="/share/csj_writeForm" ><div id="write">글쓰기</div></a>
 		<a href="/share/memberPassCk" ><div class= "tab00" id="tab1">개인정보수정</div></a>
 		<a href="/share/followShs" ><div class= "tab00" id="tab2">구독관리</div></a>
-		<a href="#"><div class= "tab00" id="tab3">알림목록</div></a>
-		<a href="#"><div class= "tab00" id="tab4">차단관리</div></a>
-		<div class= "tab00" id="tab5">블로그메뉴</div>
-		<div class= "tab00" id="tab6">MY 게시글</div>
-		<div class= "tab00" id="tab7">MY 댓글</div>
+		<a href="/share/MyAlrimPage"><div class= "tab00" id="tab3">알림목록</div></a>
+		<a href="/share/menuAddPage"><div class= "tab00" id="tab5">블로그메뉴</div></a>
+		<a href="/share/MyBoardControlPage"><div class= "tab00" id="tab6">MY 게시글</div></a>
+		<a href="/share/MyReviewControlPage"><div class= "tab00" id="tab7">MY 댓글</div></a>
 		
 </div>	
 		

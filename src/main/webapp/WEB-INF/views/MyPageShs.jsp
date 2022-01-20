@@ -113,11 +113,11 @@ a{
 <div id="memuBar">
 		<div id = "left">
 		
-		<p>개인계정</p>
-		<p>URL주소</p>	
+
+		<a href="/share/csj_blogMain?mem_id=${loginId}"><p style="text-align: center;">${loginId} 블로그</p></a>
 		</div>
 		
-		<a href="/share/csj_writeForm" ><div id="write">글쓰기</div></a>
+		<a href="./csj_writeForm"  target ="_blank" ><div id="write">글쓰기</div></a>
 		<a href="/share/memberPassCk" ><div class= "tab00" id="tab1">개인정보수정</div></a>
 		<a href="/share/followShs" ><div class= "tab00" id="tab2">구독관리</div></a>
 		<a href="/share/MyAlrimPage"><div class= "tab00" id="tab3">알림목록</div></a>

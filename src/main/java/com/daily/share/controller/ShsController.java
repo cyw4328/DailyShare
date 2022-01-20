@@ -113,8 +113,8 @@ public class ShsController {
 		
 // 여기까지가 회원가입 기능 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		
+	
+				
 
 //개인정보 수정페이지
 @RequestMapping(value = "/memberDe", method = RequestMethod.GET)
@@ -134,10 +134,10 @@ public class ShsController {
 		
 // 회원정보 수정 요청
 @RequestMapping(value = "/userUp", method = RequestMethod.POST)
-public String userUp(Model model, @RequestParam String id,@RequestParam String pw, @RequestParam String email, @RequestParam String phone) {
+public String userUp(Model model, @RequestParam String id,@RequestParam String pw, @RequestParam String email, @RequestParam String phone, @RequestParam String blog) {
 	logger.info("수정 요청 : {}",id+pw+email+phone);	//null 값은 받지 않는것으로 확인
 	
-	service.userUp(id,pw,email,phone);
+	service.userUp(id,pw,email,phone,blog);
 	
 	return "redirect:/memberPassCk";
 }
@@ -334,6 +334,19 @@ public String memberPassCk(Model model,HttpSession session) {
 
 
 
+
+
+//관리자 마이페이지
+@RequestMapping(value = "/adminCk", method = RequestMethod.GET)
+@ResponseBody
+public HashMap<String, Object>  adminCk(Model model,@RequestParam String adminLogin) {
+	
+	logger.info("어드민 여부 확인 컨트롤러{} : ",adminLogin);
+	return service.adminCk(adminLogin);
+
+
+
+	}
 
 
 }

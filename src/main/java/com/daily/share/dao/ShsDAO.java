@@ -14,7 +14,7 @@ public interface ShsDAO {
 
 	ShsDTO memberDe(String id);
 
-	void userUp(String id, String pw, String email, String phone);
+	void userUp(String id, String pw, String email, String phone,String blog);
 
 	int memberOut(Object object);
 
@@ -31,6 +31,10 @@ public interface ShsDAO {
 	String PassCk(String id, String pw);
 
 	int followDelShs(String mem_id, String sub_id);
+
+	ShsDTO MyPageShs(String id);
+
+	String adminCk(String adminLogin);
 
 
 

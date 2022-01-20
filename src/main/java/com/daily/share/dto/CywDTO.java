@@ -330,4 +330,36 @@ public class CywDTO {
 	}
 	
 	
+	private int dec_code;
+	private String dec_cont;
+	private int dec_blind;
+	private String dec_name;
+	public int getDec_code() {
+		return dec_code;
+	}
+	public void setDec_code(int dec_code) {
+		this.dec_code = dec_code;
+	}
+	public String getDec_cont() {
+		return dec_cont;
+	}
+	public void setDec_cont(String dec_cont) {
+		this.dec_cont = dec_cont;
+	}
+	public int getDec_blind() {
+		return dec_blind;
+	}
+	public void setDec_blind(int dec_blind) {
+		this.dec_blind = dec_blind;
+	}
+	public String getDec_name() {
+		return dec_name;
+	}
+	public void setDec_name(String dec_name) {
+		this.dec_name = dec_name;
+	}
+	
+	
+	
+	
 }

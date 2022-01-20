@@ -353,6 +353,37 @@ public class CywService {
 
 		return map;
 	}
+
+	public HashMap<String, Object> SingoCode() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		ArrayList<CywDTO> list = dao.SingoCode();
+		logger.info("가져오냐:{}",list);
+		map.put("Code", list);
+
+		return map;
+	}
+
+	public ArrayList<CywDTO> Singo(String mem_id, String cont, int dec_code) {
+		
+		dao.Singo(mem_id,cont,dec_code);
+		
+		return null;
+	}
+
+	public void BoardSingo(String dec_targetId, int a, int b, String loginId) {
+		
+		dao.BoardSingo(dec_targetId,a,b,loginId);
+
+	}
+
+	public void CommentSingo(String dec_targetId, int dec_targetNum, int dec_code, String loginId) {
+		dao.CommentSingo(dec_targetId,dec_targetNum,dec_code,loginId);
+		
+	}
+
+
+	
 	 
 
 }

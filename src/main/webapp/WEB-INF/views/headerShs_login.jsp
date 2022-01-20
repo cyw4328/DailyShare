@@ -120,8 +120,8 @@
  }
 
 #id_shs{
-	float: right;
-	cursor: pointer;
+   float: right;
+   cursor: pointer;
 }
 
 #id_shs:hover{
@@ -129,30 +129,30 @@ border-bottom:1px solid #black;
 }
 
 .iconSize{
-	width: 20px;
+   width: 20px;
 }
 
 .writeBtn{
-	float:right; 
-	margin-right:10px; 
-	background-color:black; 
-	color:#FFF; 
-	font-weight:bold; 
-	border:0px;
-	padding:3px 10px;
-	border-radius: 20px;
-	cursor: pointer;
+   float:right; 
+   margin-right:10px; 
+   background-color:black; 
+   color:#FFF; 
+   font-weight:bold; 
+   border:0px;
+   padding:3px 10px;
+   border-radius: 20px;
+   cursor: pointer;
 }
 
 #gongji{
-	max-width: 200px;
-   	text-overflow: ellipsis;
-   	font-size:13px;
-	white-space: nowrap;
-	margin-left:0px;
-	padding-left:-20px;
-	font-weight: normal;
-	cursor: pointer;
+   max-width: 200px;
+      text-overflow: ellipsis;
+      font-size:13px;
+   white-space: nowrap;
+   margin-left:0px;
+   padding-left:-20px;
+   font-weight: normal;
+   cursor: pointer;
 }
 #gongji:hover{
 border-bottom:1px solid black;
@@ -185,8 +185,8 @@ border-bottom:1px solid black;
                 
                 <span id="login_icon"><a href="./MyAlrimPage"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
                 <a href="./memberPassCk"><p id="id_shs">${loginId}</p></a>
-				<a href="./csj_writeForm"  target ="_blank" ><button class ="writeBtn">글쓰기</button></a>
-				<a href="./managerPage"  target ="_blank" class="adminLink" ><button class ="writeBtn">관리자페이지</button></a>
+            <a href="./csj_writeForm"  target ="_blank" ><button class ="writeBtn">글쓰기</button></a>
+            <a href="./managerPage"  target ="_blank" class="adminLink" ><button class ="writeBtn">관리자페이지</button></a>
             
         </nav>
         
@@ -198,42 +198,42 @@ border-bottom:1px solid black;
 </div>
 </body>
 <script>
+
+
 $('.adminLink').hide();
 
 
 var login = '${loginId}';
 
 if(login == null ||login == ''){
-	$('#myBlogck').hide();
-	$('.writeBtn').hide();
-	
-
-	$('#logout_icon').html('<a href="./shs"><img src="resources/images/icon_join.png" class = "iconSize"></a>');
-	$('#login_icon').html('<a href="./loginPage"><img src="resources/images/icon_login.PNG" class = "iconSize"></a>');
-
+   $('#myBlogck').hide();
+   $('.writeBtn').hide();
+   
+   $('#logout_icon').html('<a href="./shs"><img src="resources/images/icon_join.png" class = "iconSize"></a>');
+   $('#login_icon').html('<a href="./loginPage"><img src="resources/images/icon_login.PNG" class = "iconSize"></a>');
+};
 
 if(login != null || login != ''){
-
-	
-	$.ajax({
-		type:'GET',
-		url:'adminCk',
-		data:{"adminLogin":login},
-		dataType:'JSON',
-		success:function(data) {
-			console.log(data.adminCk);
-			if(data.adminCk==1){
-				console.log('관리자회원');
-				$('.adminLink').show();
-			}
-			
-			
-		},
-		error:function(e) {
-			console.log(e);
-		}
-	});
-	
+   
+   $.ajax({
+      type:'GET',
+      url:'adminCk',
+      data:{"adminLogin":login},
+      dataType:'JSON',
+      success:function(data) {
+         console.log(data.adminCk);
+         if(data.adminCk==1){
+            console.log('관리자회원');
+            $('.adminLink').show();
+         }
+         
+         
+      },
+      error:function(e) {
+         console.log(e);
+      }
+   });
+   
 }
 
 

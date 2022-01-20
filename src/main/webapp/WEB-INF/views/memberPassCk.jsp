@@ -57,7 +57,7 @@
 <p class="followCnt">개인정보 수정을 위해 비밀번호 확인 부탁드립니다.</p>
 		
    <div id="formCs">
-     	 <form action="/share/PassCk" method="POST">
+     	 <form action="./PassCk" method="POST">
      	 	<table style ="width:420px;">
 	            <tr><th>ID</th>
 	            <td style="border-bottom:1px solid #dedede"><input type="text" name="id"  value="${loginId}" class="formSt" readonly="readonly" /></td>

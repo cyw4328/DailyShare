@@ -91,6 +91,10 @@ public interface CywDAO {
 	ArrayList<CywDTO> BestBoardList(String mainNum);
 	
 	ArrayList<CywDTO> MainSearch(String forumSearch, String searchScope);
+	
+	ArrayList<CywDTO> OpenGoodBoardList();
+	
+	ArrayList<CywDTO> OpenBestBoardList();
 	 
 	
 

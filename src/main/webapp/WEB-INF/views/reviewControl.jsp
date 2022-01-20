@@ -120,7 +120,7 @@ function listDraw(list) {
     	var date = new Date(item.com_date);
 
 		content +='<tr>';
-		content += '<td  class="alrimTd" onclick=location.href="./boardDetail?board_num='+item.board_num+'" style="cursor:hand">'+item.mem_id+" 님의 댓글 : "+item.com_cont+'</td>'
+		content += '<td  class="alrimTd" onclick=location.href="./csj_detail?board_num='+item.board_num+'&mem_id='+item.mem_id+'" style="cursor:hand">'+item.mem_id+" 님의 댓글 : "+item.com_cont+'</td>'
 		+'<td>'+date.getFullYear()+"-"
 	      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 	      +("0" + date.getDate()).slice(-2)+" "
@@ -138,20 +138,29 @@ function listDraw(list) {
 }
 
 function MyComDel(e) {
-	$.ajax({
-		type:'POST',
-		url:'MyComDel',
-		data:{"com_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
-		dataType:'JSON',
-		success:function(data) {
-			console.log(data.list);
-			window.location.href="./MyReviewControlPage";
-			
-		},
-		error:function(e) {
-			console.log(e);
-		}
-	});
+	
+var yn = confirm("정말 이글을 삭제 하시겠습니까?");
+	
+	if (yn) {
+	
+		$.ajax({
+			type:'POST',
+			url:'MyComDel',
+			data:{"com_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+			dataType:'JSON',
+			success:function(data) {
+				console.log(data.list);
+				window.location.href="./MyReviewControlPage";
+				
+			},
+			error:function(e) {
+				console.log(e);
+			}
+		});
+	
+	}
+	
+	
 }
 	
 

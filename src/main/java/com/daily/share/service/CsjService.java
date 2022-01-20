@@ -410,6 +410,59 @@ public class CsjService {
 
 
 
+	public String csj_share(String menu_num, String board_num, String loginId) {
+		CsjPersonalBlogDTO dto= dao.csj_detail(board_num);
+		String mem_id = loginId;
+		dto.setMem_id(mem_id);
+		dto.setMenu_num(Integer.parseInt(menu_num));
+	
+		//글등록
+				dao.csj_postUpload(dto);
+				String page = "redirect:/csj";
+				
+				int myboard_num = dto.getBoard_num();
+				logger.info("등록 결과 : {}",board_num);
+				
+				
+				
+				if (myboard_num >0) {
+					page = "redirect:/csj_detail?board_num="+myboard_num+"&mem_id="+mem_id;
+					
+					//알림 등록 
+					ArrayList<String> subList = new ArrayList<String>();
+					subList = dao.searchSubId(mem_id);
+					logger.info("구독자 목록/사이즈 : {}/{}",subList,subList.size());
+					if (subList.size()>0) {
+						for (int i = 0; i < subList.size(); i++) {
+							logger.info("구독자 하나씩 : {}",subList.get(i));
+							dao.com_inAlarm(myboard_num,2,subList.get(i));
+						}				
+					}
+					
+					ArrayList<CsjPhotoDTO>photos=dao.photoCall(board_num);
+					//사진등록
+					for (CsjPhotoDTO photo : photos) {
+						dao.csj_photoUpload(myboard_num,photo.getPhoto_oriName(),photo.getPhoto_newName());
+						dao.csj_thumbUpdate(myboard_num,photo.getPhoto_newName());	
+					}
+					
+					
+					
+					ArrayList<String>tags= dao.tagCall(board_num);
+					//태그 등록
+					for (String tag : tags) {
+						dao.csj_tagUpload(myboard_num,tag);
+					}
+
+				}
+		return page;
+		
+		
+	}
+
+
+
+
 
 
 

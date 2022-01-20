@@ -102,7 +102,7 @@ public interface CywDAO {
 	
 	void BoardSingo(String dec_targetId, int a, int b, String loginId);
 	
-	void CommentSingo(String dec_targetId, int dec_targetNum, int dec_code, String loginId);
+	void CommentSingo(String dec_targetId, int a, int b, String loginId);
 	 
 	
 

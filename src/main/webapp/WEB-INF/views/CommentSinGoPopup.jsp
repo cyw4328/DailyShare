@@ -70,7 +70,7 @@
 <body>
 
 	<div id="SingoPopup">
-		<form action="CommentSingo" method="POST">
+		<form action="CommentSingo" method="POST" id="singoForm">
 			<table>
 				<tr>
 					<th id="SingoPopupHead">[신고하기]</th><td id="closebtn"><button id="btn">X</button></td>
@@ -80,6 +80,7 @@
 						작성자 : ${comList.mem_id }
 						<input type="hidden" value="${comList.mem_id }" name="dec_targetId"/>
 						<input type="hidden" value="${comList.com_num }" name="dec_targetNum"/>
+						<input type="hidden" value="${boardDetail.board_num }" name="board_num"/>
 					</td>
 				</tr>
 				<tr>
@@ -95,7 +96,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" value="보내기" id="singoCom"/>
+						<input type="button" value="보내기" id="singoCom"/>
 					</td>
 				</tr>
 				
@@ -132,6 +133,23 @@ function listDraw(Code) {
 	}
 	$('.SingoCode').append(content);
 };
+
+$('#singoCom').click(function() {
+	
+	var loginId = '<%=(String)session.getAttribute("loginId")%>';
+	
+	if (loginId == "null") {
+		alert("로그인이 필요한 기능입니다.");
+	}else{
+		var yn = confirm("정말 이글을 신고 하시겠습니까?");
+		if (yn) {
+			alert("신고가 완료되었습니다.");
+			$('#singoForm').submit();		
+			
+		}
+		
+	}
+}
 
 
 </script>

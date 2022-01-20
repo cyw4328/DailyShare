@@ -276,15 +276,6 @@
 	function singoPop() {
 		$('#SingoPopup').toggle();
 	}
-	var msg = ${msg}
-	
-	function singo() {
-		if (msg != null) {
-			
-		}
-	}
-	
-	singo();
 	//추천 기능
 
 	

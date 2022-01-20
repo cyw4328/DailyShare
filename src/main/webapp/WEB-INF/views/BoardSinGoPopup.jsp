@@ -72,7 +72,7 @@
 <body>
 
 	<div id="SingoPopup">
-		<form action="BoardSingo" method="POST">
+		<form action="BoardSingo" method="POST" id="singoForm">
 			<table>
 				<tr>
 					<th id="SingoPopupHead">[신고하기]</th><td id="closebtn"><input type="button" value="X" onclick="singoPop()"/></td>
@@ -134,18 +134,22 @@ function listDraw(Code) {
 	}
 	$('.SingoCode').append(content);
 };
+
+
 $('#singoCom').click(function() {
 	
 	var loginId = '<%=(String)session.getAttribute("loginId")%>';
 	
 	if (loginId == "null") {
 		alert("로그인이 필요한 기능입니다.");
-	}
+	}else{
+		var yn = confirm("정말 이글을 신고 하시겠습니까?");
+		if (yn) {
+			alert("신고가 완료되었습니다.");
+			$('#singoForm').submit();		
+			
+		}
 		
-	var yn = confirm("정말 이글을 신고 하시겠습니까?");
-	if (yn) {
-		alert("신고가 완료되었습니다.");
-		$('#singoCom').submit();		
 	}
 		
 		

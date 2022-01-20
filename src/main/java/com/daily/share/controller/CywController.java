@@ -499,21 +499,20 @@ public class CywController {
 		
 		
 		@RequestMapping(value = "/CommentSingo", method = RequestMethod.POST)
-		 public String CommentSingo(Model model, @RequestParam String dec_targetId,  @RequestParam int dec_targetNum,
-				 @RequestParam int dec_code,HttpSession session) {
+		 public String CommentSingo(Model model, @RequestParam String dec_targetId,  @RequestParam String dec_targetNum,
+				 @RequestParam String dec_code,HttpSession session,@RequestParam String board_num) {
 				logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code);
 				
 				String loginId = (String) session.getAttribute("loginId");
 				
+				int a = Integer.parseInt(dec_targetNum);
+				int b = Integer.parseInt(dec_code);
+				
 				if (loginId != null) {
-					service.CommentSingo(dec_targetId,dec_targetNum,dec_code,loginId);								
-					model.addAttribute("msg","신고가 완료되었습니다.");
-				}else {
-					model.addAttribute("msg","이 기능은 로그인이 필요한 기능입니다.");
+					service.CommentSingo(dec_targetId,a,b,loginId);								
 				}
-			
-		 		
-		 return null; 
+				 		
+		 return "redirect:/csj_detail?board_num="+board_num+"&mem_id="+dec_targetId; 
 		 }
 		
 		

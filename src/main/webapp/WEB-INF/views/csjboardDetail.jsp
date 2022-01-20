@@ -98,13 +98,107 @@
 		.photo{
 			text-align: center;
 		}
+		#lxcvb{
+			position:absolute;
+			border: 1px solid black;
+			border-radius:20px;
+			width: 400px;
+			height: 500px;
+			left: 580px;
+			top: 365px;
+			z-index: 9;
+			background-color: white;
+			
+		}
+		#sharePop{
+			display:none;
+			position:absolute;
+			border: 1px solid black;
+			border-radius:10px;
+			width: 300px;
+			height: 200px;
+			left: 550px;
+			top: 20%;
+			z-index: 9;
+			background-color: white;
+		}
+		#myMenu{
+			position: absolute;
+			width: 250px;
+			height: 40px;
+			left: 25px;
+			top: 90px;
+			font-size: 15px;
+			padding-left: 13px;
+		}
+		#shareSub{
+			position: absolute;
+			top:25px;
+			left: 91px;
+			font-size: 16px;
+			font-weight: 600;
+		}
+		#shareMenu{
+			position: absolute;
+			top:65px;
+			left: 35px;
+			font-size: 15px;
+		}
+		#sharePop option{
+			font-size: 15px;
+			padding-left: 13px;
+		}
+		#sharePop Button{
+			position: absolute;
+			width:70px;
+			height:30px;
+			bottom:20px;
+			right :25px;
+			background-color: #ffffff;
+			border: 1px solid black;
+			border-radius: 3px;
+			cursor: pointer;
+			
+		}
+		#sharePop Button:active {
+			background-color: lightgray;
+			color:gray;
+			font-weight: 600;
+		}
+		#shareX{
+			position: absolute;
+			font-size:20px;
+			font-weight:600;
+			right: 10px;
+			top: 5px;
+			color: gray;
+			cursor: pointer;
+		}
 
-	
+		
 
     </style>
 </head>
 <body>
 	<div id="container_wrap">
+		<!-- 공유 팝업 -->
+		<div id="sharePop">
+			<span id="shareX" onclick="sharePop()">X</span>
+			<span id="shareSub">게시물 공유하기</span>
+			<span id="shareMenu">이동할 메뉴</span>
+			<form action="csj_share" method="get">
+				<select name="menu_num" id="myMenu">
+					<c:forEach items="${myMenu}" var="myMenu">
+						<option value="${myMenu.menu_num}">${myMenu.menu_name}</option>			
+					</c:forEach>
+				</select>
+				<input type="hidden" name="board_num" value="${boardDetail.board_num }"/>
+				<button>공유하기</button>
+			</form>
+		</div>
+		
+		
+		
 		<%@ include file="csjBlogHead.jsp" %>
 		<input type="hidden" name="board_num" value="${boardDetail.board_num }"/>
 		<div id="form_wrap">
@@ -155,7 +249,7 @@
 						<a href="#" onclick="del();">삭제</a>&nbsp;&nbsp;		
 					</c:if>
 					<c:if test="${loginId ne boardDetail.mem_id}">
-						<a href="#">공유</a>&nbsp;&nbsp;
+						<a href="#" onclick="sharePop()">공유</a>&nbsp;&nbsp;
 						<a href="#">신고</a>&nbsp;&nbsp;					
 					</c:if>					
 				</div>
@@ -168,11 +262,17 @@
 		</div>
 	
 	</div>
+	
+
+
+	
+	
 
 </body>
 <script>	
-
-
+	function sharePop() {
+		$('#sharePop').toggle();
+	}
 	//추천 기능
 
 	

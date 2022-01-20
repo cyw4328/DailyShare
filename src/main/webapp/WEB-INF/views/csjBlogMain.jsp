@@ -93,20 +93,22 @@
 	
 		<div id="headline_wrap">
 			<c:forEach items="${boardList}" var="boardList" begin="0" end="2">
-				<!-- 서버에서 path 설정해줘야 함 -->
-				<div class='headLine'>
-					<div class='headIMG'>
-						<c:if test="${not empty boardList.board_thumFileName }">
-							<img src="/postImageFolder/${boardList.board_thumFileName}" style="max-width:200px;max-height:150px;z-index:none;"/>
-						</c:if>
-						<c:if test="${empty boardList.board_thumFileName }">
-							<img src="/postImageFolder/noimage.png"  style="max-width:200px;max-height:150px; z-index:none;"/>
-						</c:if>
-					</div>
-					${boardList.board_subject}<br/>
-					${boardList.menu_name}<br/>
-					<fmt:formatDate value="${boardList.board_date}" pattern="yyyy. MM. dd HH:mm"/>
-				</div>		
+					<!-- 서버에서 path 설정해줘야 함 -->
+					<div class='headLine'>
+						<a href="./csj_detail?board_num=${boardList.board_num }&mem_id=${boardList.mem_id}">
+							<div class='headIMG'>
+								<c:if test="${not empty boardList.board_thumFileName }">
+									<img src="/postImageFolder/${boardList.board_thumFileName}" style="max-width:200px;max-height:150px;z-index:none;"/>
+								</c:if>
+								<c:if test="${empty boardList.board_thumFileName }">
+									<img src="/postImageFolder/noimage.png"  style="max-width:200px;max-height:150px; z-index:none;"/>
+								</c:if>
+							</div>
+							${boardList.board_subject}<br/>
+							${boardList.menu_name}<br/>
+							<fmt:formatDate value="${boardList.board_date}" pattern="yyyy. MM. dd HH:mm"/>
+						</a>
+					</div>		
 			</c:forEach>
 		</div>
 		

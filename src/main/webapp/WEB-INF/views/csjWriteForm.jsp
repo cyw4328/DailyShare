@@ -198,7 +198,7 @@
 		<form id="post_form" action="csj_postUpload" method="post" enctype="multipart/form-data">
 		<div id="form_wrap">
 			<div id=category_wrap>
-				<img src="resources/images_csj/backimage.png" onclick="javascript:history.back();">
+				<img src="resources/images_csj/backimage.png" onclick="javascript:history.back();"/>
 				<select name="menu_num">
 								<c:forEach items="${menu}" var="menu">
 									<option value="${menu.menu_num}">${menu.menu_name}</option>			

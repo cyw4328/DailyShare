@@ -53,18 +53,6 @@
 		<h2>내 게시글 목록</h2>
 	</div>
 	
-	<div id="Search">
-		<form action="MyBoardSearch" method="POST">
-			<table>
-				<tr>
-					<td>
-						<input type="text"  name="MyBoardSearchInput"/>
-						<input type="submit" value="검색" />
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
 	
 	
 	<div id="sival">
@@ -103,7 +91,7 @@ function boardList(page,cnt) {
 
 			totalPage = data.pages;
 			listDraw(data.list);
-			console.log(data.list);
+			console.log("보드리스트",data.list);
 			
 			if (data.list.length > 0) {
 				$('#pagination').twbsPagination({
@@ -129,17 +117,17 @@ function listDraw(list) {
     var content = '';
 
     list.forEach(function(item,com_num) {
-    	var date = new Date(item.com_date);
+    	var date = new Date(item.board_date);
 
 		content +='<tr>';
-		content += '<td  class="alrimTd" onclick=location.href="./boardDetail?board_num='+item.board_num+'" style="cursor:hand">'+item.mem_id+" 님의 게시글 : "+item.com_cont+'</td>'
+		content += '<td  class="alrimTd" onclick=location.href="./csj_detail?board_num='+item.board_num+'&mem_id='+item.mem_id+'" style="cursor:hand">'+item.mem_id+" 님의 게시글 : "+item.board_subject+'</td>'
 		+'<td>'+date.getFullYear()+"-"
 	      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 	      +("0" + date.getDate()).slice(-2)+" "
 	      +("0" + date.getHours()).slice(-2)+":"
 	      +("0" + date.getMinutes()).slice(-2)+":"
-	      +("0" + date.getSeconds()).slice(-2);
-		content += '&nbsp;&nbsp;&nbsp;&nbsp;'+'<button onclick="MyBoardDel('+item.board_num+')">'+"X"+'</button>'+'</td>';
+	      +("0" + date.getSeconds()).slice(-2)+'&nbsp;&nbsp;&nbsp;&nbsp;';
+		content += '<button onclick="MyBoardDel('+item.board_num+')">'+"삭제"+'</button>'+'</td>';
 		content += '</tr>';
 
 
@@ -150,20 +138,29 @@ function listDraw(list) {
 }
 
 function MyBoardDel(e) {
-	$.ajax({
-		type:'POST',
-		url:'MyBoardDel',
-		data:{"board_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
-		dataType:'JSON',
-		success:function(data) {
-			console.log(data.list);
-			window.location.href="./MyBoardControlPage";
-			
-		},
-		error:function(e) {
-			console.log(e);
-		}
-	});
+	
+	var yn = confirm("정말 이글을 삭제 하시겠습니까?");
+	
+	if (yn) {
+	
+		$.ajax({
+			type:'POST',
+			url:'MyBoardDel',
+			data:{"board_num":e}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
+			dataType:'JSON',
+			success:function(data) {
+				console.log(data.list);
+				window.location.href="./MyBoardControlPage";
+				
+			},
+			error:function(e) {
+				console.log(e);
+			}
+		});
+	
+	}
+	
+	
 }
 	
 

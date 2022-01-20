@@ -212,4 +212,27 @@
 	</choose>
 	</select>
 	
+	<!-- 메인페이지 접속시 뜨는 밑 리스트 -->
+	<select id="OpenGoodBoardList" resultType="com.daily.share.dto.CywDTO">
+		SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
+			menu m join mainCategory b 
+			on m.main_num = b.main_num
+			join middleCategory j
+			on m.mid_num = j.mid_num
+			join board d 
+			on m.menu_num = d.menu_num
+			ORDER BY board_like DESC 
+	</select>
+	
+		<select id="OpenBestBoardList" resultType="com.daily.share.dto.CywDTO">
+			SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
+			menu m join mainCategory b 
+			on m.main_num = b.main_num
+			join middleCategory j
+			on m.mid_num = j.mid_num
+			join board d 
+			on m.menu_num = d.menu_num
+			 ORDER BY board_like DESC 
+	</select>
+	
 </mapper>

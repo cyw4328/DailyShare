@@ -172,7 +172,7 @@ border-bottom:1px solid black;
                 <ul>
                     <li class="nav01" onclick="location.href='./FeedPage'">피드</li>
                     <li class="nav01" onclick="location.href='./ForumBoard'">포럼</li>
-                    <a href="/share/csj_blogMain?mem_id=${loginId}" id = "myBlogck"><li class="nav01" >MY블로그</li></a>
+                    <a href="./csj_blogMain?mem_id=${loginId}" id = "myBlogck"><li class="nav01" >MY블로그</li></a>
                     <li class="nav01" ><img src="resources/images/gongji_icon.png" class = "iconSize"></li>
                     <li class="nav01" id="gongji">공지사항이다 우헤헤ㅔ헤헤후에에에ㅔ에엥ㅇ</span>
                 </ul>
@@ -180,7 +180,7 @@ border-bottom:1px solid black;
                 <!--로그인 레이어팝업 -->
                 
 
-                <span id="logout_icon"><a href="logoutShs">
+                <span id="logout_icon"><a href="./logoutShs">
                 <img src="resources/images/logout_icon.png" class = "iconSize"></a></span>
                 
                 <span id="login_icon"><a href="./MyAlrimPage"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
@@ -207,11 +207,13 @@ if(login == null ||login == ''){
 	$('#myBlogck').hide();
 	$('.writeBtn').hide();
 	
-	$('#logout_icon').html('<a href="/share/shs"><img src="resources/images/icon_join.png" class = "iconSize"></a>');
-	$('#login_icon').html('<a href="/share/loginPage"><img src="resources/images/icon_login.PNG" class = "iconSize"></a>');
-};
+
+	$('#logout_icon').html('<a href="./shs"><img src="resources/images/icon_join.png" class = "iconSize"></a>');
+	$('#login_icon').html('<a href="./loginPage"><img src="resources/images/icon_login.PNG" class = "iconSize"></a>');
+
 
 if(login != null || login != ''){
+
 	
 	$.ajax({
 		type:'GET',

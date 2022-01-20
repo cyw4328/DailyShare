@@ -335,6 +335,24 @@ public class CywService {
 		logger.info("서치?:{}", dto);
 		return dto;
 	}
+
+	public HashMap<String, Object> OpenGoodBoardList() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		ArrayList<CywDTO> list = dao.OpenGoodBoardList();
+		map.put("list", list);
+
+		return map;
+	}
+
+	public HashMap<String, Object> OpenBestBoardList() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		ArrayList<CywDTO> list = dao.OpenBestBoardList();
+		map.put("Best", list);
+
+		return map;
+	}
 	 
 
 }

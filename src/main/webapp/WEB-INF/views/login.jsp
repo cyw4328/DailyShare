@@ -48,7 +48,7 @@
                 left: 8%;
                 width: 80px;
                 height: 80px;
-		    	border: 1px solid black; 
+		    	/* border: 1px solid black;  */
 		    	cursor:pointer;
 		    }
 		    
@@ -64,10 +64,12 @@
     <body class="no-drag">
         <div id="wrap">
             <div id="header">
-            <div id="logo" onclick="location.href='./HomePage'"><img src="./Logo1.png" alt="SiteLogo" width="80" height="80"></div>
+            <div id="logo" onclick="location.href='./MainPageShs'"><img src="/photo/LoGo.PNG" alt="SiteLogo" width="80" height="80"></div>
                 <div class="container"></div>
             </div>
-            <div id="banner"><img src="./Logo2.png" alt="LoginLogo" width="120" height="120"><!--로그인화면 로고-->
+            <div id="banner">
+            <h2>DAILY SHARE</h2>
+            <!-- <img src="./Logo2.png" alt="LoginLogo" width="120" height="120"> --><!--로그인화면 로고-->
                 <div class="container"></div>
             </div>
             <div id="contents">

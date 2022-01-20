@@ -161,12 +161,12 @@
 
 
  $('.Follow').click(function(){
-	 location.href = "/share/followShs";
+	 location.href = "./followShs";
 });
 
 $('.Following').click(function(){
 	console.log('팔로잉 클릭 확인');
-	location.href = "/share/followingShs";
+	location.href = "./followingShs";
 });		 
 
 
@@ -191,7 +191,7 @@ $('.followBtn').click(function followCall(){
 			success: function(data) {
 				if(data.result > 0){
 				console.log(data.result);
-				location.href="/share/followShs";
+				location.href="./followShs";
 				//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
 				}	
 				

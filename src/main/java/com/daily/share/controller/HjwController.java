@@ -159,6 +159,11 @@ public class HjwController {
 		logger.info("신고관리페이지 이동");
 		return "decList";
 	}
+	@RequestMapping(value = "/decPage2", method = RequestMethod.GET)
+	public String decPage2(Model model) {
+		logger.info("신고관리페이지 이동");
+		return "decList2";
+	}
 	
 	//리스트 요청
 		@ResponseBody
@@ -228,5 +233,29 @@ public class HjwController {
 			return service.SearchList1(hjwdto);
 		}
 	
+		@RequestMapping(value = "/enr_decM", method = RequestMethod.POST)
+	    public String enr_decM(Model model, @RequestParam HashMap<String, String> params) {
+	        logger.info("신고항목생성 요청 : {}",params);
+	        service.enr_decM(params);
+	        return "redirect:/decPage3";
+		}
+		
+		@RequestMapping(value = "/decPage3", method = RequestMethod.GET)
+		public String declist3(Model model) {
+			logger.info("신고관리페이지 이동");
+			ArrayList<HjwDTO> declist3=service.declist3();
+			logger.info("신고항목 수 : {}",declist3.size());
+			model.addAttribute("decsize3", declist3.size());
+			model.addAttribute("declist3", declist3);
+			return "decList3";
+		}
+		
+		@RequestMapping(value = "/decupdate", method = RequestMethod.POST)
+	    public String decupdate(Model model, @RequestParam HashMap<String, String> params) {
+	        logger.info("update 요청 : {}",params);
+	        service.decupdate(params);
+	        return "redirect:/decPage3?dec_code="+params.get("dec_code");
+		}
+		
 }
 	

@@ -83,5 +83,19 @@
 		</trim>
 	</select>
 	
+	<insert id="enr_decM" parameterType="hashmap">
+		INSERT INTO declarationContents(dec_name)
+		VALUES(#{decMkeyword})
+	</insert>
 	
+	<select id="declist3" resultType="com.daily.share.dto.HjwDTO">
+		SELECT dec_code,dec_name,dec_blind
+			FROM declarationContents ORDER BY dec_code DESC
+	</select>
+	
+	<update id='decupdate' parameterType="hashmap">
+		UPDATE declarationContents SET
+		dec_name = #{dec_name}
+		WHERE dec_code = #{dec_code}
+	</update>
 </mapper>

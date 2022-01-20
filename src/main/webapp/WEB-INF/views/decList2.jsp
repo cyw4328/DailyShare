@@ -37,19 +37,18 @@
 		   	top: 120px;
             font-size: 16px;
 		}
-		
+
 		#decS{
 		   	position: absolute;
 		   	left: 840px;
 		   	top: 200px;
 	    }
-		
-		#DecTable1{
+
+		#DecTable2{
 		    position: absolute;
 		   	left: 300px;
 		   	top: 240px;
 		}
-
     </style>
 </head>
 <body class="no-drag">
@@ -75,22 +74,21 @@
 			<input type="text" name="deckeyword">
 			<input type="button" id="decSearch" onclick="decSearchList()" value="검색">
         </form>
-	</div>
-
-	
-	<div id="DecTable1">
+		</div>
+		<div id="DecTable2">
 			<table>
 				<tr>
 					<th>신고번호</th>
 					<th>신고자아이디</th>
 					<th>신고된아이디</th>
 					<th>신고항목</th>
-					<th>신고한날짜</th>
-					<th>신고내용</th>
+					<th>처리한날짜</th>
+					<th>처리내용</th>
+					<th>처리자</th>
 				</tr>
-				<tbody id="declist1"></tbody>
+				<tbody id="declist2"></tbody>
 				<tr>
-					<td colspan="6" id="paging" >
+					<td colspan="7" id="paging" >
 						<div class="container" style="width:850px;">                           
 			               <nav aria-label="Page navigation" style="text-align:center;">
 			                  <ul class="pagination" id="pagination"></ul>
@@ -102,103 +100,6 @@
 		</div>
 </body>
 <script>
-	//검색 ajax
-	function decSearchList(){
-		$.ajax({
-			type: 'GET',
-			url : 'SearchList1',
-			data : $("form[name=search_dec]").serialize(),
-			success : function(result){
-				console.log("확인");
-				//테이블 초기화
-				$('#declist1').empty();
-				if(result.length>=1){
-					var str = '';
-					result.forEach(function(item){
-						var date = new Date(item.dec_date);
-						str='<tr>'
-						str += "<td>"+item.dec_num+"</td>";
-						str+="<td>"+item.mem_id+"</td>";
-						str+="<td>"+item.target_id+"</td>";
-						str+="<td>"+item.dec_name+"</td>";
-						str+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
-						str+="<td>"+item.dec_cont+"</td>";
-						str+="</tr>";
-						$('#declist1').append(str);
-						
-		
-	        		})				 
-				}
-			}
-		})
-	};
-	
-	var currPage = 1;
-	var totalPage = 2;
-	
-	listCall(currPage,5);
-	
-	function more(){ //다음 페이지로 넘겼을 때
-		currPage++;
-		console.log('currPage',currPage);
-		if(currPage>totalPage){
-			$('button').attr('disabled',true);
-		}else{
-			listCall(currPage, 5);			
-		}
-	}
-	
-	function listCall(page, cnt){				
-		
-		$.ajax({
-			type:'GET',
-			url:'declist1',
-			data:{'page':page,'cnt':cnt},
-			dataTyps:'JSON',
-			success: function(data){
-				console.log(data);
-				totalPage = data.pages;
-				listDraw(data.list);
-				
-				$('#pagination').twbsPagination({
-					startPage: currPage,//현재 페이지
-					totalPages: totalPage,//만들수 있는 총 페이지 수
-					visiblePages:5, //[1][2][3]... 이걸 몇개 까지 보여줄 것인지
-					onPageClick:function(evt,page){//해당 페이지 번호를 클릭했을때 일어날 일들
-						console.log(evt); //현재 일어나는 클릭 이벤트 관련 정보들
-						console.log(page);//몇 페이지를 클릭 했는지에 대한 정보
-						listCall(page, 5);
-					}
-				});
-								
-			},
-			error:function(e){
-				console.log(e);
-			}
-		});		
-	}
-	
-	
-	function listDraw(list){ //리스트를 불러올때 하단 생성
-		var content = '';	
-		list.forEach(function(item, mem_id){
-			var date = new Date(item.mem_date);
-				content='<tr>'
-				content+= "<td>"+item.dec_num+"</td>";
-				content+="<td>"+item.mem_id+"</td>";
-				content+="<td>"+item.target_id+"</td>";
-				content+="<td>"+item.dec_name+"</td>";
-				content+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
-				content+="<td>"+item.dec_cont+"</td>";
-				content+="</tr>";	
-		});
-		//console.log(content);
-		$('#declist1').empty();
-		$('#declist1').append(content);		
-	}
-
-
-
 	const headTxt = document.getElementById('headTxt');
 	headTxt.innerText = '신고목록'
 	
@@ -207,16 +108,14 @@
 	});
 	
 	var ahr = document.getElementsByTagName('a');
-	document.getElementById("a1").style = "color: black; box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
+	document.getElementById("a2").style = "color: black; box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
 	
-	$('#a2').click(function(){
-		location.href='./decPage2'
-    });
-    
+	$('#a1').click(function(){
+		location.href='./decPage'
+	});
+	
 	$('#a3').click(function(){
 		location.href='./decPage3'
 	});
-
-	
 </script>
 </html>

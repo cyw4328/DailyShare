@@ -58,7 +58,18 @@ public class HjwService {
 		return dao.allCount1();
 	}
 
+	public ArrayList<HjwDTO> declist3() {
+		logger.info("list 쿼리 요청");
+		return dao.declist3();
+	}
+	public void enr_decM(HashMap<String, String> params) {
+		int row = dao.enr_decM(params);
+		logger.info(" 입력된 건수 : {}",row);
+	}
+	public void decupdate(HashMap<String, String> params) {
+		int row = dao.decupdate(params);
+		logger.info("수정 성공여부 : {}",row);	
+	}
 
-	
 
 }

@@ -185,13 +185,13 @@ border-bottom:1px solid black;
                 
                 <span id="login_icon"><a href="./MyAlrimPage"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
                 <a href="/share/memberPassCk"><p id="id_shs">${loginId}</p></a>
-				<button class ="writeBtn" onclick="location.href='./csj_writeForm'">글쓰기</button>
+				<a href="/share/csj_writeForm"  target ="_blank" ><button class ="writeBtn">글쓰기</button></a>
             
         </nav>
         
         
     </div>
-    <hr style="position: absolute; width: 100%; left: 0px; top: 80px; border-top : 1px solid rgb(226, 226, 226);">
+    <hr style="position: absolute; width: 100%; left: 0px; top: 85px; border-top : 1px solid rgb(226, 226, 226);">
 
 
 </div>

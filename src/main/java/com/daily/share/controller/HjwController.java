@@ -135,7 +135,7 @@ public class HjwController {
 		return "Search";
 	}
 	
-	@RequestMapping(value="loginPage", method=RequestMethod.GET)
+	@RequestMapping(value="/loginPage", method=RequestMethod.GET)
     public String logoutMainGET(HttpServletRequest request) throws Exception{
         
         logger.info("로그인 페이지 이동");

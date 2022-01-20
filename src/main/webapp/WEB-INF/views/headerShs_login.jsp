@@ -184,8 +184,8 @@ border-bottom:1px solid black;
                 <img src="resources/images/logout_icon.png" class = "iconSize"></a></span>
                 
                 <span id="login_icon"><a href="./MyAlrimPage"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
-                <a href="/share/memberPassCk"><p id="id_shs">${loginId}</p></a>
-				<a href="/share/csj_writeForm"  target ="_blank" ><button class ="writeBtn">글쓰기</button></a>
+                <a href="./memberPassCk"><p id="id_shs">${loginId}</p></a>
+				<a href="./csj_writeForm"  target ="_blank" ><button class ="writeBtn">글쓰기</button></a>
             
         </nav>
         

@@ -216,7 +216,10 @@ function display() {
         var content = '';
         list.forEach(function(item,board_num) {
         	var date = new Date(item.board_date);
+
    		 	content +='<table><tr onclick=location.href="./csj_detail?board_num='+item.board_num+'&mem_id='+item.mem_id+'" style="cursor:hand; border-bottom = 1px solid black;">';
+
+   		 	
 			content += '<td  id="forumTd" style ="font-size:16px;">'+"by &nbsp&nbsp"+item.mem_id+'</td>';
 			content += '<td>'+'<p class="BigTxt">'+item.board_subject+'</p>'+'<p class="smallTxt">'+item.board_cont+'</p>'+date.getFullYear()+"-"
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"

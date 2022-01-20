@@ -51,7 +51,15 @@
          text-align: center;
          border-bottom: 1px solid black;
    }
-    	
+    	#ForomBoardCheck{
+    		position: absolute;
+    		left: 875px;
+    		top: 290px;
+    		background-color: black;
+    		color: white;
+    		width: 150px;
+    		height: 35px;
+    	}
 
     	
     </style>
@@ -78,8 +86,6 @@
 		         		<td></td>
 		         	</tr>
 		         	<tr>
-		         		<td><p>파일첨부</p></td>
-		         		<td><input type="file" value="사진은 3장까지만 첨부 가능합니다."></td>	
 		         		<td><button id="ForomBoardCheck">등록하기</button></td>	
 		         	</tr>
 		         </table>

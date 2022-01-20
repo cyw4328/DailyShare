@@ -95,6 +95,14 @@ public interface CywDAO {
 	ArrayList<CywDTO> OpenGoodBoardList();
 	
 	ArrayList<CywDTO> OpenBestBoardList();
+	
+	ArrayList<CywDTO> SingoCode();
+	
+	void Singo(String mem_id, String cont, int dec_code);
+	
+	void BoardSingo(String dec_targetId, int a, int b, String loginId);
+	
+	void CommentSingo(String dec_targetId, int a, int b, String loginId);
 	 
 	
 

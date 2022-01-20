@@ -198,7 +198,7 @@
 		</div>
 		
 		
-		
+		<%@ include file="BoardSinGoPopup.jsp" %>
 		<%@ include file="csjBlogHead.jsp" %>
 		<input type="hidden" name="board_num" value="${boardDetail.board_num }"/>
 		<div id="form_wrap">
@@ -250,7 +250,7 @@
 					</c:if>
 					<c:if test="${loginId ne boardDetail.mem_id}">
 						<a href="#" onclick="sharePop()">공유</a>&nbsp;&nbsp;
-						<a href="#">신고</a>&nbsp;&nbsp;					
+						<a href="#" onclick="singoPop()">신고</a>&nbsp;&nbsp;					
 					</c:if>					
 				</div>
 			</div>
@@ -272,6 +272,9 @@
 <script>	
 	function sharePop() {
 		$('#sharePop').toggle();
+	}
+	function singoPop() {
+		$('#SingoPopup').toggle();
 	}
 	//추천 기능
 

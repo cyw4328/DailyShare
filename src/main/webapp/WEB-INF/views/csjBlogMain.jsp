@@ -130,13 +130,15 @@
 			overflow: hidden;
 			/* white-space :nowrap; */
 			text-overflow: ellipsis;
+			margin-bottom: 10px;
 		}
 		.bodyCont{
 			/* position:absolute; */
 			font-size: 20px;
 			display: block;
-			height: 95px;
+			height: 110px;
 			overflow: hidden;
+			margin-bottom: 20px;
 		}
 		.bodyMenu{
 			/* position:absolute;

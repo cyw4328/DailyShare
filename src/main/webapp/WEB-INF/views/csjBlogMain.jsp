@@ -126,7 +126,7 @@
 			display: block;
 			font-size: 25px;
 			font-weight: 600;
-			height: 70px;
+			max-height: 70px;
 			overflow: hidden;
 			/* white-space :nowrap; */
 			text-overflow: ellipsis;
@@ -136,20 +136,21 @@
 			/* position:absolute; */
 			font-size: 20px;
 			display: block;
-			height: 110px;
+			height: 100px;
 			overflow: hidden;
-			margin-bottom: 20px;
+			/* margin-bottom: 20px; */
 		}
 		.bodyMenu{
-			/* position:absolute;
-			bottom:0px; */
+			position:absolute;
+			bottom:45px;
 			font-size: 16px;
 			color: crimson;
 			
 		}
 		.bodyDate{
-			/* position:absolute;
-			bottom:0px; */
+			position:absolute;
+			bottom:47px;
+			right:320px;
 			font-size: 14px;
 			color: gray;
 		}

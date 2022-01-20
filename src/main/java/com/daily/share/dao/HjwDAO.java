@@ -30,6 +30,14 @@ public interface HjwDAO {
 
 	int allCount1();
 
+	ArrayList<HjwDTO> declist3();
+
+	int enr_decM(HashMap<String, String> params);
+
+	int decupdate(HashMap<String, String> params);
+
+	
+
 
 
 

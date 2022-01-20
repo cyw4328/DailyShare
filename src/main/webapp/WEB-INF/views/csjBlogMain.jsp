@@ -16,61 +16,147 @@
 	<style>
 		#container_wrap{
 			position:relative;
-			width: 1400px;
-			height: 1500px;
-			border:2px solid red; 
+/* 			width: 1400px;
+			height: 1500px; */
+			/* border:2px solid red; */
 			margin: 0 auto;
 		}
 	
 		#headline_wrap{
+			position:relative;
 			width: 906px;
 			height: 300px;
-			border:1px solid black;
+			/* border:1px solid black; */
 			margin: 0 auto;
+			margin-top: 50px;
 		}
 		.headLine{
+			position:relative;
 			float:left;
-			border:1px solid black;
-			width: 200px;
+			/* border:1px solid black; */
+			width: 250px;
 			height: 300px;
 			font-size: 14px;
-			margin: 0px 50px auto;
+			margin: 0px 25px auto;
 		}
 		.headIMG{
+			/* position:relative; */
+			 display: table-cell;
+			 vertical-align:middle;
 			text-align: center;
-			border:2px solid blue;
-			width: 200px;
-			height: 150px;
-			
+			/* border:2px solid blue; */
+			width: 250px;
+			height: 200px;	
 		}
+		.headCont{
+			position:relative;
+			width: 250px;
+			height: 100px;
+		}
+		.headSubject{
+			position: relative;
+			display:inline-block;
+			width:250px;
+			height : 25px;
+			top: 0px;
+			left: 0px;
+			font-size: 20px;
+			overflow: hidden;
+			white-space :nowrap;
+			text-overflow: ellipsis;
+		}
+		.headMenu{
+			/* position: absolute; */
+			bottom: 45px;
+			left: 0px;
+			font-size: 15px;
+			color: crimson;
+		}
+		.headDate{
+			/* position: absolute; */
+			bottom: 25px;
+			left: 0px;
+			font-size: 15px;
+			color: gray;
+		}
+		
+		
+		
+		
+		
 		#body_wrap{
+			position:relative;
 			width: 906px;
-			height: 1000px;
-			border:1px solid black;
+			/* border:1px solid black; */
 			margin: 0 auto;
 		}
 		.body{
-			border-bottom:1px solid red;
+			position:relative;
+			border-bottom:2px solid lightgray;
 			width: 100%;
-			height:180px;
-			margin: 20px 0px;
+			height:290px;
+			padding: 20px 0px;
 		}
 		.bodyIMG{
-			text-align: center;
-			border:1px solid black;
-			width: 230px;
-			height: 160px;
+			position:relative;
+			text-align:center;
+			display: flex;
+			align-items: center; 
+			justify-content: center;
+			border:1px solid lightgray;
+			width: 300px;
+			height: 250px;
 			float: left;
-			margin-right: 30px;
+			margin:0px 15px;
 		}
+		
+		.bodyCont_wrap{
+			/* position:relative; */
+			/* border:1px solid black; */
+			float: left;
+			width: 574px;
+			height: 100%;
+			padding: 20px 0px;
+
+			
+		
+		}
+		
 		.bodySub{
 			display: block;
-			font-size: 24px;
+			font-size: 25px;
 			font-weight: 600;
-			padding: 15px 0px;
+			max-height: 70px;
+			overflow: hidden;
+			/* white-space :nowrap; */
+			text-overflow: ellipsis;
+			margin-bottom: 10px;
 		}
 		.bodyCont{
-			display: block;
+			/* position:absolute; */
+			font-size: 20px;
+			/* display: block; */
+			/* height: 105px; */
+			overflow: hidden;
+			/* margin-bottom: 20px; */
+			display: -webkit-box;
+	        -webkit-line-clamp: 3;
+	        -webkit-box-orient: vertical;
+	        padding-top: 10px;
+		}
+		.bodyMenu{
+			position:absolute;
+			bottom:45px;
+			font-size: 16px;
+			color: crimson;
+			
+		}
+		.bodyDate{
+			position:absolute;
+			bottom:47px;
+			right:320px;
+			font-size: 14px;
+			color: gray;
 		}
 		
 		#pagingBox{
@@ -94,23 +180,36 @@
 		<div id="headline_wrap">
 			<c:forEach items="${boardList}" var="boardList" begin="0" end="2">
 					<!-- 서버에서 path 설정해줘야 함 -->
-					<div class='headLine'>
-						<a href="./csj_detail?board_num=${boardList.board_num }&mem_id=${boardList.mem_id}">
-							<div class='headIMG'>
-								<c:if test="${not empty boardList.board_thumFileName }">
-									<img src="/postImageFolder/${boardList.board_thumFileName}" style="max-width:200px;max-height:150px;z-index:none;"/>
-								</c:if>
-								<c:if test="${empty boardList.board_thumFileName }">
-									<img src="/postImageFolder/noimage.png"  style="max-width:200px;max-height:150px; z-index:none;"/>
-								</c:if>
+					<div class="headLine">
+							<div class="headIMG">
+								<a href="./csj_detail?board_num=${boardList.board_num }&mem_id=${boardList.mem_id}">
+									<c:if test="${not empty boardList.board_thumFileName }">
+										<img src="/postImageFolder/${boardList.board_thumFileName}" style="max-width:250px;max-height:200px;z-index:none;"/>
+									</c:if>
+									<c:if test="${empty boardList.board_thumFileName }">
+										<img src="/postImageFolder/noimage.png"  style="max-width:200px;max-height:150px; z-index:none;"/>
+									</c:if>
+								</a>
 							</div>
-							${boardList.board_subject}<br/>
-							${boardList.menu_name}<br/>
-							<fmt:formatDate value="${boardList.board_date}" pattern="yyyy. MM. dd HH:mm"/>
-						</a>
+							<div class="headCont">
+								<a href="./csj_detail?board_num=${boardList.board_num }&mem_id=${boardList.mem_id}">
+									<span class="headSubject">
+										${boardList.board_subject}
+									</span><br/>
+									<span class="headMenu">
+										${boardList.menu_name}
+									</span><br/>
+									<span class="headDate">
+										<fmt:formatDate value="${boardList.board_date}" pattern="yyyy. MM. dd HH:mm"/>
+									</span>
+								</a>
+							</div>
+						
 					</div>		
 			</c:forEach>
 		</div>
+		
+		<hr/>
 		
 		<div id="body_wrap">	
 		</div>	
@@ -200,15 +299,19 @@
 			
 			list.forEach(function(item,board_num) {
 				
-				content += '<a href="./csj_detail?board_num='+item.board_num+'&mem_id='+$mem_id+'"><div class="body">';
-				content += '<div class="bodyIMG"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:230px;max-height:160px;z-index:none;"></div>';
+				content += '<div class="body">';
+				content += '<div class="bodyIMG"><a href="./csj_detail?board_num='+item.board_num+'&mem_id='+$mem_id+'"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:300px;max-height:250px;z-index:none;"></a></div>';
+				content += '<div class="bodyCont_wrap">';
+				content += '<a href="./csj_detail?board_num='+item.board_num+'&mem_id='+$mem_id+'">'
 				content += '<span class="bodySub">'+item.board_subject+'</span>'
 				content += '<span class="bodyCont">'+item.board_cont+'</span>'
 				content += '<span class="bodyMenu">'+item.menu_name+'</span>'
-				
+
 				var date = new Date(item.board_date).toLocaleString();	
 				content += '<span class="bodyDate">'+date+'</span>'
-				content += '</div></a>'
+				content += '</a>'
+				content += '</div>';
+				content += '</div>';
 	
 			});
 		}else {

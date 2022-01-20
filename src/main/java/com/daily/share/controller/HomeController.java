@@ -22,7 +22,7 @@ public class HomeController {
 
 
 
-      return "HomePage";
+      return "MainPageShs";
    }
    
 }

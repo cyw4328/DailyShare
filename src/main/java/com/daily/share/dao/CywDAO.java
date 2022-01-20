@@ -87,6 +87,10 @@ public interface CywDAO {
 	
 	// 메인페이지 대분류목록가져오기
 	ArrayList<CywDTO> MainPageBigCateGory();
+	
+	ArrayList<CywDTO> BestBoardList(String mainNum);
+	
+	ArrayList<CywDTO> MainSearch(String forumSearch, String searchScope);
 	 
 	
 

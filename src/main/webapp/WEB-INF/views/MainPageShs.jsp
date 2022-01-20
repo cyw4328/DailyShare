@@ -5,22 +5,25 @@
    <meta charset="UTF-8">
    <title>Insert title here</title>
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="resources/css/HS.css">
+   <!-- <link rel="stylesheet" type="text/css" href="resources/css/HS.css"> -->
    <style>
+   
+
+      
    li{
    list-style:none;
    }
    *{margin: 0 auto;}
    .container{
-   		background: #ccc;
+
    		width: 1000px;
    		position: relative;
    		top:0;
    		left: 0px;
    }
    
-   #mainBanner{
-   		background: #23749e;
+   .mainBanner{
+
    		position: absolute;
    		width: 100%;
    		height: 370px;
@@ -30,7 +33,7 @@
    #Category{
    		position: absolute;
    		top:400px;
-   		left:130px;
+   		left:450px;
    		font-size: 35px;
    		color: #848484;
    }
@@ -64,7 +67,7 @@
 .ContBox{
 	position: relative;
 	top:300px;
-	left:0px;
+	left:380px;
 	margin: 0px;
    }
 .CateCont li {
@@ -92,7 +95,7 @@
 
 .ContImg{
 	display: block;
-    padding: 0;
+    padding: 50px;
     border-bottom:1px soled #c4c4c4;
 
 }
@@ -117,7 +120,7 @@
 
 .ContTxt{
 	padding-left: 10px;
-	margin-top:30px;
+	margin-top:0px;
 }
 
 .ContTitle{
@@ -187,7 +190,7 @@ font-size: 13px;
 	border-top:1px solid #cecece;
    	width: 1000px;
    	position: relative;
-   	top:950px;
+   	top:968px;
    	left: 0px;
    	height: 200px;
    	
@@ -282,12 +285,29 @@ font-size: 13px;
 	
 	.MainSearch{
 		position: absolute;
-		top:240px;
-		left:25%;
+		top:300px;
+		left:40%;
 		border:0px;
 	}
+	#searchBtn{
+	background-color: black;
+	color: white;
+	width: 90px;
+	height: 40px;
+	}
 	
-	
+	#sogae{
+	width: 370px;
+	height: 150px;
+	text-align: center;
+	border-color: white;
+	font-size: 25px;
+	position: absolute;
+	left: 650px;
+	top: 120px;
+	}
+
+ 
 	
 	
 	
@@ -298,9 +318,14 @@ font-size: 13px;
    </style>
 <body>
 <%@ include file="headerShs_login.jsp"%>
+	
 
 
-	<div id="mainBanner"></div>
+	<div class="mainBanner">
+
+ 
+	</div>
+	
 	<div id="CateBg"></div>
 	
 
@@ -308,11 +333,11 @@ font-size: 13px;
 
 	
 	
+<div id="sogae"><h1>오늘을 공유하다 DAILY SHARE</h1></div>
 
 
 
-
-	<div class="container">
+	<div class="container"></div>
 	
 
 	
@@ -326,81 +351,13 @@ font-size: 13px;
 	
 	<div class = "ContBox">
 			<ul class="CateCont" >
-							<li>
-								<a href="#" target="_blank" class="conA">
-									<div class="ContImg">
-									<img alt="img01" src="resources/images_shs/ContDe00.png"/>
-									</div>
-									<div class="ContTxt">
-										<div class="ContSmall">	
-												<span>중카테</span>
-												<span>좋아요</span>
-												<span style="color: red">5</span>
-											</dlv>
-										</div>
-											<strong class="ContTitle">
-												<span>MZ세대, 딩크족 알아보기알라라라 김치수제비 알리오올리오 까르보나라</span>
-											</strong>
-									</div>
-									<div class="ContBlog">
-										<div class="txt_id">Daily Note</div>
-										<div class="txt_blog">by 마루밑 문지기</div>
-									</div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#" target="_blank" class="conA">
-									<div class="ContImg">
-									<img alt="img01" src="resources/images_shs/ContDe00.png"/>
-									</div>
-									<div class="ContTxt">
-										<div class="ContSmall">	
-												<span>중카테</span>
-												<span>좋아요</span>
-												<span style="color: red">5</span>
-											</dl>
-										</div>
-											<strong class="ContTitle">
-												<span>MZ세대, 딩크족 알아보기알라라라 김치수제비 알리오올리오 까르보나라</span>
-											</strong>
-									</div>
-									<div class="ContBlog">
-										<div class="txt_id">Daily Note</div>
-										<div class="txt_blog">by 마루밑 문지기</div>
-									</div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#" target="_blank" class="conA">
-									<div class="ContImg">
-									<img alt="img01" src="resources/images_shs/ContDe00.png"/>
-									</div>
-									<div class="ContTxt">
-										<div class="ContSmall">	
-												<span> 중카테</span>
-												<span>좋아요</span>
-												<span style="color: red">5</span>
-											</dl>
-										</div>
-											<strong class="ContTitle">
-												<span>MZ세대, 딩크족 알아보기알라라라 김치수제비 알리오올리오 까르보나라</span>
-											</strong>
-									</div>
-									<div class="ContBlog">
-										<div class="txt_id">Daily Note</div>
-										<div class="txt_blog">by 마루밑 문지기</div>
-									</div>
-								</a>
-							</li>
-				
+			
 				</ul>
 		</div>
 		
 		<div class="MainSearch">
-		<form action="Search" method="POST">
-     		<table>
+ 		<form action="MainSearch" method="POST">
+     		<table id="SearchInput">
      			<tr>
      				<td>
      					<select name="SearchScope">
@@ -408,14 +365,18 @@ font-size: 13px;
      						<option value="User">작성자</option>
      						<option value="subCont">제목+내용</option>
      					</select>
+     					</td>
+     					<td>
      					<input type="text" name="ForumSearch"/>
-     					<input type="submit" value="검색"/>
+     					</td>
+     					<td>
+     					<input type="submit" value="검색" id="searchBtn"/>
      				</td>
      			</tr>
      		</table>
      	</form>
+
 	</div>
-	</div> 
 
 	<div class="section_list">
 		 <ul class = "list_Story">
@@ -468,7 +429,8 @@ function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 �
 
 function MainNum(e) {
 	console.log(e);
-	
+	$('.list_Story').empty();
+	$('.CateCont').empty();
 	$.ajax({
 		type:'POST',
 		url:'GoodBoardList',
@@ -482,6 +444,23 @@ function MainNum(e) {
 			console.log(e);
 		}
 	});      
+	
+	$.ajax({
+		type:'POST',
+		url:'BestBoardList',
+		data:{"MainNum":e}, 
+		dataType:'JSON',
+		success:function(data) {
+			
+			console.log(data.Best);
+			BestBoardList(data.Best);
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});      
+	
+	
 }
 
 function ForumBoardList(list) {
@@ -489,7 +468,7 @@ function ForumBoardList(list) {
 	
 	
 	 /* list.length */
-	for (var i = 0; i < list.length; i++) {
+	for (var i = 0; i < 10; i++) {
 		
 		var date = new Date(list[i].board_date);
 			
@@ -497,7 +476,7 @@ function ForumBoardList(list) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
-			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="128px" height="128px" alt="boardImg" class = "thumb_g">';
+			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="100px" height="100px" alt="boardImg" class = "thumb_g">';
 			content += '</div>';
 			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
 			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
@@ -507,14 +486,42 @@ function ForumBoardList(list) {
 			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
-			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'<span>'+list[i].mem_blog+'</div>';
+			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
 			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';
 
 						
 	}
-	$('.list_Story').empty();
+	
 	$('.list_Story').append(content);
 };
+
+
+function BestBoardList(Best) {
+	var content = '';
+	
+	
+	 /* list.length */
+	for (var i = 0; i < 3; i++) {
+		
+			
+
+			content += '<li>';
+			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
+			content += '<div class="ContImg">';
+			content += '<img alt="img01" src="/photo/'+Best[i].board_thumFileName+'width ="150px" height="150px"">';
+			content += '</div>';
+			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
+			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
+			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
+			content += '</li>';
+
+						
+	}
+
+	$('.CateCont').append(content);
+};
+
+
 
 
 

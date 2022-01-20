@@ -320,6 +320,21 @@ public class CywService {
 		
 		return map;
 	}
+
+	public HashMap<String, Object> BestBoardList(String MainNum) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		ArrayList<CywDTO> list = dao.BestBoardList(MainNum);
+		map.put("Best", list);
+
+		return map;
+	}
+
+	public ArrayList<CywDTO> MainSearch(String forumSearch, String searchScope) {
+		ArrayList<CywDTO> dto = dao.MainSearch(forumSearch, searchScope);
+		logger.info("서치?:{}", dto);
+		return dto;
+	}
 	 
 
 }

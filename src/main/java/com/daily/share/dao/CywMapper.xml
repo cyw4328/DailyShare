@@ -63,7 +63,7 @@
 
 	<!-- 대분류 클릭시 해당 게시물 출력 -->
 	<select id="middleListCall" resultType="com.daily.share.dto.CywDTO">
-		SELECT * from 
+		SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
 			menu m join mainCategory b 
 			on m.main_num = b.main_num
 			join middleCategory j
@@ -105,7 +105,7 @@
 	where 1=1
 	]]><choose>
 	<when test="param2 =='All'"><![CDATA[
-	and (mem_id LIKE CONCAT('%',#{param1},'%')  %a%
+	and (mem_id LIKE CONCAT('%',#{param1},'%')
 	or board_cont LIKE CONCAT('%',#{param1},'%')
 	or board_subject LIKE CONCAT('%',#{param1},'%'))
 	]]></when>
@@ -179,6 +179,37 @@
 		
 	<select id="MainPageBigCateGory" resultType="com.daily.share.dto.CywDTO">
 		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0
+	</select>
+	
+	<select id="BestBoardList" resultType="com.daily.share.dto.CywDTO">
+			SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
+			menu m join mainCategory b 
+			on m.main_num = b.main_num
+			join middleCategory j
+			on m.mid_num = j.mid_num
+			join board d 
+			on m.menu_num = d.menu_num
+			WHERE b.main_num = #{param1} ORDER BY board_like DESC 
+	</select>
+	
+	<select id="MainSearch" resultType="com.daily.share.dto.CywDTO">
+	<![CDATA[
+	select * from board
+	where 1=1
+	]]><choose>
+	<when test="param2 =='All'"><![CDATA[
+	and (mem_id LIKE CONCAT('%',#{param1},'%')
+	or board_cont LIKE CONCAT('%',#{param1},'%')
+	or board_subject LIKE CONCAT('%',#{param1},'%'))
+	]]></when>
+	<when test="param2 =='User'"><![CDATA[
+	AND mem_id LIKE CONCAT('%',#{param1},'%')
+	]]></when>
+	<otherwise><![CDATA[
+	AND (board_cont LIKE CONCAT('%',#{param1},'%')
+	or board_subject LIKE CONCAT('%',#{param1},'%'))
+	]]></otherwise>
+	</choose>
 	</select>
 	
 </mapper>

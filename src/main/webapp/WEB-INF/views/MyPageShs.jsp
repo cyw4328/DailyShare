@@ -113,10 +113,11 @@ a{
 <div id="memuBar">
 		<div id = "left">
 		
-		<p>개인계정</p>
-		<p>URL주소</p>	
+
+		<a href="/share/csj_blogMain?mem_id=${loginId}"><p style="text-align: center;">${loginId} 블로그</p></a>
 		</div>
 		
+
 		<a href="./csj_writeForm" ><div id="write">글쓰기</div></a>
 		<a href="./memberPassCk" ><div class= "tab00" id="tab1">개인정보수정</div></a>
 		<a href="./followShs" ><div class= "tab00" id="tab2">구독관리</div></a>
@@ -124,6 +125,7 @@ a{
 		<a href="./menuAddPage"><div class= "tab00" id="tab5">블로그메뉴</div></a>
 		<a href="./MyBoardControlPage"><div class= "tab00" id="tab6">MY 게시글</div></a>
 		<a href="./MyReviewControlPage"><div class= "tab00" id="tab7">MY 댓글</div></a>
+
 		
 </div>	
 		

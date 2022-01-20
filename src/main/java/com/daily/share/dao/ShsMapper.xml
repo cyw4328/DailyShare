@@ -19,7 +19,7 @@
 	
 	<!-- 개인정보 확인 -->
 	<select id="memberDe" resultType="com.daily.share.dto.ShsDTO">
-		select mem_name,mem_email, mem_phone from members WHERE mem_id =#{param1}
+		select mem_name,mem_email, mem_phone,mem_blog,mem_url from members WHERE mem_id =#{param1}
 	</select>
 		
 	<!-- 개인정보 수정 -->
@@ -29,6 +29,7 @@
 			,mem_pw = #{param2}
 			,mem_email = #{param3}
 			,mem_phone = #{param4}
+			,mem_blog = #{param5}
 		WHERE mem_id = #{param1}
 	</update>
 	
@@ -81,6 +82,11 @@
 		select mem_id,mem_pw from members WHERE mem_id =#{param1} and mem_pw=#{param2}
 	</select>
 
+
+	<!-- 관리자 여부 확인-->
+	<select id="adminCk" resultType="String">
+		select mem_admin from members WHERE mem_id =#{param1}
+	</select>
 
 
 

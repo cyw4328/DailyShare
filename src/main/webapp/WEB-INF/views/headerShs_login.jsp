@@ -186,6 +186,7 @@ border-bottom:1px solid black;
                 <span id="login_icon"><a href="./MyAlrimPage"><img src="resources/images/bell_icon.png" class = "iconSize"></a></span>
                 <a href="./memberPassCk"><p id="id_shs">${loginId}</p></a>
 				<a href="./csj_writeForm"  target ="_blank" ><button class ="writeBtn">글쓰기</button></a>
+				<a href="./managerPage"  target ="_blank" class="adminLink" ><button class ="writeBtn">관리자페이지</button></a>
             
         </nav>
         
@@ -197,6 +198,8 @@ border-bottom:1px solid black;
 </div>
 </body>
 <script>
+$('.adminLink').hide();
+
 
 var login = '${loginId}';
 
@@ -204,11 +207,35 @@ if(login == null ||login == ''){
 	$('#myBlogck').hide();
 	$('.writeBtn').hide();
 	
+
 	$('#logout_icon').html('<a href="./shs"><img src="resources/images/icon_join.png" class = "iconSize"></a>');
 	$('#login_icon').html('<a href="./loginPage"><img src="resources/images/icon_login.PNG" class = "iconSize"></a>');
+
+
+if(login != null || login != ''){
+
 	
+	$.ajax({
+		type:'GET',
+		url:'adminCk',
+		data:{"adminLogin":login},
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.adminCk);
+			if(data.adminCk==1){
+				console.log('관리자회원');
+				$('.adminLink').show();
+			}
+			
+			
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});
 	
-};
+}
+
 
 </script>
 

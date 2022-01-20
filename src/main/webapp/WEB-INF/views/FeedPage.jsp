@@ -49,15 +49,29 @@
     	height: 500px;
     	position: absolute;
     	text-align: center;
-    	border: 1px solid black; 
+
     }
     #feedCont{
-    	border-bottom: 3px black;
+    	border-bottom: 3px solid black;
     }
     #feedTr{
     	border-bottom: 2px solid black;
     }
+    #forumTd{
+    	width:200px;
 
+    }
+    
+    .BigTxt{
+    	font-size:25px;
+    }
+	table{
+		width:1000px;}
+		
+	tr{
+		border-bottom:1px solid #cecece;
+		height:120px;
+	}
 	
 	
     </style>
@@ -69,10 +83,13 @@
 		<div id="FeedPageMain">
 			<h2>FEED</h2>
 	    	<h4>내가 구독하고 있는 글 입니다.</h4>	
+	    	<a href="./followingShs" ><span>구독중 : ${subCont}</span></a></br>
+	    	<hr style="border:1px solid black; width:1100px; float:left;" >
+	    	
 		</div>
-		<div id="gudokJa">
-			<p>구독중 : ${subCont }<p>
-		</div>
+		
+
+		
 	</div>
 	
 	<div id="gudokjaBoard">
@@ -174,17 +191,17 @@ function display() {
         var content = '';
         list.forEach(function(item,board_num) {
         	var date = new Date(item.board_date);
-   		 	content +='<tr onclick=location.href="./boardDetail?board_num='+item.board_num+'" style="cursor:hand">';
-			content += '<td  id="forumTd">'+item.mem_id+'<br/>'
-			+"작성일 : "+date.getFullYear()+"-"
+   		 	content +='<table><tr onclick=location.href="./boardDetail?board_num='+item.board_num+'" style="cursor:hand; border-bottom = 1px solid black;">';
+			content += '<td  id="forumTd" style ="font-size:16px;">'+"by &nbsp&nbsp"+item.mem_id+'</td>';
+			content += '<td>'+'<p class="BigTxt">'+item.board_subject+'</p>'+'<p>'+item.board_cont+'</p>'+date.getFullYear()+"-"
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +("0" + date.getHours()).slice(-2)+":"
 		      +("0" + date.getMinutes()).slice(-2)+":"
-		      +("0" + date.getSeconds()).slice(-2)+'<br/>'+"좋아요 : "+item.board_like+'</td>';
-			content += '<td>'+'<b>'+item.board_subject+'</b>'+'<br/>'+item.board_cont+'</td>';
-			content += '<td>'+'<img src="/photo/'+item.board_thumFileName+'"width="100px">'+'</td>'
-			content += '</tr>'+'<br/>';
+		      +("0" + date.getSeconds()).slice(-2)+"&nbsp;&nbsp;&nbsp;좋아요  "+'<span style="color:red;">'+item.board_like+'</span>'+'</td>';
+			
+			content += '<td style="text-align:right;">'+'<img src="/photo/'+item.board_thumFileName+'"width="100px">'+'</td>'
+			content += '</tr>'+'<br/>'+'</table>';
         });
         $('#list').empty();
         $('#list').append(content);

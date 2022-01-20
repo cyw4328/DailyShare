@@ -87,6 +87,10 @@
 	           		<th>전화번호</th>
 	           		<td  style="border-bottom:1px solid #dedede;"><input type="text" value="${info.mem_phone}" name="phone" class="formSt"  style="border:1px solid #ccc;"></td>
 	           	</tr>
+	           	<tr>
+	           		<th>블로그이름</th>
+	           		<td  style="border-bottom:1px solid #dedede;"><input type="text" value="${info.mem_blog}" name="blog" class="formSt"  style="border:1px solid #ccc;"></td>
+	           	</tr>
 	            <tr><td colspan="2" style="border:0px; text-align: center; border-bottom:1px solid #dedede;"><button id="btn-join"  style="border:1px solid #fff; font-size: 15px; font-weight: bold; border-radius: 10px; cursor: pointer;" >저장</button></td></tr>
 			</table>
 	      </form>

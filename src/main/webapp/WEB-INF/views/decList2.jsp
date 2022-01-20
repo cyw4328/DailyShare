@@ -180,6 +180,7 @@ function listDraw(list){ //리스트를 불러올때 하단 생성
 			content+="<td>"+item.dec_name+"</td>";
 			content+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
 			content+="<td>"+'<button onclick="checkReport('+item.dec_target+','+item.dec_targetNum+','+item.dec_num+',\''+item.dec_name+'\',\''+item.sol_state+'\')">확인</button>'+'</td>';					
+			content+="<td>"+item.sol_admin+"</td>";
 			content+="</tr>";	
 	});
 	//console.log(content);
@@ -202,7 +203,7 @@ function checkReport(dec_target,dec_targetNum,dec_num,dec_name,sol_state) {
 			$('.popId').text(data.mem_id);
 			$('.popContent').text(data.content);
 			$('.popDecname').text(data.dec_name);
-			$
+			
 		},
 		error: function(e){
 			console.log(e);

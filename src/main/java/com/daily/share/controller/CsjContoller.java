@@ -372,7 +372,7 @@ public class CsjContoller {
 			logger.info("신고항목 처리 요청 : {}/{}",sol_state,dec_num);
 			service.csj_resolRegist(sol_state,dec_num,sol_admin);
 
-			return "redirect:/decPage";
+			return "redirect:/decPage2";
 		}
 		
 		

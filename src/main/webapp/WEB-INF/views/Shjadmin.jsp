@@ -47,6 +47,7 @@
 		<form action="admin_r" method="GET" name="admin_reg">
 			<input type="text" name="keyword" id="admin_text" value="">
 			<input type="button" id="admin_re" onclick="admin_regist()" value="등록">
+			<input type="button" id="admin_de" onclick="admin_delete()" value="삭제">
 	    </form>
 	</div>
 
@@ -59,7 +60,7 @@
 				<td>이름</td>
 				<td>이메일</td>
 				<td>전화번호</td>
-				<td>관리자 삭제</td>
+				<!-- <td>관리자 삭제</td> -->
 			</thead>
 			
 			<tbody id="adlist"></tbody>
@@ -104,6 +105,33 @@
 		};
 
 
+		
+		function admin_delete() {
+			
+			var adminT = $('#admin_text').val()
+			
+			console.log($('#admin_text').val());
+			
+			$.ajax({
+				type: 'GET',
+				url: 'AdRegistDW',
+				data: {'adminT' : adminT},
+				dataType: 'JSON',
+				success: function (data) {
+					console.log(data);
+					alert("삭제 완료");
+				},
+				error: function (e) {
+					alert("삭제 실패");
+				}				
+			});	
+			
+				location.reload();
+		};
+		
+		
+		
+		
 
 		var currPage = 1;
 		var totalPage = 2;
@@ -160,7 +188,7 @@
 				content += '<td>'+item.mem_email+'</td>';
 				content += '<td>'+item.mem_phone+'</td>';
 				//content += '<td>'+'<input type="button" id="AdRegi" onclick="AdRegistDW()" value="삭제">'+'</td>';
-				content += '<td>'+'<a href="./AdRegistDW?adminT=${mem_id}" id="deletad">삭제</a>'+'</td>';
+				//content += '<td>'+'<a href="./AdRegistDW?adminT=${member.mem_id}" id="deletad">삭제</a>'+'</td>';
 				content += '</tr>';	
 			});
 			//console.log(content);

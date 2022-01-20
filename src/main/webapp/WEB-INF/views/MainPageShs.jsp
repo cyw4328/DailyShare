@@ -323,38 +323,16 @@ font-size: 13px;
 
 	<div class="mainBanner">
 
- 
 	</div>
-	
+
 	<div id="CateBg"></div>
-	
-
-
-
-	
-	
 <div id="sogae"><h1>오늘을 공유하다 DAILY SHARE</h1></div>
-
-
-
 	<div class="container"></div>
-	
-
-	
-
-	<div id="Category">
-
-	</div>
-
-	
-	
-	
+	<div id="Category"></div>
 	<div class = "ContBox">
-			<ul class="CateCont" >
-			
-				</ul>
-		</div>
-		
+			<ul class="CateCont" >			
+			</ul>
+	</div>	
 		<div class="MainSearch">
  		<form action="MainSearch" method="POST">
      		<table id="SearchInput">
@@ -375,28 +353,18 @@ font-size: 13px;
      			</tr>
      		</table>
      	</form>
-
 	</div>
-
 	<div class="section_list">
 		 <ul class = "list_Story">
 		 </ul>			
 	</div>
-				
-
-	
-
-
-
-					
-
 </body>
 <script>
 
 
 MainBigCategoryCall();
-
-
+MainPageOpenList();
+BestBoardList();
 function MainBigCategoryCall() {
 		
 	$.ajax({
@@ -459,20 +427,16 @@ function MainNum(e) {
 			console.log(e);
 		}
 	});      
-	
-	
 }
 
 function ForumBoardList(list) {
 	var content = '';
 	
-	
-	 /* list.length */
+
 	for (var i = 0; i < 10; i++) {
 		
+		
 		var date = new Date(list[i].board_date);
-			
-
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
@@ -487,9 +451,7 @@ function ForumBoardList(list) {
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
-			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';
-
-						
+			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';		
 	}
 	
 	$('.list_Story').append(content);
@@ -499,28 +461,99 @@ function ForumBoardList(list) {
 function BestBoardList(Best) {
 	var content = '';
 	
-	
-	 /* list.length */
 	for (var i = 0; i < 3; i++) {
-		
-			
-
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
 			content += '<div class="ContImg">';
-			content += '<img alt="img01" src="/photo/'+Best[i].board_thumFileName+'width ="150px" height="150px"">';
+			content += '<img alt="img01" src="/photo/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
 			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
 			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
-			content += '</li>';
-
-						
+			content += '</li>';		
 	}
 
 	$('.CateCont').append(content);
 };
 
+
+
+// 메인페이지 첫 시작 시 리스트 
+
+function MainPageOpenList() {
+	
+	$.ajax({
+		type:'POST',
+		url:'OpenGoodBoardList',
+		data:{}, 
+		dataType:'JSON',
+		success:function(data) {
+			console.log(data.list);
+			ForumBoardList(data.list)
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});      
+	
+	$.ajax({
+		type:'POST',
+		url:'OpenBestBoardList',
+		data:{}, 
+		dataType:'JSON',
+		success:function(data) {
+			
+			console.log(data.Best);
+			BestBoardList(data.Best);
+		},
+		error:function(e) {
+			console.log(e);
+		}
+	});      
+
+}
+
+function ForumBoardList(list) {
+	var content = '';
+	
+	for (var i = 0; i < 10; i++) {
+		var date = new Date(list[i].board_date);
+			content += '<li>';
+			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
+			content += '<div class ="boardImg">';
+			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="100px" height="100px" alt="boardImg" class = "thumb_g">';
+			content += '</div>';
+			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
+			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
+		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
+		      +("0" + date.getDate()).slice(-2)+" "
+		      +'</span>'+'</dd>'+'</dl>';
+			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
+			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
+			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
+			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
+			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';		
+	}
+	$('.list_Story').append(content);
+}
+
+function BestBoardList(Best) {
+	var content = '';
+	
+	for (var i = 0; i < 3; i++) {
+			content += '<li>';
+			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
+			content += '<div class="ContImg">';
+			content += '<img alt="img01" src="/photo/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
+			content += '</div>';
+			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
+			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
+			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
+			content += '</li>';		
+	}
+
+	$('.CateCont').append(content);
+};
 
 
 

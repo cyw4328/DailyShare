@@ -135,7 +135,7 @@ function listDraw(list,loginId) {
     	var target = item.alarm_target;
     	console.log(target+"d");
     	var msg = '';
-		if (target == 0) {
+		if (target == 1) {
 			msg = "댓글이 달렸습니다.";
 		}else{
 			msg = "구독자가 새글을 업로드 하였습니다.";

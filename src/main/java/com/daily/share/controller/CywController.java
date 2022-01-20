@@ -38,7 +38,7 @@ public class CywController {
 		 model.addAttribute("menuList",menuList);
 		
 
-		return "MainPageShs";
+		return "SinGoPopup";
 	}
 	@RequestMapping(value = "/CateGory", method = RequestMethod.GET)
 	public String cywtest(Model model) {
@@ -418,35 +418,59 @@ public class CywController {
 		 
 		 
 		 // 대분류 클릭시 게시글 뽑아오기
-			@RequestMapping(value = "/GoodBoardList", method = RequestMethod.POST)
-			@ResponseBody
-			public HashMap<String, Object> GoodBoardList(Model model,@RequestParam String MainNum) {
-				logger.info("리스트호출 : {}",MainNum); 
-									
-			
-				return service.middleListCall(MainNum);
-			}	
+		@RequestMapping(value = "/GoodBoardList", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> GoodBoardList(Model model,@RequestParam String MainNum) {
+			/* logger.info("리스트호출 : {}",MainNum); */
+								
+		
+			return service.middleListCall(MainNum);
+		}	
 		 
 			
 		 // 대분류 클릭시 좋아요 높은 3개 가져오기
-			@RequestMapping(value = "/BestBoardList", method = RequestMethod.POST)
-			@ResponseBody
-			public HashMap<String, Object> BestBoardList(Model model,@RequestParam String MainNum) {
-				logger.info("리스트호출 : {}",MainNum); 
-									
-			
-				return service.BestBoardList(MainNum);
-			}	
-			
-			@RequestMapping(value = "/MainSearch", method = RequestMethod.POST)
-			 public String MainSearch(Model model, @RequestParam String ForumSearch,  @RequestParam String SearchScope) {
-				 logger.info("컨트롤러 도착 중분류"+ForumSearch+SearchScope);
-			 
-			 		ArrayList<CywDTO> dto = service.MainSearch(ForumSearch,SearchScope);			
-			 		model.addAttribute("list",dto);
-			 		
-			 return "MainPageSearchResultPage"; 
-			 }
+		@RequestMapping(value = "/BestBoardList", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> BestBoardList(Model model,@RequestParam String MainNum) {
+			/* logger.info("리스트호출 : {}",MainNum); */
+								
+		
+			return service.BestBoardList(MainNum);
+		}	
+		
+		@RequestMapping(value = "/MainSearch", method = RequestMethod.POST)
+		 public String MainSearch(Model model, @RequestParam String ForumSearch,  @RequestParam String SearchScope) {
+				/* logger.info("컨트롤러 도착 중분류"+ForumSearch+SearchScope); */
 		 
+		 		ArrayList<CywDTO> dto = service.MainSearch(ForumSearch,SearchScope);			
+		 		model.addAttribute("list",dto);
+		 		
+		 return "MainPageSearchResultPage"; 
+		 }
+		
+			
+			
+			
+	 // 메인 페이지 접속시 게시글 뽑아오기
+		@RequestMapping(value = "/OpenGoodBoardList", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> OpenGoodBoardList(Model model) {
+			
+
+			return service.OpenGoodBoardList();
+		}	
+		// 메인페이지 접속시 추천수 높은 3개 가져오기
+		@RequestMapping(value = "/OpenBestBoardList", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> OpenBestBoardList(Model model) {
+			/* logger.info("리스트호출 : {}",MainNum); */
+								
+		
+			return service.OpenBestBoardList();
+		}	
+		
+		
+		
+		
 		 
 }

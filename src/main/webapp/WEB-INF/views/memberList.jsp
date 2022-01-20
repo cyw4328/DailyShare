@@ -184,8 +184,5 @@
 		$('#memlist').append(content);		
 	}
 	
-	$("#tab2").click(function() {
-		location.href='./decPage'
-	});
 </script>
 </html>

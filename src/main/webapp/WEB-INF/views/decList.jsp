@@ -33,7 +33,7 @@
 		
 		#dec{
 		    position :absolute;
-		    left: 800px;
+		    left: 875px;
 		   	top: 120px;
             font-size: 16px;
 		}
@@ -47,24 +47,49 @@
 		#DecTable1{
 		    position: absolute;
 		   	left: 300px;
-		   	top: 240px;
+		   	top: 135px;
 		}
+		
+		#popUp{
+			display:none;
+			position: absolute;
+			width: 200px;
+			height: 250px;
+			top:25%;
+			left: 49%;
+			border: 1px solid black ;
+			z-index: 10;
+			background-color: white;
+		}
+
 
     </style>
 </head>
 <body class="no-drag">
+	<div id="popUp">
+		<input type="button" value="X" onclick="popClose();"/>
+		<p>작성자 : <span class="popId"></span></p>
+		<p>내용 : <span class="popContent"></span></p>
+		<p>신고항목 : <span class="popDecname"></span></p>
+		<form action="csj_resolRegist" method="get">
+			<p>처리 내용<textarea name="sol_state"></textarea></p>
+			<input class="dec_num" type="hidden" name="dec_num" value=""/>
+			<button>확인</button>
+		</form>
+	</div>
+
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="AdminMyPageShs.jsp"%>
 	
 	<div id="dec">
-        <a target="_blank" id="a1" style="color: black; cursor:pointer;">접수된신고</a>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a target="_blank" id="a2" style="color: black; cursor:pointer;">처리된신고</a>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a target="_blank" id="a3" style="color: black; cursor:pointer;">항목관리</a>
+        <a  id="a1" href="./decPage" style="color: black; cursor:pointer;">접수된신고</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a  id="a2" href="./decPage2" style="color: black; cursor:pointer;">처리된 신고</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="a3" href="./decPage3" style="color: black; cursor:pointer;">항목관리</a>
 	</div>
 	
-	<div id="decS">
+	<!-- <div id="decS">
 		<form action="search_dec" method="GET" name="search_dec">
 			<select name="decSearchType" style="height:25px;" id="type">
 				<option selected value="all">전체</option>
@@ -75,7 +100,7 @@
 			<input type="text" name="deckeyword">
 			<input type="button" id="decSearch" onclick="decSearchList()" value="검색">
         </form>
-	</div>
+	</div> -->
 
 	
 	<div id="DecTable1">
@@ -156,10 +181,12 @@
 			data:{'page':page,'cnt':cnt},
 			dataTyps:'JSON',
 			success: function(data){
-				console.log(data);
+				console.log(data.list.sol_num);
 				totalPage = data.pages;
 				listDraw(data.list);
 				
+				if (data.list.length>0) {
+					
 				$('#pagination').twbsPagination({
 					startPage: currPage,//현재 페이지
 					totalPages: totalPage,//만들수 있는 총 페이지 수
@@ -170,6 +197,7 @@
 						listCall(page, 5);
 					}
 				});
+				}
 								
 			},
 			error:function(e){
@@ -180,16 +208,21 @@
 	
 	
 	function listDraw(list){ //리스트를 불러올때 하단 생성
+		console.log(list);
 		var content = '';	
-		list.forEach(function(item, mem_id){
-			var date = new Date(item.mem_date);
-				content='<tr>'
+		list.forEach(function (item){
+			var date = new Date(item.dec_date);
+				content+='<tr>'
 				content+= "<td>"+item.dec_num+"</td>";
 				content+="<td>"+item.mem_id+"</td>";
-				content+="<td>"+item.target_id+"</td>";
+				content+="<td>"+item.dec_targetId+"</td>";
 				content+="<td>"+item.dec_name+"</td>";
 				content+="<td>"+date.getFullYear()+"-"+("0"+(date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2)+"</td>";
-				content+="<td>"+item.dec_cont+"</td>";
+				if (item.sol_num == 0) {
+					content+="<td>"+'<button onclick="checkCont('+item.dec_target+','+item.dec_targetNum+','+item.dec_num+',\''+item.dec_name+'\')">접수내용</button>'+'</td>';					
+				}else {
+					content+="<td>"+'<button onclick="checkCont('+item.dec_target+','+item.dec_targetNum+','+item.dec_num+',\''+item.dec_name+'\')" disabled>처리완료</button>'+'</td>';
+				}
 				content+="</tr>";	
 		});
 		//console.log(content);
@@ -197,25 +230,38 @@
 		$('#declist1').append(content);		
 	}
 
-
+	function checkCont(dec_target,dec_targetNum,dec_num,dec_name) {
+		console.log(dec_target,dec_targetNum,dec_num,dec_name);
+		$('#popUp').show();
+		$('.dec_num').val(dec_num);
+		
+		$.ajax({
+			type:'post',
+			url:'csj_singoCont',
+			data:{'dec_target':dec_target,'dec_targetNum':dec_targetNum,'dec_name':dec_name},
+			dataType:'JSON',
+			success: function(data){
+				console.log(data.content,data.mem_id,data.dec_name);
+				$('.popId').text(data.mem_id);
+				$('.popContent').text(data.content);
+				$('.popDecname').text(data.dec_name);
+			},
+			error: function(e){
+				console.log(e);
+			}
+			
+			
+		});
+	}
+	function popClose() {
+		$('#popUp').toggle();
+	}
 
 	const headTxt = document.getElementById('headTxt');
-	headTxt.innerText = '신고목록'
-	
-	$("#tab1").click(function() {
-		location.href='./managerPage'
-	});
+	headTxt.innerText = '신고목록';
 	
 	var ahr = document.getElementsByTagName('a');
 	document.getElementById("a1").style = "color: black; box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
-	
-	$('#a2').click(function(){
-		location.href='./decPage2'
-    });
-    
-	$('#a3').click(function(){
-		location.href='./decPage3'
-	});
 
 	
 </script>

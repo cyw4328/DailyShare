@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.daily.share.dto.CsjDecDTO;
 import com.daily.share.dto.HjwDTO;
 
 public interface HjwDAO {
@@ -24,7 +25,7 @@ public interface HjwDAO {
 
 	List<HjwDTO> SearchList(HjwDTO hjwdto);
 
-	ArrayList<HjwDTO> declist1(int currPage, int pagePerCnt);
+	ArrayList<CsjDecDTO> declist1(int currPage, int pagePerCnt);
 
 	List<HjwDTO> SearchList1(HjwDTO hjwdto);
 

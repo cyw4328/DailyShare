@@ -104,16 +104,16 @@
 		<div id="write">글쓰기</div>
 		<div class= "tab00" id="tab1">회원목록</div>
 		<div class= "tab00" id="tab2">신고목록</div>
-		<div class= "tab00" id="tab3">제재목록</div>
+		<div class= "tab00" id="tab3">카테고리목록</div>
 		<div class= "tab00" id="tab4">관리자목록</div>
 		
 </div>	
 		
-
+	<!-- 이거 뭐지 -->
 	<div id="gooDock">
 	
 	
-		<span id="headTxt">구독 블로거 관리</span> 
+		<span id="headTxt">?</span> 
 <!-- 		<span class="Following">내가 구독하는 블로거</span>
 		<span class="Follow">나를 구독하는 블로거</span> -->		
 		<hr>
@@ -121,29 +121,18 @@
 </div>			
 </body>
 <script>
-/* $('#tab1').click(function(){
-    $('#tab1').css({
-          'color':'red'              
-      });
-    $('#tab2').css({
-          'color':'black'
-      });
-    $('#tab3').css({
-          'color':'black'
-      });
-    $('#tab4').css({
-          'color':'black'
-      });
-    $('#tab5').css({
-          'color':'black'
-      });
-    const title = document.getElementById('headTxt');
-    title.innerText = '회원목록'
- 
- });
- */
-
-
+	$('#tab1').click(function() {
+		location.href="./managerPage";
+	});
+	$('#tab2').click(function() {
+		location.href="./decPage";
+	});
+	$('#tab3').click(function() {
+		location.href="./CateGory";
+	});
+	$('#tab4').click(function() {
+		location.href="./shjadmin";
+	});
 
 
 

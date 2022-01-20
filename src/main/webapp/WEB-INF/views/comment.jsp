@@ -84,7 +84,7 @@
 		border-radius:5px;
 		position : relative;
 		height: 150px;
-		left: 10%
+		left: 17%
 		
 	}
 	.csj_com_mem_id{
@@ -101,10 +101,18 @@
 		font-size: 17px;
 	}
 	.csj_com_content{
+		background-color:#FAFAFA;
 		position: absolute;
-		top: 70px;
+		top: 45px;
 		left:50px;
+		height:90px;
+		/* max-width:400px; */
 		font-size: 20px;
+		overflow: hidden;
+		/* background-color: lightgray; */
+		/* border: 1px solid gray; */
+		/* border-top: 2px solid gray; */
+		/* border-bottom: 2px solid gray; */
 
 	}
 	
@@ -140,15 +148,15 @@
 		position:absolute;
 		font-size: 15px;
 		font-weight:600;
-		right: 550px;
-		top: 0px;
+		right: 465px;
+		top: 10px;
 	}
 	.com_fix_content{
 		position:absolute;
-		width: 500px;
+		width: 430px;
 		height: 100px;
 		right: 100px;
-		top:25px;
+		top:35px;
 		
 		
 		border-right : 4px solid lightgray;
@@ -265,10 +273,11 @@
 						<tr>
 							<td>
 								<c:if test="${comList.com_depth eq 0}">
-									<div class="csj_com_list" style="margin-left:0px;width: 755px">
+									<div class="csj_com_list" style="margin-left:0px;width: 650px">
 										<span class="csj_com_mem_id">
 											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
 										</span>
+										
 										<input type="hidden" value="${comList.com_num}"/>
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
@@ -280,7 +289,8 @@
 											</c:if>
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
-										<div class="csj_com_content">
+										
+										<div class="csj_com_content" style="width:500px;">
 											<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>
@@ -291,7 +301,7 @@
 									</div>						
 								</c:if>
 								<c:if test="${comList.com_depth eq 1}">
-									<div class="csj_com_list" style="margin-left:100px; width: 655px">
+									<div class="csj_com_list" style="margin-left:100px; width: 550px">
 										<span class="csj_com_mem_id">
 											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
 										</span>
@@ -306,7 +316,7 @@
 											</c:if>
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
-										<div class="csj_com_content">
+										<div class="csj_com_content" style="width:400px;">
 											<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>

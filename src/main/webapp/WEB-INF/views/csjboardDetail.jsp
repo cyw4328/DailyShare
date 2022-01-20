@@ -58,11 +58,11 @@
 		
 		#sub_wrap{
 			position:relative;
-			height: 70px;
+			min-height: 70px;
 			border-bottom:2px solid gray;
 		}
 		.subject{
-			position:absolute;
+			/* position:absolute; */
 			border:none;
 			top:15px;
 			/* border-bottom:2px solid grey; */

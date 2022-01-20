@@ -27,9 +27,19 @@
 	<select id="memlist" resultType="com.daily.share.dto.HjwDTO">	
 		SELECT mem_id, mem_name, mem_email, mem_phone, mem_date FROM members ORDER BY mem_id DESC LIMIT #{param1} OFFSET #{param2}
 	</select>
+	
+	<select id="declist1" resultType="com.daily.share.dto.HjwDTO">	
+		SELECT a.dec_num, a.mem_id, a.target_id, b.dec_name, a.dec_date, b.dec_cont
+		from declarationList a inner join declarationContents b on a.dec_code = b.dec_code
+		where a.mem_id and a.target_id and b.dec_name	
+	</select>
 
 	<select id="allCount" resultType="int">
 		SELECT COUNT (mem_id) FROM members
+	</select>
+	
+	<select id="allCount1" resultType="int">
+		SELECT COUNT (dec_num) FROM declarationList
 	</select>
 
 	<!-- 검색 쿼리 / 공백 입력 처리 안했으니 주의할것!! -->
@@ -51,7 +61,27 @@
 		</trim>
 	</select>
 	
-	
+	<select id="SearchList1" parameterType="com.daily.share.dto.HjwDTO" resultType="com.daily.share.dto.HjwDTO">
+		SELECT a.dec_num, a.mem_id, a.target_id, b.dec_name, a.dec_date, b.dec_cont
+		from declarationList a inner join declarationContents b on a.dec_code = b.dec_code
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="deckeyword != null">
+				<if test="decSearchType == 'all'">
+					AND (a.mem_id LIKE CONCAT('%',#{deckeyword},'%') OR a.target_id LIKE CONCAT('%',#{deckeyword},'%')
+					OR b.dec_name LIKE CONCAT('%',#{deckeyword},'%'))
+				</if>
+				<if test="decSearchType == 'a.mem_id'">
+					AND a.mem_id LIKE CONCAT ('%',#{deckeyword},'%')
+				</if>
+				<if test="decSearchType == 'a.target_id'">
+					AND a.target_id LIKE CONCAT ('%',#{deckeyword},'%')
+				</if>
+				<if test="decSearchType == 'b.dec_name'">
+					AND b.dec_name LIKE CONCAT ('%',#{deckeyword},'%')
+				</if>
+			</if>
+		</trim>
+	</select>
 	
 	
 </mapper>

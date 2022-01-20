@@ -151,7 +151,13 @@ public class HjwController {
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
 	public String managerPage(Model model) {
 		logger.info("관리자페이지 이동");
-		return "manager";
+		return "memberList";
+	}
+	
+	@RequestMapping(value = "/decPage", method = RequestMethod.GET)
+	public String decPage(Model model) {
+		logger.info("신고관리페이지 이동");
+		return "decList";
 	}
 	
 	//리스트 요청
@@ -159,7 +165,7 @@ public class HjwController {
 		@RequestMapping(value = "/memlist", method = RequestMethod.GET)
 		public HashMap<String, Object> memlist(@RequestParam String page,@RequestParam String cnt) {	
 		
-			logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
+			logger.info("회원리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
 			HashMap<String, Object> map = new HashMap<String, Object>();	
 			int currPage = Integer.parseInt(page);
 			int pagePerCnt = Integer.parseInt(cnt);
@@ -188,20 +194,20 @@ public class HjwController {
 			return service.SearchList(hjwdto);
 		}
 		
-		/*
+		
 		
 		@ResponseBody
 		@RequestMapping(value = "/declist1", method = RequestMethod.GET)
 		public HashMap<String, Object> declist1(@RequestParam String page,@RequestParam String cnt) {	
 		
-			logger.info("리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
+			logger.info("신고리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
 			HashMap<String, Object> map = new HashMap<String, Object>();	
 			int currPage = Integer.parseInt(page);
 			int pagePerCnt = Integer.parseInt(cnt);
 			int offset = ((currPage-1) * pagePerCnt-1) >= 0  ? 
 					((currPage-1) * pagePerCnt-1) : 0;		
 			logger.info("offset : {}",offset);				
-			int totalCount = service.allCount(); 
+			int totalCount = service.allCount1(); 
 			int range = totalCount%pagePerCnt > 0 ? 
 					 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
 			logger.info("총 갯수 : {}",totalCount);
@@ -213,14 +219,14 @@ public class HjwController {
 		
 		@ResponseBody
 		@RequestMapping(value = "/SearchList1", method = RequestMethod.GET)
-		private List<HjwDTO> SearchList1 (@RequestParam("SearchType") String SearchType, @RequestParam("keyword") String keyword) {
+		private List<HjwDTO> SearchList1 (@RequestParam("decSearchType") String decSearchType, @RequestParam("deckeyword") String deckeyword) {
 			
 			HjwDTO hjwdto = new HjwDTO();
-			hjwdto.setKeyword(keyword);
-			hjwdto.setSearchType(SearchType);
+			hjwdto.setDeckeyword(deckeyword);
+			hjwdto.setDecSearchType(decSearchType);
 			
 			return service.SearchList1(hjwdto);
 		}
-		*/
+	
 }
 	

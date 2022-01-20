@@ -24,6 +24,12 @@ public interface HjwDAO {
 
 	List<HjwDTO> SearchList(HjwDTO hjwdto);
 
+	ArrayList<HjwDTO> declist1(int currPage, int pagePerCnt);
+
+	List<HjwDTO> SearchList1(HjwDTO hjwdto);
+
+	int allCount1();
+
 
 
 

@@ -23,9 +23,9 @@
 		
 		#container_wrap{
 			position:relative;
-			width: 1400px;
-			height: 1500px;
-			border:2px solid red; 
+/* 			width: 1400px;
+			height: 1500px; */
+			/* border:2px solid red; */ 
 			margin: 0 auto;
 		}
 	
@@ -50,40 +50,89 @@
 			height: 150px;
 			
 		}
+		
+		
+		
 		#body_wrap{
+			position:relative;
 			width: 906px;
-			min-height: 400px;
-			border:1px solid black;
+			/* border:1px solid black; */
 			margin: 0 auto;
 		}
 		.body{
-			border-bottom:1px solid red;
+			position:relative;
+			border-bottom:2px solid lightgray;
 			width: 100%;
-			height:180px;
-			margin: 20px 0px;
+			height:290px;
+			padding: 20px 0px;
 		}
 		.bodyIMG{
-			text-align: center;
-			border:1px solid black;
-			width: 230px;
-			height: 160px;
+			position:relative;
+			text-align:center;
+			display: flex;
+			align-items: center; 
+			justify-content: center;
+			border:1px solid lightgray;
+			width: 300px;
+			height: 250px;
 			float: left;
-			margin-right: 30px;
+			margin:0px 15px;
 		}
+		
+		.bodyCont_wrap{
+			/* position:relative; */
+			/* border:1px solid black; */
+			float: left;
+			width: 574px;
+			height: 100%;
+			padding: 20px 0px;
+
+			
+		
+		}
+		
 		.bodySub{
 			display: block;
-			font-size: 24px;
+			font-size: 25px;
 			font-weight: 600;
-			padding: 15px 0px;
+			max-height: 70px;
+			overflow: hidden;
+			/* white-space :nowrap; */
+			text-overflow: ellipsis;
+			margin-bottom: 10px;
 		}
 		.bodyCont{
-			display: block;
+			/* position:absolute; */
+			font-size: 20px;
+			/* display: block; */
+			/* height: 105px; */
+			overflow: hidden;
+			/* margin-bottom: 20px; */
+			display: -webkit-box;
+	        -webkit-line-clamp: 3;
+	        -webkit-box-orient: vertical;
+	        padding-top: 10px;
+		}
+		.bodyMenu{
+			position:absolute;
+			bottom:45px;
+			font-size: 16px;
+			color: crimson;
+			
+		}
+		.bodyDate{
+			position:absolute;
+			bottom:47px;
+			right:320px;
+			font-size: 14px;
+			color: gray;
 		}
 		
 		#pagingBox{
 		margin:0 auto;
 			
 		}
+		
 		.bodyNone{
 			margin: 100px;
 			text-align: center;
@@ -185,7 +234,7 @@
 		if (list.length>0) {
 			list.forEach(function(item,board_num) {
 				content += '<a href="./csj_detail?board_num='+item.board_num+'&mem_id='+$mem_id+'"><div class="body">';
-				content += '<div class="bodyIMG"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:230px;max-height:160px;z-index:none;"></div>';
+				content += '<div class="bodyIMG"><img src="/postImageFolder/'+item.board_thumFileName+'" style="max-width:300px;max-height:250px;z-index:none;"></div>';
 				content += '<span class="bodySub">'+item.board_subject+'</span>'
 				content += '<span class="bodyCont">'+item.board_cont+'</span>'
 				content += '<span class="bodyMenu">'+item.menu_name+'</span>'

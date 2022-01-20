@@ -37,6 +37,10 @@
 	<select id="allCount" resultType="int">
 		SELECT COUNT (mem_id) FROM members
 	</select>
+	
+	<select id="allCount1" resultType="int">
+		SELECT COUNT (dec_num) FROM declarationList
+	</select>
 
 	<!-- 검색 쿼리 / 공백 입력 처리 안했으니 주의할것!! -->
 	<select id="SearchList" parameterType="com.daily.share.dto.HjwDTO" resultType="com.daily.share.dto.HjwDTO">

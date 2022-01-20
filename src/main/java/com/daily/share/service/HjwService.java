@@ -54,6 +54,9 @@ public class HjwService {
 	public List<HjwDTO> SearchList1(HjwDTO hjwdto) {
 		return dao.SearchList1(hjwdto);
 	}
+	public int allCount1() {
+		return dao.allCount1();
+	}
 
 
 	

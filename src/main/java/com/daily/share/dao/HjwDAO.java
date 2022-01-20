@@ -28,6 +28,8 @@ public interface HjwDAO {
 
 	List<HjwDTO> SearchList1(HjwDTO hjwdto);
 
+	int allCount1();
+
 
 
 

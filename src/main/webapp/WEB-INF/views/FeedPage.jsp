@@ -64,16 +64,41 @@
     
     .BigTxt{
     	font-size:25px;
+    	 overflow: hidden;
+ 		 text-overflow: ellipsis;
+  		display: -webkit-box;
+  		-webkit-line-clamp: 1;
+  		-webkit-box-orient: vertical;
+  		width:750px;
+  		border-bottom:1px solid #fff;
     }
+    .BigTxt:hover{
+    	border-bottom:1px solid black;
+    }
+    
 	table{
-		width:1000px;}
+		width:1170px;}
 		
 	tr{
 		border-bottom:1px solid #cecece;
-		height:120px;
+		height:140px;
 	}
 	
 	
+	.smallTxt{
+		font-size:15px;
+    	 overflow: hidden;
+ 		 text-overflow: ellipsis;
+  		display: -webkit-box;
+  		-webkit-line-clamp: 2;
+  		-webkit-box-orient: vertical;
+  		width:750px;
+  		border-bottom:1px solid #fff;
+	}
+	
+	.smallTxt:hover{
+		text-decoration:underline;
+	}
     </style>
 </head>
 <body>
@@ -84,7 +109,7 @@
 			<h2>FEED</h2>
 	    	<h4>내가 구독하고 있는 글 입니다.</h4>	
 	    	<a href="./followingShs" ><span>구독중 : ${subCont}</span></a></br>
-	    	<hr style="border:1px solid black; width:1100px; float:left;" >
+	    	<hr style="border:1px solid black; width:1170px; float:left;" >
 	    	
 		</div>
 		
@@ -191,9 +216,9 @@ function display() {
         var content = '';
         list.forEach(function(item,board_num) {
         	var date = new Date(item.board_date);
-   		 	content +='<table><tr onclick=location.href="./boardDetail?board_num='+item.board_num+'" style="cursor:hand; border-bottom = 1px solid black;">';
+   		 	content +='<table><tr onclick=location.href="./csj_detail?board_num='+item.board_num+'&mem_id='+item.mem_id+'" style="cursor:hand; border-bottom = 1px solid black;">';
 			content += '<td  id="forumTd" style ="font-size:16px;">'+"by &nbsp&nbsp"+item.mem_id+'</td>';
-			content += '<td>'+'<p class="BigTxt">'+item.board_subject+'</p>'+'<p>'+item.board_cont+'</p>'+date.getFullYear()+"-"
+			content += '<td>'+'<p class="BigTxt">'+item.board_subject+'</p>'+'<p class="smallTxt">'+item.board_cont+'</p>'+date.getFullYear()+"-"
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +("0" + date.getHours()).slice(-2)+":"

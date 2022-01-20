@@ -16,7 +16,7 @@
 	}
 	#loginId{
 		position: relative;
-		left: 17%;
+		left: 0;
 		margin-top: 20px;
 		margin-bottom:10px;
 		display: inline-block;
@@ -28,7 +28,7 @@
 		text-align: center;
 		height:130px;
 		margin: 0 auto;
-		left: 17%;
+		left: 0;
 	}
 	
 	table{
@@ -64,7 +64,7 @@
 	}
  	#csj_com_content{
  		margin:0 auto;
-		width: 620px;
+		width: 800px;
 		height: 80px;
 		resize: none;
 		border-radius: 5px;
@@ -77,14 +77,12 @@
 	
 	
 	.csj_com_list{
-		border-right : 4px solid lightgray;
-		border-bottom : 4px solid lightgray;
-		border-left : 2px solid lightgray;
-		border-top : 2px solid lightgray;
+		
 		border-radius:5px;
 		position : relative;
 		height: 150px;
-		left: 17%
+		left: 0px;
+		width:900px;
 		
 	}
 	.csj_com_mem_id{
@@ -101,10 +99,10 @@
 		font-size: 17px;
 	}
 	.csj_com_content{
-		background-color:#FAFAFA;
+		/* background-color:#FAFAFA; */
 		position: absolute;
-		top: 45px;
-		left:50px;
+		top: 30px;
+		left:10px;
 		height:90px;
 		/* max-width:400px; */
 		font-size: 20px;
@@ -118,8 +116,8 @@
 	
 	hr{
 		width:900px;
-		height: 2px;
-		border: 0;
+		
+		border: 1px solid #ececec;
 		background-color: gray;
 	}
 	
@@ -173,7 +171,7 @@
 	.csj_reply_wrap{
 		position: relative;
 		height: 120px;
-		border-bottom: 2px solid gray;
+		border-bottom: 2px solid #ececec;
 	}
 	.csj_reply_content{
 		position: absolute;
@@ -251,6 +249,9 @@
 		background-color: white;
 	}
 	
+	#rereple{
+	background-color:#F3F3F3;
+	}
 
 	</style>
 </head>
@@ -273,9 +274,9 @@
 						<tr>
 							<td>
 								<c:if test="${comList.com_depth eq 0}">
-									<div class="csj_com_list" style="margin-left:0px;width: 650px">
+									<div class="csj_com_list">
 										<span class="csj_com_mem_id">
-											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
+											<a href="./csj_blogMain?mem	_id=${comList.mem_id }">${comList.mem_id}</a>
 										</span>
 										
 										<input type="hidden" value="${comList.com_num}"/>
@@ -290,7 +291,7 @@
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
 										
-										<div class="csj_com_content" style="width:500px;">
+										<div class="csj_com_content" style="width:800px;">
 											<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>
@@ -301,7 +302,7 @@
 									</div>						
 								</c:if>
 								<c:if test="${comList.com_depth eq 1}">
-									<div class="csj_com_list" style="margin-left:100px; width: 550px">
+									<div class="csj_com_list" style="margin-left:100px; width: 550px" id="rereple">
 										<span class="csj_com_mem_id">
 											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
 										</span>
@@ -391,11 +392,12 @@
 	/* 댓글 수정 버튼 */
 	$('.com_fix').click(function() {
 		var $com_num = $(this).parent().prev().val();
-		
+		//<div id="multiple_container" contenteditable="true" placeholder="내용을 입력하세요" onkeydown="resize(this)" onkeyup="resize(this)"></div>
 		$(this).closest($('div')).append(
 				'<div class="fix_wrap">'+
 				'<span class="com_fix_font">'+loginId+'</span>'+
-				'<input type="text" class="com_fix_content" value="'+$(this).parent().next().children().last().text()+'"/>'+
+				'<textarea class="com_fix_content">'+$(this).parent().next().children().last().text()+'</textarea>'+
+				//'<input type="text" class="com_fix_content" value="'+$(this).parent().next().children().last().text()+'"/>'+
 				'<input type="button" class="submit" value="확인"/><input type="button" class="cancle" value="X"/>'+
 				'<div>'
 				
@@ -404,6 +406,8 @@
 		$('.cancle').click(function (){
 			$(this).parent().remove();
 		});
+		
+		
 		
 		$('.submit').click(function (){
 			var $com_content = $('.com_fix_content').val();

@@ -52,9 +52,9 @@ public class ShsService {
 
 
 
-	public void userUp(String id, String pw, String email, String phone) {
-		logger.info("회원수정 서비스 도착 : {}",id+pw+email+phone);
-		dao.userUp(id,pw,email,phone);
+	public void userUp(String id, String pw, String email, String phone, String blog) {
+		logger.info("회원수정 서비스 도착 : {}",id+pw+email+phone+blog);
+		dao.userUp(id,pw,email,phone,blog);
 		
 	}
 
@@ -130,6 +130,34 @@ public class ShsService {
 		logger.info("비밀번호체크 서비스 도착{}",id+pw);	
 		return dao.PassCk(id,pw);
 	}
+
+
+
+	public ShsDTO MyPageShs(String id) {
+		
+		return dao.memberDe(id);
+	}
+
+
+
+	public HashMap<String, Object> adminCk(String adminLogin) {
+		
+			logger.info("서비스 어드민여부 도착 : {}",adminLogin);
+		   HashMap<String, Object> map = new HashMap<String, Object>();
+			
+			String adminCk = dao.adminCk(adminLogin);
+			logger.info("결과값 : {}",adminCk);		
+			map.put("adminCk", adminCk);	
+		   
+		   return map;
+	}
+
+
+
+
+
+
+
 
 
 

@@ -88,29 +88,29 @@
 			<table style='width:850px;'>
 				<tr>
 					<th style='width:15%'>코드</th>
-					<th style='width:30%'>신고항목</th>
+					<th style='width:50%'>신고항목</th>
 					<th style='width:15%'>사용여부</th>
-					<th style='width:40%'></th>
+					<th style='width:20%'></th>
 				</tr>
 				<c:if test="${declist3 eq null || decsize3 == 0}">
 					<tr><td colspan="4">등록된 항목이 없습니다.</td></tr>
-					</c:if>
-					<c:forEach items="${declist3}" var="board">
+				</c:if>
+				<c:forEach items="${declist3}" var="board">
 					<tr>
 						<td>${board.dec_code}</td>
 						<td>
-						<div id="decsave">${board.dec_name}</div>
-						<div id="decupdate">
-							<form  action="decupdate" method="POST">
-							<input type="text" name="user_name" value="${board.dec_name}"/>
-							<input type="button" id="save" value="확인">
-							</form>
-						</div>
+							<div id="decsave"  style="display:block;">${board.dec_name}</div>
+							<div id="decupdate" style="display:none;">
+								<form  action="decupdate" method="POST">
+								<input type="text" name="user_name" id="name" value="${board.dec_name}"/>
+								<input type="button" id="save" value="확인"/>
+								</form>
+							</div>
 						</td>
 						<td>${board.dec_blind}</td>
 						<td>
-							<input type="button" id="update" value="수정">
-							<input type="button" id="use" value="미사용">
+							<input type="button" id="update" value="수정"/>
+							<input type="button" id="use" value="미사용"/>
 						</td>
 					</tr>
 				</c:forEach>
@@ -118,13 +118,16 @@
 		</div>
 </body>
 <script>
-	$('#update').click(function() {
-		$("#decsave").hide();
-		$("#decupdate").show();
+	$('#use').click(function() {
+	
 	});
 	
-	$('#use').click(function() {
-		
+	$("[id^=update]").on('click', function(){
+		$(this).css.style."background:gray";
+		console.log($(this).parent().prev().prev().find('div').first());
+		$(this).parent().prev().prev().find('div').first().toggle();
+		$(this).parent().prev().prev().find('div').last().toggle();
+
 	});
 	
 	const headTxt = document.getElementById('headTxt');

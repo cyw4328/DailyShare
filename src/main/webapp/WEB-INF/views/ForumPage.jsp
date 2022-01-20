@@ -5,8 +5,18 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-     
+
     <style>
+    	.ForBg{
+    		background-color:#ebf5e9;
+    		width:100%;
+    		position: absolute;
+    		top:86px;
+    		left:0px;
+    		height: 265px;
+    		z-index:-1;
+    		border-bottom: 1px solid #ededed;
+    	}
     	.ForumInput{
     		 text-align: center; 
     		 font-size: 20px;
@@ -49,9 +59,9 @@
 <body>
 	<%@ include file="headerShs_login.jsp"%>
           
-          
+         <div class="ForBg"></div>
         <div class="ForumInput">
-        <h2>FORUM</h2>
+        <h3>FORUM</h3>
         <p>자유롭게 이야기를 나눠보세요</p>
  		</div>
 	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd">
@@ -77,7 +87,7 @@
          
 
 		<br/>
-        <hr/>
+
         <br/>
      
      	<form action="ForumSearch" method="POST">

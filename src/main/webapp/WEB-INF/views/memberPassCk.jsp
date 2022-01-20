@@ -5,6 +5,7 @@
    <meta charset="UTF-8">
    <title>Insert title here</title>
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/HS.css">
    <style>
    
    #con_memberDe{width: 1200px;}
@@ -22,12 +23,7 @@
    display: inline;
    }
    
-   #formCs{
-      border:1px solid #ccc;
-      width:300px;
-      margin-top:70px;
-      padding:60px 50px   ;
-   }
+
    
    .formSt{
       padding:5px;
@@ -45,7 +41,7 @@
  	 font-style: bold;
 	}
 	
-   
+
    
    </style>
 
@@ -62,10 +58,18 @@
 		
    <div id="formCs">
      	 <form action="/share/PassCk" method="POST">
-            ID : <input type="text" name="id"  value="${loginId}" class="formSt" readonly="readonly" /></br>
-            비밀번호 : <input type="password" name="pw" placeholder="비밀번호" class="pw" /></br>
- 			<p id="msg">${msg}</p>
-            <button id="btn-join">확인</button>
+     	 	<table style ="width:420px;">
+	            <tr><th>ID</th>
+	            <td style="border-bottom:1px solid #dedede"><input type="text" name="id"  value="${loginId}" class="formSt" readonly="readonly" /></td>
+	            </tr>
+	          	 <tr>
+	          	 <th>비밀번호</th>
+	          	 <td  style="border-bottom:1px solid #dedede"><input type="password" name="pw" placeholder="비밀번호" class="pw" /></td>
+	          	 </tr>
+	 			<p id="msg">${msg}</p>
+	            <tr><th  colspan="2"><button id="btn-join" style="border:1px solid #fff; font-size: 15px; font-weight: bold; border-radius: 10px; cursor: pointer;" >확인</button></th>
+	            </tr>
+	            </table>
 	      </form>
 	   </div>
 	   

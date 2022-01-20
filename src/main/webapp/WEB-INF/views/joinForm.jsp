@@ -24,35 +24,35 @@
                 <table>
                     <tr>
                         <th>ID</th>
-                        <td><input type="text" name="id" class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/>
+                        <td><input type="text" name="id" class = "joinCL" placeholder="6~20글자를 입력하세요""/>
                         <input type="button" id="overlay" value="중복체크"/></td>
                         
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td><input type="password" name="pw"  class = "joinCL" placeholder="6~20글자를 입력하세요" style="border-bottom: 1px solid #ccc;"/></td>
+                        <td><input type="password" name="pw"  class = "joinCL" placeholder="6~20글자를 입력하세요" "/></td>
                     </tr>
                     <tr>
                         <th>PW 확인</th>
-                        <td><input type="password" name="repw" class = "joinCL"  style="border-bottom: 1px solid #ccc;"/></td>
+                        <td><input type="password" name="repw" class = "joinCL"  /></td>
                     </tr>
                     <tr>
                         <th>이름</th>
-                        <td><input type="text" name="name" class = "joinCL"  style="border-bottom: 1px solid #ccc;"/></td>
+                        <td><input type="text" name="name" class = "joinCL" /></td>
                     </tr>
                     <tr>
                         <th>전화번호</th>
-                        <td><input type="text" name="phone" class = "joinCL"  placeholder=" '-' 를 입력해 주세요 "  style="border-bottom: 1px solid #ccc;"/></td>
+                        <td><input type="text" name="phone" class = "joinCL"  placeholder=" '-' 를 입력해 주세요 "  /></td>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td><input type="text" name="email" class = "joinCL" style="border-bottom: 1px solid #ccc; "/>
+                        <td><input type="text" name="email" class = "joinCL" />
                         <input type="button" id="mailCheck" value="메일발송"/></td>
                         </td>
                     </tr>
                     <tr id="enumber">
                         <th>인증번호</th>
-                        <td><input type="text" name="ecode" class = "joinCL"  style="border-bottom: 1px solid #ccc;" />
+                        <td><input type="text" name="ecode" class = "joinCL"  />
                         <!-- 인증번호 확인 -->
       					<div class="alert alert-success" id="alert-success-email">인증번호가 일치합니다.</div>
       					<div class="alert alert-danger" id="alert-danger-email">인증번호가 일치하지 않습니다.</div>
@@ -60,13 +60,13 @@
                     </tr>
                     <tr>
                         <th>블로그이름</th>
-                        <td><input type="text" name="bname" class = "joinCL"  style="border-bottom: 1px solid #ccc;"/></td>
+                        <td><input type="text" name="bname" class = "joinCL" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="checkbox" checked>개인정보동의(필수)</td>
+                        <td colspan="2" style="border:0px; text-align: center; font-size: 13px;" ><input type="checkbox" checked>개인정보동의(필수)</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" value="회원가입" id="btn-join"></td>
+                        <td colspan="2" style="border:0px; text-align: right;"><input type="submit" value="회원가입" id="btn-join"></td>
                     </tr>
             </table>
         </form>

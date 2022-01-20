@@ -38,7 +38,7 @@ public class CywController {
 		 model.addAttribute("menuList",menuList);
 		
 
-		return "SinGoPopup";
+		return "BoardSinGoPopup";
 	}
 	@RequestMapping(value = "/CateGory", method = RequestMethod.GET)
 	public String cywtest(Model model) {
@@ -67,7 +67,7 @@ public class CywController {
 		 model.addAttribute("menuList",menuList);
 
 
-		return "cateGory";
+		return "CommentSinGoPopup";
 	}
 	
 	
@@ -469,7 +469,51 @@ public class CywController {
 			return service.OpenBestBoardList();
 		}	
 		
+		@RequestMapping(value = "/SingoCode", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> SingoCode(Model model) {
+			/* logger.info("리스트호출 : {}",MainNum); */
+								
 		
+			return service.SingoCode();
+		}	
+		
+		
+		@RequestMapping(value = "/BoardSingo", method = RequestMethod.POST)
+		 public String BoardSingo(Model model, @RequestParam String dec_targetId,  @RequestParam String dec_targetNum,
+				 @RequestParam String dec_code,HttpSession session) {
+				logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code);
+				
+				String loginId = (String) session.getAttribute("loginId");
+				
+				int a = Integer.parseInt(dec_targetNum);
+				int b = Integer.parseInt(dec_code);
+				
+				if (loginId != null) {
+					service.BoardSingo(dec_targetId,a,b,loginId);								
+				}
+				 		
+		 return "redirect:/csj_detail?board_num="+dec_targetNum+"&mem_id="+dec_targetId; 
+		 }
+		
+		
+		
+		@RequestMapping(value = "/CommentSingo", method = RequestMethod.POST)
+		 public String CommentSingo(Model model, @RequestParam String dec_targetId,  @RequestParam String dec_targetNum,
+				 @RequestParam String dec_code,HttpSession session,@RequestParam String board_num) {
+				logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code);
+				
+				String loginId = (String) session.getAttribute("loginId");
+				
+				int a = Integer.parseInt(dec_targetNum);
+				int b = Integer.parseInt(dec_code);
+				
+				if (loginId != null) {
+					service.CommentSingo(dec_targetId,a,b,loginId);								
+				}
+				 		
+		 return "redirect:/csj_detail?board_num="+board_num+"&mem_id="+dec_targetId; 
+		 }
 		
 		
 		 

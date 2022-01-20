@@ -187,6 +187,7 @@ public class CsjContoller {
 	@RequestMapping(value = "/csj_detail", method = RequestMethod.GET)
 	public String csj_detail(Model model,HttpSession session,@RequestParam String board_num,@RequestParam String mem_id) {
 		/* session.setAttribute("loginId", "admin"); */
+		
 		//게시글 작성자 아이디
 		model.addAttribute("mem_id",mem_id);
 		logger.info("상세보기 요청 : {}",board_num);

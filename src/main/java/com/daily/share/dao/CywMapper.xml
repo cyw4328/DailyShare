@@ -235,4 +235,23 @@
 			 ORDER BY board_like DESC 
 	</select>
 	
+	
+	<!-- 신고항목 가져오기 -->
+	<select id="SingoCode" resultType="com.daily.share.dto.CywDTO">
+		SELECT dec_code,dec_name FROM declarationContents WHERE dec_blind = 0
+	</select>
+	
+	
+	<!-- 게시물 신고하기 -->
+	<insert id="BoardSingo">
+		INSERT INTO declarationList(dec_target,dec_targetNum,dec_targetId,dec_code,mem_id)VALUES(1,#{param2},#{param1},#{param3},#{param4})
+	</insert>
+	
+	<!-- 댓글 신고하기 -->
+	<insert id="CommentSingo">
+		INSERT INTO declarationList(dec_target,dec_targetNum,dec_targetId,dec_code,mem_id)VALUES(2,#{param2},#{param1},#{param3},#{param4})
+	</insert>
+	
+	
+	
 </mapper>

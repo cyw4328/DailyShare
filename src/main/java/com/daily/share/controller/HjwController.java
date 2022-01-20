@@ -244,7 +244,7 @@ public class HjwController {
 		public String declist3(Model model) {
 			logger.info("신고관리페이지 이동");
 			ArrayList<HjwDTO> declist3=service.declist3();
-			logger.info("신고항목 수 : {}",declist3.size());
+			logger.info("신고항목 수 : {}",declist3);
 			model.addAttribute("decsize3", declist3.size());
 			model.addAttribute("declist3", declist3);
 			return "decList3";

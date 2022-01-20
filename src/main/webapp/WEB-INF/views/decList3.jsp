@@ -107,7 +107,14 @@
 								</form>
 							</div>
 						</td>
-						<td>${board.dec_blind}</td>
+						<td id="blind">
+							<c:if test="${board.dec_blind eq 0}">
+								사용중
+							</c:if>
+							<c:if test="${board.dec_blind eq 1}">
+								미사용
+							</c:if>
+						</td>
 						<td>
 							<input type="button" id="update" value="수정"/>
 							<input type="button" id="use" value="미사용"/>
@@ -118,20 +125,22 @@
 		</div>
 </body>
 <script>
-	$('#use').click(function() {
-	
-	});
-	
 	$("[id^=update]").on('click', function(){
-		$(this).css.style."background:gray";
 		console.log($(this).parent().prev().prev().find('div').first());
 		$(this).parent().prev().prev().find('div').first().toggle();
 		$(this).parent().prev().prev().find('div').last().toggle();
-
+	
+	});
+	
+	$("[id^=use]").on('click', function(){
+		console.log($(this).parent().prev());
+		//$(this).parent().prev().toggle();
+		
 	});
 	
 	const headTxt = document.getElementById('headTxt');
 	headTxt.innerText = '신고목록'
+	
 	
 	$("#tab1").click(function() {
 		location.href='./managerPage'

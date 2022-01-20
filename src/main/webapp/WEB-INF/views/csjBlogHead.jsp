@@ -55,28 +55,53 @@
       
       
       #menubox{
-         position:absolute;
-         display:none;
+        position:absolute;
+        display:none;
+        width:300px;
+       	height: 1918px;
+        background-color:rgba(225, 225, 225, 0.8);
+        z-index: 10;
+        padding: 35px;
+      }
+      .menuList{
+      	color:#6E6E6E;
+      	display: block;
+      	font-size:22px;
+      	width:230px;
+      	height: 50px;
+      	margin-bottom: 30px;
+      	font-weight: 600;
+    }
+      .menuList:hover {
+		text-decoration: underline;
+	}
+	.menuNone{
+		text-align:center;
+		color:#6E6E6E;
+      	display: block;
+      	font-size:22px;
+      	width:230px;
+      	height:30px;
+      	font-weight: 600;
+      	letter-spacing: 3px;
+      	margin-bottom: 5px;
+	}
+	.menu_close{
+		position: absolute;
+		padding:0;
+		margin:0;
+		top: 0px;
+		right: 5px;
+		border:0;
+		border-radius:5px;
+		background-color: rgba(225, 225, 225,0.1);
+		font-weight: 600;
+		color: #6E6E6E;
+		font-size: 25px;
+		font-weight: 600;
+		cursor: pointer;
+	}
 
-         width:300px;
-         min-height: 800px;
-         background-color:rgba(225, 225, 225, 0.8);
-         z-index: 10;
-      }
-      .menuTap{
-         width: 300px;
-         list-style-type : none;
-         margin: 0;
-         padding: 0;
-         text-align: center;
-      }
-      .menuNone{
-         margin-top: 50px;
-         text-align: center;
-         font-size:16px;
-         font-weight: 600;
-         color: gray;
-      }
       
    </style>
 </head>
@@ -101,21 +126,19 @@
    </nav>
    
    <div id="menuBox">
-         <ul class="menuTap">
-            <c:if test="${empty menu}">
-               <li>
-                  <p class="menuNone">메뉴가 존재하지 않습니다.</p>
-               </li>
+	   		<input class="menu_close" type="button"  value="X" />
+            <c:if test="${empty menu}"> 
+                  <span class="menuNone">메뉴가</span>
+                  <span class="menuNone">존재하지</span>
+                  <span class="menuNone">않습니다</span>
             </c:if>               
             <c:if test="${not empty menu}">
                <c:forEach items="${menu}" var="list">
                      <a href="./csj_menuMain?mem_id=${mem_id}&menu_num=${list.menu_num}">
-                        <li>${list.menu_name}</li>
+                        <span class="menuList">${list.menu_name}</span>
                      </a>               
-            
                </c:forEach>
             </c:if>
-         </ul>
 
    </div>
    
@@ -125,6 +148,10 @@ function menuMove() {
    console.log('버튼 작동');
    $('#menuBox').animate({width:"toggle"},400);
 }
+
+$('.menu_close').click(function name() {
+	$('#menuBox').animate({width:"toggle"},400);
+});
 
 </script>
 </html>

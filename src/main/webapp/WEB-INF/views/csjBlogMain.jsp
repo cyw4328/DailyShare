@@ -135,10 +135,14 @@
 		.bodyCont{
 			/* position:absolute; */
 			font-size: 20px;
-			display: block;
-			height: 100px;
+			/* display: block; */
+			/* height: 105px; */
 			overflow: hidden;
 			/* margin-bottom: 20px; */
+			display: -webkit-box;
+	        -webkit-line-clamp: 3;
+	        -webkit-box-orient: vertical;
+	        padding-top: 10px;
 		}
 		.bodyMenu{
 			position:absolute;

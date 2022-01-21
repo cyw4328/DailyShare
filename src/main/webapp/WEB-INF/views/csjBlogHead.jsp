@@ -123,8 +123,17 @@
       <!-- <span class="blogSearch">
          검색창
       </span> -->
-      <span class ="foliSpan" ><input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" /></span>
-	<span class ="UnfoliSpan" ><input class="UnfoliBtn" id="${item.sub_num}" type="button" value="구독중" /></span>
+		<span>
+			<c:if test="${mem_id ne loginId}">
+				<c:if test="${subResult gt 0 }">
+					<button>구독중</button>
+				</c:if>
+				<c:if test="${subResult eq 0 }">
+					<button>구독하기</button>
+				</c:if>
+			</c:if>
+		
+		</span>
       
    </nav>
    

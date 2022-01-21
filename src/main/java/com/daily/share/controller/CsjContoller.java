@@ -123,6 +123,8 @@ public class CsjContoller {
 	//블로그 메인 이동 요청
 	@RequestMapping(value = "/csj_blogMain", method = RequestMethod.GET)
 	public String csj_blogMain(Model model,HttpSession session,@RequestParam String mem_id) {
+		String loginId = (String) session.getAttribute("loginId");
+		
 		logger.info("블로그 메인 이동 요청 : {}",mem_id);
 		model.addAttribute("mem_id",mem_id);
 		
@@ -134,6 +136,10 @@ public class CsjContoller {
 		logger.info("메뉴 리스트만 요청 : {}",menu);
 		model.addAttribute("menu",menu);
 		
+		//구독 정보 불러오기
+		int subResult = service.subCall(loginId,mem_id);
+		logger.info("구독 중 : {}",subResult);
+		model.addAttribute("subResult",subResult);
 		
 		
 		ArrayList<CsjPersonalBlogDTO> boardList = service.boardCall(mem_id);
@@ -249,6 +255,12 @@ public class CsjContoller {
 		int likeNum = service.csj_likenum(board_Num);
 		logger.info("좋아요 수 요청 : {}",likeNum);
 		model.addAttribute("likeNum",likeNum);
+		
+		
+		//구독 정보 불러오기
+		int subResult = service.subCall(loginId,mem_id);
+		logger.info("구독 중 : {}",subResult);
+		model.addAttribute("subResult",subResult);
 		
 		return "csjboardDetail";
 	}

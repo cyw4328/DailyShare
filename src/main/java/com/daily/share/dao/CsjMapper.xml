@@ -205,6 +205,12 @@
 	
 	
 	
+	<!-- 구독 여부 확인 -->
+	<select id="subCall" resultType="int">
+		select count(sub_num) from subscription where mem_id=#{param1} and sub_id=#{param2}
+	</select>
+	
+	
 	
 	
 	

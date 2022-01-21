@@ -541,6 +541,13 @@ public class CsjService {
 
 
 
+	public int subCall(String loginId, String mem_id) {	
+		return dao.subCall(loginId, mem_id);
+	}
+
+
+
+
 
 
 

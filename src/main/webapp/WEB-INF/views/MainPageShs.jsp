@@ -29,6 +29,7 @@
    		height: 370px;
    		top:82px;
    		left:0px;
+   		overflow: hidden;
    }
    #Category{
 		width:1000px;
@@ -225,19 +226,25 @@ font-size: 13px;
     position: absolute;
     max-width: 500px;
 	top:0px;
-	left:158px;
-    font-size: 23px;
+	left:160px;
+    font-size: 24px;
     line-height: 1;
-    color: #000;
+    color: #222222;
     font-weight: normal;
     text-overflow: ellipsis;
     white-space: nowrap;
+    
    }
+   
+    .board_title:hover{
+	text-decoration:underline;
+}
+
    
    .boardSTxt{
     position: absolute;
     top: 50px;
-    left: 158px;
+    left: 160px;
     display: block;
     display: -webkit-box;
     overflow: hidden;
@@ -271,7 +278,7 @@ font-size: 13px;
    .boardBlogId{
    		position: absolute;
    		top:120px;
-   		left:158px;
+   		left:160px;
    		max-width: 300px;
    		text-overflow: ellipsis;
    		white-space: nowrap;
@@ -280,7 +287,7 @@ font-size: 13px;
    }
    
    .boardLike{
-   		font-size: 12px;
+   		font-size: 13px;
    		position: absolute;
    		top:80px;
    		left:0px;
@@ -330,6 +337,15 @@ font-size: 13px;
 	
 	
 <!---------------------------------------------------------------------아래서치관련css-->	
+
+
+
+	  video { width: 100%; }
+
+
+
+
+
 	
 	
    </style>
@@ -340,12 +356,17 @@ font-size: 13px;
 
 	<div class="mainBanner">
 	
-	
+	<video muted autoplay loop>
+    <source src="//bit.ly/3kYMF9A" type="video/mp4" style="width: 100%; height: 300px;" >
+    
+  </video>
 	
 
 	</div>
 
-	<div id="CateBg"></div>
+	<div id="CateBg">
+
+	</div>
 <div id="sogae"><h1>오늘을 공유하다 DAILY SHARE</h1></div>
 	<div class="container"></div>
 	<div id="Category"></div>
@@ -467,7 +488,7 @@ function ForumBoardList(list) {
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +'</span>'+'</dd>'+'</dl>';
-			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
+			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+'<span>'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
@@ -499,7 +520,7 @@ function BestBoardList(Best) {
 
 
 
-// 메인페이지 첫 시작 시 리스트 
+// 메인페이지 첫 시작 시 리스트 	
 
 function MainPageOpenList() {
 	
@@ -549,7 +570,7 @@ function ForumBoardList(list) {
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +'</span>'+'</dd>'+'</dl>';
-			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
+			content += '<dl class="boardLike">'+"좋아요 "+'<span>'+'<span class="likeCnt">'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';

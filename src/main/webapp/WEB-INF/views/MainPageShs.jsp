@@ -8,12 +8,12 @@
    <!-- <link rel="stylesheet" type="text/css" href="resources/css/HS.css"> -->
    <style>
    
-
+*{margin: 0 auto;}		
       
    li{
    list-style:none;
    }
-   *{margin: 0 auto;}
+   
    .container{
 
    		width: 1000px;
@@ -31,17 +31,21 @@
    		left:0px;
    }
    #Category{
-   		position: absolute;
-   		top:400px;
-   		left:450px;
+   		position: relative;
+   		top:340;
+   		left:0px;
    		font-size: 35px;
    		color: #848484;
+   		width: 1000px;
    }
    
    .BigCate{
-   	margin : 0px 30px;
+   	margin : 0px 20px;
 	cursor: pointer;
-	display: inline-block;
+	position:relative;
+	top:90px;
+	left:0px;
+   border-bottom:5px solid #f4f4f4;
    }
    
    .BigCate:hover{
@@ -67,8 +71,8 @@
 .ContBox{
 	position: relative;
 	top:300px;
-	left:380px;
-	margin: 0px;
+	left:0;
+	width: 1000px;
    }
 .CateCont li {
     width: auto;
@@ -103,7 +107,7 @@
 
 .CateCont{
 	position:absolute; 
-	top:200px; 
+	top:180px; 
 	left:0;
 }
 
@@ -171,8 +175,8 @@ font-size: 13px;
 
 .list_Story li {
     position: relative;
-    width: 100%;
-   list-style:none;
+
+  	 list-style:none;
 }
 
 .boardImg{
@@ -187,7 +191,7 @@ font-size: 13px;
 
 
 .section_list {
-	border-top:1px solid #cecece;
+	/* border-bottom:1px solid #cecece; */
    	width: 1000px;
    	position: relative;
    	top:968px;

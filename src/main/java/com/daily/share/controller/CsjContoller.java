@@ -85,13 +85,16 @@ public class CsjContoller {
 	@RequestMapping(value = "/csj_writeForm", method = RequestMethod.GET)
 	public String csj_writeForm(Model model,HttpSession session) {
 		logger.info("글작성 요청");
+		String page ="redirect:/MainPageShs";
 		String loginId = (String) session.getAttribute("loginId");
-		model.addAttribute("mem_id",loginId);
-		ArrayList<CsjMenuDTO> menuDTO =service.csj_menuCall(loginId);
-		logger.info("가져온 메뉴 : {}",menuDTO);
-		model.addAttribute("menu", menuDTO);
-		
-		return "csjWriteForm";
+			if (loginId != null) {
+				page ="csjWriteForm";
+				model.addAttribute("mem_id",loginId);
+				ArrayList<CsjMenuDTO> menuDTO =service.csj_menuCall(loginId);
+				logger.info("가져온 메뉴 : {}",menuDTO);
+				model.addAttribute("menu", menuDTO);
+			}
+		return page;
 	}
 	
 	//게시글 업로드 요청

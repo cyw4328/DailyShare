@@ -382,6 +382,16 @@ public class CywService {
 		
 	}
 
+	public HashMap<String, Object> MainGongJi() {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		ArrayList<CywDTO> list = dao.MainGongJi();
+		logger.info("서비스 공지오나요?:{}",list);
+		map.put("gongji", list);
+
+		return map;
+	}
+
 
 	
 	 

@@ -80,7 +80,7 @@
 						작성자 : ${comList.mem_id }
 						<input type="hidden" value="${comList.mem_id }" name="dec_targetId"/>
 						<input type="hidden" value="${comList.com_num }" name="dec_targetNum"/>
-						<input type="hidden" value="${boardDetail.board_num }" name="board_num"/>
+						<%-- <input type="hidden" value="${boardDetail.board_num }" name="board_num"/> --%>
 					</td>
 				</tr>
 				<tr>
@@ -145,11 +145,10 @@ $('#singoCom').click(function() {
 		if (yn) {
 			alert("신고가 완료되었습니다.");
 			$('#singoForm').submit();		
-			
 		}
 		
 	}
-}
+};
 
 
 </script>

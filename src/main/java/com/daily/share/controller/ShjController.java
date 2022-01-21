@@ -68,26 +68,22 @@ public class ShjController {
 		/* session.setAttribute("loginId", "admin"); */
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			
-			String mem_id = (String) session.getAttribute("loginId");
-			logger.info("번호 : "+ board_num + ", sessionID : "+mem_id);
-			String msg = "로그인이 필요한 기능입니다.";
+			String loginId = (String) session.getAttribute("loginId");
+			logger.info("번호 : "+ board_num + ", sessionID : "+loginId);
 			
-			if (mem_id != null) {
-				int LikeCheck = service.LikeCheck(board_num, mem_id);
-				
-				if (LikeCheck == 1) {
-					service.deleteLike(board_num, mem_id);
-					service.CancelBLike(board_num);
-				}else {
-					service.insertLike(board_num, mem_id);
-					service.updateBLike(board_num);
-				}
-				map.put("LikeCheck", LikeCheck);
-				logger.info("LikeCheck : "+LikeCheck);
-				
+			int LikeCheck = service.LikeCheck(board_num, loginId);
+			logger.info(loginId+":"+LikeCheck);
+			
+			if (LikeCheck == 1) {
+				service.deleteLike(board_num, loginId);
+				service.CancelBLike(board_num);
 			}else {
-				map.put("msg", msg);
+				service.insertLike(board_num, loginId);
+				service.updateBLike(board_num);
 			}
+			map.put("LikeCheck", LikeCheck);
+			logger.info("LikeCheck : "+LikeCheck);
+
 			
 			
 			
@@ -98,24 +94,49 @@ public class ShjController {
 	
 	//관리자 등록
 	@RequestMapping(value = "/AdRegist", method = RequestMethod.GET)
-	public String AdRegist(Model model, @RequestParam String adminT) {
-		
+	@ResponseBody
+	public HashMap<String, Object> adRegist(Model model, @RequestParam String adminT) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		logger.info("값 확인 : "+adminT);
-		//service.AdRegist(adminT);
-		service.AdRegistUP(adminT);
+		//멤버 테이블에서 회원 존재 확인
+		int checkMembers = service.checkMembers(adminT);
+		map.put("checkMembers", checkMembers);
+		if (checkMembers>0) {
+			//관리자 테이블에서 여부 확인
+			int checkAdmins = service.checkAdmins(adminT);
+			map.put("AdminsResult", checkAdmins);
+			if ((int)checkAdmins == 0) {
+				//service.AdRegist(adminT);
+				logger.info("관리자 등록 : {}",checkAdmins);
+				service.AdRegistUP(adminT);
+			}else if((int)checkAdmins == 1) {
+				logger.info("이미 관리자 : {}",checkAdmins);
+			}
+		}else {
+			logger.info("존재하지 않는 아이디 : {}",checkMembers);	
+		}
 		
-		return "/shjadmin";
+		
+		return map;
 	}
 	
 	//관리자 등록 해제
 	@RequestMapping(value = "/AdRegistDW", method = RequestMethod.GET)
-	public String AdRegistDW(Model model, @RequestParam String adminT) {
-		
+	@ResponseBody
+	public HashMap<String, Object> AdRegistDW(Model model, @RequestParam String adminT) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int checkAdmins = service.checkAdmins(adminT);
+		map.put("checkAdmins", checkAdmins);
 		logger.info("값 확인 : "+adminT);
+		if (checkAdmins>0) {
 //		service.AdRegist(adminT);
-		service.AdRegistDW(adminT);
+			logger.info("관리자 삭제 : {}",checkAdmins);
+			service.AdRegistDW(adminT);
+		}else {
+			logger.info("관리자가 아님: {}",checkAdmins);
+		}
 		
-		return "/shjadmin";
+		return map;
 	}
 	
 	

@@ -220,7 +220,7 @@
 				<c:if test="${not empty photos.size()}">
 					<c:forEach items="${photos}" var="photo">
 						<p class="photo">
-							<img src="/postImageFolder/${photo.photo_newName}" style="max-width:300px;max-height:250px;z-index:none;"/>
+							<img src="/postImageFolder/${photo.photo_newName}" style="max-width:500px;max-height:700px;z-index:none;"/>
 						</p>			
 					</c:forEach>
 				</c:if>
@@ -230,10 +230,10 @@
 					댓글 수 (<span style="color: gray;font-weight:600">&nbsp;${comList.size()}&nbsp;</span>)&nbsp;&nbsp;
 					<c:choose>
 						<c:when test="${LikeCheck eq '0' or empty LikeCheck }">
-							<input type="button" onclick="like()" value="♡" id ="heart"/>&nbsp;${boardDetail.board_likes}&nbsp;&nbsp;
+							<input type="button" onclick="like()" value="♡" id ="heart"/>&nbsp;좋아요 수<span style="color: gray;font-weight:600">&nbsp;(${likeNum}</span>)&nbsp;&nbsp;
 						</c:when>
 						<c:otherwise>
-							<input type="button" onclick="like()" value="♥" id ="heart"/>&nbsp;${boardDetail.board_likes}&nbsp;&nbsp;
+							<input type="button" onclick="like()" value="♥" id ="heart"/>&nbsp;좋아요 수<span style="color: gray;font-weight:600">&nbsp;(${likeNum}</span>)&nbsp;&nbsp;
 						</c:otherwise>
 					</c:choose>
 					<c:if test="${tags.size() gt 0}">
@@ -280,33 +280,35 @@
 
 	
 function like() {
-		
- 	var board_num = ${boardDetail.board_num}
+	var loginId = '<%= session.getAttribute("loginId")%>';
+ 	var $board_num = ${boardDetail.board_num};
+	var $mem_id ='${boardDetail.mem_id}';
+	console.log(loginId);
+	if (loginId == 'null') {
+		alert('로그인이 필요한 기능입니다.');
+	}else{
+		$.ajax({
+			url: "updateLike",
+			type: "GET",
+			data: {'board_num':$board_num},
+			dataType: "JSON",
+			success: function (data) {
+					console.log(data.LikeCheck);
 
-	//console.log("고마워ㅠ");
-	//console.log(board_num);
-		
-	$.ajax({
-		url: "updateLike",
-		type: "GET",
-		data: {'board_num':board_num},
-		dataType: "JSON",
-		success: function (data) {
-				console.log(data.LikeCheck);
-
-				if (data.LikeCheck == 1) {
-					alert("추천 취소 완료");
-					$("#heart").val("♡")
-				}else{
-					alert("추천 완료");
-					$("#heart").val("♥")
-				}				
-			
-		},
-		error : function () {
-			alert("추천에 실패했습니다.");
-		}
-	});
+					if (data.LikeCheck == 1) {
+						alert("추천 취소 완료");
+						location.href="./csj_detail?board_num="+$board_num+"&mem_id="+$mem_id;
+					}else{
+						alert("추천 완료");
+						location.href="./csj_detail?board_num="+$board_num+"&mem_id="+$mem_id;
+					}				
+				
+			},
+			error : function () {
+				alert("추천에 실패했습니다.");
+			}
+		});
+	}
 }
 
 

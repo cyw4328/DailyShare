@@ -82,6 +82,8 @@ public interface CsjDAO {
 
 	ArrayList<CsjDecDTO> csj_declist2(int currPage, int pagePerCnt);
 
+	int csj_likenum(int board_Num);
+
 	
 
 	/*

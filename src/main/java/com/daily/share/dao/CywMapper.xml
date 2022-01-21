@@ -70,7 +70,7 @@
 			on m.mid_num = j.mid_num
 			join board d 
 			on m.menu_num = d.menu_num
-			WHERE b.main_num = #{param1}
+			WHERE b.main_num = #{param1} and b.main_admin = 0
 	</select>
 
 	
@@ -178,7 +178,7 @@
 	
 		
 	<select id="MainPageBigCateGory" resultType="com.daily.share.dto.CywDTO">
-		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0
+		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0 and NOT main_num in ('43') <!-- and not main_name = 'asfsaasf' -->
 	</select>
 	
 	<select id="BestBoardList" resultType="com.daily.share.dto.CywDTO">
@@ -252,6 +252,10 @@
 		INSERT INTO declarationList(dec_target,dec_targetNum,dec_targetId,dec_code,mem_id)VALUES(2,#{param2},#{param1},#{param3},#{param4})
 	</insert>
 	
+	
+	<select id="MainGongJi" resultType="com.daily.share.dto.CywDTO">
+		SELECT * FROM board WHERE menu_num = 35
+	</select>
 	
 	
 </mapper>

@@ -174,7 +174,7 @@ border-bottom:1px solid black;
                     <li class="nav01" onclick="location.href='./ForumBoard'">포럼</li>
                     <a href="./csj_blogMain?mem_id=${loginId}" id = "myBlogck"><li class="nav01" >MY블로그</li></a>
                     <li class="nav01" ><img src="resources/images/gongji_icon.png" class = "iconSize"></li>
-                    <li class="nav01" id="gongji">공지사항이다 우헤헤ㅔ헤헤후에에에ㅔ에엥ㅇ</span>
+                    <li class="nav01" id="gongji"></li>
                 </ul>
             </div>
                 <!--로그인 레이어팝업 -->
@@ -233,9 +233,36 @@ if(login != null || login != ''){
          console.log(e);
       }
    });
-   
 }
 
+
+$.ajax({
+    type:'POST',
+    url:'MainGongJi',
+    data:{},
+    dataType:'JSON',
+    success:function(data) {
+       console.log(data.gongji);
+       GongJi(data.gongji);
+  
+    },
+    error:function(e) {
+       console.log(e);
+    }
+ });
+ 
+function GongJi(gongji) {
+	var content = '';
+
+	for (var i = 0; i < 1; i++) {
+		
+			content += '<a href="./csj_detail?board_num='+gongji[i].board_num+'&mem_id='+gongji[i].mem_id+'" style="cursor:hand">'+gongji[i].board_subject+'</a>';
+	}/* gongji[i].board_subject */
+	$('#gongji').append(content);
+};
+ 
+ 
+ 
 
 </script>
 

@@ -256,6 +256,7 @@
 	</style>
 </head>
 <body>
+
 	<div id="comment_wrap">
 		<span id="loginId">${loginId}</span>
 		<div id="input_wrap">
@@ -268,6 +269,7 @@
 				<input type="button" id="csj_com_button" value="등록" />
 			</form>	
 		</div>
+		
 		<div id="comList_wrap">
 			<c:forEach items="${comList}" var="comList">
 					<table>
@@ -286,7 +288,7 @@
 												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
-												<a href="#">신고</a>&nbsp;
+												<a href="#" onclick="singoPop()">신고</a>&nbsp;
 											</c:if>
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
@@ -313,7 +315,7 @@
 												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
-											<a href="#">신고</a>&nbsp;
+											<a href="#"onclick=" singoPop()">신고</a>&nbsp;
 											</c:if>
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
@@ -354,6 +356,12 @@
 
 </body>
 <script>
+
+function singoPop() {
+	$('#SingoPopup').toggle();
+	
+}
+
 
 	/* 댓글 submit 버튼 */
 	$('#csj_com_button').click(function(){

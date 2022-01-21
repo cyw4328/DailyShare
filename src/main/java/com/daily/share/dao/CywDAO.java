@@ -103,6 +103,8 @@ public interface CywDAO {
 	void BoardSingo(String dec_targetId, int a, int b, String loginId);
 	
 	void CommentSingo(String dec_targetId, int a, int b, String loginId);
+	
+	ArrayList<CywDTO> MainGongJi();
 	 
 	
 

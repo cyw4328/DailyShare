@@ -385,7 +385,7 @@ function MainBigCategoryCall() {
 function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 그리는 함수
 	var content = '';
 	
-	for (var i = 0; i <list.length; i++) {
+	for (var i = 0; i <6; i++) {
 		console.log(list[i].main_name);
 		content += '<span class="BigCate" onclick="MainNum('+list[i].main_num+')">'+list[i].main_name+'</span>';
 		content += '<input type="hidden" value="'+list[i].main_num+'"/>'

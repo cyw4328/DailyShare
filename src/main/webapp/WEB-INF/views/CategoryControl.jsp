@@ -205,7 +205,7 @@ $('.bigCategoryDel').click(function() {
 				alert('[삭제불가]하위메뉴가 존재합니다.');
 			}else {
 				alert('삭제가 완료되었습니다.');
-				window.location.href="./cyw";
+				window.location.href="./CateGory";
 			}
 		},
 		error:function(e) {
@@ -230,7 +230,7 @@ $('.bigCategoryDel').click(function() {
 					alert('[삭제불가]하위메뉴가 존재합니다.');
 				}else {
 					alert('삭제가 완료되었습니다.');
-					window.location.href="./cyw";
+					window.location.href="./CateGory";
 				}
 			},
 			error:function(e) {

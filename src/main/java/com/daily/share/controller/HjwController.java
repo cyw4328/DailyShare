@@ -89,7 +89,7 @@ public class HjwController {
 		String loginId = service.login(userId,userPass);
 		logger.info("로그인 한 아이디 여부 : "+loginId);
 		if(loginId != null) {
-			page =  "MainPageShs";
+			page =  "redirect:/MainPageShs";
 			session.setAttribute("loginId", loginId);
 			msg =null;
 		}

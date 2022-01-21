@@ -12,7 +12,7 @@
     	/*드래그 금지*/
          .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
     	
-    	#tab4{
+    	#tab3{
     		font-weight: bold;
     		color: orange;
     	}    
@@ -35,19 +35,30 @@
    #BigCateGoryList{
    	position: absolute;
    	left: 300px;
-   	top: 110px;
+   	top: 100px;
    }
    #middleCategoryList{
    position: absolute;
    left: 850px;
-   top: 110px;
+   top: 100px;
    }
    #bigMiddleSearch{
    position: absolute;
    left: 300px;
    top: 530px;
    }
-
+   #list1{
+	    position: absolute;
+	  	width: 400px;
+	   	height: 300px;
+	   	top: 190px;
+   }
+	#list2{
+	    position: absolute;
+	  	width: 400px;
+	   	height: 300px;
+	   	top: 190px;
+   }
    
     </style>
 </head>
@@ -70,9 +81,9 @@
 					<input type="button" id="bigCategoryAdd" value="등록">
 				</td>
 			</tr>	
-
 		</table>
 	</form>
+	<div id="list1" style="overflow-y:auto; overflow-x:hidden; width:100%; height:300px;">
 	<table>
 		<c:forEach var="item" items="${bigCategoryList}">
 			<tr>
@@ -84,6 +95,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 	<br/>
 	</div>
 	
@@ -110,7 +122,7 @@
 		</table>
 	</form>
 	
-	
+		<div id="list2" style="overflow-y:auto; overflow-x:hidden; width:100%; height:300px;">
 		<table>
 			<c:forEach var="item1" items="${midCategoyrList}">
 				<tr>	
@@ -123,7 +135,7 @@
 			</c:forEach>
 		</table>
 		</div>
-		
+		</div>
 		<div id="bigMiddleSearch">
 		<table>
 			<thead>

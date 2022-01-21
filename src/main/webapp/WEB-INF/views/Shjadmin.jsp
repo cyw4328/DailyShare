@@ -12,7 +12,7 @@
     	/*드래그 금지*/
          .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
     	
-    	#tab5{
+    	#tab4{
     		font-weight: bold;
     		color: orange;
     	}   

@@ -24,7 +24,7 @@
     		 border: 1px solid black;
     		 border-collapse: collapse;
     		 width: 700px;
-    		height: 100px;
+    		height: 30px;
     	}
     	p{
     		font-size: 15px;
@@ -64,7 +64,9 @@
     		width: 150px;
     		height: 35px;
     	}
-
+		.forum1{
+		
+		}
     	
     </style>
 </head>
@@ -78,21 +80,13 @@
  		</div>
 	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd">
 	    		<input type="hidden" value="21" name="MenuForum"/>
-        		<table>
-		         	<tr>
-		         		<td><p>제목</p></td>
-		         		<td><input type="text" placeholder="제목을 입력하세요" id="forumSub" name="ForumSub"></td>
-		         		<td></td>
-		         	</tr>
-		         	<tr>
-		         		<td><p>내용</p></td>
-		         		<td><textarea placeholder="내용을 입력하세요." rows="4" cols="50" id="message-22d4" name="ForumCont"></textarea></td>
-		         		<td></td>
-		         	</tr>
-		         	<tr>
-		         		<td><button id="ForomBoardCheck">등록하기</button></td>	
-		         	</tr>
-		         </table>
+	    		<div class="forum1">
+	    			<p>제목<input type="text" placeholder="제목을 입력하세요" id="forumSub" name="ForumSub"></p>
+	    		</div>
+	    		<div>
+	    			<p>내용<textarea placeholder="내용을 입력하세요." rows="4" cols="50" id="message-22d4" name="ForumCont"></textarea></p>
+	    		</div>
+	    		<button id="ForomBoardCheck">등록하기</button>
           	</form>
          
 

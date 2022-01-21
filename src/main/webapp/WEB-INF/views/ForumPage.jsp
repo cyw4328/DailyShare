@@ -13,18 +13,59 @@
     		position: absolute;
     		top:86px;
     		left:0px;
-    		height: 265px;
+    		height: 300px;
     		z-index:-1;
     		border-bottom: 1px solid #ededed;
     	}
     	.ForumInput{
+    		position: absolute;
     		 text-align: left; 
     		 font-size: 20px;
     		 padding: 30px;
-    		 border: 1px solid black;
-    		 border-collapse: collapse;
     		 width: 700px;
     		height: 30px;
+    		left: 380px;
+    	}
+		.forum1{
+			position: absolute;
+    		width: 613px;
+    		height: 58px;
+    		text-align: left; 
+    		font-size: 20px;
+    		padding-left: 20px;
+    		left: 400px;
+    		margin-top: 80px;
+    		background-color: white;
+		}
+		.forum2{
+			position: absolute;
+    		width: 613px;
+    		height: 78px;
+    		text-align: left; 
+    		font-size: 20px;
+    		padding-left: 20px;
+    		left: 400px;
+    		margin-top: 145px;
+    		background-color: white;
+		}
+		#forum2{
+			position: absolute;
+    		width: 500px;
+    		height: 60px;
+    		text-align: left; 
+    		font-size: 20px;
+    		left: 133px;
+    		margin-top: -18px;
+		}
+    	#ForomBoardCheck{
+    		position: absolute;
+    		left: 920px;
+    		top: 340px;
+    		background-color: black;
+    		color: white;
+    		width: 100px;
+    		height: 35px;
+    		border-radius: 10px / 10px;
     	}
     	p{
     		font-size: 15px;
@@ -55,18 +96,7 @@
          text-align: center;
          border-bottom: 1px solid black;
    }
-    	#ForomBoardCheck{
-    		position: absolute;
-    		left: 875px;
-    		top: 290px;
-    		background-color: black;
-    		color: white;
-    		width: 150px;
-    		height: 35px;
-    	}
-		.forum1{
-		
-		}
+
     	
     </style>
 </head>
@@ -81,10 +111,15 @@
 	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd">
 	    		<input type="hidden" value="21" name="MenuForum"/>
 	    		<div class="forum1">
-	    			<p>제목<input type="text" placeholder="제목을 입력하세요" id="forumSub" name="ForumSub"></p>
+	    			<p style="font-size:13px;">제목
+	    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    			<input type="text" placeholder="제목을 입력하세요" id="forumSub" name="ForumSub" style=" width:500px; height:60px; margin-top:-1px;"></p>
 	    		</div>
-	    		<div>
-	    			<p>내용<textarea placeholder="내용을 입력하세요." rows="4" cols="50" id="message-22d4" name="ForumCont"></textarea></p>
+	    		<div class="forum2">
+	    			<p style="font-size:13px;">내용</p>
+	    			<div id="forum2">
+	    			<textarea placeholder="내용을 입력하세요." rows="5" cols="67" id="message-22d4" name="ForumCont"></textarea>
+	    			</div>
 	    		</div>
 	    		<button id="ForomBoardCheck">등록하기</button>
           	</form>
@@ -92,7 +127,7 @@
 
 		<br/>
 
-        <br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
      
      	<form action="ForumSearch" method="POST">
      		<table>

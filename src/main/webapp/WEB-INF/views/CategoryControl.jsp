@@ -41,7 +41,7 @@
    #bigMiddleSearch{
    position: absolute;
    left: 300px;
-   top: 500px;
+   top: 630px;
    }
 
    

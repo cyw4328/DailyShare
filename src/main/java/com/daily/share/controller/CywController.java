@@ -77,7 +77,7 @@ public class CywController {
 
 		service.bigCategoryAdd(mainCategoryAdd, mainAdmin);
 
-		return "redirect:/cywtest";
+		return "redirect:/CateGory";
 	}
 	
 	@RequestMapping(value = "/bigCategoryDel", method = RequestMethod.GET)
@@ -98,7 +98,7 @@ public class CywController {
 	 
 	 service.middleCategoryAdd(middleCategoryAdd,daeCategory,middle_admin);
 	 
-	 return "redirect:/cywtest"; 
+	 return "redirect:/CateGory"; 
 	 }
 	 
 	@RequestMapping(value = "/midCategoryDel", method = RequestMethod.GET)
@@ -514,6 +514,17 @@ public class CywController {
 				 		
 		 return "redirect:/csj_detail?board_num="+board_num+"&mem_id="+dec_targetId; 
 		 }
+		
+		
+		@RequestMapping(value = "/MainGongJi", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> MainGongJi(Model model) {
+			
+								
+		
+			return service.MainGongJi();
+		}	
+		
 		
 		
 		 

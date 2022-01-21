@@ -71,6 +71,9 @@ public class HjwService {
 		int row = dao.decupdate(params);
 		logger.info("수정 성공여부 : {}",row);	
 	}
+	public int adminCk(String loginId) {
+		return dao.adminCk(loginId);
+	}
 
 
 }

@@ -187,18 +187,15 @@ public String memberOut(HttpSession session) {
 public String followShs(Model model,HttpSession session) {
 	logger.info("구독관리 컨트롤러 - 나를 구독");
 	
-	Object object = session.getAttribute("loginId");
-	
-	if(object != null) {
-		session.getAttribute("loginId");
-
-		ArrayList<ShsFollowDTO> list = service.FollowerList(object);
-		model.addAttribute("list",list);
-		
-		
+	String loginId = (String) session.getAttribute("loginId");
+	String page ="redirect:/MainPageShs";
+	if(loginId != null) {
+		page = "followShs";
+		ArrayList<ShsFollowDTO> list = service.FollowerList(loginId);
+		model.addAttribute("list",list);	
 	}	
 	
-	return "followShs";
+	return page;
 }
 
 
@@ -207,18 +204,15 @@ public String followShs(Model model,HttpSession session) {
 public String followingShs(Model model,HttpSession session) {
 	logger.info("구독관리 컨트롤러 - 내가 구독");
 	
-	Object object = session.getAttribute("loginId");
-	
-	if(object != null) {
-		session.getAttribute("loginId");
-
-		ArrayList<ShsFollowDTO> list = service.followingShs(object);
-		model.addAttribute("list",list);
-		
-		
+	String loginId = (String) session.getAttribute("loginId");
+	String page ="redirect:/MainPageShs";
+	if(loginId != null) {
+		page = "following";
+		ArrayList<ShsFollowDTO> list = service.followingShs(loginId);
+		model.addAttribute("list",list);	
 	}	
 	
-	return "following";
+	return page;
 }
 
 

@@ -37,6 +37,8 @@ public interface HjwDAO {
 
 	int decupdate(HashMap<String, String> params);
 
+	int adminCk(String loginId);
+
 	
 
 

@@ -175,7 +175,7 @@ font-size: 13px;
 
 .list_Story li {
     position: relative;
-
+width:1000px;
   	 list-style:none;
 }
 

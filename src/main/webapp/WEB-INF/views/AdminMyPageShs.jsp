@@ -101,7 +101,7 @@
 
 <div id="memuBar">
 		<div id = "left">관리자계정</div>
-		<div id="write">글쓰기</div>
+		<div id="write" id="tab5">글쓰기</div>
 		<div class= "tab00" id="tab1">회원목록</div>
 		<div class= "tab00" id="tab2">신고목록</div>
 		<div class= "tab00" id="tab3">카테고리목록</div>
@@ -120,7 +120,7 @@
 	
 </div>			
 </body>
-<script>
+<script> 
 	$('#tab1').click(function() {
 		location.href="./managerPage";
 	});
@@ -133,7 +133,9 @@
 	$('#tab4').click(function() {
 		location.href="./shjadmin";
 	});
-
+	$('#tab5').click(function() {
+		location.href="./csj_writeForm";
+	});
 
 
 	

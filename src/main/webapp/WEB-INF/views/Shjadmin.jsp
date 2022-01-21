@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -90,7 +90,7 @@
 
 		function admin_regist() {
 			
-			var adminT = $('#admin_text').val()
+			var adminT = $('#admin_text').val();
 			
 			console.log($('#admin_text').val());
 			
@@ -115,7 +115,7 @@
 		
 		function admin_delete() {
 			
-			var adminT = $('#admin_text').val()
+			var adminT = $('#admin_text').val();
 			
 			console.log($('#admin_text').val());
 			

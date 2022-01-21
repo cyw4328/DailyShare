@@ -22,6 +22,10 @@
 		SELECT mem_id, mem_name, mem_email, mem_phone FROM members WHERE mem_admin = 1 ORDER BY mem_id DESC LIMIT #{param1} OFFSET #{param2}
 	</select>
 	
+	<select id="adminCount" resultType="int">
+		SELECT COUNT (mem_id) FROM members where mem_admin=1
+	</select>
+	
 	
 	
 	
@@ -79,13 +83,29 @@
 	</select>
 	
 	<!-- 관리자 등록 -->
-	<update id="AdRegistUP" parameterType="com.daily.share.dto.ShjDTO">
+	<update id="AdRegistUP">
 		UPDATE members SET mem_admin = 1 WHERE mem_id = #{param1}
 	</update>
+	<insert id="AdRegistUP2">
+		insert into admins(mem_id)values(#{param1})
+	</insert>
 	
 	<!-- 관리자 해제 -->
-	<update id="AdRegistDW" parameterType="com.daily.share.dto.ShjDTO">
+	<update id="AdRegistDW">
 		UPDATE members SET mem_admin = 0 WHERE mem_id = #{param1}
 	</update>
+	<delete id="AdRegistDW2">
+		delete from admins where mem_id = #{param1}
+	</delete>
+	
+	
+	<!-- 회원 존재 여부 -->
+	<select id="checkMembers" resultType="int">
+		select count(mem_id) from members where mem_id=#{param1}
+	</select>
+	<!-- 관리자 테이블 여부 -->
+	<select id="checkAdmins" resultType="int">
+		select count(adm_num) from admins where mem_id=#{param1}
+	</select>
 	
 </mapper>

@@ -31,6 +31,16 @@ public interface ShjDAO {
 	void AdRegistDW(String adminT);
 
 	void AdRegistUP(String adminT);
+
+	int adminCount();
+
+	void AdRegistUP2(String adminT);
+
+	void AdRegistDW2(String adminT);
+
+	int checkAdmins(String adminT);
+
+	int checkMembers(String adminT);
 	
 	
 

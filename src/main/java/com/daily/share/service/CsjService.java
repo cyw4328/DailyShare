@@ -534,6 +534,13 @@ public class CsjService {
 
 
 
+	public int csj_likenum(int board_Num) {
+		return dao.csj_likenum(board_Num);
+	}
+
+
+
+
 
 
 

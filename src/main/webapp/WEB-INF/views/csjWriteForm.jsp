@@ -56,23 +56,30 @@
       }
       #sub_wrap{
          position:relative;
-         height: 70px;
+         min-height: 30px;
          border-bottom:2px solid #c4c4c4;
+         /* border:1px solid black; */
       }
-      #sub_wrap input{
-         position:absolute;
+      #board_sub{
+         /* position:absolute; */
          border:none;
          /* border-bottom:2px solid gray; */
          width: 100%;
-         height: 70px;
-         font-size: 25px;
+         height: 30px;
+         font-size: 20px;
+         resize: none;
+         /* border:1px solid red; */
+         overflow: hidden;
          
       }
-      #sub_wrap input::placeholder{
-         font-size: 25px;
+      #board_sub::placeholder{
+         font-size: 18px;
+         color: gray;
+         letter-spacing: 0px;
+         font-weight: 600;
          
       }
-      #sub_wrap input:focus{
+      #board_sub:focus{
          outline:none;
          /* outline-bottom:2px solid gray; */
       }
@@ -211,7 +218,7 @@
          
          <div id="sub_wrap">
             <!-- <input id="board_sub" placeholder="&nbsp;제목을 입력하세요" type="text" name="board_subject"/> -->
-            <textarea  id="board_sub" placeholder="&nbsp;제목을 입력하세요" name="board_subject"></textarea>
+            <textarea  id="board_sub" placeholder="제목을 입력하세요" name="board_subject" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
          </div>
          
          <div id="multiple_container" contenteditable="true" placeholder="내용을 입력하세요" onkeydown="resize(this)" onkeyup="resize(this)"></div>

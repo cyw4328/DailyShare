@@ -100,7 +100,7 @@ public class ShjService {
 				((currPage-1) * pagePerCnt-1) : 0;		
 		logger.info("offset : {}",offset);		
 				
-		 int totalCount = dao.allCount(); // 테이블의 모든 글의 갯수
+		 int totalCount = dao.adminCount(); // 테이블의 모든 글의 갯수
 		//만들수 있는 총 페이지의 수(전체 갯수/보여줄 수)
 		 int range = totalCount%pagePerCnt > 0 ? 
 				 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
@@ -126,6 +126,7 @@ public class ShjService {
 	//관리자 등록
 	public void AdRegistUP(String adminT) {
 		dao.AdRegistUP(adminT);
+		dao.AdRegistUP2(adminT);
 		
 	}
 
@@ -133,6 +134,20 @@ public class ShjService {
 
 	public void AdRegistDW(String adminT) {
 		dao.AdRegistDW(adminT);
+		dao.AdRegistDW2(adminT);
+	}
+
+
+
+	public int checkAdmins(String adminT) {
+		return dao.checkAdmins(adminT);
+	}
+
+
+
+	public int checkMembers(String adminT) {
+		// TODO Auto-generated method stub
+		return dao.checkMembers(adminT);
 	}
 
 

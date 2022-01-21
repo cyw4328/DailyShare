@@ -155,7 +155,11 @@
 
 .ContBlog{
 padding-left:15px;
-font-size: 13px;
+font-size: 14px;
+float: left;
+position: relative;
+top:20px;
+left:0px;
 }
 
 .txt_blog{
@@ -326,7 +330,7 @@ font-size: 13px;
 	position: relative;
 	left: 0;
 	top: 100px;
-	background-color:  rgb(0, 0, 0,0.7);
+	background-color:  rgb(0, 0, 0,0.5);
 	color: #fff;
 	}
 
@@ -335,6 +339,7 @@ font-size: 13px;
 
 	}
 	
+
 	
 	
 <!---------------------------------------------------------------------아래서치관련css-->	
@@ -387,13 +392,16 @@ font-size: 13px;
      					<input type="text" name="ForumSearch"  style=" height: 40px; font-size: 17px; margin:0px;" />
 
      					<input type="submit" value="검색" id="searchBtn" style=" height: 40px; margin:0px;"/>
-
+								
      	</form>
 	</div>
 	<div class="section_list">
 		 <ul class = "list_Story"> 
+			
 		 </ul>			
 	</div>
+
+	
 </body>
 <script>
 
@@ -506,7 +514,7 @@ function BestBoardList(Best) {
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
 			content += '<p class="ContTitle">'+Best[i].board_subject+'</span>'+'</p>'+'</div>';
-			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
+			content += '<span class="ContBlog">'+'<span class="txt_id">'+Best[i].mem_id+'</span>'+'</span>'+'</a>';
 			content += '</li>';		
 	}
 

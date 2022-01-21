@@ -301,14 +301,13 @@ font-size: 13px;
 	}
 	
 	#sogae{
-	width: 370px;
-	height: 150px;
+	width: 1000px;
 	text-align: center;
 	border-color: white;
 	font-size: 25px;
-	position: absolute;
-	left: 650px;
-	top: 120px;
+	position: relative;
+	left: 0;
+	top: 0;
 	}
 
  
@@ -389,7 +388,7 @@ function MainBigCategoryCall() {
 function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 그리는 함수
 	var content = '';
 	
-	for (var i = 0; i <list.length; i++) {
+	for (var i = 0; i <5; i++) {
 		console.log(list[i].main_name);
 		content += '<span class="BigCate" onclick="MainNum('+list[i].main_num+')">'+list[i].main_name+'</span>';
 		content += '<input type="hidden" value="'+list[i].main_num+'"/>'
@@ -444,7 +443,7 @@ function ForumBoardList(list) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
-			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="100px" height="100px" alt="boardImg" class = "thumb_g">';
+			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="120px" height="120px" alt="boardImg" class = "thumb_g">';
 			content += '</div>';
 			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
 			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
@@ -455,7 +454,7 @@ function ForumBoardList(list) {
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
-			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';		
+/* 			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';		 */
 	}
 	
 	$('.list_Story').append(content);

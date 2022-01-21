@@ -210,8 +210,15 @@
 		select count(sub_num) from subscription where mem_id=#{param1} and sub_id=#{param2}
 	</select>
 	
+	<!-- 구독하기 -->
+	<insert id="csj_inSub">
+		insert into subscription(sub_id,mem_id)values(#{param1},#{param2})
+	</insert>
 	
-	
+	<!-- 구독 취소하기 -->
+	<delete id="csj_delSub">
+		delete from subscription where sub_id=#{param1} and mem_id=#{param2}
+	</delete>
 	
 	
 	

@@ -423,27 +423,25 @@ public class CsjContoller {
 			map.put("list", service.csj_declist2(pagePerCnt, offset));
 			return map;
 		}
+		
+		//구독 요청 
+		@RequestMapping(value = "/csj_inSub", method = RequestMethod.GET)
+		public String csj_inSub(Model model,@RequestParam String sub_id,@RequestParam String mem_id,HttpSession session) {
+			logger.info("구독 요청 : 구독당하는{}/구독하는{}",sub_id,mem_id);
+			service.csj_inSub(sub_id,mem_id);
+			
+			return "redirect:/csj_blogMain?mem_id="+sub_id;
+		}
+		//구독 요청 
+		@RequestMapping(value = "/csj_delSub", method = RequestMethod.GET)
+		public String csj_delSub(Model model,@RequestParam String sub_id,@RequestParam String mem_id,HttpSession session) {
+			logger.info("구독 요청 : 구독당하는{}/구독하는{}",sub_id,mem_id);
+			service.csj_delSub(sub_id,mem_id);
+			
+			return "redirect:/csj_blogMain?mem_id="+sub_id;
+		}
 	
 	
-	/*
-	 * //나를 구독중인 아이디 목록 불러오기
-	 * 
-	 * @RequestMapping(value = "/csj_subtest", method = RequestMethod.GET) public
-	 * String csj_subtest(Model model,HttpSession session) {
-	 * session.setAttribute("loginId", "test03"); String loginId=(String)
-	 * session.getAttribute("loginId"); ArrayList<CsjSubDTO> subList=
-	 * service.csjSubList(loginId); model.addAttribute("subList",subList);
-	 * model.addAttribute("loginId",loginId); return "csjsubtest"; }
-	 * 
-	 * //구독 여부 확인
-	 * 
-	 * @RequestMapping(value = "/csjSubCall", method = RequestMethod.GET)
-	 * 
-	 * @ResponseBody public HashMap<String, Object> csjSubCall(Model
-	 * model,HttpSession session,@RequestParam String sub_id) { String mem_id =
-	 * (String) session.getAttribute("loginId"); return
-	 * service.csjSubCall(mem_id,sub_id); }
-	 */
 	
 	
 	

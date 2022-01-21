@@ -76,6 +76,7 @@
 			<input class="dec_num" type="hidden" name="dec_num" value=""/>
 			<button>확인</button>
 		</form>
+		<button onclick="popClose();"></button>
 	</div>
 
 	<%@ include file="headerShs_login.jsp"%>

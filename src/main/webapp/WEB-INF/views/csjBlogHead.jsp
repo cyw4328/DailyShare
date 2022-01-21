@@ -120,9 +120,12 @@
                </c:if>
          </a>
       </span>
-      <span class="blogSearch">
+      <!-- <span class="blogSearch">
          검색창
-      </span>
+      </span> -->
+      <span class ="foliSpan" ><input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" /></span>
+	<span class ="UnfoliSpan" ><input class="UnfoliBtn" id="${item.sub_num}" type="button" value="구독중" /></span>
+      
    </nav>
    
    <div id="menuBox">
@@ -152,6 +155,121 @@ function menuMove() {
 $('.menu_close').click(function name() {
 	$('#menuBox').animate({width:"toggle"},400);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//구독하기
+//var mem_id = 'test04';
+var mem_id='${mem_id}';
+//var mem_id = ${boardDetail.mem_id}; --> board 에 대한 작성자
+
+$('.UnfoliSpan').hide();
+
+$('.followBtn').click(function (){
+	BtnVal = $(this).val();
+	console.log('스크립트 테스트'+BtnVal);
+	$('.UnfoliSpan').show();
+	$('.foliSpan').hide();
+	
+		   $.ajax({
+			type:'post',
+			url:'followPlusShs',
+			data:{'mem_id':mem_id},
+			dataType:'JSON',
+			success: function(data) {
+				console.log(data.result);
+				 if(data.result==0){
+						$('.UnfoliSpan').show();
+						$('.foliSpan').hide();
+				 }
+				
+			},
+			error: function(e) {
+				console.log(e);
+			}
+			
+		});  
+		
+		
+}); 
+
+
+
+//구독취소
+$('.UnfoliBtn').click(function (){
+	BtnVal = $(this).val();
+	console.log('스크립트 테스트'+BtnVal);
+	$('.UnfoliSpan').hide();
+	$('.foliSpan').show();
+	
+ 	$.ajax({
+		type:'post',
+		url:'followDelShs',
+		data:{'mem_id':mem_id},
+		dataType:'JSON',
+		success: function(data) {
+			console.log(data.result);
+			if(data.result==0){
+				$('.UnfoliSpan').hide();
+				$('.foliSpan').show();
+		 }
+		},
+		error: function(e) {
+			console.log(e);
+		}
+		
+	});   
+
+}); 
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </html>

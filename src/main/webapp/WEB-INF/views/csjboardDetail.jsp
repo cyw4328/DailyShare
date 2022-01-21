@@ -270,22 +270,33 @@
 
 </body>
 <script>	
+	var loginId = '<%= session.getAttribute("loginId")%>';
 	function sharePop() {
-		$('#sharePop').toggle();
+		if (loginId == 'null') {
+			alert('로그인이 필요한 기능입니다.');
+			location.href='./loginPage';
+		}else {
+			$('#sharePop').toggle();
+		}
 	}
 	function singoPop() {
-		$('#SingoPopup').toggle();
+		if (loginId == 'null') {
+			alert('로그인이 필요한 기능입니다.');
+			location.href='./loginPage';
+		}else{
+			$('#SingoPopup').toggle();			
+		}
 	}
 	//추천 기능
 
 	
 function like() {
-	var loginId = '<%= session.getAttribute("loginId")%>';
  	var $board_num = ${boardDetail.board_num};
 	var $mem_id ='${boardDetail.mem_id}';
 	console.log(loginId);
 	if (loginId == 'null') {
 		alert('로그인이 필요한 기능입니다.');
+		location.href='./loginPage';
 	}else{
 		$.ajax({
 			url: "updateLike",

@@ -43,11 +43,29 @@
          
       }
       
-      .blogSearch{
+      .subButtonBox{
          position: absolute;
          font-size:30px;
          right : 70px;
          top: 25px;
+      }
+      .subButton{
+      	border:0;
+      	border-radius:10px;
+      	width: 80px;
+      	height:35px;
+      	cursor: pointer;
+      	text-align: center;
+      	font-size: 15px;
+      	font-weight: 600;
+      	
+	    background-color: black;
+	    color: #FFF;
+	    font-weight: bold;
+	    border: 0px;
+	   /*  padding: 3px 10px; */
+	    border-radius: 20px;
+      	
       }
       
 
@@ -101,6 +119,9 @@
 		font-weight: 600;
 		cursor: pointer;
 	}
+	.subButton{
+	
+	}
 
       
    </style>
@@ -123,13 +144,21 @@
       <!-- <span class="blogSearch">
          검색창
       </span> -->
-		<span>
+		<span class="subButtonBox" >
 			<c:if test="${mem_id ne loginId}">
-				<c:if test="${subResult gt 0 }">
-					<button>구독중</button>
+				<c:if test="${subResult gt 0 }">	
+					<form id="delSubForm" action="csj_delSub" method="get">
+						<input class="subButton" id="delSub" type="button" value="구독중"/>
+						<input type="hidden" name="sub_id" value="${mem_id}"/>
+						<input type="hidden" name="mem_id" value="${loginId}"/>
+					</form>
 				</c:if>
 				<c:if test="${subResult eq 0 }">
-					<button>구독하기</button>
+					<form id="inSubForm" action="csj_inSub" method="get">
+						<input class="subButton" id="inSub" type="button" value="구독하기"/>
+						<input type="hidden" name="sub_id" value="${mem_id}"/>
+						<input type="hidden" name="mem_id" value="${loginId}"/>
+					</form>
 				</c:if>
 			</c:if>
 		
@@ -156,6 +185,30 @@
    
 </body>
 <script>
+
+var $loginId = '${loginId}';
+$('#delSub').click( function() {
+	alert('구독을 취소 하시겠습니까?');	
+	if ($loginId != '') {
+		$('#delSubForm').submit();
+	}else {
+		alert('로그인이 필요한 기능입니다.');
+		location.href='./loginPage';
+	}
+});
+$('#inSub').click( function() {
+	alert('구독 하시겠습니까?');
+	console.log($loginId);
+	if ($loginId != '') {
+		$('#inSubForm').submit();
+		
+	}else {
+		alert('로그인이 필요한 기능입니다.');
+		location.href='./loginPage';
+	}
+});
+
+
 function menuMove() {
    console.log('버튼 작동');
    $('#menuBox').animate({width:"toggle"},400);

@@ -96,4 +96,23 @@
 		dec_name = #{dec_name}
 		WHERE dec_code = #{dec_code}
 	</update>
+	
+	
+	<select id="adminCk" resultType="int">
+		select count(adm_num) from admins where mem_id=#{param1} 
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

@@ -4,9 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>  
+        <script src="resources/js/jquery.twbsPagination.js"></script>
     <style>
-    
+    	/*드래그 금지*/
+         .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
+    	
+    	#tab4{
+    		font-weight: bold;
+    		color: orange;
+    	}    
     	      	   #con_gooDock{width: 1200px;}
    #gooDock{
       position: relative;
@@ -16,11 +25,6 @@
       width:900px;   
    }
    
-   	#title{
-		position: absolute;
-		top: 82px;
-		left: 300px;
-	}
        #sival{
    	width: 700px;
    	height: 600px;
@@ -31,29 +35,25 @@
    #BigCateGoryList{
    	position: absolute;
    	left: 300px;
-   	top: 175px;
+   	top: 110px;
    }
    #middleCategoryList{
    position: absolute;
-   left: 805px;
-   top: 174px;
+   left: 850px;
+   top: 110px;
    }
    #bigMiddleSearch{
    position: absolute;
    left: 300px;
-   top: 630px;
+   top: 530px;
    }
 
    
     </style>
 </head>
-<body>
+<body class="no-drag">
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="AdminMyPageShs.jsp"%>
-	
-	<div id="title">
-		<h2>카데고리 관리</h2>
-	</div>
 	
 	<div id="BigCateGoryList">
 		<form action="bigCategoryAdd" id="mainCategoryAdd" method="POST">
@@ -300,7 +300,8 @@ $('.bigCategoryDel').click(function() {
 		
 	})
 	
-
+	const headTxt = document.getElementById('headTxt');
+	headTxt.innerText = '카테고리목록';
 
 
 

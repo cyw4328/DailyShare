@@ -23,6 +23,7 @@ import com.daily.share.dto.CywDTO;
 import com.daily.share.dto.HjwDTO;
 import com.daily.share.dto.ShjDTO;
 import com.daily.share.service.HjwService;
+import com.daily.share.service.ShsService;
 
 @Controller
 
@@ -30,6 +31,7 @@ public class HjwController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired HjwService service;
+	@Autowired ShsService shsService;
 	
 	@RequestMapping(value = "/HomePage", method = RequestMethod.GET)
 	public String HomePage(Model model) {
@@ -89,7 +91,7 @@ public class HjwController {
 		String loginId = service.login(userId,userPass);
 		logger.info("로그인 한 아이디 여부 : "+loginId);
 		if(loginId != null) {
-			page =  "MainPageShs";
+			page =  "redirect:/MainPageShs";
 			session.setAttribute("loginId", loginId);
 			msg =null;
 		}
@@ -150,20 +152,62 @@ public class HjwController {
     }
 	
 	@RequestMapping(value = "/managerPage", method = RequestMethod.GET)
-	public String managerPage(Model model) {
+	public String managerPage(Model model,HttpSession session) {
 		logger.info("관리자페이지 이동");
-		return "memberList";
+		String page ="redirect:/MainPageShs";
+		String loginId = (String) session.getAttribute("loginId");
+			 if (loginId != null) {
+				 int result= service.adminCk(loginId);
+				 	if(result>0) {				 		
+				 		page = "memberList";
+				 	}
+			 }
+		return page;
 	}
 	
 	@RequestMapping(value = "/decPage", method = RequestMethod.GET)
-	public String decPage(Model model) {
+	public String decPage(Model model,HttpSession session) {
 		logger.info("신고관리페이지 이동");
-		return "decList";
+		String page ="redirect:/MainPageShs";
+		String loginId = (String) session.getAttribute("loginId");
+			 if (loginId != null) {
+				 int result= service.adminCk(loginId);
+				 	if(result>0) {				 		
+				 		page = "decList";
+				 	}
+			 }
+		return page;
 	}
 	@RequestMapping(value = "/decPage2", method = RequestMethod.GET)
-	public String decPage2(Model model) {
+	public String decPage2(Model model,HttpSession session) {
 		logger.info("신고관리페이지 이동");
-		return "decList2";
+		String page ="redirect:/MainPageShs";
+		String loginId = (String) session.getAttribute("loginId");
+			 if (loginId != null) {
+				 int result= service.adminCk(loginId);
+				 	if(result>0) {				 		
+				 		page = "decList2";
+				 	}
+			 }
+		return page;
+	}
+	
+	@RequestMapping(value = "/decPage3", method = RequestMethod.GET)
+	public String declist3(Model model,HttpSession session) {
+		logger.info("신고관리페이지 이동");
+		String page ="redirect:/MainPageShs";
+		String loginId = (String) session.getAttribute("loginId");
+			 if (loginId != null) {	
+				int result= service.adminCk(loginId);
+			 	if(result>0) {				 		
+			 		page = "decList3";
+					 ArrayList<HjwDTO> declist3=service.declist3();
+					logger.info("신고항목 수 : {}",declist3);
+					model.addAttribute("decsize3", declist3.size());
+					model.addAttribute("declist3", declist3);
+			 	}
+			 }
+		return page;
 	}
 	
 	//리스트 요청
@@ -241,15 +285,6 @@ public class HjwController {
 	        return "redirect:/decPage3";
 		}
 		
-		@RequestMapping(value = "/decPage3", method = RequestMethod.GET)
-		public String declist3(Model model) {
-			logger.info("신고관리페이지 이동");
-			ArrayList<HjwDTO> declist3=service.declist3();
-			logger.info("신고항목 수 : {}",declist3);
-			model.addAttribute("decsize3", declist3.size());
-			model.addAttribute("declist3", declist3);
-			return "decList3";
-		}
 		
 		@RequestMapping(value = "/decupdate", method = RequestMethod.POST)
 	    public String decupdate(Model model, @RequestParam HashMap<String, String> params) {

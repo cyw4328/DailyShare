@@ -9,6 +9,13 @@
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>  
         <script src="resources/js/jquery.twbsPagination.js"></script>
     <style>
+    	/*드래그 금지*/
+         .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
+    	
+    	#tab5{
+    		font-weight: bold;
+    		color: orange;
+    	}   
     	.adminl{
 			position: absolute;
 			left: 300px;
@@ -38,7 +45,7 @@
     	
     </style>
 </head>
-<body>
+<body class="no-drag">
 <%@ include file="headerShs_login.jsp"%>
 <%@ include file="AdminMyPageShs.jsp" %>
 
@@ -66,7 +73,7 @@
 			<tbody id="adlist"></tbody>
 			<tr>
 				<td colspan="6" id="paging">
-		            <div class="container">                           
+		            <div class="container" style="width:850px;">                        
 		               <nav aria-label="Page navigation" style="text-align:center">
 		                  <ul class="pagination" id="pagination"></ul>
 		               </nav>               
@@ -200,7 +207,9 @@
 		$('#deletad').click(function () {
 			alert("삭제 완료");
 		})
-
+		
+		const headTxt = document.getElementById('headTxt');
+		headTxt.innerText = '관리자목록';
 
 </script>
 </html>

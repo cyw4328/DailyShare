@@ -70,9 +70,9 @@ public class ShsService {
 
 
 
-	public ArrayList<ShsFollowDTO> FollowerList(Object object) {
+	public ArrayList<ShsFollowDTO> FollowerList(String loginId) {
 		ArrayList<ShsFollowDTO> FollowerList = null;		
-		FollowerList = dao.FollowerList(object); 
+		FollowerList = dao.FollowerList(loginId); 
 		logger.info("size : {}",FollowerList.size());
 		int followCnt=FollowerList.size();
 		
@@ -82,10 +82,10 @@ public class ShsService {
 
 
 
-	public ArrayList<ShsFollowDTO> followingShs(Object object) {
+	public ArrayList<ShsFollowDTO> followingShs(String loginId) {
 
 		ArrayList<ShsFollowDTO> FollowingList = null;	
-		FollowingList = dao.FollowingList(object);
+		FollowingList = dao.FollowingList(loginId);
 		logger.info("size : {}",FollowingList.size());
 		logger.info("{}",FollowingList);
 		

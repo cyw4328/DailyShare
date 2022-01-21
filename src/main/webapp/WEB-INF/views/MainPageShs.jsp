@@ -23,7 +23,7 @@
    }
    
    .mainBanner{
-
+		background-color:#bb9aca;
    		position: absolute;
    		width: 100%;
    		height: 370px;
@@ -42,7 +42,7 @@
    	margin : 0px 20px;
 	cursor: pointer;
 	position:relative;
-	top:370px;
+	top:390px;
 	left:0px;
 	width:1000px;
    border-bottom:5px solid #f4f4f4;
@@ -309,7 +309,7 @@ font-size: 13px;
 		position: absolute;
 		top:300px;
 		left:40%;
-		border:0px;
+
 	}
 	#searchBtn{
 	background-color: black;
@@ -319,19 +319,20 @@ font-size: 13px;
 	}
 	
 	#sogae{
-	width: 1000px;
+	width: 800px;
 	text-align: center;
 	border-color: white;
 	font-size: 25px;
 	position: relative;
 	left: 0;
 	top: 100px;
-	background-color: #ccc;
+	background-color:  rgb(0, 0, 0,0.7);
+	color: #fff;
 	}
 
  
 	.txt_id{
-	margin-top: 110px;
+
 	}
 	
 	
@@ -355,9 +356,9 @@ font-size: 13px;
 
 
 	<div class="mainBanner">
-	
-	<video muted autoplay loop>
-    <source src="//bit.ly/3kYMF9A" type="video/mp4" style="width: 100%; height: 300px;" >
+
+<video muted autoplay loop>
+    <source src="resources/images_shs/Ink - 67358.mp4" type="video/mp4" style="width: 100%; height: 300px;" >
     
   </video>
 	
@@ -376,27 +377,21 @@ font-size: 13px;
 	</div>	
 		<div class="MainSearch">
  		<form action="MainSearch" method="POST">
-     		<table id="SearchInput">
-     			<tr>
-     				<td>
-     					<select name="SearchScope">
+
+     					<select name="SearchScope"  style=" height: 40px; font-size: 17px;">
      						<option selected="selected" value="All">전체</option>
      						<option value="User">작성자</option>
      						<option value="subCont">제목+내용</option>
      					</select>
-     					</td>
-     					<td>
-     					<input type="text" name="ForumSearch"/>
-     					</td>
-     					<td>
-     					<input type="submit" value="검색" id="searchBtn"/>
-     				</td>
-     			</tr>
-     		</table>
+
+     					<input type="text" name="ForumSearch"  style=" height: 40px; font-size: 17px; margin:0px;" />
+
+     					<input type="submit" value="검색" id="searchBtn" style=" height: 40px; margin:0px;"/>
+
      	</form>
 	</div>
 	<div class="section_list">
-		 <ul class = "list_Story">
+		 <ul class = "list_Story"> 
 		 </ul>			
 	</div>
 </body>

@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="resources/css/common.css" type="text/css">
 	<script src="resources/js/jquery.twbsPagination.js"></script>
     <style  type="text/css">
+    	#ex:link { color: black; text-decoration: none;}
+      	#ex:visited { color: black; text-decoration: none;}
+     	#ex:hover { color: black; text-decoration: none;}
     	
     	/*드래그 금지*/
          .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
@@ -68,8 +71,7 @@
 			margin-top:-35px;
 			margin-left:133px;
 			font-size:16px;
-			overflow: hidden;
-  			text-overflow: ellipsis;
+			
 		}
 		
 		#pop2{
@@ -87,27 +89,35 @@
 			width: 250px;
 			height: 90px;
 		}
+		
+		.popContent{
+			display:inline-block;
+			height: 50px;
+			overflow: hidden;
+  			text-overflow: ellipsis;
+		}
+
     </style>
 </head>
 <body class="no-drag">
 	<div id="popUp">
-		<a href="#" onclick="popClose()" style="float: right; font-size:30px; margin-top:10px; margin-right:15px;">X</a>
+		<a id="ex" href="#" onclick="popClose()" style="float: right; font-size:30px; margin-top:10px; margin-right:15px;">X</a>
 		<h3 style="text-align: center;">신고 내용</h3><br/>
 		<p style="font-size:16px; margin-left:30px;">작성자
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span class="popId"></span></p><br/>
 		<p style="font-size:16px; margin-left:30px;">내용
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<div id="pop">
-		<span class="popContent"></span></p>
+			<span class="popContent"></span></p>
 		</div><br/><br/><br/>
 		<p style="font-size:16px; margin-left:30px;">신고항목
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span class="popDecname"></span></p>
 		
 		<form action="csj_resolRegist" method="get">
 		<p style="font-size:16px; margin-left:30px;">처리 내용</p>
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
 		<div id="pop2">
 		<textarea name="sol_state"></textarea>
@@ -273,7 +283,7 @@
 		console.log(dec_target,dec_targetNum,dec_num,dec_name);
 		$('#popUp').show();
 		$('.dec_num').val(dec_num);
-		
+		$('#moreview').remove();
 		$.ajax({
 			type:'post',
 			url:'csj_singoCont',
@@ -284,6 +294,8 @@
 				$('.popId').text(data.mem_id);
 				$('.popContent').text(data.content);
 				$('.popDecname').text(data.dec_name);
+				var moreview = '<a id="moreview" href="./csj_detail?board_num='+dec_targetNum+'&mem_id='+data.mem_id+'">더보기</a>'
+				$('#pop').append(moreview);
 			},
 			error: function(e){
 				console.log(e);

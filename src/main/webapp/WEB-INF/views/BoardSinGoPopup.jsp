@@ -49,6 +49,13 @@
     	left: 78px;
     	top: 170px;
     	font-size: 18px;
+    	overflow: hidden;
+		/* margin-bottom: 20px; */
+		display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        padding-top: 10px;
+        width: 400px;
     }
       #SingoSelec{
     	position: absolute;

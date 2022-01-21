@@ -228,7 +228,7 @@ function display() {
 		      +("0" + date.getMinutes()).slice(-2)+":"
 		      +("0" + date.getSeconds()).slice(-2)+"&nbsp;&nbsp;&nbsp;좋아요  "+'<span style="color:red;">'+item.board_like+'</span>'+'</td>';
 			
-			content += '<td style="text-align:right;">'+'<img src="/photo/'+item.board_thumFileName+'"width="100px">'+'</td>'
+			content += '<td style="text-align:right;">'+'<img src="/postImageFolder/'+item.board_thumFileName+'"width="100px">'+'</td>'
 			content += '</tr>'+'<br/>'+'</table>';
         });
         $('#list').empty();

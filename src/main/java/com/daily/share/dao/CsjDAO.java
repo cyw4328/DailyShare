@@ -84,6 +84,8 @@ public interface CsjDAO {
 
 	int csj_likenum(int board_Num);
 
+	int subCall(String loginId, String mem_id);
+
 	
 
 	/*

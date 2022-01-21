@@ -31,21 +31,21 @@
    		left:0px;
    }
    #Category{
-   		position: relative;
-   		top:340;
-   		left:0px;
+		width:1000px;
    		font-size: 35px;
    		color: #848484;
-   		width: 1000px;
+ 	  text-align: center;
    }
    
    .BigCate{
    	margin : 0px 20px;
 	cursor: pointer;
 	position:relative;
-	top:90px;
+	top:370px;
 	left:0px;
+	width:1000px;
    border-bottom:5px solid #f4f4f4;
+
    }
    
    .BigCate:hover{
@@ -70,12 +70,12 @@
 
 .ContBox{
 	position: relative;
-	top:300px;
+	top:250px;
 	left:0;
 	width: 1000px;
    }
 .CateCont li {
-    width: auto;
+    width: 310px;
     float: left;
 
     background: #fff;
@@ -88,8 +88,13 @@
     transition-duration: 0.3s;
     transition-timing-function: ease;
     transition-delay: 0s;
+}
 
-	
+.CateCont li:first-child{
+	margin-right: 28px;
+}
+.CateCont li:last-child{
+	float: right;
 }
 
 .CateCont li:hover {
@@ -100,6 +105,7 @@
 .ContImg{
 	display: block;
     padding: 50px;
+    
     border-bottom:1px soled #c4c4c4;
 
 }
@@ -109,6 +115,7 @@
 	position:absolute; 
 	top:180px; 
 	left:0;
+	width: 1000px;
 }
 
 
@@ -307,7 +314,8 @@ width:1000px;
 	font-size: 25px;
 	position: relative;
 	left: 0;
-	top: 0;
+	top: 100px;
+	background-color: #ccc;
 	}
 
  
@@ -333,7 +341,7 @@ width:1000px;
 	<div class="container"></div>
 	<div id="Category"></div>
 	<div class = "ContBox">
-			<ul class="CateCont" >			
+			<ul class="CateCont">			
 			</ul>
 	</div>	
 		<div class="MainSearch">
@@ -454,7 +462,8 @@ function ForumBoardList(list) {
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
-/* 			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';		 */
+ 			content += '</a>'+'</li>';		 
+ 			/* content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';	 */
 	}
 	
 	$('.list_Story').append(content);

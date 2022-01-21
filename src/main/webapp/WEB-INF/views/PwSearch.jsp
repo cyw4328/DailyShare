@@ -67,8 +67,8 @@
             <div id="logo" onclick="location.href='./MainPageShs'"><img src="/postImageFolder/LoGo.PNG" alt="SiteLogo" width="80" height="80"></div>
                 <div class="container"></div>
             </div>
-            <div id="banner">비밀번호 찾기
-                <div class="container"></div>
+            <div id="banner">
+                <div class="container">비밀번호 찾기</div>
             </div>
             <div id="contents">
                 <div class="container">

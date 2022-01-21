@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="resources/css/common.css" type="text/css">
 	<script src="resources/js/jquery.twbsPagination.js"></script>
     <style  type="text/css">
+    	#popUp a:link { color: black; text-decoration: none;}
+      	#popUp a:visited { color: black; text-decoration: none;}
+     	#popUp a:hover { color: black; text-decoration: none;}
     	
     	/*드래그 금지*/
          .no-drag {-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;} 
@@ -52,24 +55,45 @@
 		#popUp{
 			display:none;
 			position: absolute;
-			width: 200px;
-			height: 250px;
+			width: 400px;
+			height: 380px;
 			top:25%;
-			left: 49%;
+			left: 39%;
 			border: 1px solid black ;
 			z-index: 10;
-			background-color: white;
+			background-color: lightgrey;
+		}
+		#pop{
+			position: absolute;
+			width: 250px;
+			height: 90px;
+			margin-top:-35px;
+			margin-left:133px;
+			font-size:16px;
+			overflow: hidden;
+  			text-overflow: ellipsis;
 		}
     </style>
 </head>
 <body class="no-drag">
 	<div id="popUp">
-		<input type="button" value="X" onclick="popClose();"/>
-		<p>작성자 : <span class="popId"></span></p>
-		<p>내용 : <span class="popContent"></span></p>
-		<p>신고항목 : <span class="popDecname"></span></p>
-		<p>처리 내용: <span class="popState"></span></p>
-		<button onclick="popClose();">확인</button>
+		<a href="#" onclick="popClose()" style="float: right; font-size:30px; margin-top:10px; margin-right:15px;">X</a>
+		<h3 style="text-align: center;">처리 내용</h3><br/>
+		<p style="font-size:16px; margin-left:30px;">작성자
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<span class="popId"></span></p><br/>
+		<p style="font-size:16px; margin-left:30px;">내용
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<div id="pop">
+		<span class="popContent"></span></p>
+		</div><br/><br/><br/>
+		<p style="font-size:16px; margin-left:30px;">신고항목
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<span class="popDecname"></span></p><br/>
+		<p style="font-size:16px; margin-left:30px;">처리 내용
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<span class="popState"></span></p><br/>
+		<button onclick="popClose();" style="float: right; font-size:16px; margin-bottom:10px; margin-right:20px; color:white; border-radius: 3px / 3px; background-color: black; width:100px;height:40px;">확인</button>
 	</div>
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="AdminMyPageShs.jsp"%>

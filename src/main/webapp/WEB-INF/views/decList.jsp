@@ -53,32 +53,70 @@
 		#popUp{
 			display:none;
 			position: absolute;
-			width: 200px;
-			height: 250px;
+			width: 400px;
+			height: 410px;
 			top:25%;
-			left: 49%;
+			left: 39%;
 			border: 1px solid black ;
 			z-index: 10;
-			background-color: white;
+			background-color: lightgrey;
 		}
-
-
+		#pop{
+			position: absolute;
+			width: 250px;
+			height: 90px;
+			margin-top:-35px;
+			margin-left:133px;
+			font-size:16px;
+			overflow: hidden;
+  			text-overflow: ellipsis;
+		}
+		
+		#pop2{
+			position: absolute;
+			width: 250px;
+			height: 90px;
+			margin-top:-50px;
+			margin-left:133px;
+			font-size:16px;
+  			border : 1px solid black;
+			border-collapse : collapse;
+		}
+		
+		textarea{
+			width: 250px;
+			height: 90px;
+		}
     </style>
 </head>
 <body class="no-drag">
 	<div id="popUp">
-		<input type="button" value="X" onclick="popClose();"/>
-		<p>작성자 : <span class="popId"></span></p>
-		<p>내용 : <span class="popContent"></span></p>
-		<p>신고항목 : <span class="popDecname"></span></p>
+		<a href="#" onclick="popClose()" style="float: right; font-size:30px; margin-top:10px; margin-right:15px;">X</a>
+		<h3 style="text-align: center;">신고 내용</h3><br/>
+		<p style="font-size:16px; margin-left:30px;">작성자
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<span class="popId"></span></p><br/>
+		<p style="font-size:16px; margin-left:30px;">내용
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<div id="pop">
+		<span class="popContent"></span></p>
+		</div><br/><br/><br/>
+		<p style="font-size:16px; margin-left:30px;">신고항목
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<span class="popDecname"></span></p>
+		
 		<form action="csj_resolRegist" method="get">
-			<p>처리 내용<textarea name="sol_state"></textarea></p>
-			<input class="dec_num" type="hidden" name="dec_num" value=""/>
-			<button>확인</button>
-		</form>
-		<button onclick="popClose();"></button>
+		<p style="font-size:16px; margin-left:30px;">처리 내용</p>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		
+		<div id="pop2">
+		<textarea name="sol_state"></textarea>
+		</div>
+		<input class="dec_num" type="hidden" name="dec_num" value=""/>
+		<button style="float: right; font-size:16px; margin-top:70px; margin-right:20px; color:white; border-radius: 3px / 3px; background-color: black; width:100px;height:40px;">확인</button>
+		</form>	
+		<button onclick="popClose();" style="float: right; font-size:16px; margin-top:50px; margin-right:20px; color:white; border-radius: 3px / 3px; background-color: dodgerblue; width:100px;height:40px;">취소</button>
 	</div>
-
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="AdminMyPageShs.jsp"%>
 	

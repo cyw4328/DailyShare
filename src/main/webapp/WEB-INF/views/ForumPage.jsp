@@ -186,16 +186,20 @@
 $("#ForomBoardCheck").on("click", function(e) {
 	   e.preventDefault();
 	   var ForumSub = $("input[name='ForumSub']").val();
-	   var ForumCont = $("#forumSub").val();
+	   var ForumCont = $("#message-22d4").val();
 	   
 	   //아이디,비밀번호 유효성 검사
 	   if (ForumSub == null || ForumSub == "") { 
 	      alert("제목을 입력해주세요");
 	      return false;
 	   } 
-	   if (ForumCont == null || ForumCont == "") { 
+	   else if (ForumCont == null || ForumCont == "") { 
 	      alert("내용을 입력해주세요");
 	      return false;
+	   }else{
+		   alert("등록되었습니다.");
+		   $('#ForumBoardAdd').submit();
+		   
 	   } 
 });
 

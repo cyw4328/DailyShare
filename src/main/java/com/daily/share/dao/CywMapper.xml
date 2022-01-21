@@ -178,7 +178,7 @@
 	
 		
 	<select id="MainPageBigCateGory" resultType="com.daily.share.dto.CywDTO">
-		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0 and NOT main_num in ('43') <!-- and not main_name = 'asfsaasf' -->
+		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0 and NOT main_num in ('43')  and not main_name = 'asfsaasf' 
 	</select>
 	
 	<select id="BestBoardList" resultType="com.daily.share.dto.CywDTO">

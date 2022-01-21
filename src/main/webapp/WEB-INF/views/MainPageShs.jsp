@@ -451,7 +451,7 @@ function ForumBoardList(list) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
-			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="120px" height="120px" alt="boardImg" class = "thumb_g">';
+			content += '<img src="/postImageFolder/'+list[i].board_thumFileName+'" width ="120px" height="120px" alt="boardImg" class = "thumb_g">';
 			content += '</div>';
 			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
 			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
@@ -477,7 +477,7 @@ function BestBoardList(Best) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
 			content += '<div class="ContImg">';
-			content += '<img alt="img01" src="/photo/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
+			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
 			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
@@ -533,7 +533,7 @@ function ForumBoardList(list) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
-			content += '<img src="/photo/'+list[i].board_thumFileName+'" width ="100px" height="100px" alt="boardImg" class = "thumb_g">';
+			content += '<img src="/postImageFolder/'+list[i].board_thumFileName+'" width ="100px" height="100px" alt="boardImg" class = "thumb_g">';
 			content += '</div>';
 			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
 			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
@@ -556,7 +556,7 @@ function BestBoardList(Best) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
 			content += '<div class="ContImg">';
-			content += '<img alt="img01" src="/photo/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
+			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
 			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';

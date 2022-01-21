@@ -61,7 +61,7 @@
     <body class="no-drag">
         <div id="wrap">
             <div id="header">
-            <div id="logo" onclick="location.href='./HomePage'"><img src="./Logo1.png" alt="SiteLogo" width="80" height="80"></div>
+            <div id="logo" onclick="location.href='./HomePage'"><img src="/postImageFolder/Logo.PNG" alt="SiteLogo" width="80" height="80"></div>
                 <div class="container"></div>
             </div>
             <div id="banner">

@@ -200,7 +200,7 @@ border-bottom:1px solid black;
 <script>
 
 
-$('.adminLink').hide();
+$('.adminLink').children().hide();
 
 
 var login = '${loginId}';
@@ -224,7 +224,9 @@ if(login != null || login != ''){
          console.log(data.adminCk);
          if(data.adminCk==1){
             console.log('관리자회원');
-/*             $('.adminLink').show(); */
+
+            $('.adminLink').children().show();
+
          }
          
          

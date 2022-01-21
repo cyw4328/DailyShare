@@ -210,7 +210,8 @@
          
          
          <div id="sub_wrap">
-            <input id="board_sub" placeholder="&nbsp;제목을 입력하세요" type="text" name="board_subject"/>
+            <!-- <input id="board_sub" placeholder="&nbsp;제목을 입력하세요" type="text" name="board_subject"/> -->
+            <textarea  id="board_sub" placeholder="&nbsp;제목을 입력하세요" name="board_subject"></textarea>
          </div>
          
          <div id="multiple_container" contenteditable="true" placeholder="내용을 입력하세요" onkeydown="resize(this)" onkeyup="resize(this)"></div>

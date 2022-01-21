@@ -25,6 +25,7 @@ import com.daily.share.dto.CsjPhotoDTO;
 import com.daily.share.dto.CsjSubDTO;
 import com.daily.share.dto.CywDTO;
 import com.daily.share.service.CsjService;
+import com.daily.share.service.ShjService;
 
 @Controller
 
@@ -32,6 +33,7 @@ public class CsjContoller {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired CsjService service;
+	@Autowired ShjService shjService;
 	
 	
 	//댓글 파트
@@ -238,6 +240,15 @@ public class CsjContoller {
 		logger.info("댓글 목록 요청 : {}",comList);
 		model.addAttribute("comList",comList);
 		
+		//좋아요 여부 확인 요청
+		int LikeCheck = shjService.LikeCheck(board_Num, loginId);
+		logger.info("좋아요 여부 확인 요청 : {}",LikeCheck);
+		model.addAttribute("LikeCheck",LikeCheck);
+		
+		//좋아요 수 요청
+		int likeNum = service.csj_likenum(board_Num);
+		logger.info("좋아요 수 요청 : {}",likeNum);
+		model.addAttribute("likeNum",likeNum);
 		
 		return "csjboardDetail";
 	}

@@ -100,15 +100,24 @@
 				data: {'adminT' : adminT},
 				dataType: 'JSON',
 				success: function (data) {
-					console.log(data);
-					alert("등록 완료");
+					console.log('멤버존재:',data.checkMembers,'관리자여부:',data.AdminsResult);
+					if (data.checkMembers > 0) {
+						if (data.AdminsResult==0) {
+							alert('관리자 등록 성공');
+							location.href="./shjadmin";
+						}else {
+							alert('이미 관리자로 등록된 아이디 입니다');
+						}
+					}else {
+						
+						alert('존재하지 않는 아이디 입니다');
+					}
 				},
 				error: function (e) {
 					alert("등록 실패");
 				}				
 			});	
-			
-				location.reload();
+
 		};
 
 
@@ -125,15 +134,19 @@
 				data: {'adminT' : adminT},
 				dataType: 'JSON',
 				success: function (data) {
-					console.log(data);
-					alert("삭제 완료");
+					console.log(data.checkAdmins);
+					if (data.checkAdmins>0) {
+						alert('관리자 권한이 해제되었습니다');
+						location.href="./shjadmin";
+					}else {
+						alert('관리자 아이디가 아닙니다');
+					}
 				},
 				error: function (e) {
 					alert("삭제 실패");
 				}				
 			});	
-			
-				location.reload();
+
 		};
 		
 		
@@ -204,9 +217,9 @@
 		}
 
 		
-		$('#deletad').click(function () {
+/* 		$('#deletad').click(function () {
 			alert("삭제 완료");
-		})
+		}) */
 		
 		const headTxt = document.getElementById('headTxt');
 		headTxt.innerText = '관리자목록';

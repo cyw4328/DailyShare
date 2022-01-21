@@ -68,9 +68,7 @@
                 <div class="container"></div>
             </div>
             <div id="banner">
-            <h2>DAILY SHARE</h2>
-            <!-- <img src="./Logo2.png" alt="LoginLogo" width="120" height="120"> --><!--로그인화면 로고-->
-                <div class="container"></div>
+                <div class="container"><h2>DAILY SHARE</h2></div>
             </div>
             <div id="contents">
                 <div class="container">

@@ -18,9 +18,13 @@
     		border-bottom: 1px solid #ededed;
     	}
     	.ForumInput{
-    		 text-align: center; 
+    		 text-align: left; 
     		 font-size: 20px;
-    		 padding: 15px 200px;
+    		 padding: 30px;
+    		 border: 1px solid black;
+    		 border-collapse: collapse;
+    		 width: 700px;
+    		height: 100px;
     	}
     	p{
     		font-size: 15px;

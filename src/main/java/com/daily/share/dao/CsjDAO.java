@@ -86,6 +86,10 @@ public interface CsjDAO {
 
 	int subCall(String loginId, String mem_id);
 
+	void csj_inSub(String sub_id, String mem_id);
+
+	void csj_delSub(String sub_id, String mem_id);
+
 	
 
 	/*

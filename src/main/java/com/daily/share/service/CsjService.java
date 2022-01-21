@@ -548,6 +548,21 @@ public class CsjService {
 
 
 
+	public void csj_inSub(String sub_id, String mem_id) {
+		dao.csj_inSub( sub_id,  mem_id);
+		
+	}
+
+
+
+
+	public void csj_delSub(String sub_id, String mem_id) {
+		dao.csj_delSub(sub_id,mem_id);		
+	}
+
+
+
+
 
 
 

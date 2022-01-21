@@ -165,7 +165,7 @@ border-bottom:1px solid black;
 <body style="overflow-x: hidden">
     <div id="container">
     <div id="header">
-        <div id="logo"><a href="./MainPageShs" style="color: black;">LOGO</a></div>
+        <div id="logo"><a href="./MainPageShs" style="color: black;">DS</a></div>
         <nav>
             <div class="menubar"> 
 

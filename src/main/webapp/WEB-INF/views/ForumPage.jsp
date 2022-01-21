@@ -144,7 +144,7 @@
 	    			<textarea placeholder="내용을 입력하세요." rows="5" cols="67" id="message-22d4" name="ForumCont"></textarea>
 	    			</div>
 	    		</div>
-	    		<button id="ForomBoardCheck">등록하기</button>
+	    		<input type="submit" value="등록하기" id="ForomBoardCheck">
           	</form>
          
 
@@ -183,6 +183,23 @@
 
 </body>
 <script>
+$("#ForomBoardCheck").on("click", function(e) {
+	   e.preventDefault();
+	   var ForumSub = $("input[name='ForumSub']").val();
+	   var ForumCont = $("#forumSub").val();
+	   
+	   //아이디,비밀번호 유효성 검사
+	   if (ForumSub == null || ForumSub == "") { 
+	      alert("제목을 입력해주세요");
+	      return false;
+	   } 
+	   if (ForumCont == null || ForumCont == "") { 
+	      alert("내용을 입력해주세요");
+	      return false;
+	   } 
+});
+
+
 var currPage = 1;
 
 ForumListCall(currPage,10);

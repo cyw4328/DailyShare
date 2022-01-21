@@ -291,15 +291,17 @@ function like() {
 		type: "GET",
 		data: {'board_num':board_num},
 		dataType: "JSON",
-		success: function (LikeCheck) {
+		success: function (data) {
+				console.log(data.LikeCheck);
+
+				if (data.LikeCheck == 1) {
+					alert("추천 취소 완료");
+					$("#heart").val("♡")
+				}else{
+					alert("추천 완료");
+					$("#heart").val("♥")
+				}				
 			
-			if (LikeCheck == 1) {
-				alert("추천 취소 완료");
-				$("#heart").val("♡")
-			}else{
-				alert("추천 완료");
-				$("#heart").val("♥")
-			}
 		},
 		error : function () {
 			alert("추천에 실패했습니다.");

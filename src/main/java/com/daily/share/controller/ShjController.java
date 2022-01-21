@@ -64,26 +64,35 @@ public class ShjController {
 	//실제로 할때는 뺄것.
 	@ResponseBody
 	@RequestMapping(value = "/updateLike", method = RequestMethod.GET)
-	public int updateLike (@RequestParam int board_num, HttpSession session) {
-			session.setAttribute("loginId", "admin");
+	public HashMap<String, Object> updateLike (@RequestParam int board_num, HttpSession session) {
+		/* session.setAttribute("loginId", "admin"); */
+			HashMap<String, Object> map = new HashMap<String, Object>();
 			
 			String mem_id = (String) session.getAttribute("loginId");
-			
 			logger.info("번호 : "+ board_num + ", sessionID : "+mem_id);
+			String msg = "로그인이 필요한 기능입니다.";
 			
-			int LikeCheck = service.LikeCheck(board_num, mem_id);
-			
-			logger.info("LikeCheck : "+LikeCheck);
-			
-			if (LikeCheck == 1) {
-				service.deleteLike(board_num, mem_id);
-				service.CancelBLike(board_num);
-			}else {
-				service.insertLike(board_num, mem_id);
-				service.updateBLike(board_num);
-			}
+			if (mem_id != null) {
+				int LikeCheck = service.LikeCheck(board_num, mem_id);
 				
-		return LikeCheck;
+				if (LikeCheck == 1) {
+					service.deleteLike(board_num, mem_id);
+					service.CancelBLike(board_num);
+				}else {
+					service.insertLike(board_num, mem_id);
+					service.updateBLike(board_num);
+				}
+				map.put("LikeCheck", LikeCheck);
+				logger.info("LikeCheck : "+LikeCheck);
+				
+			}else {
+				map.put("msg", msg);
+			}
+			
+			
+			
+				
+		return map;
 	}
 	
 	

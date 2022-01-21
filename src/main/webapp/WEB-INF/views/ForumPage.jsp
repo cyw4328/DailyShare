@@ -10,57 +10,63 @@
     	.ForBg{
     		background-color:#ebf5e9;
     		width:100%;
-    		position: absolute;
+    		position: static;
     		top:86px;
     		left:0px;
     		height: 300px;
     		z-index:-1;
     		border-bottom: 1px solid #ededed;
+
     	}
     	.ForumInput{
-    		position: absolute;
-    		 text-align: left; 
-    		 font-size: 20px;
-    		 padding: 30px;
-    		 width: 700px;
+    		position: relative;
+    		text-align: left; 
+    		font-size: 20px;
+    		padding: 30px;
+    		width: 700px;
     		height: 30px;
-    		left: 380px;
+    		left: 50px;
+    		top:-300px;
+
     	}
 		.forum1{
-			position: absolute;
+			position: relative;
     		width: 613px;
     		height: 58px;
     		text-align: left; 
     		font-size: 20px;
     		padding-left: 20px;
-    		left: 400px;
-    		margin-top: 80px;
+    		left: 10px;
+    		top: -300px;
     		background-color: white;
+
 		}
 		.forum2{
-			position: absolute;
-    		width: 613px;
-    		height: 78px;
+			position: relative;
+    		width: 591px;
+    		height: 38px;
     		text-align: left; 
     		font-size: 20px;
-    		padding-left: 20px;
-    		left: 400px;
-    		margin-top: 145px;
+    		padding: 20px;
+    		left: 10px;
+    		top: -295px;
     		background-color: white;
+ 
 		}
 		#forum2{
-			position: absolute;
+			position: relative;
     		width: 500px;
-    		height: 60px;
+    		height: 77px;
     		text-align: left; 
     		font-size: 20px;
-    		left: 133px;
-    		margin-top: -18px;
+    		left: 66px;
+    		top: -38px;
+    		
 		}
     	#ForomBoardCheck{
-    		position: absolute;
-    		left: 920px;
-    		top: 340px;
+    		position: relative;
+    		left: 860px;
+    		top: -285px;
     		background-color: black;
     		color: white;
     		width: 100px;
@@ -76,14 +82,11 @@
     		height: 100px;
     		text-align: center;
     	}
-    	#moreBtn{
-    		position: absolute;
-    		left: 700px;
-    		background-color: black;
-    		width: 100px;
-    		height: 50px;
-    		color: white;
+    	#ForumSearch{
+    		position: relative;
+    		top: -570px;
     	}
+    	
     	#ForumBoardAdd{
     		padding: 15px 200px;
     	}
@@ -95,8 +98,28 @@
          font-size: 14px;
          text-align: center;
          border-bottom: 1px solid black;
+         
    }
-
+         #ForumBoardListTable{
+			border : 1px solid black;
+			border-collapse : collapse;
+			position: relative;
+    		width: 700px;
+    		text-align: left; 
+    		font-size: 20px;
+    		padding: 20px;
+    		top: -550px;
+         }
+         
+         #moreBtn{
+    		position: relative;
+    		left: 800px;
+    		top: -550px;
+    		background-color: black;
+    		width: 100px;
+    		height: 50px;
+    		color: white;
+    	}
     	
     </style>
 </head>
@@ -127,8 +150,8 @@
 
 		<br/>
 
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-     
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     	<div id="ForumSearch">
      	<form action="ForumSearch" method="POST">
      		<table>
      			<tr>
@@ -144,11 +167,11 @@
      			</tr>
      		</table>
      	</form>
-     
+     	</div>
    		<br/>
 
      	<div>
-        <table id="ForumBoardListTable">
+        <table id="ForumBoardListTable" >
         	<thead></thead>
         	<tbody class="ForumBoardList">
         	</tbody>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daily.share.dao.HjwDAO;
+import com.daily.share.dto.CsjDecDTO;
 import com.daily.share.dto.HjwDTO;
 import com.daily.share.dto.ShjDTO;
 
@@ -41,7 +42,7 @@ public class HjwService {
 	public ArrayList<HjwDTO> memlist(int currPage, int pagePerCnt) {
 		return dao.memlist(currPage,pagePerCnt);
 	}
-	public ArrayList<HjwDTO> declist1(int currPage, int pagePerCnt) {
+	public ArrayList<CsjDecDTO> declist1(int currPage, int pagePerCnt) {
 		return dao.declist1(currPage,pagePerCnt);
 	}
 	public int allCount() {

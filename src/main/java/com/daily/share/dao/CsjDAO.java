@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
+import com.daily.share.dto.CsjDecDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
@@ -64,6 +65,24 @@ public interface CsjDAO {
 	int photoDelete(String board_num, String photo_newName);
 
 	void csj_thumbUpdateTwo(String board_num, String photo_newName);
+
+	CsjBoardDTO csj_singoBCont(int parseInt);
+
+	CsjCommentDTO csj_singoCCont(int parseInt);
+
+	int csj_decCheck(String dec_code);
+
+	void csj_decDel(String dec_code, int yn);
+
+	void csj_decUpdate(String dec_name, String dec_code);
+
+	void csj_resolRegist(String sol_state, String dec_num, String sol_admin);
+
+	int csj_declist2Count();
+
+	ArrayList<CsjDecDTO> csj_declist2(int currPage, int pagePerCnt);
+
+	
 
 	/*
 	 * ArrayList<CsjSubDTO> csjSubList(String loginId);

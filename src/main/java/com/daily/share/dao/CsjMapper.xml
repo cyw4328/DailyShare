@@ -159,6 +159,54 @@
 		update board set board_thumFileName=#{param2} where board_num=#{param1}
 	</update>
 	
+	
+	<!-- 신고된 게시글 불러오기 -->
+	<select id="csj_singoBCont" resultType="com.daily.share.dto.CsjBoardDTO">
+		select * from board where board_num=#{param1}
+	</select>
+	<select id="csj_singoCCont" resultType="com.daily.share.dto.CsjCommentDTO">
+		select * from comment where com_num=#{param1}
+	</select>
+	
+	<!-- 신고항목 사용 여부 확인 -->
+	<select id="csj_decCheck" resultType="int">
+		select dec_blind from declarationcontents where dec_code=#{param1}
+	</select>
+	
+	<!-- 신고항목 사용여부 수정 -->
+	<update id="csj_decDel">
+		update declarationcontents set dec_blind=#{param2} where dec_code=#{param1}
+	</update>
+	
+	<!-- 신고항목 내용 수정 -->
+	<update id="csj_decUpdate">
+		update declarationcontents set dec_name=#{param1} where dec_code=#{param2}
+	</update>
+	
+	<!-- 신고항목 처리 등록 -->
+	<insert id="csj_resolRegist">
+		insert into reportsolution(sol_state,dec_num,sol_admin)values(#{param1},#{param2},#{param3})
+	</insert>
+	
+	<!-- 처리된 항목 페이지 -->
+	<select id="csj_declist2Count" resultType="int">
+		select count(sol_num) from reportsolution
+	</select>
+	
+	<!-- 처리된 항목 리스트 -->
+	<select id="csj_declist2" resultType="com.daily.share.dto.CsjReportDTO">	
+		select r.sol_num,r.sol_state ,r.sol_admin, r.sol_state, d.dec_code,d.dec_num,d.dec_target,d.dec_targetNum,d.dec_targetId,d.mem_id,d.dec_name from reportsolution r left outer join (select a.dec_code,a.dec_num, a.dec_date,a.dec_target,a.dec_targetNum,a.dec_targetId,a.mem_id,b.dec_cont,b.dec_blind,b.dec_name from declarationlist a left outer join declarationcontents b on a.dec_code = b.dec_code order by dec_num desc) d on r.dec_num = d.dec_num order by r.sol_num desc
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 나를 구독중인 사람 목록 불러오기 -->
 <!-- 	<select id="csjSubList" resultType="com.daily.share.dto.CsjSubDTO">
 		select * from subscription where sub_id = #{param1}
@@ -170,7 +218,7 @@
 	</select> -->
 	
 	
-	
+
 	
 	
 	

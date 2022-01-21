@@ -330,6 +330,73 @@ public class CsjContoller {
 			
 			return service.csj_share(menu_num,board_num,loginId);
 		}
+		
+		//신고된내용 불러오기
+		@RequestMapping(value = "/csj_singoCont", method = RequestMethod.POST)
+		@ResponseBody
+		public HashMap<String, Object> csj_singoCont(@RequestParam String dec_target,@RequestParam String dec_targetNum,@RequestParam String dec_name) {
+			logger.info("신고된 내용 요청 :{}/{}",dec_target,dec_targetNum);
+			return service.csj_singoCont(dec_target,dec_targetNum,dec_name);
+		}
+		
+		//신고항목 미사용 처리
+		@RequestMapping(value = "/csj_decDel", method = RequestMethod.GET)
+		public String csj_decDel(Model model,@RequestParam String dec_code,HttpSession session) {
+			String loginId= (String) session.getAttribute("loginId");
+			
+			logger.info("신고항목 미사용 처리 : {}",dec_code);
+			logger.info("로그인 된 아이디 : {}",loginId);
+			service.csj_decDel(dec_code);
+
+			return "redirect:/decPage3";
+		}
+		
+		//신고항목 내용 수정
+		@RequestMapping(value = "/csj_decUpdate", method = RequestMethod.GET)
+		public String csj_decUpdate(Model model,@RequestParam String dec_code,@RequestParam String dec_name,HttpSession session) {
+			String loginId= (String) session.getAttribute("loginId");
+			
+			logger.info("신고항목 수정 요청 : {}/{}",dec_code,dec_name);
+			logger.info("로그인 된 아이디 : {}",loginId);
+			service.csj_decUpdate(dec_name,dec_code);
+
+			return "redirect:/decPage3";
+		}
+		
+		//신고 처리
+		@RequestMapping(value = "/csj_resolRegist", method = RequestMethod.GET)
+		public String csj_resolRegist(Model model,@RequestParam String sol_state,@RequestParam String dec_num,HttpSession session) {
+			String loginId= (String) session.getAttribute("loginId");
+			logger.info("로그인 된 아이디 : {}",loginId);
+			String sol_admin = loginId;
+			logger.info("신고항목 처리 요청 : {}/{}",sol_state,dec_num);
+			service.csj_resolRegist(sol_state,dec_num,sol_admin);
+
+			return "redirect:/decPage2";
+		}
+		
+		
+		//처리된 신고
+		@ResponseBody
+		@RequestMapping(value = "/csj_declist2", method = RequestMethod.GET)
+		public HashMap<String, Object> csj_declist2(@RequestParam String page,@RequestParam String cnt) {	
+		
+			logger.info("신고리스트 요청 : {} 페이지, {} 개 씩",page, cnt);	
+			HashMap<String, Object> map = new HashMap<String, Object>();	
+			int currPage = Integer.parseInt(page);
+			int pagePerCnt = Integer.parseInt(cnt);
+			int offset = ((currPage-1) * pagePerCnt-1) >= 0  ? 
+					((currPage-1) * pagePerCnt-1) : 0;		
+			logger.info("offset : {}",offset);				
+			int totalCount = service.csj_declist2Count(); 
+			int range = totalCount%pagePerCnt > 0 ? 
+					 (totalCount/pagePerCnt)+1 : (totalCount/pagePerCnt);
+			logger.info("총 갯수 : {}",totalCount);
+			logger.info("만들 수 있는 총 페이지 : {}",range);
+			map.put("pages",range);
+			map.put("list", service.csj_declist2(pagePerCnt, offset));
+			return map;
+		}
 	
 	
 	/*

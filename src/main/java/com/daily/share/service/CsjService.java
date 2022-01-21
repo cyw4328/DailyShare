@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.daily.share.dao.CsjDAO;
 import com.daily.share.dto.CsjBoardDTO;
 import com.daily.share.dto.CsjCommentDTO;
+import com.daily.share.dto.CsjDecDTO;
 import com.daily.share.dto.CsjMembersDTO;
 import com.daily.share.dto.CsjMenuDTO;
 import com.daily.share.dto.CsjPersonalBlogDTO;
@@ -459,6 +460,81 @@ public class CsjService {
 		
 		
 	}
+
+
+
+
+	public HashMap<String, Object> csj_singoCont(String dec_target, String dec_targetNum, String dec_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		if (dec_target.equals("1")) {
+			logger.info("신고된 항목 : 게시글/"+dec_target);
+			CsjBoardDTO board = dao.csj_singoBCont(Integer.parseInt(dec_targetNum));
+			logger.info("신고된 내용 : {}",board);
+			map.put("content", board.getBoard_cont());
+			map.put("mem_id", board.getMem_id());
+		}else if (dec_target.equals("2")) {
+			logger.info("신고된 항목 : 댓글/"+dec_target);
+			CsjCommentDTO comment = dao.csj_singoCCont(Integer.parseInt(dec_targetNum));
+			map.put("content", comment.getCom_cont());
+			map.put("mem_id", comment.getMem_id());
+		}else {
+			logger.info("잘못된 신고");
+		}
+		map.put("dec_name", dec_name);
+		
+		
+		
+		return map;
+	}
+
+
+
+
+	public void csj_decDel(String dec_code) {
+		int result= dao.csj_decCheck(dec_code);
+		logger.info("사용 여부 : "+result);
+		int yn = 1;
+		if (result == 1) {
+			yn = 0;
+		}
+		dao.csj_decDel(dec_code,yn);
+		
+	}
+
+
+
+
+	public void csj_decUpdate(String dec_name, String dec_code) {
+		dao.csj_decUpdate(dec_name, dec_code);
+		
+	}
+
+
+
+
+	public void csj_resolRegist(String sol_state, String dec_num, String sol_admin) {
+		dao.csj_resolRegist(sol_state,dec_num,sol_admin);
+		
+	}
+
+
+
+
+	public int csj_declist2Count() {
+		return dao.csj_declist2Count();
+	}
+
+
+
+
+	public ArrayList<CsjDecDTO> csj_declist2(int currPage, int pagePerCnt) {
+		return dao.csj_declist2(currPage,pagePerCnt);
+	}
+
+
+
+
+
 
 
 

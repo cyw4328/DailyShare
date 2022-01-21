@@ -435,7 +435,8 @@ function boardSingo(e) {
 	}
 	
 	
-}		
+}	
+
 		
 		
 </script>

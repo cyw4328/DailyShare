@@ -32,8 +32,8 @@
 		}
 		
 		#dec{
-		    position :absolute;
-		    left: 800px;
+		     position :absolute;
+		    left: 875px;
 		   	top: 120px;
             font-size: 16px;
 		}
@@ -72,11 +72,11 @@
 	<%@ include file="AdminMyPageShs.jsp"%>
 	
 	<div id="dec">
-        <a target="_blank" id="a1" style="color: black; cursor:pointer;">접수된신고</a>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a target="_blank" id="a2" style="color: black; cursor:pointer;">처리된신고</a>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a target="_blank" id="a3" style="color: black; cursor:pointer;">항목관리</a>
+        <a  id="a1" href="./decPage" style="color: black; cursor:pointer;">접수된신고</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a  id="a2" href="./decPage2" style="color: black; cursor:pointer;">처리된 신고</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="a3" href="./decPage3" style="color: black; cursor:pointer;">항목관리</a>
 	</div>
 		<div id="decM">
 		<form action="enr_decM" method="POST">
@@ -101,9 +101,10 @@
 						<td>
 							<div id="decsave"  style="display:block;">${board.dec_name}</div>
 							<div id="decupdate" style="display:none;">
-								<form  action="decupdate" method="POST">
-								<input type="text" name="user_name" id="name" value="${board.dec_name}"/>
-								<input type="button" id="save" value="확인"/>
+								<form  action="csj_decUpdate" method="get">
+									<input type="hidden" name="dec_code" value="${board.dec_code}"/>
+									<input type="text" name="dec_name" id="name" value="${board.dec_name}"/>
+									<input type="submit" id="save" value="확인"/>
 								</form>
 							</div>
 						</td>
@@ -117,7 +118,12 @@
 						</td>
 						<td>
 							<input type="button" id="update" value="수정"/>
-							<input type="button" id="use" value="미사용"/>
+							<c:if test="${board.dec_blind eq 0}">
+								<input type="button" onclick="location.href='./csj_decDel?dec_code=${board.dec_code}'" value="미사용"/>
+							</c:if>
+							<c:if test="${board.dec_blind eq 1}">
+								<input type="button" onclick="location.href='./csj_decDel?dec_code=${board.dec_code}'" value="사용"/>
+							</c:if>
 						</td>
 					</tr>
 				</c:forEach>
@@ -125,6 +131,8 @@
 		</div>
 </body>
 <script>
+
+
 	$("[id^=update]").on('click', function(){
 		console.log($(this).parent().prev().prev().find('div').first());
 		$(this).parent().prev().prev().find('div').first().toggle();
@@ -141,20 +149,11 @@
 	const headTxt = document.getElementById('headTxt');
 	headTxt.innerText = '신고목록'
 	
-	
-	$("#tab1").click(function() {
-		location.href='./managerPage'
-	});
+
 	
 	var ahr = document.getElementsByTagName('a');
 	document.getElementById("a3").style = "color: black; box-shadow: inset 0 -6px 0 gray; cursor:pointer;";
 	
-	$('#a1').click(function(){
-		location.href='./decPage'
-	});
-	
-	$('#a2').click(function(){
-		location.href='./decPage2'
-	});
+
 </script>
 </html>

@@ -28,10 +28,8 @@
 		SELECT mem_id, mem_name, mem_email, mem_phone, mem_date FROM members ORDER BY mem_id DESC LIMIT #{param1} OFFSET #{param2}
 	</select>
 	
-	<select id="declist1" resultType="com.daily.share.dto.HjwDTO">	
-		SELECT a.dec_num, a.mem_id, a.dec_targetid, b.dec_name, a.dec_date, b.dec_cont
-		from declarationList a inner join declarationContents b on a.dec_code = b.dec_code
-		where a.mem_id and a.dec_targetid and b.dec_name	
+	<select id="declist1" resultType="com.daily.share.dto.CsjDecDTO">	
+		select r.sol_num, d.dec_code,d.dec_num, d.dec_date,d.dec_target,d.dec_targetNum,d.dec_targetId,d.mem_id,d.dec_cont,d.dec_blind,d.dec_name from reportsolution r right outer join (select a.dec_code,a.dec_num, a.dec_date,a.dec_target,a.dec_targetNum,a.dec_targetId,a.mem_id,b.dec_cont,b.dec_blind,b.dec_name from declarationlist a left outer join declarationcontents b on a.dec_code = b.dec_code order by dec_num desc) d on r.dec_num = d.dec_num order by dec_num desc
 	</select>
 
 	<select id="allCount" resultType="int">

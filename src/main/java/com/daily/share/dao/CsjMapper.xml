@@ -87,7 +87,7 @@
 	<select id="boardCall" resultType="com.daily.share.dto.CsjPersonalBlogDTO">
 		select b.board_num,b.board_subject,b.board_cont,b.board_date,b.board_updateDate,b.board_views,b.board_like,b.board_scope,b.board_blind,b.mem_id,b.board_thumFileName
 			,m.menu_num,m.menu_name,m.menu_blind,m.main_num,m.mid_num 
-				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param1} and b.board_blind=0 order by  b.board_num desc
+				from board b left outer join menu m on b.menu_num = m.menu_num where b.mem_id =#{param1} and b.board_blind=0 order by  b.board_like desc
 	</select>
 	
 	<!-- 블로그 페이징용 개수 확인 -->

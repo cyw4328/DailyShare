@@ -23,12 +23,13 @@
    }
    
    .mainBanner{
-
+		background-color:#bb9aca;
    		position: absolute;
    		width: 100%;
    		height: 370px;
    		top:82px;
    		left:0px;
+   		overflow: hidden;
    }
    #Category{
 		width:1000px;
@@ -41,7 +42,7 @@
    	margin : 0px 20px;
 	cursor: pointer;
 	position:relative;
-	top:370px;
+	top:390px;
 	left:0px;
 	width:1000px;
    border-bottom:5px solid #f4f4f4;
@@ -103,9 +104,7 @@
 
 
 .ContImg{
-	display: block;
-    padding: 50px;
-    
+
     border-bottom:1px soled #c4c4c4;
 
 }
@@ -126,6 +125,8 @@
 
 .ContSmall{
 	font-size: 13px;
+	margin-top:20px;
+	margin-left:5px;
 	
 }
 
@@ -141,9 +142,11 @@
 	 display: -webkit-box;
  	 -webkit-line-clamp: 2;
   	-webkit-box-orient: vertical;
-  	 width: 270px;
-  	 margin-top:15px;
+  	 width: 240px;
+  	 margin-top:13px;
   	 margin-bottom: 15px;
+  	 margin-left:12px;
+  	 float: left;
 }
 
 .ContTitle:hover{
@@ -177,21 +180,22 @@ font-size: 13px;
 
 .list_Story{
 	list-style:none;
+
 }
 
 
 .list_Story li {
     position: relative;
-width:1000px;
+	width:1000px;
   	 list-style:none;
+  	 margin-bottom: 20px;
 }
 
 .boardImg{
 	display: block;
 	float: right;
 	position: relative;
-	width: 128px;
-	height: 128px;
+
 	padding: 0px;
 	margin: 0 0 0 46px;
 }
@@ -201,9 +205,10 @@ width:1000px;
 	/* border-bottom:1px solid #cecece; */
    	width: 1000px;
    	position: relative;
-   	top:968px;
+   	top:900px;
    	left: 0px;
    	height: 200px;
+   	
    	
 }
 
@@ -221,19 +226,25 @@ width:1000px;
     position: absolute;
     max-width: 500px;
 	top:0px;
-	left:158px;
-    font-size: 22px;
+	left:160px;
+    font-size: 24px;
     line-height: 1;
-    color: #000;
+    color: #222222;
     font-weight: normal;
     text-overflow: ellipsis;
     white-space: nowrap;
+    
    }
+   
+    .board_title:hover{
+	text-decoration:underline;
+}
+
    
    .boardSTxt{
     position: absolute;
-    top: 60px;
-    left: 158px;
+    top: 50px;
+    left: 160px;
     display: block;
     display: -webkit-box;
     overflow: hidden;
@@ -250,24 +261,24 @@ width:1000px;
     .innerData{
     	font-size: 13px;
     	color: #909090;
-    	border-bottom: 1px solid #909090;
+    	border-bottom: 3px solid #d5d5d5;
     }
     
     .screenOut{
-	    font-size: 13px;
-	    line-height: 13px;
+	    font-size: 14px;
+	    line-height: 14px;
 	    font-family: fontARD;
 	    color: #909090;
 	    position: absolute;
-	    top:60px;
+	    top:52px;
 	    left: 0p;
-	    width: 50px;
+	    width: 100px;
    }
    
    .boardBlogId{
    		position: absolute;
    		top:120px;
-   		left:158px;
+   		left:160px;
    		max-width: 300px;
    		text-overflow: ellipsis;
    		white-space: nowrap;
@@ -276,11 +287,11 @@ width:1000px;
    }
    
    .boardLike{
-   		font-size: 14px;
+   		font-size: 13px;
    		position: absolute;
-   		top:100px;
+   		top:80px;
    		left:0px;
-   		width: 60px;
+   		width: 100px;
    		color: black;
    }
    
@@ -298,7 +309,7 @@ width:1000px;
 		position: absolute;
 		top:300px;
 		left:40%;
-		border:0px;
+
 	}
 	#searchBtn{
 	background-color: black;
@@ -308,22 +319,34 @@ width:1000px;
 	}
 	
 	#sogae{
-	width: 1000px;
+	width: 800px;
 	text-align: center;
 	border-color: white;
 	font-size: 25px;
 	position: relative;
 	left: 0;
 	top: 100px;
-	background-color: #ccc;
+	background-color:  rgb(0, 0, 0,0.7);
+	color: #fff;
 	}
 
  
-	
+	.txt_id{
+
+	}
 	
 	
 	
 <!---------------------------------------------------------------------아래서치관련css-->	
+
+
+
+	  video { width: 100%; }
+
+
+
+
+
 	
 	
    </style>
@@ -334,9 +357,17 @@ width:1000px;
 
 	<div class="mainBanner">
 
+<video muted autoplay loop>
+    <source src="resources/images_shs/Ink - 67358.mp4" type="video/mp4" style="width: 100%; height: 300px;" >
+    
+  </video>
+	
+
 	</div>
 
-	<div id="CateBg"></div>
+	<div id="CateBg">
+
+	</div>
 <div id="sogae"><h1>오늘을 공유하다 DAILY SHARE</h1></div>
 	<div class="container"></div>
 	<div id="Category"></div>
@@ -346,27 +377,21 @@ width:1000px;
 	</div>	
 		<div class="MainSearch">
  		<form action="MainSearch" method="POST">
-     		<table id="SearchInput">
-     			<tr>
-     				<td>
-     					<select name="SearchScope">
+
+     					<select name="SearchScope"  style=" height: 40px; font-size: 17px;">
      						<option selected="selected" value="All">전체</option>
      						<option value="User">작성자</option>
      						<option value="subCont">제목+내용</option>
      					</select>
-     					</td>
-     					<td>
-     					<input type="text" name="ForumSearch"/>
-     					</td>
-     					<td>
-     					<input type="submit" value="검색" id="searchBtn"/>
-     				</td>
-     			</tr>
-     		</table>
+
+     					<input type="text" name="ForumSearch"  style=" height: 40px; font-size: 17px; margin:0px;" />
+
+     					<input type="submit" value="검색" id="searchBtn" style=" height: 40px; margin:0px;"/>
+
      	</form>
 	</div>
 	<div class="section_list">
-		 <ul class = "list_Story">
+		 <ul class = "list_Story"> 
 		 </ul>			
 	</div>
 </body>
@@ -396,7 +421,7 @@ function MainBigCategoryCall() {
 function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 그리는 함수
 	var content = '';
 	
-	for (var i = 0; i <5; i++) {
+	for (var i = 0; i <6; i++) {
 		console.log(list[i].main_name);
 		content += '<span class="BigCate" onclick="MainNum('+list[i].main_num+')">'+list[i].main_name+'</span>';
 		content += '<input type="hidden" value="'+list[i].main_num+'"/>'
@@ -458,7 +483,7 @@ function ForumBoardList(list) {
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +'</span>'+'</dd>'+'</dl>';
-			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
+			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+'<span>'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
@@ -477,10 +502,10 @@ function BestBoardList(Best) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
 			content += '<div class="ContImg">';
-			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
+			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="150px" height="150px" ">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
-			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
+			content += '<p class="ContTitle">'+Best[i].board_subject+'</span>'+'</p>'+'</div>';
 			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
 			content += '</li>';		
 	}
@@ -490,7 +515,7 @@ function BestBoardList(Best) {
 
 
 
-// 메인페이지 첫 시작 시 리스트 
+// 메인페이지 첫 시작 시 리스트 	
 
 function MainPageOpenList() {
 	
@@ -533,18 +558,18 @@ function ForumBoardList(list) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" class = "boardA">';
 			content += '<div class ="boardImg">';
-			content += '<img src="/postImageFolder/'+list[i].board_thumFileName+'" width ="100px" height="100px" alt="boardImg" class = "thumb_g">';
+			content += '<img src="/postImageFolder/'+list[i].board_thumFileName+'" width ="150px" height="150px" alt="boardImg" class = "thumb_g">';
 			content += '</div>';
 			content += '<div class="boardCont">'+'<div class="boardCate">'+'<dl class="listData">'+'<dd>'+'<span class="innerData">'+list[i].mid_name+'</span>'+'</dd>'+'</dl>';
 			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+date.getFullYear()+"-"
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +'</span>'+'</dd>'+'</dl>';
-			content += '<dl class="boardLike">'+'<span>'+"좋아요 "+list[i].board_like+'</span>'+' </dl>'+'</div>';
+			content += '<dl class="boardLike">'+"좋아요 "+'<span>'+'<span class="likeCnt">'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
 			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
 			content += '<div class="boardBlogId">'+'<span>'+list[i].mem_id+'</span>'+'</div>';
-			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr>';		
+			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr style="width:1000px; border:1px solid #ececec">';		
 	}
 	$('.list_Story').append(content);
 }
@@ -556,16 +581,45 @@ function BestBoardList(Best) {
 			content += '<li>';
 			content += '<a target="_blank" href="./csj_detail?board_num='+Best[i].board_num+'&mem_id='+Best[i].mem_id+'" class = "conA">';
 			content += '<div class="ContImg">';
-			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="150px" height="150px"">';
+			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="310px" height="172px" ">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
 			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
 			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
+
 			content += '</li>';		
 	}
 
 	$('.CateCont').append(content);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

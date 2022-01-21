@@ -214,7 +214,7 @@ if(login == null ||login == ''){
 };
 
 if(login != null || login != ''){
-   
+	$('.adminLink').show();
    $.ajax({
       type:'GET',
       url:'adminCk',
@@ -224,7 +224,7 @@ if(login != null || login != ''){
          console.log(data.adminCk);
          if(data.adminCk==1){
             console.log('관리자회원');
-            $('.adminLink').show();
+/*             $('.adminLink').show(); */
          }
          
          

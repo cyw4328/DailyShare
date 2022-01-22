@@ -23,10 +23,25 @@
    	top: 200px;
    	left: 300px;
    }
-   	#title{
+   #title{
 		position: absolute;
-		top: 82px;
+		top: 108px;
 		left: 300px;
+		  font-size: 28px;
+  		font-style: bold;
+	}
+	
+	.borderSt{
+		position: relative;
+		top:145px;
+		left:300px;
+	}
+	
+	.followCnt{
+		 position: absolute;
+	     top :7px;
+	     left:0px;
+	     margin-bottom: 20px;
 	}
     
     </style>
@@ -35,8 +50,10 @@
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="MyPageShs.jsp"%>
 	
-	<div id="title">
-		<h2>블로그 메뉴 수정</h2>
+	<p id="title">블로그메뉴</p>
+	<div class="borderSt">
+		<hr style="border:1px solid #9a9a9a; width: 900px; float: left;">
+		<p class="followCnt">내 블로그의 메뉴를 관리하세요.</p>
 	</div>
 
 	<div id="menu">

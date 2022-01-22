@@ -18,7 +18,7 @@
    
    .followCnt{
    position: relative;
-    top :50px;
+    top :7px;
      left:0px;
      margin-bottom: 20px;
    }
@@ -34,10 +34,10 @@
 	right: 0px;
 	top:50px;
 	float: left;
+	border-collapse: collapse;
 	}
 
-	table,td{
-	border-bottom: 1px solid black;
+	td{
 	border-collapse: collapse;
 	padding: 5px 10px;
 	}
@@ -65,7 +65,24 @@
 	
 	}
   
-
+	.followBtn{
+		float:right; 
+	   margin-right:10px; 
+	   color:#7b7b7b; 
+	   font-weight:bold; 
+	   border:0px;
+	   padding:3px 10px;
+	   border:1px solid #b0b0b0;
+	   border-radius: 20px;
+	   cursor: pointer;
+	   background-color: #fff;
+	}
+	
+	.followBtn:hover{
+		color:#fff; 
+		border:1px solid #f79304;
+		background-color: #f79304;
+	}
    
    
    </style>
@@ -86,11 +103,11 @@
 		<table>
 			<c:forEach var="item" items="${list}">
 				<tr>
-					<!--  <td>${item.mem_blog}</td> -->
-					<td class="subId">${item.mem_id}</td>
+					<%-- <td>${item.mem_blog}</td>  --%>
+					<td class="subId">${item.mem_id} 블로거</td>
 					<td>
 
-						<input class="followBtn" id="${item.sub_num}" type="button" value="구독하기" /> 
+						<a href="./csj_blogMain?mem_id=${item.mem_id}"><input class="followBtn" id="${item.sub_num}" type="button" value="블로그이동" /></a>
 						<%-- <button class="followBtn" id="${item.sub_num}">구독하기</button> --%>
 						<script>
 						var id ='#'+${item.sub_num};
@@ -100,34 +117,7 @@
 
 						
 						
-						
-						console.log('스크립트 테스트');
-						$.ajax({
-							type:'get',
-							url:'followBtnShs',
-							data:{'sub_id':$mem_id},
-							dataType:'JSON',
-							success: function(data) {
-								if (data.result>0) {
-									console.log('data.result');
-									$(id).val('구독중');
-									//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
-									
-								}
-							},
-							error: function(e) {
-								console.log(e);
-							}
-							
-						});
-						
-						
-							
-							
-						
-						
-						
-						
+
 
 						
 
@@ -168,45 +158,6 @@ $('.Following').click(function(){
 	console.log('팔로잉 클릭 확인');
 	location.href = "./followingShs";
 });		 
-
-
-
-
-var BtnVal = '';
-$('.followBtn').click(function followCall(){
-	console.log($(this).parent().prev().text());
-	BtnVal = $(this).val();
-	console.log('스크립트 테스트'+BtnVal);
-	
-	var $mem_id = $(this).parent().prev().text();
-	if((BtnVal) == '구독하기'){	
-		console.log('구독 테스트');
-		console.log(BtnVal);
-		
-		$.ajax({
-			type:'post',
-			url:'followPlusShs',
-			data:{'mem_id':$mem_id},
-			dataType:'JSON',
-			success: function(data) {
-				if(data.result > 0){
-				console.log(data.result);
-				location.href="./followShs";
-				//$(id).html('<button class="un-followBtn" id="${item.sub_num}">구독중</button>');
-				}	
-				
-			},
-			error: function(e) {
-				console.log(e);
-			}
-			
-		}); 
-	}
-		
-		
-		
-	
-});
 
 
 

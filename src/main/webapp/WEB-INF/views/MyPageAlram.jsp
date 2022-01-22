@@ -10,7 +10,7 @@
     <script src="resources/js/jquery.twbsPagination.js"></script>
     <style>
     
-    	   #con_gooDock{width: 1200px;}
+   #con_gooDock{width: 1200px;}
    #gooDock{
       position: relative;
       top :100px;
@@ -48,8 +48,23 @@
 	}
 	#title{
 		position: absolute;
-		top: 82px;
+		top: 108px;
 		left: 300px;
+		  font-size: 28px;
+  		font-style: bold;
+	}
+	
+	.borderSt{
+		position: relative;
+		top:145px;
+		left:300px;
+	}
+	
+	.followCnt{
+		 position: absolute;
+	     top :7px;
+	     left:0px;
+	     margin-bottom: 20px;
 	}
     
     </style>
@@ -57,10 +72,14 @@
 <body>
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="MyPageShs.jsp"%>
-	
-	<div id="title">
-		<h2>알림목록</h2>
+
+		<p id="title">알림목록</p>
+
+	<div class="borderSt">
+		<hr style="border:1px solid #9a9a9a; width: 900px; float: left;">
+		<p class="followCnt">알림목록 입니다.</p>
 	</div>
+
 
 	<div id="AlrimPageList">
 		<table>

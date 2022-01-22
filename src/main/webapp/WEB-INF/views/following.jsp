@@ -60,11 +60,28 @@
 	
   .followCnt{
    position: relative;
-    top :50px;
+    top :7px;
      left:0px;
      margin-bottom: 30px;
    }
-
+	.followBtn{
+		float:right; 
+	   margin-right:10px; 
+	   color:#7b7b7b; 
+	   font-weight:bold; 
+	   border:0px;
+	   padding:3px 10px;
+	   border:1px solid #b0b0b0;
+	   border-radius: 20px;
+	   cursor: pointer;
+	   background-color: #fff;
+	}
+	
+	.followBtn:hover{
+		color:#fff; 
+		border:1px solid #f79304;
+		background-color: #eb3c3c;
+	}
    
    
    </style>
@@ -89,7 +106,7 @@
 					<td>
 						
 						
-						<input class="followBtn" id="${item.sub_num}" type="button" value="구독중" /> 
+						<input class="followBtn" id="${item.sub_num}" type="button" value="구독해제" /> 
 						
 
 						
@@ -141,10 +158,14 @@ $('.followBtn').click(function followCall(){
 	BtnVal = $(this).val();
 	console.log('스크립트 테스트'+BtnVal);
 	
+
 	var $sub_id = $(this).parent().prev().text();
 	console.log($sub_id);
+	   if (confirm("구독을 해제 하시겠습니까?")) {
+           alert("구독이 해제 되었습니다.");
 
-		
+
+	
 		$.ajax({
 			type:'post',
 			url:'followDelShs',
@@ -153,6 +174,7 @@ $('.followBtn').click(function followCall(){
 			success: function(data) {
 				console.log(data.result);
 				if(data.result>0){
+
 					location.href="./followingShs";
 				}
 				
@@ -168,7 +190,9 @@ $('.followBtn').click(function followCall(){
 			
 		}); 
 	
-		
+       } else {
+           // 취소 버튼 클릭 시 동작
+       }
 		
 		
 	

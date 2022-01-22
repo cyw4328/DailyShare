@@ -209,6 +209,7 @@
         <p>자유롭게 이야기를 나눠보세요</p>
  		</div>
 	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd"> 		
+				<input type="hidden" value="21" name="MenuForum"/>
 				<table id="add">
 					<tr style="height: 50px;">
 						<th style="font-size: 13px;">제목</th>

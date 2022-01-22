@@ -46,7 +46,7 @@
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <td><input type="text" name="email" class = "joinCL" />
+                        <td><input type="text" name="email" class = "joinCL" placeholder="@gmail.com" />
                         <input type="button" id="mailCheck" value="메일발송"/></td>
                         </td>
                     </tr>
@@ -54,8 +54,8 @@
                         <th>인증번호</th>
                         <td><input type="text" name="ecode" class = "joinCL"  />
                         <!-- 인증번호 확인 -->
-      					<div class="alert alert-success" id="alert-success-email">인증번호가 일치합니다.</div>
-      					<div class="alert alert-danger" id="alert-danger-email">인증번호가 일치하지 않습니다.</div>
+      					<div class="alert alert-success" id="alert-success-email" style = "color:#19a901; font-size: 13px;">인증번호가 일치합니다.</div>
+      					<div class="alert alert-danger" id="alert-danger-email" style = "color:#e70026; font-size: 13px;">인증번호가 일치하지 않습니다.</div>
                         </td>
                     </tr>
                     <tr>
@@ -139,6 +139,14 @@ $("#btn-join").on("click", function(e) {
       return false;
    } 
    
+   if (!phone.match("-")) { 
+	      alert("전화번호 '-' 를 확인해 주세요.");
+	      return false;
+	   } 
+   
+   
+  
+   
   
    
    var param = {'id':id};
@@ -151,6 +159,7 @@ $("#btn-join").on("click", function(e) {
    
    console.log(param);
    console.log('서버전송 시작');
+   alert("회원가입이 완료 되었습니다.");
    $("form").submit();
 
    
@@ -165,25 +174,39 @@ var code = "";
 //인증번호 이메일 전송
 $("#mailCheck").on("click",function(e){
    console.log('버튼확인');
-   $("#enumber").show();
-   e.preventDefault();
+   
    email = $("input[name='email']").val();
    var ecode = $("input[name='ecode']");
+
    
-   $.ajax({
-      type:"GET",
-      url : "mailCheck",
-      data : {email : email},
-      contentType :"text/plain;charset=UTF-8",
-      success : function(data){ //인증번호를 가져옴
-         
-         //checkBox.val(''); // 기존에 값이 있었으면 지워줌
-         $("#alert-success-email").hide();
-         $("#alert-danger-email").hide();
-         check = false;
-         code = data; // 인증번호를 변수에 저장
-      }
-   });
+   
+	   if(email==null||email == ''||!email.match("@")){
+		   alert('이메일을 확인해 주세요');
+
+	   }else{
+		   $("#enumber").show();
+		   alert('인증번호 발송이 완료 되었습니다.');
+		   $.ajax({
+		      type:"GET",
+		      url : "mailCheck",
+		      data : {email : email},
+		      contentType :"text/plain;charset=UTF-8",
+		      success : function(data){ //인증번호를 가져옴
+	    	  
+	    	   e.preventDefault();
+	         //checkBox.val(''); // 기존에 값이 있었으면 지워줌
+	         $("#alert-success-email").hide();
+	         $("#alert-danger-email").hide();
+	         check = false;
+	         code = data; // 인증번호를 변수에 저장
+	         
+	      }
+		      
+	   });
+		   
+		   
+   }
+   
 });
       
 

@@ -99,6 +99,16 @@
 	.smallTxt:hover{
 		text-decoration:underline;
 	}
+	
+	#list{
+		width: 1000px;
+	}
+	
+	
+	
+	
+	
+	
     </style>
 </head>
 <body>

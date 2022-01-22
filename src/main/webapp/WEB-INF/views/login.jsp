@@ -72,7 +72,9 @@
             </div>
             <div id="contents">
                 <div class="container">
-                	<form action="login" method="post" onsubmit="return submitCheck();">
+                	<form id="loginSubmit" action="login" method="post">
+                		<input type="hidden" id="snsName" name="snsName"/>
+                		<input type="hidden" id="snsEmail" name="snsEmail"/>
                         <table>
                             <!--id-->
                             <tr>
@@ -88,6 +90,11 @@
                             <tr>
                                 <td><input type="submit"  style="background-color: black; cursor:pointer; font-size: 16; width:290px;height:40px; color:white; border-radius: 3px / 3px;"  value="로그인"/></td>
                             </tr>
+                            <!-- 구글 -->
+                            <tr>
+                                <td><input id="btnGoogle" type="button"  style="background-color: black; cursor:pointer; font-size: 16; width:290px;height:40px; color:white; border-radius: 3px / 3px;"  value="Google Login"/></td>
+                            </tr>
+                            <!-- // 구글 -->
                             <!--회원가입/아이디,비밀번호찾기-->
                             <tr>
                                 <td>
@@ -123,6 +130,44 @@
             location.href='./PwSearch'
         });
         
+        /* 구글 */
+        var btnGoogle = $('#btnGoogle');
+        btnGoogle.click(function(e){
+        	var gauth = gapi.auth2.getAuthInstance();
+        	
+        	/* 구글 로그인 성공 */
+        	gauth.signIn().then(function(response){
+        		console.log('구글 로그인');
+        		var profile = gauth.currentUser.get().getBasicProfile();
+        		
+        		console.log('email ' + profile.getEmail());
+        		console.log('name ' + profile.getName());
+        		
+        		$('#snsName').val(profile.getName());
+        		$('#snsEmail').val(profile.getEmail());
+        		$('#loginSubmit').submit();
+        	});
+        });
+        
+		function ggStartApp(){
+        	gapi.load('auth2', function(){
+        		auth2 = gapi.auth2.init({
+        			client_id: '254414474925-349s7n9g5e5rcu4qr3eg7kmrjoq6htv3.apps.googleusercontent.com',
+        			scope:'profile'
+        		});
+        	});
+        }
+		
+		/* JavaScript용 Google SDK 설정 */
+        (function(d,s,id){
+	         var js, fjs = d.getElementsByTagName(s)[0];
+	         if(d.getElementById(id)) {return;}
+	         js = d.createElement(s); js.id = id;
+	         js.src = "https://apis.google.com/js/api:client.js?onload=ggStartApp";
+	         fjs.parentNode.insertBefore(js,fjs);
+        }(document, 'script', 'google-jssdk'));
+        
+        /*// 구글 */
     </script>
-
+	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </html>

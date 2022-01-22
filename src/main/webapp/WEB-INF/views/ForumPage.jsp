@@ -30,40 +30,7 @@
     		top:-300px;
 
     	}
-		.forum1{
-			position: relative;
-    		width: 900px;
-    		height: 58px;
-    		text-align: left; 
-    		font-size: 20px;
-    		padding-left: 20px;
-    		left: 10px;
-    		top: -300px;
-    		background-color: white;
 
-		}
-		.forum2{
-			position: relative;
-    		width: 591px;
-    		height: 38px;
-    		text-align: left; 
-    		font-size: 20px;
-    		padding: 20px;
-    		left: 10px;
-    		top: -295px;
-    		background-color: white;
- 
-		}
-		#forum2{
-			position: relative;
-    		width: 500px;
-    		height: 77px;
-    		text-align: left; 
-    		font-size: 20px;
-    		left: 66px;
-    		top: -38px;
-    		
-		}
     	#ForomBoardCheck{
     		position: relative;
     		left: 840px;
@@ -246,29 +213,16 @@
 					<tr style="height: 50px;">
 						<th style="font-size: 13px;">제목</th>
 						<td>
-							<input type="text" maxlength='100' placeholder="제목을 입력하세요." style="width:100%; height: 100%;"/>
+							<input type="text" maxlength='100' placeholder="제목을 입력하세요."  id="forumSub" name="ForumSub" style="width:100%; height: 100%;"/>
 						</td>
 					</tr>
 					<tr>
 						<th style="font-size: 13px;">내용</th>
 						<td>
-							<textarea maxlength='1000' placeholder="내용을 입력하세요."></textarea>
+							<textarea maxlength='1000' placeholder="내용을 입력하세요." id="message-22d4" name="ForumCont"></textarea>
 						</td>
 					</tr>
 				</table>
-	    		<!--
-	    		<div class="forum1">
-	    			<p style="font-size:13px;">제목
-	    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    			<input type="text" placeholder="제목을 입력하세요" id="forumSub" name="ForumSub" style=" width:500px; height:60px; margin-top:-1px;"></p>
-	    		</div>
-	    		<div class="forum2">
-	    			<p style="font-size:13px;">내용</p>
-	    			<div id="forum2">
-	    			<textarea placeholder="내용을 입력하세요." rows="5" cols="67" id="message-22d4" name="ForumCont"></textarea>
-	    			</div>
-	    		</div>
-	    		  -->
 	    		<input type="submit" value="등록하기" id="ForomBoardCheck">
           	</form>
          

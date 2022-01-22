@@ -96,6 +96,9 @@ public class CsjContoller {
 				logger.info("가져온 메뉴 : {}",menuDTO);
 				model.addAttribute("menu", menuDTO);
 			}
+			String mem_blog =service.blogName(loginId);
+			logger.info("블로그 이름 요청 {}",mem_blog);
+			model.addAttribute("mem_blog",mem_blog);
 		return page;
 	}
 	

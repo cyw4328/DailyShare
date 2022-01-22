@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    
 
     <style>
     	.ForBg{
@@ -23,7 +24,7 @@
     		text-align: left; 
     		font-size: 20px;
     		padding: 30px;
-    		width: 700px;
+    		width: 1000px;
     		height: 30px;
     		left: 50px;
     		top:-300px;
@@ -31,7 +32,7 @@
     	}
 		.forum1{
 			position: relative;
-    		width: 613px;
+    		width: 900px;
     		height: 58px;
     		text-align: left; 
     		font-size: 20px;
@@ -65,8 +66,8 @@
 		}
     	#ForomBoardCheck{
     		position: relative;
-    		left: 860px;
-    		top: -285px;
+    		left: 840px;
+    		top: -40px;
     		background-color: black;
     		color: white;
     		width: 100px;
@@ -88,8 +89,26 @@
     	}
     	
     	#ForumBoardAdd{
-    		padding: 15px 200px;
+    		position: relative;
+    		width: 1000px;
+    		height: 200px;
+    		top:-300px;
+    		left:10px;
     	}
+    	
+    	#add{
+    		width: 800px;
+    		height: 200px; 
+    		background-color: white;
+    		margin-left: 30px;
+	   }
+
+	   textarea{
+	   		width:100%;
+	   		height: 100%;
+	   		display: inline-block;
+	   }
+	   
     	.forumTd{
          max-width: 500px;
          text-overflow: ellipsis;
@@ -100,12 +119,10 @@
          border-bottom: 1px solid black;
          
    }
-         #ForumBoardListTable{
-			border : 1px solid black;
-			border-collapse : collapse;
+         #ForumBoardList{
 			position: relative;
-    		width: 700px;
-    		text-align: left; 
+    		width: 1000px;
+    		height: 200px;
     		font-size: 20px;
     		padding: 20px;
     		top: -550px;
@@ -113,14 +130,107 @@
          
          #moreBtn{
     		position: relative;
-    		left: 800px;
-    		top: -550px;
+    		left: 500px;
+    		top: 10px;
     		background-color: black;
     		width: 100px;
     		height: 50px;
     		color: white;
     	}
-    	
+
+
+
+
+
+	.ForumBoardList{
+		list-style:none;
+	
+	}
+	
+	
+	.ForumBoardList li {
+	    position: relative;
+	  	 list-style:none;
+	  	 margin-bottom: 20px;
+	}
+
+   
+   .board_title{
+   	display: block;
+    overflow: hidden;
+    position: absolute;
+    max-width: 500px;
+	top:80px;
+	left:50px;
+    font-size: 24px;
+    line-height: 1;
+    color: #222222;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+   }
+   
+    .board_title:hover{
+	text-decoration:underline;
+}
+
+   
+   .boardSTxt{
+    position: absolute;
+    top: 110px;
+    left: 60px;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    width: 564px;
+    max-height: 44px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 15px;
+    color: #777;
+    line-height: 22px;
+    padding: 0 0 0 1px;
+    }
+    
+    .screenOut{
+	    font-size: 14px;
+	    line-height: 14px;
+	    font-family: fontARD;
+	    color: #909090;
+	    position: relative;
+	    width: 200px;
+	   	top:25px;
+	   	left:0px;
+	   	text-decoration : none;
+   }
+
+   .boardLike{
+   		font-size: 13px;
+   		position: absolute;
+   		top:50px;
+   		left:900px;
+   		width: 100px;
+   		color: black;
+   }
+   
+	.likeCnt{
+		color: red;
+	} 
+	
+	*{margin: 0 auto;}		
+      
+	   li{
+	   list-style:none;
+	   }
+	   
+	#searchBtn{
+	background-color: black;
+	color: white;
+	width: 90px;
+	height: 40px;
+	}
+	   
     </style>
 </head>
 <body>
@@ -131,8 +241,22 @@
         <h3>FORUM</h3>
         <p>자유롭게 이야기를 나눠보세요</p>
  		</div>
-	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd">
-	    		<input type="hidden" value="21" name="MenuForum"/>
+	    	<form action="ForumBoardAdd" method="POST" id="ForumBoardAdd"> 		
+				<table id="add">
+					<tr style="height: 50px;">
+						<th style="font-size: 13px;">제목</th>
+						<td>
+							<input type="text" maxlength='100' placeholder="제목을 입력하세요." style="width:100%; height: 100%;"/>
+						</td>
+					</tr>
+					<tr>
+						<th style="font-size: 13px;">내용</th>
+						<td>
+							<textarea maxlength='1000' placeholder="내용을 입력하세요."></textarea>
+						</td>
+					</tr>
+				</table>
+	    		<!--
 	    		<div class="forum1">
 	    			<p style="font-size:13px;">제목
 	    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -144,6 +268,7 @@
 	    			<textarea placeholder="내용을 입력하세요." rows="5" cols="67" id="message-22d4" name="ForumCont"></textarea>
 	    			</div>
 	    		</div>
+	    		  -->
 	    		<input type="submit" value="등록하기" id="ForomBoardCheck">
           	</form>
          
@@ -156,13 +281,13 @@
      		<table>
      			<tr>
      				<td>
-     					<select name="SearchScope">
+     					<select name="SearchScope" style=" height: 40px; font-size: 17px;">
      						<option selected="selected" value="All">전체</option>
      						<option value="User">작성자</option>
      						<option value="subCont">제목+내용</option>
      					</select>
-     					<input type="text" name="ForumSearch"/>
-     					<input type="submit" value="검색"/>
+     					<input type="text" name="ForumSearch" style=" height: 40px; font-size: 17px; margin:0px;"/>
+     					<input type="submit" id="searchBtn" style=" height: 40px; margin:0px;" value="검색"/>
      				</td>
      			</tr>
      		</table>
@@ -171,46 +296,56 @@
    		<br/>
 
      	<div>
-        <table id="ForumBoardListTable" >
-        	<thead></thead>
-        	<tbody class="ForumBoardList">
-        	</tbody>
-		</table>
-		<br/>
-		<button onclick="more()" id="moreBtn">더보기</button>
-		<br/>
+        <div id="ForumBoardList" >
+        	<ul class = "ForumBoardList"> 		
+			</ul>
+			<br/>
+			<button onclick="more()" id="moreBtn">더보기</button>
+			<br/>		
+		</div>
 		</div>
 
 </body>
 <script>
+
+
+
+<!-- 로그인,제목+내용입력시 등록가능 -->
 $("#ForomBoardCheck").on("click", function(e) {
 	   e.preventDefault();
-	   var ForumSub = $("input[name='ForumSub']").val();
-	   var ForumCont = $("#message-22d4").val();
+	   var loginId = '<%=(String)session.getAttribute("loginId")%>';
 	   
-	   //아이디,비밀번호 유효성 검사
-	   if (ForumSub == null || ForumSub == "") { 
-	      alert("제목을 입력해주세요");
-	      return false;
-	   } 
-	   else if (ForumCont == null || ForumCont == "") { 
-	      alert("내용을 입력해주세요");
-	      return false;
+	   if (loginId == "null") {
+			alert("로그인이 필요한 기능입니다.");
+			location.href='./loginPage';
 	   }else{
-		   alert("등록되었습니다.");
-		   $('#ForumBoardAdd').submit();
+		   var ForumSub = $("input[name='ForumSub']").val();
+		   var ForumCont = $("#message-22d4").val();
 		   
-	   } 
+		   //아이디,비밀번호 유효성 검사
+		   if (ForumSub == null || ForumSub == "") { 
+		      alert("제목을 입력해주세요");
+		      return false;
+		   } 
+		   else if (ForumCont == null || ForumCont == "") { 
+		      alert("내용을 입력해주세요");
+		      return false;
+		   }else{
+			   alert("등록되었습니다.");
+			   $('#ForumBoardAdd').submit();	   
+		   }
+	   }
 });
+
 
 
 var currPage = 1;
 
-ForumListCall(currPage,10);
+ForumListCall(currPage,5);
 
 function more() {
 	currPage++;
-	ForumListCall(currPage,10);
+	ForumListCall(currPage,5);
 }
 
 function ForumListCall(page,cnt) {
@@ -231,7 +366,7 @@ function ForumListCall(page,cnt) {
 		}
 	});
 }
-
+/*
 function ForumBoardList(list) {
 	var content = '';
 	
@@ -257,18 +392,26 @@ function ForumBoardList(list) {
 	}
 	$('.ForumBoardList').append(content);
 };
-
-$('#ForomBoardCheck').click(function() {
-	var loginId = '<%=(String)session.getAttribute("loginId")%>';
+*/
+function ForumBoardList(list) {
+	var content = '';
 	
-	if (loginId == "null") {
-		alert("로그인이 필요한 기능입니다.");
-	}else{
-		$('#ForomBoardCheck').submit();
-		
+	for (var i = 0; i < list.length; i++) {
+		var date = new Date(list[i].board_date);
+			content += '<li onclick=location.href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" style="cursor:hand">';
+			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+list[i].mem_id+'&nbsp;&nbsp;&nbsp;&nbsp;'+date.getFullYear()+"-"
+		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
+		      +("0" + date.getDate()).slice(-2)+" "
+		      +("0" + date.getHours()).slice(-2)+":"
+		      +("0" + date.getMinutes()).slice(-2)+""
+		      +'</span>'+'</dd>'+'</dl>';
+			content += '<dl class="boardLike">'+"좋아요 "+'<span>'+'<span class="likeCnt">'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
+			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
+			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
+			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr style="width:1000px; border:1px solid #ececec">';		
 	}
-	
-})
+	$('.ForumBoardList').append(content);
+}
 
 
 </script>

@@ -77,7 +77,7 @@
 	
 	
 	.csj_com_list{
-		
+
 		border-radius:5px;
 		position : relative;
 		height: 150px;
@@ -87,10 +87,11 @@
 	}
 	.csj_com_mem_id{
 		position: absolute;
-		left: 50px;
+		left: 25px;
 		top:15px;
-		font-size: 20px;
+		font-size: 16px;
 		font-weight: 600;
+		color: #555555;
 	}
 	.csj_com_a{
 		position: absolute;
@@ -250,7 +251,7 @@
 	}
 	
 	#rereple{
-	background-color:#F3F3F3;
+	background-color:#fafafa;
 	}
 
 	</style>
@@ -294,7 +295,7 @@
 										</span>
 										
 										<div class="csj_com_content" style="width:800px;">
-											<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
+											<span style="color:#b9b9b9;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>
 										</div>
@@ -304,7 +305,7 @@
 									</div>						
 								</c:if>
 								<c:if test="${comList.com_depth eq 1}">
-									<div class="csj_com_list" style="margin-left:100px; width: 550px" id="rereple">
+									<div class="csj_com_list" style=" width: 900px" id="rereple">
 										<span class="csj_com_mem_id">
 											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
 										</span>
@@ -320,7 +321,7 @@
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
 										<div class="csj_com_content" style="width:400px;">
-											<span style="color:blue;">@${comList.com_targetId}&nbsp;</span>
+											<span style="color:blue; color:#b9b9b9;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>
 										</div>
@@ -329,7 +330,7 @@
 										</c:if>
 									</div>						
 								</c:if>
-							<hr/>	
+							<hr style="margin:0;padding: 0px;">	
 							</td>
 						</tr>
 						
@@ -363,15 +364,21 @@ function singoPop() {
 }
 
 
-	/* 댓글 submit 버튼 */
-	$('#csj_com_button').click(function(){
-		if ($('#csj_com_content').val() == "") {
-			alert("내용을 입력하세요.");
-			$('#csj_com_content').focus();
-		}else {
-			$('#csj_com_form').submit();
-		}
+	/* 답글 submit 버튼 */
+	$('.csj_reply_submit').click(function() {
+	
+	   if ($loginId == '') {
+	      alert("로그인이 필요한 기능입니다.");
+	      location.href='./loginPage'
+	   }else if ($(this).prev().val() == "") {
+	      alert("내용을 입력하세요.");
+	   }else {
+	      $(this).parent().submit();
+	   }
 	});
+		
+	
+	
 	
 	/* 답글 입력창 보여주기 */
 	$('.reply_create').click(function name() {

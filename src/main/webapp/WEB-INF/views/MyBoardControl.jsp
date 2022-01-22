@@ -32,7 +32,7 @@
    }
    	#title{
 		position: absolute;
-		top: 82px;
+		top: 100px;
 		left: 300px;
 	}
 	#Search{
@@ -42,6 +42,26 @@
 	   	top: 140px;
 	   	left: 300px;
 	}
+	
+	#title{
+		position: absolute;
+		top: 108px;
+		left: 300px;
+		  font-size: 28px;
+  		font-style: bold;
+	}
+	
+	.borderSt{
+		position: relative;
+		top:145px;
+		left:300px;
+	}
+	
+	.followCnt{
+		 position: absolute;
+	     top :13px;
+	     left:0px;
+	}
     
     </style>
 </head>
@@ -49,8 +69,10 @@
 	<%@ include file="headerShs_login.jsp"%>
 	<%@ include file="MyPageShs.jsp"%>
 	
-	<div id="title">
-		<h2>내 게시글 목록</h2>
+	<p id="title">MY 게시글</p>
+	<div class="borderSt">
+		<hr style="border:1px solid #9a9a9a; width: 1000px; float: left; margin: 0px;"><br>
+		<p class="followCnt">내가 올린 게시글을 확인하세요.</p>	
 	</div>
 	
 	

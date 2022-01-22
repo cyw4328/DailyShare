@@ -32,7 +32,7 @@
 
    
     #left{
-      border: 1px solid black;
+      border: 1px solid #d5d5d5;
 		text-align: center;
 		line-height: 80px; 
 		text-align: left;
@@ -55,13 +55,18 @@
       }
       
    .tab00{
-    border: 1px solid black;
+    border-left: 1px solid #d5d5d5;
+    border-top: 1px solid #d5d5d5;
+    border-right: 1px solid #d5d5d5;
     height: 40px;
     line-height: 40px;
 	cursor: pointer;
 	padding-left: 10px;
-	
    }
+    .tab00:last-child{
+    border-bottom: 1px solid #d5d5d5;
+    }
+   
    
    .tab00 a{
    text-decoration-line : none;
@@ -70,7 +75,7 @@
    
    .tab00:hover{
     font-weight: bold;
-    color: orange;
+    color: #ff8a00;
    }
 
    

@@ -364,16 +364,16 @@ function singoPop() {
 }
 
 
-	/* 답글 submit 버튼 */
-	$('.csj_reply_submit').click(function() {
-	
+	/* 댓글 submit 버튼 */
+	$('#csj_com_button').click(function(){
 	   if ($loginId == '') {
 	      alert("로그인이 필요한 기능입니다.");
 	      location.href='./loginPage'
-	   }else if ($(this).prev().val() == "") {
+	   }else if ($('#csj_com_content').val() == "") {
 	      alert("내용을 입력하세요.");
+	      $('#csj_com_content').focus();
 	   }else {
-	      $(this).parent().submit();
+	      $('#csj_com_form').submit();
 	   }
 	});
 		
@@ -391,16 +391,17 @@ function singoPop() {
 	});
 	
 	/* 답글 submit 버튼 */
-	$('.csj_reply_submit').click(function() {
-		console.log('답글 submit 작동');
-		if ($(this).prev().val() == "") {
-			alert("내용을 입력하세요.");
-			
-			
-		}else {
-			$(this).parent().submit();
-		}
-	});
+   $('.csj_reply_submit').click(function() {
+
+      if ($loginId == '') {
+         alert("로그인이 필요한 기능입니다.");
+         location.href='./loginPage'
+      }else if ($(this).prev().val() == "") {
+         alert("내용을 입력하세요.");
+      }else {
+         $(this).parent().submit();
+      }
+   });
 	var loginId = '${loginId}';
 	var $board_num=${boardDetail.board_num};
 	var $mem_id= '${boardDetail.mem_id}';

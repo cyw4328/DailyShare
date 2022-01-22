@@ -152,7 +152,7 @@
 		function ggStartApp(){
         	gapi.load('auth2', function(){
         		auth2 = gapi.auth2.init({
-        			client_id: '254414474925-349s7n9g5e5rcu4qr3eg7kmrjoq6htv3.apps.googleusercontent.com',
+        			client_id: '129429202482-inm4p4ghvpr97o58ffn3f03ob4h049vn.apps.googleusercontent.com',
         			scope:'profile'
         		});
         	});

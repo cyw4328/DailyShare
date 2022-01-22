@@ -75,5 +75,13 @@ public class HjwService {
 		return dao.adminCk(loginId);
 	}
 
-
+	/* 구글 */
+	public String snsLogin(String snsId) {
+		return dao.snsLogin(snsId);
+	}
+	
+	public void snsIdInsert(String snsId, String snsName, String snsEmail) {
+		dao.snsIdInsert(snsId,snsName,snsEmail);
+	}
+	/*// 구글 */
 }

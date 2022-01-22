@@ -39,9 +39,10 @@ public interface HjwDAO {
 
 	int adminCk(String loginId);
 
+	/* 구글 */
+	String snsLogin(String snsId);
 	
-
-
-
+	void snsIdInsert(String snsId, String snsName, String snsEmail);
+	/*// 구글 */
 
 }

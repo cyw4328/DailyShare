@@ -102,17 +102,15 @@
 		select count(adm_num) from admins where mem_id=#{param1} 
 	</select>
 	
+	<!-- 구글 -->
+	<select id="snsLogin" resultType="String">
+		select mem_id from members
+		where mem_id = #{param1}
+	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<insert id="snsIdInsert">
+		INSERT INTO MEMBERS (mem_id, mem_name, mem_email)VALUES (#{param1},#{param2}, #{param3})
+	</insert>
+	<!-- // 구글 -->
 	
 </mapper>

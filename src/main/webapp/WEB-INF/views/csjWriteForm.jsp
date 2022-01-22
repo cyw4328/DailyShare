@@ -293,7 +293,7 @@ function handleImgFileSelect(e){
          index++;
          
       }
-/*       $('#multiple_container').css('min-height',height+100); */
+		$('#multiple_container').css('min-height',height+200*img_files.length);
 
       reader.readAsDataURL(f);
       
@@ -310,7 +310,7 @@ function imgSelect(index) {
    img_files.splice(index,1);
    
    $(img_id).remove();
-/*    $('#multiple_container').css('min-height',height-100); */
+	$('#multiple_container').css('min-height',height-200);
    console.log(img_files.length);
    
    $('#photoNum').html(img_files.length);

@@ -165,7 +165,9 @@ border-bottom:1px solid black;
 <body style="overflow-x: hidden">
     <div id="container">
     <div id="header">
+
         <div id="logo"><a href="./MainPageShs" style="color: black;font-size: 23px; padding: 0px;margin: 0px;">DailyShare</a></div>
+
         <nav>
             <div class="menubar"> 
 

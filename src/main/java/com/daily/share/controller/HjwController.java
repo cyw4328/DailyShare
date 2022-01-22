@@ -83,18 +83,41 @@ public class HjwController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model,@RequestParam String userId,@RequestParam String userPass,HttpSession session) {
+	public String login(Model model,@RequestParam String userId,@RequestParam String userPass, @RequestParam String snsName, @RequestParam String snsEmail, HttpSession session) {
+		
 		logger.info("로그인 요청");
-		logger.info(userId+"/"+userPass);
-		String msg ="아이디 또는 패스워드를 확인하세요";
-		String page = "login";
-		String loginId = service.login(userId,userPass);
-		logger.info("로그인 한 아이디 여부 : "+loginId);
-		if(loginId != null) {
-			page =  "redirect:/MainPageShs";
-			session.setAttribute("loginId", loginId);
-			msg =null;
+		
+		String page = "";
+		String msg = null;
+		
+		if(!"".equals(snsEmail)) {
+			/* SNS 로그인 */
+			String snsId = snsEmail.split("@")[0];
+			logger.info("snsId, snsName, snsEmail : "+ snsId +", "+snsName +", "+ snsEmail);
+			String memberSnsId = service.snsLogin(snsId);
+			
+			/* 가입된 아이디가 없을 경우, 아이디 회원가입 */
+			if(memberSnsId == null) {
+				service.snsIdInsert(snsId, snsName,snsEmail);
+			}
+			
+			session.setAttribute("loginId", snsId);
+			page = "MainPageShs";
+			
+		}else {
+			/* 일반 로그인 */
+			logger.info(userId+"/"+userPass);
+			msg ="아이디 또는 패스워드를 확인하세요";
+			page = "login";
+			String loginId = service.login(userId,userPass);
+			logger.info("로그인 한 아이디 여부 : "+loginId);
+			if(loginId != null) {
+				page =  "MainPageShs";
+				session.setAttribute("loginId", loginId);
+				msg =null;
+			}
 		}
+		
 		model.addAttribute("msg",msg);
 		return page;
 	}

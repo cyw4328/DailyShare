@@ -77,11 +77,14 @@
 	 		width: 100%;
 	 		min-height: 700px;
 	 		border-bottom:2px solid gray;
+	 		padding-bottom: 40px;
+	 		
 	 	}
 	 	.likesTag{
 	 		position: absolute;
 	 		bottom:0px;
 	 		left: 0px;
+	 		
 	 	}
 	 	.likesTag span{
 	 		color: gray;
@@ -330,7 +333,7 @@ function del() {
 	var yn = confirm("정말 이글을 삭제 하시겠습니까?");
 	
 	if (yn) {
-		location.href='./boardDel?board_num=${boardDetail.board_num}';
+		location.href='./boardDel?board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}';
 	}
 	
 }

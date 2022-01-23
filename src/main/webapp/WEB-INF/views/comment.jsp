@@ -60,6 +60,7 @@
 		border-radius:5px;
 		background-color: #ffffff;
 		font-weight: 600;
+		cursor: pointer;
 
 	}
  	#csj_com_content{
@@ -97,16 +98,16 @@
 		position: absolute;
 		right: 50px;
 		top: 15px;
-		font-size: 17px;
+		font-size: 14px;
 	}
 	.csj_com_content{
 		/* background-color:#FAFAFA; */
 		position: absolute;
-		top: 30px;
+		top: 45px;
 		left:10px;
 		height:90px;
 		/* max-width:400px; */
-		font-size: 20px;
+		font-size: 17px;
 		overflow: hidden;
 		/* background-color: lightgray; */
 		/* border: 1px solid gray; */
@@ -125,14 +126,15 @@
 	.reply_create{
 		position:absolute;
 		right:50px;
-		top:70px;
+		top:109px;
 		border: 0;
 		background-color: #ffffff;
 		padding: 0px;
-		font-size: 18px;
+		font-size: 16px;
 		font-weight: 600;
 		color: #3c3c3c;
 		cursor: pointer;
+		text-decoration: underline;
 	}
 
 
@@ -152,12 +154,12 @@
 	}
 	.com_fix_content{
 		position:absolute;
-		width: 430px;
+		width: 800px;
 		height: 100px;
 		right: 100px;
 		top:35px;
 		
-		
+		font-size:17px;
 		border-right : 4px solid lightgray;
 		border-bottom : 4px solid lightgray;
 		border-left : 2px solid lightgray;
@@ -227,6 +229,7 @@
 		border-radius:5px;
 		background-color: #ffffff;
 		font-weight: 600;
+		cursor: pointer;
 	}
 	.cancle{
 		position: absolute;
@@ -278,7 +281,7 @@
 							<td>
 								<c:if test="${comList.com_depth eq 0}">
 									<div class="csj_com_list">
-										<span class="csj_com_mem_id">
+										<span class="csj_com_mem_id" style="top:22px;">
 											<a href="./csj_blogMain?mem	_id=${comList.mem_id }">${comList.mem_id}</a>
 										</span>
 										
@@ -286,7 +289,7 @@
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
 												<span class="com_fix">수정</span>&nbsp;
-												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
+												<a class="com_del" href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
 												<a href="#" onclick="singoPop()">신고</a>&nbsp;
@@ -294,7 +297,7 @@
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
 										
-										<div class="csj_com_content" style="width:800px;">
+										<div class="csj_com_content" style="width:800px; left: 20px;">
 											<span style="color:#b9b9b9;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>
@@ -306,21 +309,21 @@
 								</c:if>
 								<c:if test="${comList.com_depth eq 1}">
 									<div class="csj_com_list" style=" width: 900px" id="rereple">
-										<span class="csj_com_mem_id">
-											<a href="./csj_blogMain?mem_id=${comList.mem_id }">${comList.mem_id}</a>
+										<span class="csj_com_mem_id" style="left:50px; top:22">
+											<a href="./csj_blogMain?mem_id=${comList.mem_id }">ㄴ ${comList.mem_id}</a>
 										</span>
 										<input type="hidden" value="${comList.com_num}"/>
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
 												<span class="com_fix">수정</span>&nbsp;
-												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
+												<a class="com_del" href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
 											<a href="#"onclick=" singoPop()">신고</a>&nbsp;
 											</c:if>
 											<fmt:formatDate value="${comList.com_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
-										<div class="csj_com_content" style="width:400px;">
+										<div class="csj_com_content" style="width:750px; left: 50px;">
 											<span style="color:blue; color:#b9b9b9;">@${comList.com_targetId}&nbsp;</span>
 											<span>${comList.com_cont}&nbsp;
 											</span>
@@ -341,7 +344,7 @@
 										<input type="hidden" name="mem_id" value="${loginId}" />
 										<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
 										<input type="hidden" name="board_num" value="${boardDetail.board_num}" />
-										<input type="hidden" name="com_parent" value="${comList.com_num}" />
+										<input type="hidden" name="com_parent" value="${comList.com_parent}" />
 										<textarea class="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id}&nbsp;댓글을 입력하세요"></textarea>
 										<input class="csj_reply_submit" type="button"  value="등록" />
 										<input class="reply_close" type="button"  value="X" />	
@@ -452,6 +455,10 @@ function singoPop() {
 		
 	});
 	
+	
+	$('.com_del').click(function () {
+		alert('댓글을 삭제하시겠습니까?');
+	});
 	
 	
 	

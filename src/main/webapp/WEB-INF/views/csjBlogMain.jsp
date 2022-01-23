@@ -16,6 +16,7 @@
 	<style>
 		#container_wrap{
 			position:relative;
+			width: 1400px;
 /* 			width: 1400px;
 			height: 1500px; */
 			/* border:2px solid red; */
@@ -123,14 +124,18 @@
 		}
 		
 		.bodySub{
-			display: block;
+			/* display: block; */
 			font-size: 25px;
 			font-weight: 600;
-			max-height: 70px;
+			/* max-height: 70px; */
 			overflow: hidden;
 			/* white-space :nowrap; */
-			text-overflow: ellipsis;
+			/* text-overflow: ellipsis; */
 			margin-bottom: 10px;
+			display: -webkit-box;
+	        -webkit-line-clamp: 2;
+	        -webkit-box-orient: vertical;
+	        padding-top: 10px;
 		}
 		.bodyCont{
 			/* position:absolute; */
@@ -142,17 +147,17 @@
 			display: -webkit-box;
 	        -webkit-line-clamp: 3;
 	        -webkit-box-orient: vertical;
-	        padding-top: 10px;
+	        margin-bottom: 10px;
 		}
 		.bodyMenu{
-			position:absolute;
+			/* position:absolute; */
 			bottom:45px;
 			font-size: 16px;
 			color: crimson;
-			
+			margin-right: 10px;
 		}
 		.bodyDate{
-			position:absolute;
+			/* position:absolute; */
 			bottom:47px;
 			right:320px;
 			font-size: 14px;

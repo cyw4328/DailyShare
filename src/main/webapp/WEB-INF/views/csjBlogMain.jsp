@@ -16,6 +16,7 @@
 	<style>
 		#container_wrap{
 			position:relative;
+			width: 1400px;
 /* 			width: 1400px;
 			height: 1500px; */
 			/* border:2px solid red; */

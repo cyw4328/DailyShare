@@ -19,7 +19,7 @@
 	
 	<!-- 개인정보 확인 -->
 	<select id="memberDe" resultType="com.daily.share.dto.ShsDTO">
-		select mem_name,mem_email, mem_phone,mem_blog,mem_url from members WHERE mem_id =#{param1}
+		select mem_name,mem_email, mem_phone,mem_blog,mem_url,mem_blog,mem_pw from members WHERE mem_id =#{param1}
 	</select>
 		
 	<!-- 개인정보 수정 -->

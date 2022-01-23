@@ -67,10 +67,10 @@
 	            </tr>
 	            <tr>
 	            	<th>비밀번호</th>
-	           		<td  style="border-bottom:1px solid #dedede;"><input type="password" name="pw" placeholder="새로운 비밀번호" class="pw" " value="${info.mem_name}"  style="border:1px solid #ccc;"/></td>
+	           		<td  style="border-bottom:1px solid #dedede;"><input type="password" name="pw" placeholder="새로운 비밀번호" class="pw" value="${info.mem_pw}"  style="border:1px solid #ccc;"/></td>
 	           	</tr>
 	            	<th>확인</th>
-	            	<td  style="border-bottom:1px solid #dedede;"><input type="password" name="repw" placeholder="비밀번호 확인"  class="pw"  value="${info.mem_name}" style="border:1px solid #ccc;"/></td>
+	            	<td  style="border-bottom:1px solid #dedede;"><input type="password" name="repw" placeholder="비밀번호 확인"  class="pw" value="${info.mem_pw}" style="border:1px solid #ccc;"/></td>
 	            </tr>
 	        		<div class="successPw" id="successPw" style="color:#2cba00;">비밀번호가 일치합니다.</div>
 					<div class="dangerPw" id="dangerPw" style="color:#ce0000;">비밀번호가 일치하지 않습니다.</div>

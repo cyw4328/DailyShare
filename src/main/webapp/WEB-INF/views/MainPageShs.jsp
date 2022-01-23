@@ -50,8 +50,9 @@
    }
    
    .BigCate:hover{
-   		border-bottom:5px solid #ec5041;
+   		border-bottom:6px solid #ec5041;
    		color:black;
+   		
    }
    
    
@@ -437,7 +438,21 @@ function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 �
 	}
 	$('#Category').empty();
 	$('#Category').append(content); // 선택한 뒤에 내용을 추가하는 append
+	
+	
+	$('.BigCate').click(function() {
+		$(this).css({'border-bottom':'6px solid #ec5041', color:'black' });
+		$(this).siblings().css({'color':'#848484','border-bottom':'6px solid #f4f4f4'});
+	});
+	
+	
 }
+
+
+
+
+
+
 
 function MainNum(e) {
 	console.log(e);

@@ -358,7 +358,8 @@ function ForumBoardList(list) {
 		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
 		      +("0" + date.getDate()).slice(-2)+" "
 		      +("0" + date.getHours()).slice(-2)+":"
-		      +("0" + date.getMinutes()).slice(-2)+""
+		      +("0" + date.getMinutes()).slice(-2)+":"
+		      +("0" + date.getSeconds()).slice(-2)+""
 		      +'</span>'+'</dd>'+'</dl>';
 			content += '<dl class="boardLike">'+"좋아요 "+'<span>'+'<span class="likeCnt">'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
 			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';

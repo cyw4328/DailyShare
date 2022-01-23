@@ -18,9 +18,7 @@
 	    }
 
     	#forumTd{
-    		border-bottom: 1px solid black;
     		width: 1000px;
-    		text-align: center;
 
     	}
     	
@@ -29,7 +27,65 @@
     		top:150px;
     		left: 0;
     	}
-    	
+    	    
+	    #id{
+		    font-size: 14px;
+		    line-height: 14px;
+		    font-family: fontARD;
+		    color: #909090;
+		    position: relative;
+		    width: 500px;
+		   	top:-30px;
+		   	left:-190px;
+		   	text-decoration : none;
+	   }
+	   
+	    #like{
+	   		font-size: 13px;
+	   		position: absolute;
+	   		top:-30px;
+	   		left:900px;
+	   		width: 100px;
+	   		color: black;
+	   }
+	   
+	    #subject{
+		   	display: block;
+		    overflow: hidden;
+		    position: absolute;
+		    max-width: 500px;
+			top:10px;
+			left:100px;
+		    font-size: 24px;
+		    line-height: 1;
+		    color: #222222;
+		    font-weight: normal;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+	   }
+	   
+	   #cont{
+		   	position: absolute;
+		    top: 40px;
+		    left: 110px;
+		    display: block;
+		    display: -webkit-box;
+		    overflow: hidden;
+		    width: 564px;
+		    max-height: 44px;
+		    -webkit-box-orient: vertical;
+		    -webkit-line-clamp: 2;
+		    font-size: 15px;
+		    color: #777;
+		    line-height: 22px;
+		    padding: 0 0 0 1px;
+	   }
+	   #likecolor{
+	   		color:red;
+	   		position: relative;
+	   		top: -19px;
+		    left: 45px;
+	   }
     	
     </style>
 </head>
@@ -51,13 +107,15 @@
 		<tbody>
 		
 		<c:forEach var="item" items="${list}">
-			<tr onclick='location.href="./csj_detail?board_num=${item.board_num}&mem_id=${item.mem_id}' style="cursor: hand" class="searchLi">
+			<tr onclick="location.href='./csj_detail?board_num=${item.board_num}&mem_id=${item.mem_id}'" style="cursor: hand" class="searchLi">
 				<td id="forumTd">
-					<c:out value="${item.mem_id}"/>&nbsp;&nbsp;
-					<c:out value="${item.board_date}"/>&nbsp;&nbsp;
-					추천수 : <c:out value="${item.board_like}"/><br/>
-					<c:out value="${item.board_subject }"/><br/>
-					<c:out value="${item.board_cont}"/>
+					<div id="id"><c:out value="${item.mem_id}"/>&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${item.board_date}"/></div>
+					<div id="like">좋아요<div id="likecolor"><c:out value="${item.board_like}"/></div></div>
+					<div id="subject"><c:out value="${item.board_subject }"/></div>
+					<div id="cont"><c:out value="${item.board_cont}"/></div>
+					<br/><br/><br/><br/><br/><br/><br/>
+					<hr style="width:1000px; border:1px solid #ececec">
+					<br/><br/>
 				</td>
 			</tr>
 		</c:forEach>
@@ -66,26 +124,6 @@
 	
 </body>
 <script>
-/*
-function ForumBoardList(list) {
-	var content = '';
-	
-	for (var i = 0; i < list.length; i++) {
-		var date = new Date(list[i].board_date);
-			content += '<li onclick=location.href="./csj_detail?board_num='+list[i].board_num+'&mem_id='+list[i].mem_id+'" style="cursor:hand">';
-			content += '<dl class="listData">'+'<dd>'+'<span class="screenOut">'+list[i].mem_id+'&nbsp;&nbsp;&nbsp;&nbsp;'+date.getFullYear()+"-"
-		      +("0"+(date.getMonth()+1)).slice(-2)+"-"
-		      +("0" + date.getDate()).slice(-2)+" "
-		      +("0" + date.getHours()).slice(-2)+":"
-		      +("0" + date.getMinutes()).slice(-2)+""
-		      +'</span>'+'</dd>'+'</dl>';
-			content += '<dl class="boardLike">'+"좋아요 "+'<span>'+'<span class="likeCnt">'+list[i].board_like+'</span>'+'</span>'+' </dl>'+'</div>';
-			content += '<strong class="board_title">'+'<span>'+list[i].board_subject+'</span>'+'</strong>';
-			content += '<p class="boardSTxt">'+list[i].board_cont+'</p>'+'</div>';
-			content += '</a>'+'</li>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'</br>'+'<hr style="width:1000px; border:1px solid #ececec">';		
-	}
-	$('.ForumBoardList').append(content);
-}
-*/
+
 </script>
 </html>

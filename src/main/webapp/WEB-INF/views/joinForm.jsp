@@ -24,13 +24,13 @@
                 <table>
                     <tr>
                         <th>ID</th>
-                        <td><input type="text" name="id" class = "joinCL" placeholder="6~20글자를 입력하세요""/>
+                        <td><input type="text" name="id" class = "joinCL" placeholder="아이디를 입력해주세요"/>
                         <input type="button" id="overlay" value="중복체크"/></td>
                         
                     </tr>
                     <tr>
                         <th>PW</th>
-                        <td><input type="password" name="pw"  class = "joinCL" placeholder="6~20글자를 입력하세요" "/></td>
+                        <td><input type="password" name="pw"  class = "joinCL" placeholder="비밀번호를 입력해주세요"/></td>
                     </tr>
                     <tr>
                         <th>PW 확인</th>

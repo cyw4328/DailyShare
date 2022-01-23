@@ -193,11 +193,11 @@ public class CywController {
 	
 	
 	 @RequestMapping(value = "/boardDel", method = RequestMethod.GET)
-	 public String boardDel(Model model, @RequestParam int board_num) {
+	 public String boardDel(Model model, @RequestParam int board_num,@RequestParam String mem_id) {
 		 
 		 service.boardDel(board_num);
 
-	 return "redirect:/"; 
+	 return "redirect:/csj_blogMain?mem_id="+mem_id; 
 	 }
 	 
 	 

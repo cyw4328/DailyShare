@@ -402,7 +402,7 @@ public class CsjService {
 			}
 		}else {
 			logger.info("사진 no썸네일 업데이트"+board_num);
-			dao.csj_thumbUpdateTwo(board_num,photo_newName);
+			//dao.csj_thumbUpdateTwo(board_num,photo_newName);
 		}
 
 		

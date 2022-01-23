@@ -161,7 +161,9 @@
 					</form>
 				</c:if>
 			</c:if>
-		
+			<c:if test="${mem_id eq loginId}">
+				<input class="subButton" type="button" onclick="location.href='./csj_writeForm'" value="글쓰기"/>
+			</c:if>
 		</span>
       
    </nav>

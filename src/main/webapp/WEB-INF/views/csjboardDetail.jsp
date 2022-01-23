@@ -77,11 +77,14 @@
 	 		width: 100%;
 	 		min-height: 700px;
 	 		border-bottom:2px solid gray;
+	 		padding-bottom: 40px;
+	 		
 	 	}
 	 	.likesTag{
 	 		position: absolute;
 	 		bottom:0px;
 	 		left: 0px;
+	 		
 	 	}
 	 	.likesTag span{
 	 		color: gray;

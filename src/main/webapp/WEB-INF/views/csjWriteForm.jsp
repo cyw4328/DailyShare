@@ -343,6 +343,7 @@ $('#post_submit').click( function() {
 $('#post_tag').keydown(function(key) {
    if (key.keyCode == 13) {
       console.log('엔터 입력');
+      event.preventDefault();
       var tag_cont = $('#post_tag').val();
       if(tag_cont != "" && tag_cont != " " && tag_cont != "   " && tag_cont != "   "){
          $('#post_tag').parent().append('&nbsp;<span style="color:grey;font-size:15px;">#'+tag_cont+'</span>');

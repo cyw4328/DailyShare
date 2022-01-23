@@ -330,7 +330,7 @@ function del() {
 	var yn = confirm("정말 이글을 삭제 하시겠습니까?");
 	
 	if (yn) {
-		location.href='./boardDel?board_num=${boardDetail.board_num}';
+		location.href='./boardDel?board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}';
 	}
 	
 }

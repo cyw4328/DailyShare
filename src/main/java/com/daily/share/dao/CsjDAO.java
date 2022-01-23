@@ -90,6 +90,8 @@ public interface CsjDAO {
 
 	void csj_delSub(String sub_id, String mem_id);
 
+	String thumbCall(String board_num);
+
 	
 
 	/*

@@ -57,7 +57,7 @@
 	
 	
 	<select id="midCategoryCall" resultType="com.daily.share.dto.CywDTO">
-		SELECT mid_name from middleCategory where main_num = #{param1} and mid_blind = 0
+		SELECT mid_name from middleCategory where main_num = #{param1} and mid_blind = 0 
 	</select>
 	
 
@@ -70,7 +70,7 @@
 			on m.mid_num = j.mid_num
 			join board d 
 			on m.menu_num = d.menu_num
-			WHERE b.main_num = #{param1} and b.main_admin = 0
+			WHERE b.main_num = #{param1} and b.main_admin = 0 order by board_date desc
 	</select>
 
 	

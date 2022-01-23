@@ -206,8 +206,8 @@ public class CsjService {
 					Files.write(path, bytes);
 					logger.info(photo_oriName+" save ok");
 					dao.csj_photoUpload(board_num,photo_oriName,photo_newName);
-					}	
 					dao.csj_thumbUpdate(board_num,photo_newName);
+					}	
 				Thread.sleep(1);
 			}catch (Exception e) {
 				System.out.println(e.toString());
@@ -340,14 +340,12 @@ public class CsjService {
 		int result = dao.csj_postUpdate(dtoB);
 		String page = "redirect:/csj";
 		logger.info("등록 결과 : {}",result);
-		
-		
-		
+
 		if (result >0) {
 			page = "redirect:/csj_detail?board_num="+board_num+"&mem_id="+mem_id;
 			
 
-			
+			logger.info("수정 요청 파일 수 {}:",photos.length);
 			if (photos.length>0) {
 				//사진등록
 				csj_photoUpload(iboard_num,photos);
@@ -370,7 +368,7 @@ public class CsjService {
 		logger.info("지우려는 사진 수 : {}",delPhotoNum);
 		if (delPhotoNum>0) {
 			for (int i = 0; i < delPhotoNum; i++) {
-				String photo_newName= params.get("photo_newName"+i);
+				String photo_newName = params.get("photo_newName"+i);
 				logger.info(photo_newName);
 				//사진 삭제 요청
 				photoDelete(board_num, photo_newName);
@@ -402,7 +400,7 @@ public class CsjService {
 			}
 		}else {
 			logger.info("사진 no썸네일 업데이트"+board_num);
-			//dao.csj_thumbUpdateTwo(board_num,photo_newName);
+			dao.csj_thumbUpdateTwo(board_num,photo_newName);
 		}
 
 		

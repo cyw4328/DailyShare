@@ -63,7 +63,7 @@
 
 	<!-- 대분류 클릭시 해당 게시물 출력 -->
 	<select id="middleListCall" resultType="com.daily.share.dto.CywDTO">
-		SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
+			SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
 			menu m join mainCategory b 
 			on m.main_num = b.main_num
 			join middleCategory j
@@ -181,16 +181,36 @@
 		SELECT main_name,main_num FROM mainCategory WHERE main_blind = 0 and main_admin = 0 and NOT main_num in ('43')  and not main_name = 'asfsaasf' 
 	</select>
 	
+	
+	
+	
 	<select id="BestBoardList" resultType="com.daily.share.dto.CywDTO">
-			SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
+<!-- 			SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont from 
 			menu m join mainCategory b 
 			on m.main_num = b.main_num
 			join middleCategory j
 			on m.mid_num = j.mid_num
 			join board d 
 			on m.menu_num = d.menu_num
-			WHERE b.main_num = #{param1} ORDER BY board_like DESC 
+			WHERE b.main_num = #{param1} ORDER BY board_like DESC  -->
+			
+	SELECT d.board_num ,d.mem_id ,d.board_thumFileName ,j.mid_name ,d.board_date ,d.board_like ,d.board_subject ,d.board_cont,ms.mem_blog from 
+			menu m join mainCategory b 
+			on m.main_num = b.main_num
+			join middleCategory j
+			on m.mid_num = j.mid_num
+			join board d 
+			on m.menu_num = d.menu_num
+			join members ms 
+			on m.mem_id = ms.mem_id 
+	WHERE b.main_num = #{param1} ORDER BY board_like DESC 
 	</select>
+	
+	
+	
+	
+	
+	
 	
 	<select id="MainSearch" resultType="com.daily.share.dto.CywDTO">
 	<![CDATA[

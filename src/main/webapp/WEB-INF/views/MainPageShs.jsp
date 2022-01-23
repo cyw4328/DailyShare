@@ -52,7 +52,6 @@
    .BigCate:hover{
    		border-bottom:6px solid #ec5041;
    		color:black;
-   		
    }
    
    
@@ -147,7 +146,7 @@
   	 margin-top:13px;
   	 margin-bottom: 15px;
   	 margin-left:12px;
-  	 float: left;
+
 }
 
 .ContTitle:hover{
@@ -155,17 +154,16 @@
 }
 
 .ContBlog{
-padding-left:15px;
-font-size: 14px;
-float: left;
-position: relative;
-top:20px;
-left:0px;
+	padding-left:15px;
+	font-size: 14px;
+	color:#adadad;
+	margin-top: 7px;
 }
 
-.txt_blog{
-	margin-top:5px;
-	color:b5b5b5;
+.ContblogName{
+	padding-left:15px;
+	font-size: 14px;
+	
 }
 
 
@@ -518,7 +516,7 @@ function ForumBoardList(list) {
 };
 
 
-function BestBoardList(Best) {
+/* function BestBoardList(Best) {
 	var content = '';
 	
 	for (var i = 0; i < 3; i++) {
@@ -528,13 +526,13 @@ function BestBoardList(Best) {
 			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="150px" height="150px" ">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
-			content += '<p class="ContTitle">'+Best[i].board_subject+'</span>'+'</p>'+'</div>';
-			content += '<span class="ContBlog">'+'<span class="txt_id">'+Best[i].mem_id+'</span>'+'</span>'+'</a>';
+			content += '<p class="ContTitle">'+Best[i].board_subject+'</p>'+'</div>';
+			content += '<div class="ContBlog">'+Best[i].mem_id+'</div>'+'</a>';
 			content += '</li>';		
 	}
 
 	$('.CateCont').append(content);
-};
+}; */
 
 
 
@@ -607,9 +605,9 @@ function BestBoardList(Best) {
 			content += '<img alt="img01" src="/postImageFolder/'+Best[i].board_thumFileName+'"width ="310px" height="172px" ">';
 			content += '</div>';
 			content += '<div class="ContTxt">'+'<div class="ContSmall">'+'<span>'+Best[i].mid_name+'</span>'+'<span>'+' &nbsp; &nbsp;'+"좋아요"+'</span>'+'&nbsp;'+'<span style="color:red">'+Best[i].board_like+'</span>'+'</div>'+'</div>';
-			content += '<strong class="ContTitle">'+'<span>'+'&nbsp;'+Best[i].board_subject+'</span>'+'</strong>'+'</div>';
-			content += '<div class="ContBlog">'+'<div class="txt_id">'+Best[i].mem_id+'</div>'+'</div>'+'</a>';
-
+			content += '<div class="ContTitle">'+ '<strong>'+Best[i].board_subject+'</strong>'+'</div>';
+			content += '<div class="ContblogName">'+Best[i].mem_blog+'</div>';
+			content += '<div class="ContBlog">'+"by &nbsp;"+Best[i].mem_id+'</div>'+'</a>';
 			content += '</li>';		
 	}
 

@@ -220,7 +220,10 @@
 		delete from subscription where sub_id=#{param1} and mem_id=#{param2}
 	</delete>
 	
-	
+	<!-- 썸네일 불러오기 -->
+	<select id="thumbCall" resultType="String">
+		select board_thumFileName from board where board_num=#{param1}
+	</select>
 	
 	
 	

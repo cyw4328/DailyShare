@@ -30,8 +30,94 @@
     		top:150px;
     		left: 0;
     	}
-    	
-    	
+	    #midname{
+		    font-size: 14px;
+		    line-height: 14px;
+		    font-family: fontARD;
+		    color: #909090;
+		    position: relative;
+		    width: 500px;
+		    height: 300px;
+		   	top:-30px;
+		   	left:-190px;
+		   	text-decoration : none;
+		   	border: 1px solid black;
+		   	border-collapse: collapse;
+	   }
+	    #date{
+		    font-size: 14px;
+		    line-height: 14px;
+		    font-family: fontARD;
+		    color: #909090;
+		    position: relative;
+		    width: 500px;
+		   	top:-30px;
+		   	left:-190px;
+		   	text-decoration : none;
+	   }
+	    #id{
+		    font-size: 14px;
+		    line-height: 14px;
+		    font-family: fontARD;
+		    color: #909090;
+		    position: relative;
+		    width: 500px;
+		   	top:-30px;
+		   	left:-190px;
+		   	text-decoration : none;
+	   }
+	   
+	    #like{
+	   		font-size: 13px;
+	   		position: absolute;
+	   		top:-30px;
+	   		left:900px;
+	   		width: 100px;
+	   		color: black;
+	   }
+	   
+	    #subject{
+		   	display: block;
+		    overflow: hidden;
+		    position: absolute;
+		    max-width: 500px;
+			top:10px;
+			left:100px;
+		    font-size: 24px;
+		    line-height: 1;
+		    color: #222222;
+		    font-weight: normal;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+	   }
+	   
+	   #cont{
+		   	position: absolute;
+		    top: 40px;
+		    left: 110px;
+		    display: block;
+		    display: -webkit-box;
+		    overflow: hidden;
+		    width: 564px;
+		    max-height: 44px;
+		    -webkit-box-orient: vertical;
+		    -webkit-line-clamp: 2;
+		    font-size: 15px;
+		    color: #777;
+		    line-height: 22px;
+		    padding: 0 0 0 1px;
+	   }
+	   #likecolor{
+	   		color:red;
+	   		position: relative;
+	   		top: -19px;
+		    left: 45px;
+	   }    	
+    	#img{
+	   		position: relative;
+	   		top: -550px;
+		    left: 200px;
+	   }    	
     	
     </style>
 </head>
@@ -55,9 +141,16 @@
 		<c:forEach var="item" items="${list}">
 			<tr onclick="location.href='./csj_detail?board_num=${item.board_num}&mem_id=${item.mem_id}'" style="cursor: hand" class="searchLi">
 				<td id="forumTd">
-					<c:out value="${item.mem_id}"/>&nbsp;&nbsp;<c:out value="${item.board_date}"/>&nbsp;&nbsp;추천수 : <c:out value="${item.board_like}"/><br/>
-					<c:out value="${item.board_subject }"/><br/>
-					<c:out value="${item.board_cont}"/>
+					<div id="midname"><c:out value="${item.mid_name}"/></div>
+					<div id="date"><c:out value="${item.board_date}"/></div>
+					<div id="like">좋아요<div id="likecolor"><c:out value="${item.board_like}"/></div></div>
+					<div id="subject"><c:out value="${item.board_subject }"/></div>
+					<div id="cont"><c:out value="${item.board_cont}"/></div>
+					<div id="id"><c:out value="${item.mem_id}"/></div>
+					<div id="img"><img src="/postImageFolder/<c:out value="${item.board_thumFileName}"/>" width ="150px" height="150px" alt="boardImg" class = "thumb_g"></div>
+					<br/><br/><br/><br/><br/><br/><br/>
+					<hr style="width:1000px; border:1px solid #ececec">
+					<br/><br/>
 				</td>
 			</tr>
 		</c:forEach>

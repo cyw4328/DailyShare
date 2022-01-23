@@ -289,7 +289,7 @@
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
 												<span class="com_fix">수정</span>&nbsp;
-												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
+												<a class="com_del" href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
 												<a href="#" onclick="singoPop()">신고</a>&nbsp;
@@ -316,7 +316,7 @@
 										<span class="csj_com_a">
 											<c:if test="${loginId eq comList.mem_id}">
 												<span class="com_fix">수정</span>&nbsp;
-												<a href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
+												<a class="com_del" href="./csj_com_del?com_num=${comList.com_num}&board_num=${boardDetail.board_num}&mem_id=${boardDetail.mem_id}">삭제</a>&nbsp;
 											</c:if>
 											<c:if test="${loginId ne comList.mem_id}">
 											<a href="#"onclick=" singoPop()">신고</a>&nbsp;
@@ -344,7 +344,7 @@
 										<input type="hidden" name="mem_id" value="${loginId}" />
 										<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
 										<input type="hidden" name="board_num" value="${boardDetail.board_num}" />
-										<input type="hidden" name="com_parent" value="${comList.com_num}" />
+										<input type="hidden" name="com_parent" value="${comList.com_parent}" />
 										<textarea class="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id}&nbsp;댓글을 입력하세요"></textarea>
 										<input class="csj_reply_submit" type="button"  value="등록" />
 										<input class="reply_close" type="button"  value="X" />	
@@ -455,6 +455,10 @@ function singoPop() {
 		
 	});
 	
+	
+	$('.com_del').click(function () {
+		alert('댓글을 삭제하시겠습니까?');
+	});
 	
 	
 	

@@ -29,7 +29,7 @@ public class CywController {
 
 	@RequestMapping(value = "/cyw", method = RequestMethod.GET)
 	public String home(Model model) {
-		logger.info("카테고리");
+		/* logger.info("카테고리"); */
 		ArrayList<CywDTO> bigCategoryList = service.bigCategoryList();	
 		model.addAttribute("bigCategoryList",bigCategoryList);
 		ArrayList<CywDTO> midCategoryList = service.midCategoyrList();
@@ -73,7 +73,7 @@ public class CywController {
 	
 	@RequestMapping(value = "/bigCategoryAdd", method = RequestMethod.POST)
 	public String bigCategoryAdd(Model model, @RequestParam String mainCategoryAdd, @RequestParam int mainAdmin) {
-		logger.info("컨트롤러 도착 대분류" + mainCategoryAdd, mainAdmin);
+		/* logger.info("컨트롤러 도착 대분류" + mainCategoryAdd, mainAdmin); */
 
 		service.bigCategoryAdd(mainCategoryAdd, mainAdmin);
 
@@ -83,7 +83,7 @@ public class CywController {
 	@RequestMapping(value = "/bigCategoryDel", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> bigCategoryDel(Model model,@RequestParam String main_num) {
-		logger.info("삭제요청 : {}",main_num); 
+		/* logger.info("삭제요청 : {}",main_num); */
 						
 	
 		return service.bigCateFk(main_num);
@@ -94,7 +94,7 @@ public class CywController {
 	 @RequestMapping(value = "/middleCategoryAdd", method = RequestMethod.POST)
 	 public String middleCategoryAdd(Model model, @RequestParam String middleCategoryAdd,  @RequestParam int daeCategory,
 			@RequestParam int middle_admin) {
-	 logger.info("컨트롤러 도착 중분류"+middleCategoryAdd+daeCategory+middle_admin);
+			/* logger.info("컨트롤러 도착 중분류"+middleCategoryAdd+daeCategory+middle_admin); */
 	 
 	 service.middleCategoryAdd(middleCategoryAdd,daeCategory,middle_admin);
 	 
@@ -104,7 +104,7 @@ public class CywController {
 	@RequestMapping(value = "/midCategoryDel", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> midCategoryDel(Model model,@RequestParam String mid_num) {
-		logger.info("삭제요청 : {}",mid_num); 
+		/* logger.info("삭제요청 : {}",mid_num); */
 							
 	
 		return service.midCateFk(mid_num);
@@ -127,9 +127,9 @@ public class CywController {
 	 @RequestMapping(value = "/menuAdd", method = RequestMethod.POST)
 	 public String menuAdd(Model model, @RequestParam String menuAddName,@RequestParam int daeCategoryMenu, 
 			 @RequestParam int midCategoryMenu,HttpSession session) {
-	 logger.info("컨트롤러 도착 메뉴생성"+menuAddName,daeCategoryMenu,midCategoryMenu);
+			/* logger.info("컨트롤러 도착 메뉴생성"+menuAddName,daeCategoryMenu,midCategoryMenu); */
 	 String id = (String) session.getAttribute("loginId");
-	 logger.info("메뉴생성세션아이디:{}",id);
+		/* logger.info("메뉴생성세션아이디:{}",id); */
 	 service.menuAdd(menuAddName,daeCategoryMenu,midCategoryMenu,id);
 	 
 	 return "redirect:/menuAddPage"; 
@@ -138,7 +138,7 @@ public class CywController {
 	@RequestMapping(value = "/menuDel", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Object> menuDel(Model model,@RequestParam String menu_num) {
-		logger.info("삭제요청 : {}",menu_num); 
+		/* logger.info("삭제요청 : {}",menu_num); */
 							
 	
 		return service.menuFk(menu_num);
@@ -148,7 +148,7 @@ public class CywController {
 	@RequestMapping(value = "/midCategoryCall", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> midCategoryCall(Model model,@RequestParam String selectValue) {
-		logger.info("리스트호출 : {}",selectValue); 
+		/* logger.info("리스트호출 : {}",selectValue); */
 							
 	
 		return service.midCategoryCall(selectValue);
@@ -157,7 +157,7 @@ public class CywController {
 	@RequestMapping(value = "/middleListCall", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> middleListCall(Model model,@RequestParam String middleListCall) {
-		logger.info("리스트호출 : {}",middleListCall); 
+		/* logger.info("리스트호출 : {}",middleListCall); */
 							
 	
 		return service.middleListCall(middleListCall);
@@ -186,7 +186,7 @@ public class CywController {
 	// 게시글수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Model model, @RequestParam HashMap<String, String> params) {
-		logger.info("update 요청:{}",params);
+		/* logger.info("update 요청:{}",params); */
 		service.update(params);
 		return "redirect:/boardDetail?board_num="+params.get("board_num");
 	}
@@ -241,7 +241,7 @@ public class CywController {
 	 // 포럼페이지 검색기능
 	 @RequestMapping(value = "/ForumSearch", method = RequestMethod.POST)
 	 public String ForumSearch(Model model, @RequestParam String ForumSearch,  @RequestParam String SearchScope) {
-		 logger.info("컨트롤러 도착 중분류"+ForumSearch+SearchScope);
+			/* logger.info("컨트롤러 도착 중분류"+ForumSearch+SearchScope); */
 	 
 	 		ArrayList<CywDTO> dto = service.ForumSearch(ForumSearch,SearchScope);			
 	 		model.addAttribute("list",dto);
@@ -256,7 +256,7 @@ public class CywController {
 		 
 		 String loginId = (String) session.getAttribute("loginId");
 		 ArrayList<CywDTO> dto = service.FeedPageListCall(loginId);
-		 logger.info("구독자가져왔니?:{}",dto);
+			/* logger.info("구독자가져왔니?:{}",dto); */
 		 model.addAttribute("subsBoard",dto);
 		 
 		 //구독자 수 알아오기
@@ -482,7 +482,7 @@ public class CywController {
 		@RequestMapping(value = "/BoardSingo", method = RequestMethod.POST)
 		 public String BoardSingo(Model model, @RequestParam String dec_targetId,  @RequestParam String dec_targetNum,
 				 @RequestParam String dec_code,HttpSession session) {
-				logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code);
+				/* logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code); */
 				
 				String loginId = (String) session.getAttribute("loginId");
 				
@@ -501,7 +501,7 @@ public class CywController {
 		@RequestMapping(value = "/CommentSingo", method = RequestMethod.POST)
 		 public String CommentSingo(Model model, @RequestParam String dec_targetId,  @RequestParam String dec_targetNum,
 				 @RequestParam String dec_code,HttpSession session,@RequestParam String board_num) {
-				logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code);
+				/* logger.info("게시물 신고 목록"+dec_targetId+dec_targetNum+dec_code); */
 				
 				String loginId = (String) session.getAttribute("loginId");
 				

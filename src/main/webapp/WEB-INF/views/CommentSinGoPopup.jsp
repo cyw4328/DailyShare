@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Daily Share</title>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <style>
     #SingoPopup{

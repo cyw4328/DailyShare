@@ -3,7 +3,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Insert title here</title>
+   <title>Daily Share</title>
    <style>
    
    #con_gooDock{width: 1200px;

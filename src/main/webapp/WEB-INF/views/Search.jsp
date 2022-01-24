@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-        <title></title>
+        <title>Daily Share</title>
         <link rel="icon" href="./icon.png">
         <style type="text/css">
             

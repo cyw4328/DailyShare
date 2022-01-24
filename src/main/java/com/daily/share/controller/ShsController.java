@@ -48,8 +48,8 @@ public class ShsController {
 	
 	@RequestMapping(value = "/joinShs", method = RequestMethod.POST)
 	public String join(Model model,@RequestParam HashMap<String, String> params) {
-		logger.info("회원가입 요청");	
-		logger.info("params : {}",params);
+//		logger.info("회원가입 요청");	
+//		logger.info("params : {}",params);
 	
 		service.join(params);
 		
@@ -66,12 +66,12 @@ public class ShsController {
 	@GetMapping(value="/mailCheck",consumes = {MediaType.TEXT_PLAIN_VALUE})
 	@ResponseBody
 	public String mailCheck(String email) throws Exception{
-		logger.info("이메일 데이터 전송확인");
-		logger.info("인증 메일 : "+email);
+//		logger.info("이메일 데이터 전송확인");
+//		logger.info("인증 메일 : "+email);
 		
 		Random random = new Random();
 		int checkNum = random.nextInt(888888)+111111; // 111111 - 999999
-		logger.info("인증번호 : "+checkNum);
+//		logger.info("인증번호 : "+checkNum);
 		
 		//이메일 보내기
 		String setFrom = "gustjsdldi2016@gmail.com";
@@ -106,7 +106,7 @@ public class ShsController {
 		@RequestMapping(value = "/overlay", method = RequestMethod.GET)
 		@ResponseBody
 		public HashMap<String, Object> overlay(@RequestParam String id) {		
-			logger.info("중복 아이디 체크 : {}",id);		
+//			logger.info("중복 아이디 체크 : {}",id);		
 			return service.overlay(id);
 		}
 		
@@ -121,7 +121,7 @@ public class ShsController {
 	public String memberDe(Model model,HttpSession session) {
 	
 		String id = (String) session.getAttribute("loginId");
-		logger.info("세션아이디 값 : {}",id);
+//		logger.info("세션아이디 값 : {}",id);
 		
 		ShsDTO dto = service.memberDe(id);
 		model.addAttribute("info", dto);
@@ -135,7 +135,7 @@ public class ShsController {
 // 회원정보 수정 요청
 @RequestMapping(value = "/userUp", method = RequestMethod.POST)
 public String userUp(Model model, @RequestParam String id,@RequestParam String pw, @RequestParam String email, @RequestParam String phone, @RequestParam String blog) {
-	logger.info("수정 요청 : {}",id+pw+email+phone);	//null 값은 받지 않는것으로 확인
+//	logger.info("수정 요청 : {}",id+pw+email+phone);	//null 값은 받지 않는것으로 확인
 	
 	service.userUp(id,pw,email,phone,blog);
 	
@@ -146,7 +146,7 @@ public String userUp(Model model, @RequestParam String id,@RequestParam String p
 //로그아웃
 @RequestMapping(value = "/logoutShs", method = RequestMethod.GET)
 public String logoutShs(HttpSession session) {
-	logger.info("로그아웃 컨트롤러");
+//	logger.info("로그아웃 컨트롤러");
 	
 	Object object = session.getAttribute("loginId");
 	
@@ -164,13 +164,13 @@ public String logoutShs(HttpSession session) {
 //회원탈퇴
 @RequestMapping(value = "/memberOut", method = RequestMethod.GET)
 public String memberOut(HttpSession session) {
-	logger.info("회원탈퇴 컨트롤러");
+//	logger.info("회원탈퇴 컨트롤러");
 	
 	Object object = session.getAttribute("loginId");
 	
 	if(object != null) {
 		session.getAttribute("loginId");
-		logger.info("회원탈퇴 컨트롤러 : {}",object);
+//		logger.info("회원탈퇴 컨트롤러 : {}",object);
 		
 		service.memberOut(object);
 		session.invalidate();
@@ -185,7 +185,7 @@ public String memberOut(HttpSession session) {
 //구독 페이지 - 나를 구독하는 블로거
 @RequestMapping(value = "/followShs", method = RequestMethod.GET)
 public String followShs(Model model,HttpSession session) {
-	logger.info("구독관리 컨트롤러 - 나를 구독");
+//	logger.info("구독관리 컨트롤러 - 나를 구독");
 	
 	String loginId = (String) session.getAttribute("loginId");
 	String page ="redirect:/MainPageShs";
@@ -202,7 +202,7 @@ public String followShs(Model model,HttpSession session) {
 //구독 페이지 - 내가 구독하는 블로거
 @RequestMapping(value = "/followingShs", method = RequestMethod.GET)
 public String followingShs(Model model,HttpSession session) {
-	logger.info("구독관리 컨트롤러 - 내가 구독");
+//	logger.info("구독관리 컨트롤러 - 내가 구독");
 	
 	String loginId = (String) session.getAttribute("loginId");
 	String page ="redirect:/MainPageShs";
@@ -223,7 +223,7 @@ public String followingShs(Model model,HttpSession session) {
 @ResponseBody
 public HashMap<String, Object>  followBtnShs(Model model,HttpSession session,@RequestParam String mem_id) {
 	String sub_id = (String) session.getAttribute("loginId");
-	logger.info("팔로우 여부 컨트롤러 : {}",mem_id+sub_id);
+//	logger.info("팔로우 여부 컨트롤러 : {}",mem_id+sub_id);
 	return service.followBtnShs(mem_id,sub_id);
 }
 
@@ -233,9 +233,9 @@ public HashMap<String, Object>  followBtnShs(Model model,HttpSession session,@Re
 @ResponseBody
 public HashMap<String, Object>  followPlusShs(Model model,HttpSession session,@RequestParam String mem_id) {
 	String sub_id = (String) session.getAttribute("loginId");
-	logger.info("팔로우 버튼 컨트롤러");
+//	logger.info("팔로우 버튼 컨트롤러");
 	
-	logger.info("{}",mem_id+sub_id);
+//	logger.info("{}",mem_id+sub_id);
 	return service.followPlusShs(mem_id,sub_id);
 }
 
@@ -248,9 +248,9 @@ public HashMap<String, Object>  followPlusShs(Model model,HttpSession session,@R
 @ResponseBody
 public HashMap<String, Object>  followDelShs(Model model,HttpSession session,@RequestParam String mem_id) {
 	String sub_id = (String) session.getAttribute("loginId");
-	logger.info("언팔 컨트롤러");
+//	logger.info("언팔 컨트롤러");
 	
-	logger.info("{}",mem_id+sub_id);
+//	logger.info("{}",mem_id+sub_id);
 	return service.followDelShs(mem_id,sub_id);
 }
 
@@ -262,7 +262,7 @@ public HashMap<String, Object>  followDelShs(Model model,HttpSession session,@Re
 @RequestMapping(value = "/followBtnPage", method = RequestMethod.GET)
 public String  followBtnPage(Model model,HttpSession session) {
 	String mem_id = (String) session.getAttribute("loginId");
-	logger.info("followBtnPage 컨트롤러");
+//	logger.info("followBtnPage 컨트롤러");
 	return "followBtnPage";
 }
 
@@ -277,7 +277,7 @@ public String  followBtnPage(Model model,HttpSession session) {
 
 @RequestMapping(value = "/MainPageShs", method = RequestMethod.GET)
 public String MainPageShs(Model model) {
-	logger.info("메인페이지 요청");	
+//	logger.info("메인페이지 요청");	
 
 	
 	return "MainPageShs";
@@ -288,7 +288,7 @@ public String MainPageShs(Model model) {
 
 @RequestMapping(value = "/memberPassCk", method = RequestMethod.GET)
 public String memberPassCk(Model model,HttpSession session) {
-	logger.info("비밀번호체크 페이지 컨트롤러");	
+//	logger.info("비밀번호체크 페이지 컨트롤러");	
 	String object = (String) session.getAttribute("loginId");
 
 	String Page ="redirect:/loginPage";
@@ -304,7 +304,7 @@ public String memberPassCk(Model model,HttpSession session) {
 
 @RequestMapping(value = "/PassCk", method = RequestMethod.POST)
 	public String PassCk(Model model,HttpSession session, @RequestParam String pw,@RequestParam String id) {
-		logger.info("비밀번호체크 컨트롤러{}",pw+id);	
+//		logger.info("비밀번호체크 컨트롤러{}",pw+id);	
 		Object object = session.getAttribute("loginId");
 	
 		String Page ="redirect:/loginPage";
@@ -335,7 +335,7 @@ public String memberPassCk(Model model,HttpSession session) {
 @ResponseBody
 public HashMap<String, Object>  adminCk(Model model,@RequestParam String adminLogin) {
 	
-	logger.info("어드민 여부 확인 컨트롤러{} : ",adminLogin);
+//	logger.info("어드민 여부 확인 컨트롤러{} : ",adminLogin);
 	return service.adminCk(adminLogin);
 
 

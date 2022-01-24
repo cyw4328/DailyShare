@@ -18,7 +18,7 @@ public class HomeController {
    
    @RequestMapping(value = "/", method = RequestMethod.GET)
    public String home(Model model) {
-      logger.info("홈페이지 이동");
+//      logger.info("홈페이지 이동");
 
 
 

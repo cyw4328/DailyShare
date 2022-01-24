@@ -3,7 +3,7 @@
 <html>
 <head>
    <meta charset="UTF-8">
-   <title>Insert title here</title>
+   <title>Daily Share</title>
    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
    <!-- <link rel="stylesheet" type="text/css" href="resources/css/HS.css"> -->
    <style>
@@ -416,7 +416,7 @@ function MainBigCategoryCall() {
 		data:{}, // {}안에 아무것도 안넣으면 다보여줘라 라는 뜻
 		dataType:'JSON',
 		success:function(data) {
-			console.log(data.list);
+			/* console.log(data.list); */
 			/* window.location.href="./MyReviewControlPage"; */
 			MainCategorylistDraw(data.list) 
 		},
@@ -429,7 +429,7 @@ function MainCategorylistDraw(list) { // 배열안에 있는 내용을 표로 �
 	var content = '';
 	
 	for (var i = 0; i <6; i++) {
-		console.log(list[i].main_name);
+		/* console.log(list[i].main_name); */
 		content += '<span class="BigCate" onclick="MainNum('+list[i].main_num+')">'+list[i].main_name+'</span>';
 		content += '<input type="hidden" value="'+list[i].main_num+'"/>'
 		
@@ -462,7 +462,7 @@ function MainNum(e) {
 		data:{"MainNum":e}, 
 		dataType:'JSON',
 		success:function(data) {
-			console.log(data.list);
+			/* console.log(data.list); */
 			ForumBoardList(data.list)
 		},
 		error:function(e) {
@@ -477,7 +477,7 @@ function MainNum(e) {
 		dataType:'JSON',
 		success:function(data) {
 			
-			console.log(data.Best);
+			/* console.log(data.Best); */
 			BestBoardList(data.Best);
 		},
 		error:function(e) {
@@ -546,7 +546,7 @@ function MainPageOpenList() {
 		data:{}, 
 		dataType:'JSON',
 		success:function(data) {
-			console.log(data.list);
+			/* console.log(data.list); */
 			ForumBoardList(data.list)
 		},
 		error:function(e) {
@@ -561,7 +561,7 @@ function MainPageOpenList() {
 		dataType:'JSON',
 		success:function(data) {
 			
-			console.log(data.Best);
+			/* console.log(data.Best); */
 			BestBoardList(data.Best);
 		},
 		error:function(e) {

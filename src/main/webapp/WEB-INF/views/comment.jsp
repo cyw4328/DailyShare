@@ -269,6 +269,7 @@
 				<input type="hidden" name="com_targetId" value="${boardDetail.mem_id }" />
 				<input type="hidden" name="board_num" value="${boardDetail.board_num}" />
 				<input type="hidden" name="com_parent" value="0" />
+				<input type="hidden" name="com_boardId" value="${boardDetail.mem_id }" />
 				<textarea id="csj_com_content" name="com_cont" placeholder="댓글을 입력하세요"></textarea>
 				<input type="button" id="csj_com_button" value="등록" />
 			</form>	
@@ -345,6 +346,7 @@
 										<input type="hidden" name="com_targetId" value="${comList.mem_id}" />
 										<input type="hidden" name="board_num" value="${boardDetail.board_num}" />
 										<input type="hidden" name="com_parent" value="${comList.com_parent}" />
+										<input type="hidden" name="com_boardId" value="${boardDetail.mem_id }" />
 										<textarea class="csj_reply_content" name="com_cont" placeholder="@${comList.mem_id}&nbsp;댓글을 입력하세요"></textarea>
 										<input class="csj_reply_submit" type="button"  value="등록" />
 										<input class="reply_close" type="button"  value="X" />	

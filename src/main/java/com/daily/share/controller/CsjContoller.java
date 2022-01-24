@@ -54,8 +54,8 @@ public class CsjContoller {
 		/* session.setAttribute("loginId", "test"); */
 		/* logger.info("댓글 등록 요청 : {} / {}", session,params); */
 		service.com_regist(session,params);
-		String mem_id = params.get("mem_id");
-		return "redirect:/csj_detail?board_num="+params.get("board_num")+"&mem_id="+mem_id;
+		String com_boardId = params.get("com_boardId");
+		return "redirect:/csj_detail?board_num="+params.get("board_num")+"&mem_id="+com_boardId;
 	}
 	
 	@RequestMapping(value = "/csj_com_del", method = RequestMethod.GET)

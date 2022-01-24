@@ -223,7 +223,7 @@ if(login != null || login != ''){
       data:{"adminLogin":login},
       dataType:'JSON',
       success:function(data) {
-         console.log(data.adminCk);
+         /* console.log(data.adminCk); */
          if(data.adminCk==1){
             console.log('관리자회원');
 
@@ -246,7 +246,7 @@ $.ajax({
     data:{},
     dataType:'JSON',
     success:function(data) {
-       console.log(data.gongji);
+       /* console.log(data.gongji); */
        GongJi(data.gongji);
   
     },

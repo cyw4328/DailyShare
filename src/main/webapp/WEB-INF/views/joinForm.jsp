@@ -180,8 +180,8 @@ $("#mailCheck").on("click",function(e){
 
    
    
-	   if(email==null||email == ''||!email.match("@")){
-		   alert('이메일을 확인해 주세요');
+   		if(email==null||email == ''||!email.match("@gmail.com")){
+      	 	alert('이메일을 확인해 주세요. (이메일은 gmail 만 가능합니다.)');
 
 	   }else{
 		   $("#enumber").show();
